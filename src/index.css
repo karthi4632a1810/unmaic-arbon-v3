@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --font-family-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-family-display: "Poppins", ui-sans-serif, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-sans);
+}
