@@ -1,11 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ImpactCounter } from "./components/ImpactCounter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import heroVideo from "./assets/unmai-carbon.mp4";
 import "./App.css";
 
-/** Hero intro: stagger between each reveal start (ms). */
-const HERO_STAGGER_MS = 200;
 /** Scroll distance before nav pins full-width to the top. */
 const NAV_PIN_SCROLL_PX = 150;
 
@@ -109,61 +107,14 @@ const flowSteps = [
   },
 ] as const;
 
-type HeroReveal = {
-  overlay: boolean;
-  subtitle: boolean;
-  title: boolean;
-  buttons: boolean;
-  right: boolean;
-};
-
-const heroRevealInitial: HeroReveal = {
-  overlay: false,
-  subtitle: false,
-  title: false,
-  buttons: false,
-  right: false,
-};
-
-function heroFadeSlide(on: boolean) {
-  return [
-    "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
-    on ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0",
-  ].join(" ");
-}
+/** Hero body lines: visible on load (no delayed intro). */
+const heroLine =
+  "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none translate-y-0 opacity-100";
 
 export default function UnmaiCarbonHomePage() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const introHandledRef = useRef(false);
-  const staggerTimeoutsRef = useRef<number[]>([]);
 
-  const [pastFirstLoop, setPastFirstLoop] = useState(false);
-  const [reveal, setReveal] = useState<HeroReveal>(heroRevealInitial);
   const [navDocked, setNavDocked] = useState(false);
-
-  const queueStagger = useCallback((fn: () => void, delayMs: number) => {
-    const id = window.setTimeout(fn, delayMs);
-    staggerTimeoutsRef.current.push(id);
-  }, []);
-
-  const handleHeroVideoEnded = useCallback(() => {
-    if (introHandledRef.current) return;
-    introHandledRef.current = true;
-    setPastFirstLoop(true);
-
-    const v = heroVideoRef.current;
-    if (v) {
-      v.loop = true;
-      void v.play();
-    }
-
-    setReveal((r) => ({ ...r, overlay: true }));
-
-    queueStagger(() => setReveal((r) => ({ ...r, subtitle: true })), HERO_STAGGER_MS);
-    queueStagger(() => setReveal((r) => ({ ...r, title: true })), HERO_STAGGER_MS * 2);
-    queueStagger(() => setReveal((r) => ({ ...r, buttons: true })), HERO_STAGGER_MS * 3);
-    queueStagger(() => setReveal((r) => ({ ...r, right: true })), HERO_STAGGER_MS * 4);
-  }, [queueStagger]);
 
   useEffect(() => {
     const el = heroVideoRef.current;
@@ -175,12 +126,6 @@ export default function UnmaiCarbonHomePage() {
         /* autoplay blocked until interaction — muted usually succeeds */
       });
     }
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      staggerTimeoutsRef.current.forEach((id) => clearTimeout(id));
-    };
   }, []);
 
   useEffect(() => {
@@ -258,26 +203,21 @@ export default function UnmaiCarbonHomePage() {
             src={heroVideo}
             autoPlay
             muted
-            loop={pastFirstLoop}
+            loop
             playsInline
             preload="auto"
             aria-hidden
-            onEnded={handleHeroVideoEnded}
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
         </div>
-        {/* Readability overlay — hidden until first loop completes */}
+        {/* Readability overlay */}
         <div
-          className={`pointer-events-none absolute inset-0 z-[1] bg-black/50 transition-opacity duration-300 ease-out motion-reduce:transition-none sm:bg-black/45 ${
-            reveal.overlay ? "opacity-100" : "opacity-0"
-          }`}
+          className="pointer-events-none absolute inset-0 z-[1] bg-black/50 opacity-100 transition-opacity duration-300 ease-out motion-reduce:transition-none sm:bg-black/45"
           aria-hidden
         />
         <div
-          className={`pointer-events-none absolute inset-0 z-[2] transition-opacity duration-300 ease-out motion-reduce:transition-none ${
-            reveal.overlay ? "opacity-20" : "opacity-0"
-          }`}
+          className="pointer-events-none absolute inset-0 z-[2] opacity-20 transition-opacity duration-300 ease-out motion-reduce:transition-none"
           style={{
             backgroundImage:
               "radial-gradient(ellipse 90% 60% at 50% 40%, rgba(197,197,214,0.35), transparent 55%)",
@@ -294,12 +234,12 @@ export default function UnmaiCarbonHomePage() {
             <div className="grid gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-x-12 xl:gap-x-16">
               <div className="flex min-h-0 flex-col gap-10 self-stretch lg:col-span-8 lg:justify-between lg:gap-12 xl:gap-14">
                 <div className="max-w-[52rem] space-y-6">
-                  <div className={heroFadeSlide(reveal.subtitle)}>
+                  <div className={heroLine}>
                     <p className="text-base font-bold uppercase tracking-[0.25em] text-[#e6ff80] sm:text-[26px] sm:leading-6 sm:tracking-[3.2px]">
                       We Don’t Just
                     </p>
                   </div>
-                  <div className={heroFadeSlide(reveal.title)}>
+                  <div className={heroLine}>
                     <h1 className="text-4xl font-bold tracking-[-0.02em] text-white sm:text-6xl lg:text-[75px] lg:leading-[1.01] lg:tracking-[-0.04em]">
                       <span className="block whitespace-normal">
                         Talk About <span className="text-[#e6ff80]">Net Zero</span>.
@@ -310,7 +250,7 @@ export default function UnmaiCarbonHomePage() {
                     </h1>
                   </div>
                 </div>
-                <div className={`flex shrink-0 flex-wrap gap-4 ${heroFadeSlide(reveal.buttons)}`}>
+                <div className={`flex shrink-0 flex-wrap gap-4 ${heroLine}`}>
                   <button
                     type="button"
                     className="rounded-lg bg-[#e7e8e9] px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-[#191c1d] shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-white hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md"
@@ -327,7 +267,7 @@ export default function UnmaiCarbonHomePage() {
               </div>
 
               <div
-                className={`flex min-h-0 flex-col justify-center gap-8 self-stretch border-t border-white/25 pt-8 lg:col-span-4 lg:h-full lg:gap-0 lg:border-l lg:border-t-0 lg:border-white/30 lg:pl-10 lg:pt-0 xl:pl-12 ${heroFadeSlide(reveal.right)}`}
+                className={`flex min-h-0 flex-col justify-center gap-8 self-stretch border-t border-white/25 pt-8 lg:col-span-4 lg:h-full lg:gap-0 lg:border-l lg:border-t-0 lg:border-white/30 lg:pl-10 lg:pt-0 xl:pl-12 ${heroLine}`}
               >
                 {/* Desktop: vertically center the two paragraphs in the band above STRATEGIC */}
                 <div className="flex min-h-0 flex-col justify-center">
