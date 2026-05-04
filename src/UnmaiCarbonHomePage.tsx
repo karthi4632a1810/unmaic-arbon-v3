@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ImpactCounter } from "./components/ImpactCounter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import heroVideo from "./assets/unmai-carbon.mp4";
@@ -6,6 +6,10 @@ import "./App.css";
 
 /** Scroll distance before nav pins full-width to the top. */
 const NAV_PIN_SCROLL_PX = 150;
+/** Tailwind `md` breakpoint — hero offset matches header height only below this width. */
+const MOBILE_MAX_WIDTH_PX = 767;
+
+const HERO_SECTION_BG = "linear-gradient(148deg, black, #272727)";
 
 const imgImage5 =
   "https://www.figma.com/api/mcp/asset/7a8bc8bb-67c1-422b-9da5-e8ee11009222";
@@ -113,8 +117,13 @@ const heroLine =
 
 export default function UnmaiCarbonHomePage() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   const [navDocked, setNavDocked] = useState(false);
+  /** On mobile, hero `margin-top` = measured fixed header height (px). */
+  const [mobileHeroMarginTop, setMobileHeroMarginTop] = useState<number | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
     const el = heroVideoRef.current;
@@ -137,10 +146,41 @@ export default function UnmaiCarbonHomePage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useLayoutEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const mobileMq = window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH_PX}px)`);
+
+    const syncHeroMargin = () => {
+      const el = headerRef.current;
+      if (!el) return;
+      if (mobileMq.matches) {
+        setMobileHeroMarginTop(el.offsetHeight);
+      } else {
+        setMobileHeroMarginTop(undefined);
+      }
+    };
+
+    syncHeroMargin();
+
+    const ro = new ResizeObserver(syncHeroMargin);
+    ro.observe(header);
+    mobileMq.addEventListener("change", syncHeroMargin);
+    window.addEventListener("resize", syncHeroMargin);
+
+    return () => {
+      ro.disconnect();
+      mobileMq.removeEventListener("change", syncHeroMargin);
+      window.removeEventListener("resize", syncHeroMargin);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-white font-sans text-[#191c1d] antialiased">
       {/* Outside hero <section> so z-index isn’t trapped by stacking contexts — stays above all bands */}
       <header
+        ref={headerRef}
         className={[
           "fixed left-1/2 z-[99] -translate-x-1/2 backdrop-blur-md transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
           // Mobile: always full-width bar at top (matches scrolled/desktop docked look).
@@ -193,40 +233,56 @@ export default function UnmaiCarbonHomePage() {
         </nav>
       </header>
 
-      {/* Hero: video fills top of page */}
-      <section className="relative isolate min-h-[min(92vh,900px)] overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-[#0b0d12]" aria-hidden />
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          <video
-            ref={heroVideoRef}
-            className="absolute left-1/2 top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-            src={heroVideo}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
+      {/* Hero: mobile = video on top, dark content band below; md+ = 16:9 video with overlaid copy */}
+      <section
+        className="relative isolate w-full overflow-hidden max-md:flex max-md:flex-col md:aspect-video"
+        style={{
+          backgroundImage: HERO_SECTION_BG,
+          ...(mobileHeroMarginTop != null
+            ? { marginTop: mobileHeroMarginTop }
+            : {}),
+        }}
+      >
+        {/* Video layer (fills hero on md+; fixed 16:9 strip on mobile) */}
+        <div className="relative aspect-video w-full shrink-0 overflow-hidden md:absolute md:inset-0 md:aspect-auto md:h-full md:w-full">
+          <div
+            className="absolute inset-0 z-0"
+            style={{ backgroundImage: HERO_SECTION_BG }}
             aria-hidden
-          >
-            <source src={heroVideo} type="video/mp4" />
-          </video>
+          />
+          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+            <video
+              ref={heroVideoRef}
+              className="absolute inset-0 h-full w-full object-cover"
+              src={heroVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden
+            >
+              <source src={heroVideo} type="video/mp4" />
+            </video>
+          </div>
+          <div
+            className="pointer-events-none absolute inset-0 z-[1] bg-black/35 transition-opacity duration-300 ease-out motion-reduce:transition-none md:bg-black/50"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-0 z-[2] opacity-[0.12] transition-opacity duration-300 ease-out motion-reduce:transition-none md:opacity-20"
+            style={{
+              backgroundImage:
+                "radial-gradient(ellipse 90% 60% at 50% 40%, rgba(197,197,214,0.35), transparent 55%)",
+            }}
+            aria-hidden
+          />
         </div>
-        {/* Readability overlay */}
-        <div
-          className="pointer-events-none absolute inset-0 z-[1] bg-black/50 opacity-100 transition-opacity duration-300 ease-out motion-reduce:transition-none sm:bg-black/45"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0 z-[2] opacity-20 transition-opacity duration-300 ease-out motion-reduce:transition-none"
-          style={{
-            backgroundImage:
-              "radial-gradient(ellipse 90% 60% at 50% 40%, rgba(197,197,214,0.35), transparent 55%)",
-          }}
-          aria-hidden
-        />
 
-        <ScrollReveal className="relative z-10 flex min-h-[min(92vh,900px)] flex-col pt-32 sm:pt-28 lg:pt-32">
-          <div className="mx-auto flex w-full max-w-[1280px] min-h-0 flex-1 flex-col justify-center px-4 pb-16 pt-6 sm:px-6 sm:pt-4 lg:px-8 lg:pb-24">
+        <ScrollReveal
+          className="relative z-10 flex min-h-0 w-full flex-col justify-center bg-[linear-gradient(148deg,black,#272727)] px-4 pb-12 pt-8 max-md:shrink-0 sm:px-6 md:absolute md:inset-0 md:bg-none md:bg-transparent md:px-0 md:pb-14 md:pt-24 lg:pb-16 lg:pt-28"
+        >
+          <div className="mx-auto flex w-full max-w-[1280px] min-h-0 flex-col justify-center lg:px-8 md:px-6">
             {/*
               Figma alignment: equal-height columns; tops align (eyebrow & headline with right body);
               bottoms align (CTAs with STRATEGIC BLUEPRINT). Buttons live in the left column.
@@ -259,7 +315,7 @@ export default function UnmaiCarbonHomePage() {
                   </button>
                   <button
                     type="button"
-                    className="rounded-lg bg-black px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-white shadow-lg shadow-black/40 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-900 hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0"
+                    className="rounded-lg border border-white bg-black px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-white shadow-lg shadow-black/40 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-900 hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0"
                   >
                     Book a Consultation
                   </button>
