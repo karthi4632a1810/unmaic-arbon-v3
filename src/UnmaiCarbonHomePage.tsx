@@ -31,10 +31,13 @@ const imgSocial2 =
   "https://www.figma.com/api/mcp/asset/32977066-e325-41cc-9cec-7e06af5703b9";
 
 const navLinks = [
-  { label: "Solutions", active: true },
-  { label: "Technology", active: false },
-  { label: "Removal", active: false },
-  { label: "About", active: false },
+  { label: "About", href: "/about", active: false },
+  { label: "Services", href: "/services", active: false },
+  { label: "Digital Infrastructure", href: "/digital-infrastructure", active: false },
+  { label: "Global Engagements", href: "/global-engagements", active: false },
+  { label: "Insights", href: "/insights", active: false },
+  { label: "Leadership", href: "/leadership", active: false },
+  { label: "Contact", href: "/contact", active: false },
 ] as const;
 
 const platformFeatures = [
@@ -60,8 +63,8 @@ const methodologyCards = [
   {
     n: "01",
     color: "text-[#4f65e3]",
-    title: "Net Zero Transition & Climate Advisory",
-    body: "Designing science-aligned decarbonization strategies, institutional readiness frameworks, and Article 6 implementation pathways.",
+    title: "Net Zero Transition & Climate Policy Advisory",
+    body: "Designing decarbonization pathways, institutional readiness frameworks, NDC alignment, and Article 6 operationalization strategies.",
   },
   {
     n: "02",
@@ -78,8 +81,8 @@ const methodologyCards = [
   {
     n: "04",
     color: "text-[#131b2e]",
-    title: "Transparent Governance & Sustainability Frameworks",
-    body: "Delivering measurable climate impact through transparent governance, trusted carbon systems, and scalable sustainability frameworks.",
+    title: "Transparent Climate Governance",
+    body: "Strengthening institutional transparency, standards alignment, traceability systems, and long-term climate governance mechanisms.",
   },
 ] as const;
 
@@ -91,8 +94,8 @@ const flowSteps = [
   },
   {
     n: "02",
-    title: "Climate Finance",
-    body: "Advisory for structuring climate-aligned financing and carbon-linked investment opportunities.",
+    title: "Climate Finance & Investment",
+    body: "Institutional structuring for climate-aligned investment mechanisms and carbon-linked financing systems.",
   },
   {
     n: "03",
@@ -106,8 +109,8 @@ const flowSteps = [
   },
   {
     n: "05",
-    title: "Capacity Building & Collaboration",
-    body: "Policy engagement and institutional capacity development through global technical collaboration.",
+    title: "Capacity Building & Institutional Readiness",
+    body: "Capacity development and institutional readiness programs for governments and implementation stakeholders.",
   },
 ] as const;
 
@@ -197,7 +200,7 @@ export default function UnmaiCarbonHomePage() {
         >
           <div className="flex items-center justify-between gap-4">
             <a
-              href="#"
+              href="/"
               className="text-xl font-bold tracking-tight text-[#0f172a] transition hover:text-[#006c49]"
             >
               Unmai Carbon
@@ -206,14 +209,14 @@ export default function UnmaiCarbonHomePage() {
               type="button"
               className="rounded-[44px] bg-black px-5 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-800 hover:shadow-lg active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md md:hidden"
             >
-              Get Started
+              Schedule Consultation
             </button>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 md:flex-1 md:justify-center">
-            {navLinks.map(({ label, active }) => (
+            {navLinks.map(({ label, href, active }) => (
               <a
                 key={label}
-                href="#"
+                href={href}
                 className={`text-sm font-medium tracking-tight transition-colors duration-200 hover:text-[#191c1d] ${
                   active
                     ? "border-b-2 border-[#191c1d] pb-0.5 text-[#191c1d]"
@@ -228,7 +231,7 @@ export default function UnmaiCarbonHomePage() {
             type="button"
             className="hidden shrink-0 rounded-[44px] bg-black px-6 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-800 hover:shadow-lg active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md md:inline-flex"
           >
-            Get Started
+            Schedule Consultation
           </button>
         </nav>
       </header>
@@ -292,17 +295,12 @@ export default function UnmaiCarbonHomePage() {
                 <div className="max-w-[52rem] space-y-6">
                   <div className={heroLine}>
                     <p className="text-base font-bold uppercase tracking-[0.25em] text-[#e6ff80] sm:text-[26px] sm:leading-6 sm:tracking-[3.2px]">
-                      We Don’t Just
+                      Sovereign Climate Infrastructure
                     </p>
                   </div>
                   <div className={heroLine}>
                     <h1 className="text-4xl font-bold tracking-[-0.02em] text-white sm:text-6xl lg:text-[75px] lg:leading-[1.01] lg:tracking-[-0.04em]">
-                      <span className="block whitespace-normal">
-                        Talk About <span className="text-[#e6ff80]">Net Zero</span>.
-                      </span>
-                      <span className="mt-1 block">
-                        We <span className="text-[#8b8b95]">Build</span> It.
-                      </span>
+                      Building Trust Infrastructure for Global Carbon Markets.
                     </h1>
                   </div>
                 </div>
@@ -311,13 +309,13 @@ export default function UnmaiCarbonHomePage() {
                     type="button"
                     className="rounded-lg bg-[#e7e8e9] px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-[#191c1d] shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-white hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md"
                   >
-                    Explore Our Approach
+                    Explore Strategic Services
                   </button>
                   <button
                     type="button"
                     className="rounded-lg border border-[#e6ff80] bg-black px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-white shadow-lg shadow-black/40 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-900 hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0 md:border-0"
                   >
-                    Book a Consultation
+                    Schedule Executive Consultation
                   </button>
                 </div>
               </div>
@@ -329,17 +327,17 @@ export default function UnmaiCarbonHomePage() {
                 <div className="flex min-h-0 flex-col justify-center">
                   <div className="space-y-4">
                     <p className="text-base font-semibold leading-snug text-white">
-                      Where policy, finance, and technology stop arguing and start working together.
+                      UNMAI Carbon Solutions works with governments, multilaterals, and enterprises to operationalize Article 6, climate finance, digital MRV systems, and interoperable carbon market ecosystems.
                     </p>
                     <p className="text-base leading-relaxed text-[#cdcdcd]">
-                      Unmai Carbon aligns global incentives to accelerate deployment of carbon infrastructure at scale.
+                      Where climate policy, carbon finance, and digital infrastructure converge to operationalize high-integrity carbon markets.
                     </p>
                   </div>
                 </div>
                 <div className="mt-6 flex shrink-0 items-center gap-4 lg:mt-8">
                   <span className="h-px w-12 shrink-0 bg-[#e6ff80]" aria-hidden />
                   <span className="text-sm font-bold uppercase tracking-wide text-white">
-                    Strategic Blueprint 2024
+                    Global Carbon Infrastructure • Article 6 • Climate Finance
                   </span>
                 </div>
               </div>
@@ -355,14 +353,14 @@ export default function UnmaiCarbonHomePage() {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <p className="text-base font-bold uppercase tracking-[0.1em] text-[#006c49]">
-                Trust banner
+                Trust / Metrics
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-[#131b2e] sm:text-4xl">
                 Trusted Across Governments, Multilaterals & Climate Institutions
               </h2>
             </div>
             <p className="max-w-md text-left text-base leading-6 text-[#444654] lg:text-right">
-              Asian Development Bank (ADB), World Bank Group, UNDP, IFC, ISO, UNFCCC, and CAD Trust.
+              Supporting sovereign carbon market development, climate finance systems, and Article 6 implementation across Asia, Africa, and the Middle East.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
@@ -376,22 +374,23 @@ export default function UnmaiCarbonHomePage() {
                 },
                 {
                   icon: imgStatIcon2,
-                  end: 5,
+                  end: 50,
                   suffix: "+",
-                  label: "Combined leadership decades",
+                  label: "Years combined experience",
                   showYears: true,
                 },
                 {
                   icon: imgStatIcon3,
-                  end: 7,
-                  suffix: "+",
-                  label: "Institutions and standards bodies",
+                  end: 5,
+                  prefix: "USD ",
+                  suffix: "B+",
+                  label: "Climate portfolio",
                 },
                 {
                   icon: imgStatIcon4,
-                  end: 4,
-                  suffix: "+",
-                  label: "Experience highlight domains",
+                  end: 200,
+                  suffix: "M+",
+                  label: "tCO₂e project pipeline",
                 },
               ] as const
             ).map((col, i) => (
@@ -416,6 +415,7 @@ export default function UnmaiCarbonHomePage() {
                     ) : (
                       <ImpactCounter
                         end={col.end}
+                        prefix={"prefix" in col ? col.prefix : undefined}
                         suffix={col.suffix}
                       />
                     )}
@@ -440,6 +440,9 @@ export default function UnmaiCarbonHomePage() {
             <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-[44px] sm:leading-[48px] sm:tracking-[-1.92px]">
               Building the Digital Backbone of Carbon Markets
             </h2>
+            <p className="max-w-2xl text-base leading-7 text-[#d6d6db]">
+              Enterprise-grade digital infrastructure enabling transparency, interoperability, trust, and scalable climate market operations.
+            </p>
             <ul className="mt-8 space-y-3">
               {platformFeatures.map((item) => (
                 <li
@@ -476,7 +479,7 @@ export default function UnmaiCarbonHomePage() {
           <ScrollReveal>
             <div className="flex flex-col items-center gap-4 text-center">
               <h2 className="text-3xl font-bold tracking-tight text-[#131b2e] sm:text-5xl sm:tracking-[-1.2px]">
-                Core Services
+                Strategic Climate & Carbon Market Services
               </h2>
               <div className="h-1 w-12 rounded-full bg-[#334ac9]" aria-hidden />
             </div>
@@ -520,7 +523,7 @@ export default function UnmaiCarbonHomePage() {
               Experience Section
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl sm:tracking-[-1.44px]">
-              Climate Intelligence & Strategic Insights
+              Climate Intelligence & Strategic Expertise
             </h2>
           </div>
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
@@ -550,8 +553,11 @@ export default function UnmaiCarbonHomePage() {
               Global Engagements
             </p>
             <h2 className="font-display max-w-sm text-2xl font-bold leading-tight tracking-tight text-black sm:text-[31px] sm:leading-[45px] sm:tracking-[-1.44px]">
-              Active Across Asia, Africa, and the Middle East.
+              Active Across Asia, Africa & The Middle East
             </h2>
+            <p className="max-w-xl text-base leading-7 text-[#444654]">
+              Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems.
+            </p>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
             <div className="space-y-2 rounded-xl border border-transparent bg-white/0 p-6 transition duration-300 ease-out hover:-translate-y-1 hover:border-[#2b6193]/20 hover:bg-white hover:shadow-xl hover:shadow-[#2b6193]/10 motion-reduce:hover:translate-y-0">
@@ -572,10 +578,10 @@ export default function UnmaiCarbonHomePage() {
             </div>
             <div className="space-y-2 rounded-xl border border-transparent bg-white/0 p-6 transition duration-300 ease-out hover:-translate-y-1 hover:border-[#2b6193]/20 hover:bg-white hover:shadow-xl hover:shadow-[#2b6193]/10 motion-reduce:hover:translate-y-0">
               <p className="text-4xl font-bold tracking-tight text-[#2b6193] sm:text-[60px] sm:leading-none sm:tracking-[-3px]">
-                <ImpactCounter end={4} suffix="+" />
+                <ImpactCounter end={6} suffix="+" />
               </p>
               <p className="text-sm font-bold uppercase tracking-wider text-[#45464d]">
-                Experience highlights
+                Multilateral and sovereign engagements
               </p>
             </div>
           </div>
@@ -628,12 +634,16 @@ export default function UnmaiCarbonHomePage() {
                 <div className="flex size-12 items-center justify-center overflow-hidden rounded-md bg-black">
                   <img src={imgImage3} alt="Unmai Carbon mark" className="h-9 w-auto object-contain" />
                 </div>
-                <span className="text-2xl font-bold tracking-tight text-black">UNMAI Carbon</span>
+                <span className="text-2xl font-bold tracking-tight text-black">
+                  UNMAI Carbon Solutions
+                </span>
               </div>
               <p className="text-sm text-black">
-                Engineering trusted climate ecosystems through policy, finance, and digital innovation.
+                Truth · Transparency · Traceability · Integrity
               </p>
               <p className="text-xs leading-relaxed text-black">
+                Singapore HQ
+                <br />
                 10, Sim Lim Tower, Jalan Besar #10-10,
                 <br />
                 Singapore 208787
@@ -663,16 +673,16 @@ export default function UnmaiCarbonHomePage() {
             </div>
             <div>
               <h3 className="mb-4 text-[11px] font-bold uppercase tracking-wider text-black">
-                What we offer
+                Strategic Services
               </h3>
               <ul className="space-y-2.5 text-sm text-black">
                 {[
-                  "Net Zero Transition & Climate Advisory",
-                  "Climate Finance & Carbon Investment Strategy",
-                  "Carbon Market Infrastructure & Governance",
-                  "Digital MRV Ecosystems",
-                  "Blockchain-Enabled Carbon Traceability",
-                  "NAMBn Framework",
+                  "Net Zero Transition",
+                  "Climate Policy Advisory",
+                  "Climate Finance",
+                  "Article 6 Implementation",
+                  "Carbon Registry Systems",
+                  "Digital MRV Infrastructure",
                 ].map((t) => (
                   <li key={t}>
                     <a
@@ -687,10 +697,19 @@ export default function UnmaiCarbonHomePage() {
             </div>
             <div>
               <h3 className="mb-4 text-[11px] font-bold uppercase tracking-wider text-black">
-                Engagements
+                Global Engagements
               </h3>
               <ul className="space-y-2.5 text-sm text-black">
-                {["Bhutan", "Nigeria", "Indonesia", "Sri Lanka", "Oman"].map((t) => (
+                {[
+                  "Bhutan",
+                  "Nigeria",
+                  "Indonesia",
+                  "Sri Lanka",
+                  "Oman",
+                  "Saudi Arabia",
+                  "Pakistan",
+                  "Kenya",
+                ].map((t) => (
                   <li key={t}>
                     <a
                       href="#"
@@ -704,10 +723,17 @@ export default function UnmaiCarbonHomePage() {
             </div>
             <div>
               <h3 className="mb-4 text-[11px] font-bold uppercase tracking-wider text-black">
-                Contact
+                Institutional Participation
               </h3>
               <ul className="space-y-2.5 text-sm text-black">
-                {["ydb@unmaicarbon.earth", "+65 9023 1823", "www.unmaicarbon.earth"].map((t) => (
+                {[
+                  "ISO Standards",
+                  "UNFCCC Engagements",
+                  "CAD Trust",
+                  "VCMI",
+                  "BioCarbon Standard",
+                  "World Bank Collaboration",
+                ].map((t) => (
                   <li key={t}>
                     <a
                       href="#"
@@ -724,7 +750,7 @@ export default function UnmaiCarbonHomePage() {
         </ScrollReveal>
         <div className="bg-[#45464d] px-6 py-6">
           <div className="mx-auto flex max-w-[1020px] flex-col items-start justify-between gap-4 text-xs text-white sm:flex-row sm:items-center">
-            <p>© 2026 UNMAI Carbon Solutions Pte Ltd. All rights reserved.</p>
+            <p>© 2026 UNMAI Carbon Solutions Pte Ltd.</p>
             <p>Truth • Transparency • Traceability • Integrity</p>
           </div>
         </div>
