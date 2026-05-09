@@ -660,13 +660,18 @@ export default function UnmaiCarbonHomePage() {
           <div className="mx-auto max-w-[1020px] px-6 pb-8 pt-16">
           <div className="grid gap-12 border-b border-black/10 pb-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="flex size-12 items-center justify-center overflow-hidden rounded-md bg-black">
-                  <img src={imgImage3} alt="Unmai Carbon mark" className="h-9 w-auto object-contain" />
+              <div className="flex items-start gap-4">
+                <div className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-black p-1.5 shadow-sm ring-1 ring-black/10">
+                  <img src={imgImage3} alt="Unmai Carbon mark" className="h-full w-full object-contain" />
                 </div>
-                <span className="text-2xl font-bold tracking-tight text-black">
-                  UNMAI Carbon Solutions
-                </span>
+                <div className="space-y-1">
+                  <span className="block text-[clamp(1.75rem,4vw,2.15rem)] font-black leading-[1.05] tracking-tight text-black">
+                    UNMAI Carbon
+                  </span>
+                  <span className="block text-[clamp(1.2rem,2.5vw,1.6rem)] font-bold leading-[1.05] tracking-tight text-black/95">
+                    Solutions
+                  </span>
+                </div>
               </div>
               <p className="text-sm text-black">
                 Truth · Transparency · Traceability · Integrity
