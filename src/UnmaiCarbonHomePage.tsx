@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ImpactCounter } from "./components/ImpactCounter";
 import { ScrollReveal } from "./components/ScrollReveal";
+import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
 import heroVideo from "./assets/unmai-carbon.mp4";
 import "./App.css";
 
@@ -127,6 +128,7 @@ export default function UnmaiCarbonHomePage() {
   const [mobileHeroMarginTop, setMobileHeroMarginTop] = useState<number | undefined>(
     undefined,
   );
+  const [consultationOpen, setConsultationOpen] = useState(false);
 
   useEffect(() => {
     const el = heroVideoRef.current;
@@ -207,6 +209,7 @@ export default function UnmaiCarbonHomePage() {
             </a>
             <button
               type="button"
+              onClick={() => setConsultationOpen(true)}
               className="rounded-[44px] bg-black px-5 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-800 hover:shadow-lg active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md md:hidden"
             >
               Schedule Consultation
@@ -229,6 +232,7 @@ export default function UnmaiCarbonHomePage() {
           </div>
           <button
             type="button"
+            onClick={() => setConsultationOpen(true)}
             className="hidden shrink-0 rounded-[44px] bg-black px-6 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-800 hover:shadow-lg active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md md:inline-flex"
           >
             Schedule Consultation
@@ -313,6 +317,7 @@ export default function UnmaiCarbonHomePage() {
                   </button>
                   <button
                     type="button"
+                    onClick={() => setConsultationOpen(true)}
                     className="rounded-lg border border-[#e6ff80] bg-black px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-white shadow-lg shadow-black/40 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-900 hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0 md:border-0"
                   >
                     Schedule Executive Consultation
@@ -614,6 +619,7 @@ export default function UnmaiCarbonHomePage() {
               </button>
               <button
                 type="button"
+                onClick={() => setConsultationOpen(true)}
                 className="rounded-lg border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold text-white shadow-lg shadow-black/30 backdrop-blur-sm transition duration-200 ease-out hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/20 hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0"
               >
                 Schedule Strategic Consultation
@@ -755,6 +761,10 @@ export default function UnmaiCarbonHomePage() {
           </div>
         </div>
       </footer>
+      <ScheduleConsultationModal
+        open={consultationOpen}
+        onClose={() => setConsultationOpen(false)}
+      />
     </div>
   );
 }

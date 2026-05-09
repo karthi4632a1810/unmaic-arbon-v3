@@ -1,6 +1,7 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ScrollReveal } from "./components/ScrollReveal";
+import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
 
 const imgImage3 =
   "https://www.figma.com/api/mcp/asset/7c8496ff-75f5-4213-aa8c-30448363189a";
@@ -17,7 +18,7 @@ const headerLinks = [
 
 const NAV_PIN_SCROLL_PX = 150;
 
-function SiteHeader() {
+function SiteHeader({ onScheduleClick }: { onScheduleClick: () => void }) {
   const { pathname } = useLocation();
   const [navDocked, setNavDocked] = useState(false);
 
@@ -52,6 +53,7 @@ function SiteHeader() {
           </Link>
           <button
             type="button"
+            onClick={onScheduleClick}
             className="rounded-[44px] bg-black px-5 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:bg-neutral-800 md:hidden"
           >
             Schedule Consultation
@@ -74,6 +76,7 @@ function SiteHeader() {
         </div>
         <button
           type="button"
+          onClick={onScheduleClick}
           className="hidden rounded-[44px] bg-black px-6 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:bg-neutral-800 md:inline-flex"
         >
           Schedule Consultation
@@ -116,7 +119,7 @@ function EnterpriseBanner({
   );
 }
 
-function SharedCta() {
+function SharedCta({ onScheduleClick }: { onScheduleClick: () => void }) {
   return (
     <section className="px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
       <ScrollReveal>
@@ -143,6 +146,7 @@ function SharedCta() {
               </button>
               <button
                 type="button"
+                onClick={onScheduleClick}
                 className="rounded-lg border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold text-white transition hover:bg-white/20"
               >
                 Schedule Strategic Consultation
@@ -296,13 +300,19 @@ function PageScaffold({
   bannerImage?: string;
   children: ReactNode;
 }) {
+  const [consultationOpen, setConsultationOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white font-sans text-[#191c1d] antialiased">
-      <SiteHeader />
+      <SiteHeader onScheduleClick={() => setConsultationOpen(true)} />
       <EnterpriseBanner title={title} subtitle={subtitle} backgroundImage={bannerImage} />
       <main className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">{children}</main>
-      <SharedCta />
+      <SharedCta onScheduleClick={() => setConsultationOpen(true)} />
       <SiteFooter />
+      <ScheduleConsultationModal
+        open={consultationOpen}
+        onClose={() => setConsultationOpen(false)}
+      />
     </div>
   );
 }
