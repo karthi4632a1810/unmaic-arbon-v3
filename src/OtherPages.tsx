@@ -21,6 +21,7 @@ const NAV_PIN_SCROLL_PX = 150;
 function SiteHeader({ onScheduleClick }: { onScheduleClick: () => void }) {
   const { pathname } = useLocation();
   const [navDocked, setNavDocked] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,6 +30,14 @@ function SiteHeader({ onScheduleClick }: { onScheduleClick: () => void }) {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) setMobileMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   return (
@@ -51,19 +60,34 @@ function SiteHeader({ onScheduleClick }: { onScheduleClick: () => void }) {
           <Link to="/" className="text-xl font-bold tracking-tight text-[#0f172a]">
             Unmai Carbon
           </Link>
-          <button
-            type="button"
-            onClick={onScheduleClick}
-            className="rounded-[44px] bg-black px-5 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:bg-neutral-800 md:hidden"
-          >
-            Schedule Consultation
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              type="button"
+              onClick={onScheduleClick}
+              className="rounded-[44px] bg-black px-4 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:bg-neutral-800"
+            >
+              Schedule
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((v) => !v)}
+              aria-label="Toggle menu"
+              className="inline-flex size-10 items-center justify-center rounded-full border border-black/10 bg-white text-[#131b2e] shadow-sm"
+            >
+              <span className="text-lg leading-none">{mobileMenuOpen ? "×" : "≡"}</span>
+            </button>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 md:flex-1 md:justify-center">
+        <div
+          className={`${
+            mobileMenuOpen ? "flex" : "hidden"
+          } flex-col items-stretch gap-2 rounded-2xl border border-black/10 bg-white/95 p-3 md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-x-6 md:gap-y-2 md:rounded-none md:border-0 md:bg-transparent md:p-0`}
+        >
           {headerLinks.map((item) => (
             <Link
               key={item.to}
               to={item.to}
+              onClick={() => setMobileMenuOpen(false)}
               className={`text-sm font-medium tracking-tight transition-colors duration-200 hover:text-[#191c1d] ${
                 pathname === item.to
                   ? "border-b-2 border-[#191c1d] pb-0.5 text-[#191c1d]"
