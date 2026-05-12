@@ -1,8 +1,10 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { ImpactCounter } from "./components/ImpactCounter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
 import heroVideo from "./assets/unmai-carbon.mp4";
+import imgLogoWhite from "./assets/logo-w.png";
+import imgLogoBlack from "./assets/logo-b.png";
 import "./App.css";
 
 /** Scroll distance before nav pins full-width to the top. */
@@ -196,39 +198,35 @@ export default function UnmaiCarbonHomePage() {
       <header
         ref={headerRef}
         className={[
-          "fixed left-1/2 z-[99] -translate-x-1/2 backdrop-blur-md transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
-          // Mobile: always full-width bar at top (matches scrolled/desktop docked look).
-          "top-0 w-screen rounded-none border-0 border-b border-black/10 bg-white/95 px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.08)] sm:px-6",
-          // md+: floating pill until scroll threshold; when docked, base classes stay.
+          "fixed left-1/2 z-[99] -translate-x-1/2 transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
+          // Mobile: full-width glass bar at top.
+          "top-0 w-screen rounded-none border-0 border-b border-white/10 bg-[rgba(24,26,31,0.30)] px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.10)] sm:px-6 bg-white",
+          // md+: floating pill until scroll threshold.
           !navDocked
-            ? "md:top-6 md:w-[min(1280px,calc(100%-2rem))] md:rounded-[60px] md:border md:border-black/5 md:bg-white md:px-8 md:py-4 md:shadow-md"
+            ? "md:top-6 md:w-[min(1300px,calc(100%-2rem))] md:rounded-full md:border md:border-white/12 md:bg-[rgba(0,0,0,0.20)] md:px-8 md:py-3.5 md:shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
             : "",
         ].join(" ")}
       >
         <nav
-          className="mx-auto flex max-w-[1280px] flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6"
+          className="mx-auto flex max-w-[1300px] flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6"
           aria-label="Primary"
         >
           <div className="flex items-center justify-between gap-4">
             <a
               href="/"
-              className="text-xl font-bold tracking-tight text-[#0f172a] transition hover:text-[#006c49]"
-            >
-              Unmai Carbon
+              className={navDocked ? 'flex items-center justify-center gap-2 text-xl font-bold tracking-tight text-black transition hover:text-black/90' : 'flex items-center justify-center gap-2 text-xl font-bold tracking-tight text-white transition hover:text-white/90'}
+            > {navDocked ? <img src={imgLogoBlack} alt="Unmai Carbon" className="size-10 block" /> : <img src={imgLogoWhite} alt="Unmai Carbon" className="size-10 md:block" />}
+            <div className="flex flex-col">
+              <span className={navDocked ? "text-xl font-bold tracking-tight text-black" : "text-xl font-bold tracking-tight text-white uppercase"}>Unmai Carbon</span>
+              <span className={navDocked ? "text-xs font-bold tracking-tight text-black uppercase" : "text-xs font-bold tracking-tight text-white uppercase opacity-75"}>Solutions</span>
+            </div>
             </a>
-            <div className="flex items-center gap-2 md:hidden">
-              <button
-                type="button"
-                onClick={() => setConsultationOpen(true)}
-                className="rounded-[44px] bg-black px-4 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:bg-neutral-800"
-              >
-                Schedule
-              </button>
+            <div className={navDocked ? 'flex items-center gap-2 md:hidden' : 'flex items-center gap-2 md:hidden'}>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((v) => !v)}
                 aria-label="Toggle menu"
-                className="inline-flex size-10 items-center justify-center rounded-full border border-black/10 bg-white text-[#131b2e] shadow-sm"
+                className="inline-flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white"
               >
                 <span className="text-lg leading-none">{mobileMenuOpen ? "×" : "≡"}</span>
               </button>
@@ -237,19 +235,19 @@ export default function UnmaiCarbonHomePage() {
           <div
             className={`${
               mobileMenuOpen ? "flex" : "hidden"
-            } flex-col items-stretch gap-2 rounded-2xl border border-black/10 bg-white/95 p-3 md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-x-6 md:gap-y-2 md:rounded-none md:border-0 md:bg-transparent md:p-0`}
+            } flex-col items-stretch gap-2 rounded-2xl border border-white/12 bg-[rgba(20,22,26,0.92)] p-3 md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-x-6 md:gap-y-2 md:rounded-none md:border-0 md:bg-transparent md:p-0`}
           >
             {navLinks.map(({ label, href, active }) => (
               <a
                 key={label}
                 href={href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`text-sm font-medium tracking-tight transition-colors duration-200 hover:text-[#191c1d] ${
+                className={navDocked ? `text-sm font-medium tracking-tight transition-colors duration-200 hover:text-black text-black/75` : `text-sm font-medium tracking-tight transition-colors duration-200 hover:text-white ${
                   active
-                    ? "border-b-2 border-[#191c1d] pb-0.5 text-[#191c1d]"
-                    : "text-[#475569] md:text-[#475569]"
+                    ? "border-b-2 border-white pb-0.5 text-white"
+                    : "text-neutral-300 md:text-neutral-300"
                 }`}
-              >
+              > 
                 {label}
               </a>
             ))}
@@ -257,7 +255,7 @@ export default function UnmaiCarbonHomePage() {
           <button
             type="button"
             onClick={() => setConsultationOpen(true)}
-            className="hidden shrink-0 rounded-[44px] bg-black px-6 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-800 hover:shadow-lg active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md md:inline-flex"
+            className={navDocked ? 'hidden shrink-0 rounded-full bg-black px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-black/15 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-black/25 hover:shadow-lg active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md md:inline-flex' : 'hidden shrink-0 rounded-full bg-white/15 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/15 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-white/25 hover:shadow-lg active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md md:inline-flex'}
           >
             Schedule Consultation
           </button>
@@ -313,7 +311,7 @@ export default function UnmaiCarbonHomePage() {
         <ScrollReveal
           className="relative z-10 flex min-h-0 w-full flex-col justify-center bg-[linear-gradient(148deg,black,#272727)] px-4 pb-12 pt-8 max-md:shrink-0 sm:px-6 md:absolute md:inset-0 md:bg-none md:bg-transparent md:px-0 md:pb-14 md:pt-24 lg:pb-16 lg:pt-28"
         >
-          <div className="mx-auto flex w-full max-w-[1280px] min-h-0 flex-col justify-center lg:px-8 md:px-6">
+          <div className="mx-auto flex w-full max-w-[1300px] min-h-0 flex-col justify-center lg:px-8 md:px-6">
             {/*
               Figma alignment: equal-height columns; tops align (eyebrow & headline with right body);
               bottoms align (CTAs with STRATEGIC BLUEPRINT). Buttons live in the left column.
@@ -322,17 +320,21 @@ export default function UnmaiCarbonHomePage() {
               <div className="flex min-h-0 flex-col gap-10 self-stretch lg:col-span-8 lg:justify-between lg:gap-12 xl:gap-14">
                 <div className="max-w-[52rem] space-y-6">
                   <div className={heroLine}>
+                    <div className="flex items-center gap-2 items-center">
+                  <div className="mask-logo"></div>
                     <p className="text-base font-bold uppercase tracking-[0.25em] text-[#e6ff80] sm:text-[26px] sm:leading-6 sm:tracking-[3.2px]">
-                      Sovereign Climate Infrastructure
+                    Building 
                     </p>
+                    </div>
                   </div>
                   <div className={heroLine}>
-                    <h1 className="text-4xl font-bold tracking-[-0.02em] text-white sm:text-6xl lg:text-[75px] lg:leading-[1.01] lg:tracking-[-0.04em]">
-                      Building Trust Infrastructure for Global Carbon Markets.
+                    <h1 className="text-5xl gradient-text font-bold tracking-[-0.02em] text-white sm:text-6xl lg:text-[80px] lg:leading-[1.01] lg:tracking-[-0.04em]">
+                      <span className="gradient-text-hero">
+                      The Trust Layer <br /> For Global <br /> Carbon Markets.</span>
                     </h1>
                   </div>
                 </div>
-                <div className={`flex shrink-0 flex-wrap gap-4 ${heroLine}`}>
+                {/* <div className={`flex shrink-0 flex-wrap gap-4 ${heroLine}`}>
                   <button
                     type="button"
                     className="rounded-lg bg-[#e7e8e9] px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-[#191c1d] shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-white hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md"
@@ -346,7 +348,7 @@ export default function UnmaiCarbonHomePage() {
                   >
                     Schedule Executive Consultation
                   </button>
-                </div>
+                </div> */}
               </div>
 
               <div
@@ -356,17 +358,29 @@ export default function UnmaiCarbonHomePage() {
                 <div className="flex min-h-0 flex-col justify-center">
                   <div className="space-y-4">
                     <p className="text-base font-semibold leading-snug text-white">
-                      UNMAI Carbon Solutions works with governments, multilaterals, and enterprises to operationalize Article 6, climate finance, digital MRV systems, and interoperable carbon market ecosystems.
+                    Enabling transparent climate finance, interoperable carbon systems, and trusted Article 6 implementation.
                     </p>
-                    <p className="text-base leading-relaxed text-[#cdcdcd]">
-                      Where climate policy, carbon finance, and digital infrastructure converge to operationalize high-integrity carbon markets.
+                    <p className="text-sm leading-relaxed text-[#cdcdcd]">
+                    UNMAI Carbon Solutions partners with governments, multilaterals, and enterprises to operationalize high-integrity carbon markets through digital infrastructure and climate finance frameworks.
                     </p>
                   </div>
                 </div>
                 <div className="mt-6 flex shrink-0 items-center gap-4 lg:mt-8">
                   <span className="h-px w-12 shrink-0 bg-[#e6ff80]" aria-hidden />
                   <span className="text-sm font-bold uppercase tracking-wide text-white">
-                    Global Carbon Infrastructure • Article 6 • Climate Finance
+                  Global Carbon Infrastructure 
+                  </span>
+                </div>
+                <div className="mt-6 flex shrink-0 items-center gap-4 lg:mt-2">
+                  <span className="h-px w-12 shrink-0 bg-[#e6ff80]" aria-hidden />
+                  <span className="text-sm font-bold uppercase tracking-wide text-white">
+                    Climate Finance
+                  </span>
+                </div>
+                <div className="mt-6 flex shrink-0 items-center gap-4 lg:mt-2">
+                  <span className="h-px w-12 shrink-0 bg-[#e6ff80]" aria-hidden />
+                  <span className="text-sm font-bold uppercase tracking-wide text-white">
+                    Article 6
                   </span>
                 </div>
               </div>
@@ -378,7 +392,7 @@ export default function UnmaiCarbonHomePage() {
       {/* Stats */}
       <section className="border-t border-black/5 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <ScrollReveal>
-          <div className="mx-auto flex max-w-[1280px] flex-col gap-12 lg:gap-16">
+          <div className="mx-auto flex max-w-[1300px] flex-col gap-12 lg:gap-16">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <p className="text-base font-bold uppercase tracking-[0.1em] text-[#006c49]">
@@ -392,67 +406,116 @@ export default function UnmaiCarbonHomePage() {
               Supporting sovereign carbon market development, climate finance systems, and Article 6 implementation across Asia, Africa, and the Middle East.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
-            {(
-              [
-                {
-                  icon: imgStatIcon1,
-                  end: 15,
-                  suffix: "+",
-                  label: "Global engagement countries",
-                },
-                {
-                  icon: imgStatIcon2,
-                  end: 50,
-                  suffix: "+",
-                  label: "Years combined experience",
-                  showYears: true,
-                },
-                {
-                  icon: imgStatIcon3,
-                  end: 5,
-                  prefix: "USD ",
-                  suffix: "B+",
-                  label: "Climate portfolio",
-                },
-                {
-                  icon: imgStatIcon4,
-                  end: 200,
-                  suffix: "M+",
-                  label: "tCO₂e project pipeline",
-                },
-              ] as const
-            ).map((col, i) => (
-              <div
-                key={i}
-                className="flex flex-col gap-6 border border-dashed border-black/15 bg-white px-8 py-10 transition duration-300 ease-out hover:-translate-y-1 hover:border-[#006c49]/25 hover:shadow-[0_12px_40px_-12px_rgba(0,108,73,0.15)] motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none sm:px-10"
-              >
-                <div className="relative h-6 w-full">
-                  <img src={col.icon} alt="" className="h-full w-auto object-contain object-left" />
-                </div>
-                <div className="space-y-2">
-                  <div className="text-4xl font-bold tracking-tight text-[#131b2e] sm:text-[60px] sm:leading-none sm:tracking-[-3px]">
-                    {"showYears" in col && col.showYears ? (
-                      <span className="inline-flex flex-wrap items-baseline gap-x-1">
+          <div
+            className="overflow-hidden rounded-2xl border border-black/[0.09] bg-[white] [background-image:radial-gradient(circle_at_center,rgba(0,0,0,0.055)_1px,transparent_1px)] [background-size:22px_22px]"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-4">
+              {(
+                [
+                  {
+                    step: "01",
+                    color: "hsl(141, 71%, 48%)",
+                    category: "Region",
+                    icon: imgStatIcon1,
+                    variant: "plain" as const,
+                    end: 15,
+                    suffix: "+",
+                    label: "Global engagement countries",
+                    accentBorder: "border-[#2b6193]",
+                    accentHover:
+                      " focus-within:bg-emerald-500/[0.06]",
+                  },
+                  {
+                    step: "02",
+                    color: "hsl(217, 91%, 60%)",
+                    category: "Expertise",
+                    icon: imgStatIcon2,
+                    variant: "plain" as const,
+                    end: 50,
+                    suffix: "+",
+                    label: "Years combined experience",
+                    accentBorder: "border-[#2b6193]",
+                    accentHover:
+                      " focus-within:bg-sky-500/[0.06]",
+                  },
+                  {
+                    step: "03",
+                    color: "hsl(34, 90%, 55%)",
+                    category: "Capital",
+                    icon: imgStatIcon3,
+                    variant: "usd" as const,
+                    end: 5,
+                    suffix: "B+",
+                    label: "Climate portfolio",
+                    accentBorder: "border-[#2b6193]",
+                    accentHover:
+                      "h focus-within:bg-amber-500/[0.06]",
+                  },
+                  {
+                    step: "04",
+                    color: "hsl(257, 63%, 52%)",
+                    category: "Assets",
+                    icon: imgStatIcon4,
+                    variant: "plain" as const,
+                    end: 200,
+                    suffix: "M+",
+                    label: "tCO₂e project pipeline",
+                    accentBorder: "",
+                    accentHover:
+                      " focus-within:bg-violet-500/[0.06]",
+                  },
+                ] as const
+              ).map((col, i) => (
+                <div
+                  data-step={i + 1}
+                  style={{ ["--accent"]: col.color } as CSSProperties}
+                  key={i}
+                  className={[
+                    "relative stats-hover-item group/stats flex min-h-[220px] flex-col px-6 py-9 transition-colors duration-300 ease-out sm:min-h-0 sm:px-8 sm:py-10 lg:min-h-[280px]",
+                    col.accentHover,
+                    i < 3
+                      ? `max-lg:border-b max-lg:border-dashed lg:border-b-0 lg:border-r lg:border-dashed ${col.accentBorder}`
+                      : "",
+                  ].join(" ")}
+                >
+                  <div className="relative z-[1] mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase leading-snug tracking-[0.14em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-xs">
+                    <span className="inline-flex items-center gap-1.5">
+                      {/* <span>{col.step}</span>
+                      <img
+                        src={col.icon}
+                        alt=""
+                        className="h-4 w-auto shrink-0 object-contain opacity-85 sm:h-5"
+                        aria-hidden
+                      /> */}
+                    </span>
+                    <span className="tracking-[0.14em]">{col.category}</span>
+                  </div>
+                  <div className="relative z-[1] flex flex-1 flex-col justify-center transition-colors duration-300">
+                    {col.variant === "usd" ? (
+                      <div className="inline-flex items-center gap-2">
+                        <span className="text-lg font-bold tabular-nums tracking-tight text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white sm:text-xl">
+                          USD
+                        </span>
                         <ImpactCounter
                           end={col.end}
-                          suffix="+ "
-                          className="text-5xl tracking-tight sm:text-6xl"
+                          suffix={col.suffix}
+                          className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
                         />
-                        <span className="text-xl sm:text-2xl">Years</span>
-                      </span>
+                      </div>
                     ) : (
                       <ImpactCounter
                         end={col.end}
-                        prefix={"prefix" in col ? col.prefix : undefined}
                         suffix={col.suffix}
+                        className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
                       />
                     )}
                   </div>
-                  <p className="text-base uppercase leading-6 text-[#444654]">{col.label}</p>
+                  <p className="relative z-[1] mt-6 max-w-[14rem] text-[13px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-sm">
+                    {col.label}
+                  </p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
         </ScrollReveal>
@@ -546,7 +609,7 @@ export default function UnmaiCarbonHomePage() {
       {/* Workflow */}
       <section className="border-t wave-bg border-black/5 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <ScrollReveal>
-          <div className="mx-auto max-w-[1280px] space-y-12">
+          <div className="mx-auto max-w-[1300px] space-y-12">
           <div className="space-y-4 text-center">
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#2b6193]">
               Experience Section

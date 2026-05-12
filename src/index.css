@@ -8,4 +8,8 @@
 body {
   margin: 0;
   font-family: var(--font-family-sans);
+  overflow-x: clip;
+}
+#root > div:first-child{
+  background: hsl(0, 0%, 98%);
 }

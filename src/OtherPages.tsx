@@ -43,28 +43,26 @@ function SiteHeader({ onScheduleClick }: { onScheduleClick: () => void }) {
   return (
     <header
       className={[
-        "fixed left-1/2 z-[99] -translate-x-1/2 backdrop-blur-md transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
-        // Mobile: always docked, same as homepage.
-        "top-0 w-screen rounded-none border-0 border-b border-black/10 bg-white/95 px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.08)] sm:px-6",
-        // Desktop: floating until scroll threshold, then docked.
+        "fixed left-1/2 z-[99] -translate-x-1/2 backdrop-blur-xl transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
+        "top-0 w-screen rounded-none border-0 border-b border-white/10 bg-[rgba(24,26,31,0.72)] px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.35)] sm:px-6",
         !navDocked
-          ? "md:top-6 md:w-[min(1280px,calc(100%-2rem))] md:rounded-[60px] md:border md:border-black/5 md:bg-white md:px-8 md:py-4 md:shadow-md"
+          ? "md:top-6 md:w-[min(1300px,calc(100%-2rem))] md:rounded-full md:border md:border-white/12 md:bg-[rgba(24,26,31,0.68)] md:px-8 md:py-3.5 md:shadow-[0_12px_40px_rgba(0,0,0,0.45)]"
           : "",
       ].join(" ")}
     >
       <nav
-        className="mx-auto flex max-w-[1280px] flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6"
+        className="mx-auto flex max-w-[1300px] flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6"
         aria-label="Primary"
       >
         <div className="flex items-center justify-between gap-4">
-          <Link to="/" className="text-xl font-bold tracking-tight text-[#0f172a]">
+          <Link to="/" className="text-xl font-bold tracking-tight text-white transition hover:text-white/90">
             Unmai Carbon
           </Link>
           <div className="flex items-center gap-2 md:hidden">
             <button
               type="button"
               onClick={onScheduleClick}
-              className="rounded-[44px] bg-black px-4 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:bg-neutral-800"
+              className="rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/15 transition duration-200 ease-out hover:bg-white/25"
             >
               Schedule
             </button>
@@ -72,7 +70,7 @@ function SiteHeader({ onScheduleClick }: { onScheduleClick: () => void }) {
               type="button"
               onClick={() => setMobileMenuOpen((v) => !v)}
               aria-label="Toggle menu"
-              className="inline-flex size-10 items-center justify-center rounded-full border border-black/10 bg-white text-[#131b2e] shadow-sm"
+              className="inline-flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white"
             >
               <span className="text-lg leading-none">{mobileMenuOpen ? "×" : "≡"}</span>
             </button>
@@ -81,17 +79,17 @@ function SiteHeader({ onScheduleClick }: { onScheduleClick: () => void }) {
         <div
           className={`${
             mobileMenuOpen ? "flex" : "hidden"
-          } flex-col items-stretch gap-2 rounded-2xl border border-black/10 bg-white/95 p-3 md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-x-6 md:gap-y-2 md:rounded-none md:border-0 md:bg-transparent md:p-0`}
+          } flex-col items-stretch gap-2 rounded-2xl border border-white/12 bg-[rgba(20,22,26,0.92)] p-3 backdrop-blur-xl md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-x-6 md:gap-y-2 md:rounded-none md:border-0 md:bg-transparent md:p-0`}
         >
           {headerLinks.map((item) => (
             <Link
               key={item.to}
               to={item.to}
               onClick={() => setMobileMenuOpen(false)}
-              className={`text-sm font-medium tracking-tight transition-colors duration-200 hover:text-[#191c1d] ${
+              className={`text-sm font-medium tracking-tight transition-colors duration-200 hover:text-white ${
                 pathname === item.to
-                  ? "border-b-2 border-[#191c1d] pb-0.5 text-[#191c1d]"
-                  : "text-[#475569]"
+                  ? "border-b-2 border-white pb-0.5 text-white"
+                  : "text-neutral-300"
               }`}
             >
               {item.label}
@@ -101,7 +99,7 @@ function SiteHeader({ onScheduleClick }: { onScheduleClick: () => void }) {
         <button
           type="button"
           onClick={onScheduleClick}
-          className="hidden rounded-[44px] bg-black px-6 py-2 text-sm font-semibold text-white shadow-md transition duration-200 ease-out hover:bg-neutral-800 md:inline-flex"
+          className="hidden rounded-full bg-white/15 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/15 transition duration-200 ease-out hover:bg-white/25 md:inline-flex"
         >
           Schedule Consultation
         </button>
