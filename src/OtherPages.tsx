@@ -12,8 +12,8 @@ const headerLinks = [
   { to: "/digital-infrastructure", label: "Digital Infrastructure" },
   { to: "/global-engagements", label: "Global Engagements" },
   { to: "/insights", label: "Insights" },
-  { to: "/leadership", label: "Leadership" },
-  { to: "/contact", label: "Contact" },
+  // { to: "/leadership", label: "Leadership" },
+  // { to: "/contact", label: "Contact" },
 ] as const;
 
 const NAV_PIN_SCROLL_PX = 150;

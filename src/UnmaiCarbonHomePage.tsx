@@ -16,8 +16,6 @@ const HERO_SECTION_BG = "linear-gradient(148deg, black, #272727)";
 
 const imgImage5 =
   "/unmai-carbon-img.png";
-const imgImage3 =
-  "https://www.figma.com/api/mcp/asset/7c8496ff-75f5-4213-aa8c-30448363189a";
 const imgStatIcon1 =
   "https://www.figma.com/api/mcp/asset/212b28f2-54f2-4cde-93fb-b518601ddc1c";
 const imgStatIcon2 =
@@ -26,19 +24,14 @@ const imgStatIcon3 =
   "https://www.figma.com/api/mcp/asset/e959a713-3190-4c66-85fe-479b21c2154e";
 const imgStatIcon4 =
   "https://www.figma.com/api/mcp/asset/c9b15b42-3300-415f-a02c-427695a041ce";
-const imgSocial1 =
-  "https://www.figma.com/api/mcp/asset/4f70c1c6-3bb8-4ce2-90db-780d4c5ce09b";
-const imgSocial2 =
-  "https://www.figma.com/api/mcp/asset/32977066-e325-41cc-9cec-7e06af5703b9";
-
 const navLinks = [
   { label: "About", href: "/about", active: false },
   { label: "Services", href: "/services", active: false },
   { label: "Digital Infrastructure", href: "/digital-infrastructure", active: false },
   { label: "Global Engagements", href: "/global-engagements", active: false },
   { label: "Insights", href: "/insights", active: false },
-  { label: "Leadership", href: "/leadership", active: false },
-  { label: "Contact", href: "/contact", active: false },
+  // { label: "Leadership", href: "/leadership", active: false },
+  // { label: "Contact", href: "/contact", active: false },
 ] as const;
 
 const platformFeatures = [
@@ -250,13 +243,49 @@ export default function UnmaiCarbonHomePage() {
               </a>
             ))}
           </div>
-          <button
+           <div className="flex gap-2">
+                <a
+                  href="#"
+                  className={navDocked
+                    ? "flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 text-black/70 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-black hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0"
+                    : "flex size-8 items-center justify-center rounded-md border border-white/20 bg-white/10 text-white transition duration-200 ease-out hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/20 hover:text-white hover:shadow-[0_8px_24px_rgba(255,255,255,0.12)] active:translate-y-0 motion-reduce:hover:translate-y-0"}
+                  aria-label="LinkedIn"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M6.94 8.98H3.8v10.1h3.14V8.98ZM5.37 7.6a1.82 1.82 0 1 0 0-3.64 1.82 1.82 0 0 0 0 3.64ZM20.2 19.08v-5.55c0-2.97-1.58-4.35-3.69-4.35-1.7 0-2.46.94-2.88 1.59V8.98h-3.01c.04.84 0 10.1 0 10.1h3.13v-5.64c0-.3.02-.6.11-.82.23-.6.76-1.22 1.65-1.22 1.16 0 1.63.89 1.63 2.19v5.49h3.06Z" />
+                  </svg>
+                </a>
+                <a
+                  href="#"
+                  className={navDocked
+                    ? "flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 text-black/70 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-black hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0"
+                    : "flex size-8 items-center justify-center rounded-md border border-white/20 bg-white/10 text-white transition duration-200 ease-out hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/20 hover:text-white hover:shadow-[0_8px_24px_rgba(255,255,255,0.12)] active:translate-y-0 motion-reduce:hover:translate-y-0"}
+                  aria-label="X"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M13.86 10.47 21.14 2h-1.72l-6.32 7.35L8.05 2H2.23l7.64 11.12L2.23 22h1.72l6.68-7.76L15.96 22h5.82l-7.92-11.53Zm-2.37 2.75-.77-1.1L4.56 3.3h2.66l4.96 7.1.77 1.1 6.47 9.26h-2.66l-5.27-7.54Z" />
+                  </svg>
+                </a>
+              </div>
+          {/* <button
             type="button"
             onClick={() => setConsultationOpen(true)}
             className={navDocked ? 'hidden shrink-0 rounded-full bg-black px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-black/15 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-black/25 hover:shadow-lg active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md md:inline-flex' : 'hidden shrink-0 rounded-full bg-white/15 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/15 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-white/25 hover:shadow-lg active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md md:inline-flex'}
           >
             Schedule Consultation
-          </button>
+          </button> */}
         </nav>
       </header>
 
@@ -412,7 +441,7 @@ export default function UnmaiCarbonHomePage() {
                 [
                   {
                     step: "01",
-                    color: "hsl(141, 71%, 48%)",
+                    color: "black",
                     category: "Region",
                     icon: imgStatIcon1,
                     variant: "plain" as const,
@@ -710,19 +739,19 @@ export default function UnmaiCarbonHomePage() {
               Bridging climate policy, carbon finance, and digital innovation through sovereign-grade advisory and interoperable carbon infrastructure.
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <button
+              {/* <button
                 type="button"
                 className="rounded-lg bg-white px-8 py-4 text-sm font-bold text-black shadow-lg shadow-black/20 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-100 hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0"
               >
                 Explore Solutions
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 type="button"
                 onClick={() => setConsultationOpen(true)}
                 className="rounded-lg border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold text-white shadow-lg shadow-black/30 backdrop-blur-sm transition duration-200 ease-out hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/20 hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0"
               >
                 Schedule Strategic Consultation
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -732,25 +761,25 @@ export default function UnmaiCarbonHomePage() {
       {/* Footer */}
       <footer className="bg-[#f9f9f9]">
         <ScrollReveal>
-          <div className="mx-auto max-w-[1020px] px-6 pb-8 pt-16">
-          <div className="grid gap-12 border-b border-black/10 pb-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
+          <div className="mx-auto max-w-255 px-6 pb-8 pt-16">
+          <div className="grid gap-12 border-b border-black/10 pb-10 sm:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_0.8fr]">
             <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-black p-1.5 shadow-sm ring-1 ring-black/10">
-                  <img src={imgImage3} alt="Unmai Carbon mark" className="h-full w-full object-contain" />
+              <div className="flex items-start gap-2">
+                <div className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-xl">
+                  <img src={imgLogoBlack} alt="Unmai Carbon mark" className="h-full w-full object-contain" />
                 </div>
                 <div className="space-y-1">
-                  <span className="block text-[clamp(1.75rem,4vw,2.15rem)] font-black leading-[1.05] tracking-tight text-black">
-                    UNMAI Carbon
+                  <span className="block text-xl font-black leading-[1.05] tracking-tight text-black">
+                    Unmai Carbon Solutions
                   </span>
-                  <span className="block text-[clamp(1.2rem,2.5vw,1.6rem)] font-bold leading-[1.05] tracking-tight text-black/95">
-                    Solutions
+                  <span className="block text-[12px] font-bold leading-[1.05] tracking-tight text-black/50">
+                    Truth · Transparency · Traceability · Integrity
                   </span>
                 </div>
               </div>
-              <p className="text-sm text-black">
+              {/* <p className="text-sm text-black">
                 Truth · Transparency · Traceability · Integrity
-              </p>
+              </p> */}
               <p className="text-xs leading-relaxed text-black">
                 Singapore HQ
                 <br />
@@ -767,17 +796,33 @@ export default function UnmaiCarbonHomePage() {
               <div className="flex gap-2 pt-2">
                 <a
                   href="#"
-                  className="flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0"
-                  aria-label="Social"
+                  className="flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 text-black/70 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-black hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0"
+                  aria-label="LinkedIn"
                 >
-                  <img src={imgSocial1} alt="" className="size-3.5" />
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M6.94 8.98H3.8v10.1h3.14V8.98ZM5.37 7.6a1.82 1.82 0 1 0 0-3.64 1.82 1.82 0 0 0 0 3.64ZM20.2 19.08v-5.55c0-2.97-1.58-4.35-3.69-4.35-1.7 0-2.46.94-2.88 1.59V8.98h-3.01c.04.84 0 10.1 0 10.1h3.13v-5.64c0-.3.02-.6.11-.82.23-.6.76-1.22 1.65-1.22 1.16 0 1.63.89 1.63 2.19v5.49h3.06Z" />
+                  </svg>
                 </a>
                 <a
                   href="#"
-                  className="flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0"
-                  aria-label="Social"
+                  className="flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 text-black/70 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-black hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0"
+                  aria-label="X"
                 >
-                  <img src={imgSocial2} alt="" className="size-3.5" />
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M13.86 10.47 21.14 2h-1.72l-6.32 7.35L8.05 2H2.23l7.64 11.12L2.23 22h1.72l6.68-7.76L15.96 22h5.82l-7.92-11.53Zm-2.37 2.75-.77-1.1L4.56 3.3h2.66l4.96 7.1.77 1.1 6.47 9.26h-2.66l-5.27-7.54Z" />
+                  </svg>
                 </a>
               </div>
             </div>
