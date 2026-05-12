@@ -1,4 +1,8 @@
-
+.di-bg{
+  background-image: url(/unmai-background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .gradient-text-hero {
   height: max-content;
   background: linear-gradient(-90deg, #ffffff, #d8d8d8);

@@ -15,7 +15,7 @@ const MOBILE_MAX_WIDTH_PX = 767;
 const HERO_SECTION_BG = "linear-gradient(148deg, black, #272727)";
 
 const imgImage5 =
-  "https://www.figma.com/api/mcp/asset/7a8bc8bb-67c1-422b-9da5-e8ee11009222";
+  "/unmai-carbon-img.png";
 const imgImage3 =
   "https://www.figma.com/api/mcp/asset/7c8496ff-75f5-4213-aa8c-30448363189a";
 const imgStatIcon1 =
@@ -26,8 +26,6 @@ const imgStatIcon3 =
   "https://www.figma.com/api/mcp/asset/e959a713-3190-4c66-85fe-479b21c2154e";
 const imgStatIcon4 =
   "https://www.figma.com/api/mcp/asset/c9b15b42-3300-415f-a02c-427695a041ce";
-const imgCheckIcon =
-  "https://www.figma.com/api/mcp/asset/fc82b6a7-7956-4039-8892-42ae0874ad4f";
 const imgSocial1 =
   "https://www.figma.com/api/mcp/asset/4f70c1c6-3bb8-4ce2-90db-780d4c5ce09b";
 const imgSocial2 =
@@ -522,7 +520,7 @@ export default function UnmaiCarbonHomePage() {
       </section>
 
       {/* Platform */}
-      <section className="bg-[#191c1d] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="di-bg px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto grid max-w-[1274px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div className="space-y-4">
@@ -541,8 +539,22 @@ export default function UnmaiCarbonHomePage() {
                   key={item.title}
                   className="group flex gap-4 rounded-xl border border-transparent px-3 py-4 transition duration-300 ease-out hover:border-white/10 hover:bg-white/[0.06] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] sm:px-4"
                 >
-                  <div className="mt-1 shrink-0 transition duration-300 group-hover:scale-110">
-                    <img src={imgCheckIcon} alt="" className="size-5" />
+                  <div className="mt-1 flex size-6 shrink-0 items-center justify-center rounded-md border border-[#e6ff80]/25 bg-[#e6ff80]/10 text-[#e6ff80] transition duration-300 group-hover:scale-110 group-hover:bg-[#e6ff80] group-hover:text-[#003932]">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="size-4"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M5 12.5L9.2 16.5L19 7"
+                        stroke="currentColor"
+                        strokeWidth="2.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </div>
                   <div className="space-y-1">
                     <h3 className="text-lg font-bold text-white transition group-hover:text-[#e6ff80]">
@@ -554,11 +566,11 @@ export default function UnmaiCarbonHomePage() {
               ))}
             </ul>
           </div>
-          <div className="group relative aspect-square max-h-[min(90vw,560px)] overflow-hidden rounded-[30px] shadow-2xl shadow-black/40 ring-1 ring-white/10 transition duration-500 ease-out hover:shadow-[0_25px_80px_-20px_rgba(230,255,128,0.12)] hover:ring-white/20 lg:max-h-none">
+          <div className="group relative aspect-square max-h-[min(90vw,560px)] overflow-hidden rounded-[30px] transition duration-500 ease-out lg:max-h-none">
             <img
               src={imgImage5}
               alt="Carbon market platform visualization"
-              className="size-full object-cover transition duration-500 ease-out group-hover:scale-[1.03] motion-reduce:group-hover:scale-100"
+              className="size-full object-cantain transition duration-500 ease-out group-hover:scale-[0.98] motion-reduce:group-hover:scale-100"
             />
           </div>
         </div>
