@@ -1,4 +1,5 @@
 import { type ReactNode, useState } from "react";
+import { SiteCta } from "./components/SiteCta";
 import { SiteFooter } from "./components/SiteFooter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
@@ -34,46 +35,6 @@ function EnterpriseBanner({
         <h1 className="max-w-4xl text-3xl font-bold tracking-tight sm:text-5xl">{title}</h1>
         <p className="max-w-3xl text-base leading-7 text-white/80 sm:text-lg">{subtitle}</p>
       </div>
-    </section>
-  );
-}
-
-function SharedCta({ onScheduleClick }: { onScheduleClick: () => void }) {
-  return (
-    <section className="px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
-      <ScrollReveal>
-        <div className="relative mx-auto max-w-[1216px] overflow-hidden rounded-[32px] bg-black px-8 py-16 text-center sm:px-12 sm:py-20">
-          <div className="pointer-events-none absolute inset-0 opacity-10" aria-hidden>
-            <div className="absolute inset-y-0 left-[25%] w-px bg-white" />
-            <div className="absolute inset-y-0 right-[25%] w-px bg-white" />
-            <div className="absolute left-0 right-0 top-[28%] h-px bg-white" />
-          </div>
-          <div className="relative mx-auto flex max-w-3xl flex-col gap-6">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-5xl sm:leading-none">
-              Partner to Operationalize High-Integrity Carbon Markets.
-            </h2>
-            <p className="text-base leading-7 text-white/70 sm:text-lg">
-              Bridging climate policy, carbon finance, and digital innovation through sovereign-grade
-              advisory and interoperable carbon infrastructure.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <button
-                type="button"
-                className="rounded-lg bg-white px-8 py-4 text-sm font-bold text-black transition hover:bg-neutral-100"
-              >
-                Explore Strategic Services
-              </button>
-              <button
-                type="button"
-                onClick={onScheduleClick}
-                className="rounded-lg border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold text-white transition hover:bg-white/20"
-              >
-                Schedule Strategic Consultation
-              </button>
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
     </section>
   );
 }
@@ -137,7 +98,7 @@ function PageScaffold({
       <SiteHeader />
       <EnterpriseBanner title={title} subtitle={subtitle} backgroundImage={bannerImage} />
       <main className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">{children}</main>
-      <SharedCta onScheduleClick={() => setConsultationOpen(true)} />
+      <SiteCta />
       <SiteFooter />
       <ScheduleConsultationModal
         open={consultationOpen}
