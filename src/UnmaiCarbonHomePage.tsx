@@ -670,7 +670,7 @@ export default function UnmaiCarbonHomePage() {
             </div>
             <div className="space-y-2 rounded-xl border border-transparent bg-white/0 p-6 transition duration-300 ease-out hover:-translate-y-1 hover:border-[#c96b14]/25 hover:bg-white hover:shadow-xl hover:shadow-[#c96b14]/10 motion-reduce:hover:translate-y-0">
               <p className="text-4xl font-bold tracking-tight text-[#c96b14] sm:text-[60px] sm:leading-none sm:tracking-[-3px]">
-                <ImpactCounter end={5} suffix="+ Years" />
+                <ImpactCounter end={50} suffix="+ Years" />
               </p>
               <p className="text-sm font-bold uppercase tracking-wider text-[#45464d]">
                 Combined expertise
