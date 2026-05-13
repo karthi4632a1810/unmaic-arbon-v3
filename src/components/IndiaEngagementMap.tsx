@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import L from "leaflet";
-import { MapContainer, Marker, TileLayer, Tooltip, useMap } from "react-leaflet";
+import { LayersControl, MapContainer, Marker, TileLayer, Tooltip, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 /** Representative engagement locations — coordinates approximate city centers. */
@@ -312,22 +312,11 @@ export function IndiaEngagementMap() {
   return (
     <section
       className="relative left-1/2 mb-12 w-screen max-w-none -translate-x-1/2 border-y border-black/[0.07] bg-linear-to-b from-slate-50/90 to-white py-10"
-      aria-labelledby="india-map-heading"
+      aria-label="Interactive India engagement map"
     >
-      <div className="mx-auto mb-6 max-w-3xl px-4 sm:px-6 lg:px-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#006c49]">Geo intelligence</p>
-        <h2 id="india-map-heading" className="mt-1 text-2xl font-semibold tracking-tight text-[#131b2e] sm:text-3xl">
-          Interactive India map
-        </h2>
-        <p className="mt-2 text-sm leading-relaxed text-[#444654] sm:text-base">
-          India engagement footprint. Select a location to pan and zoom the map — each selection focuses on
-          that point at a restrained zoom level for regional context.
-        </p>
-      </div>
-
       {/* Full-viewport-width map; panel overlays map */}
       <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden border-y border-black/[0.07] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)]">
-        <div className="relative min-h-[min(88vh,760px)] w-full [&_.india-map-tooltip]:border-0! [&_.india-map-tooltip]:bg-transparent! [&_.india-map-tooltip]:shadow-none! [&_.india-map-tooltip]:p-0! [&_.india-map-tooltip]:max-w-[calc(100vw-180px)] [&_.india-map-tooltip]:whitespace-normal! [&_.leaflet-top.leaflet-left]:left-auto [&_.leaflet-top.leaflet-left]:right-3 [&_.leaflet-top.leaflet-left]:top-3">
+        <div className="relative min-h-[min(88vh,760px)] w-full [&_.india-map-tooltip]:border-0! [&_.india-map-tooltip]:bg-transparent! [&_.india-map-tooltip]:shadow-none! [&_.india-map-tooltip]:p-0! [&_.india-map-tooltip]:max-w-[calc(100vw-180px)] [&_.india-map-tooltip]:whitespace-normal!">
           <MapContainer
             center={defaultCenter}
             zoom={5}
@@ -336,10 +325,26 @@ export function IndiaEngagementMap() {
             zoomControl
             worldCopyJump
           >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+            <LayersControl position="topright">
+              <LayersControl.BaseLayer name="Street map">
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              </LayersControl.BaseLayer>
+              <LayersControl.BaseLayer checked name="Light map">
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                />
+              </LayersControl.BaseLayer>
+              <LayersControl.BaseLayer name="Satellite">
+                <TileLayer
+                  attribution="Tiles &copy; Esri"
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                />
+              </LayersControl.BaseLayer>
+            </LayersControl>
             <MapViewController selectedId={selectedId} places={places} />
             <CtrlScrollZoomController />
             {places.map((place) => (

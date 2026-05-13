@@ -403,9 +403,9 @@ export function GlobalEngagementsPage() {
       bannerImage="https://images.unsplash.com/photo-1484589065579-248aad0d8b13?auto=format&fit=crop&w=2000&q=80"
     >
       <SectionIntro
-        title="Global Footprint"
-        subtitle="Sovereign and Multilateral Engagements Across Regions"
-        paragraph="Country-level implementation support is delivered through strategic collaboration with governments, institutions, and climate stakeholders in priority geographies."
+        title="India Engagement Footprint"
+        subtitle="Interactive India Engagement Map"
+        paragraph="Explore key India engagement locations and select each point to view regional focus, implementation context, and linked external references."
       />
       <IndiaEngagementMap />
       <div className="mx-auto max-w-[1216px] space-y-8">

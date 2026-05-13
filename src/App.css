@@ -58,7 +58,9 @@
     outline-offset: 2px;
   }
 }
-
+video{
+  opacity: 0.5 !important;
+}
 .num-masking span{
   mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
   mask-size: 100% 100%;

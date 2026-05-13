@@ -11,6 +11,9 @@ import "./App.css";
 const MOBILE_MAX_WIDTH_PX = 767;
 
 const HERO_SECTION_BG = "linear-gradient(148deg, black, #272727)";
+// Replace this with your production HLS manifest when ready, e.g. CDN/master.m3u8.
+const HERO_HLS_SRC = "/media/unmai-carbon/master.m3u8";
+const HERO_MP4_FALLBACK_SRC = heroVideo;
 
 const imgImage5 =
   "/unmai-carbon-img.png";
@@ -100,8 +103,128 @@ const flowSteps = [
 const heroLine =
   "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none translate-y-0 opacity-100";
 
+function HeroVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hlsRef = useRef<{ destroy: () => void } | null>(null);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let disposed = false;
+
+    const markReady = () => {
+      if (!disposed) setIsReady(true);
+    };
+
+    const attemptPlay = () => {
+      const playAttempt = video.play();
+      if (playAttempt !== undefined) {
+        playAttempt.catch(() => {
+          /* muted autoplay may still be blocked in edge cases */
+        });
+      }
+    };
+
+    const loadMp4Fallback = () => {
+      if (disposed) return;
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+      video.src = HERO_MP4_FALLBACK_SRC;
+      video.load();
+      attemptPlay();
+    };
+
+    const onVideoError = () => {
+      if (video.currentSrc !== HERO_MP4_FALLBACK_SRC) {
+        loadMp4Fallback();
+      }
+    };
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
+    video.addEventListener("loadeddata", markReady);
+    video.addEventListener("canplay", markReady);
+    video.addEventListener("error", onVideoError);
+
+    if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = HERO_HLS_SRC;
+      video.load();
+      attemptPlay();
+    } else {
+      import("hls.js")
+        .then(({ default: Hls }) => {
+          if (disposed) return;
+          if (!Hls.isSupported()) {
+            loadMp4Fallback();
+            return;
+          }
+
+          const hls = new Hls({
+            enableWorker: true,
+            startLevel: -1,
+            capLevelToPlayerSize: true,
+            maxBufferLength: 20,
+            backBufferLength: 20,
+          });
+
+          hlsRef.current = hls;
+          hls.loadSource(HERO_HLS_SRC);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, attemptPlay);
+          hls.on(Hls.Events.ERROR, (_event, data) => {
+            if (data.fatal) {
+              loadMp4Fallback();
+            }
+          });
+        })
+        .catch(() => {
+          loadMp4Fallback();
+        });
+    }
+
+    return () => {
+      disposed = true;
+      video.pause();
+      video.removeEventListener("loadeddata", markReady);
+      video.removeEventListener("canplay", markReady);
+      video.removeEventListener("error", onVideoError);
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+      video.removeAttribute("src");
+      video.load();
+    };
+  }, []);
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+      <video
+        ref={videoRef}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none ${
+          isReady ? "opacity-100" : "opacity-0"
+        }`}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        controls={false}
+        disablePictureInPicture
+        controlsList="nodownload noplaybackrate noremoteplayback nofullscreen"
+        aria-hidden="true"
+      />
+    </div>
+  );
+}
+
 export default function UnmaiCarbonHomePage() {
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const headerRef = useRef<HTMLElement>(null);
 
   /** On mobile, hero `margin-top` = measured fixed header height (px). */
@@ -109,18 +232,6 @@ export default function UnmaiCarbonHomePage() {
     undefined,
   );
   const [consultationOpen, setConsultationOpen] = useState(false);
-
-  useEffect(() => {
-    const el = heroVideoRef.current;
-    if (!el) return;
-    el.muted = true;
-    const playAttempt = el.play();
-    if (playAttempt !== undefined) {
-      playAttempt.catch(() => {
-        /* autoplay blocked until interaction — muted usually succeeds */
-      });
-    }
-  }, []);
 
   useLayoutEffect(() => {
     const header = headerRef.current;
@@ -174,21 +285,7 @@ export default function UnmaiCarbonHomePage() {
             style={{ backgroundImage: HERO_SECTION_BG }}
             aria-hidden
           />
-          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-            <video
-              ref={heroVideoRef}
-              className="absolute inset-0 h-full w-full object-cover"
-              src={heroVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-hidden
-            >
-              <source src={heroVideo} type="video/mp4" />
-            </video>
-          </div>
+          <HeroVideo />
           <div
             className="pointer-events-none absolute inset-0 z-[1] bg-black/35 transition-opacity duration-300 ease-out motion-reduce:transition-none md:bg-black/50"
             aria-hidden
