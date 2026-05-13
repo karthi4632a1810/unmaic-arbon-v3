@@ -1,11 +1,9 @@
 import { type ReactNode, useState } from "react";
+import { SiteFooter } from "./components/SiteFooter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
 import { INDIA_ENGAGEMENT_PLACES, IndiaEngagementMap } from "./components/IndiaEngagementMap";
 import { SiteHeader } from "./components/SiteHeader";
-
-const imgImage3 =
-  "https://www.figma.com/api/mcp/asset/7c8496ff-75f5-4213-aa8c-30448363189a";
 
 function EnterpriseBanner({
   title,
@@ -77,100 +75,6 @@ function SharedCta({ onScheduleClick }: { onScheduleClick: () => void }) {
         </div>
       </ScrollReveal>
     </section>
-  );
-}
-
-function SiteFooter() {
-  return (
-    <footer className="bg-[#f9f9f9]">
-      <ScrollReveal>
-        <div className="mx-auto max-w-[1020px] px-6 pb-8 pt-16">
-          <div className="grid gap-12 border-b border-black/10 pb-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-black p-1.5 shadow-sm ring-1 ring-black/10">
-                  <img src={imgImage3} alt="Unmai Carbon mark" className="h-full w-full object-contain" />
-                </div>
-                <div className="space-y-1">
-                  <span className="block text-[clamp(1.75rem,4vw,2.15rem)] font-black leading-[1.05] tracking-tight text-black">
-                    UNMAI Carbon
-                  </span>
-                  <span className="block text-[clamp(1.2rem,2.5vw,1.6rem)] font-bold leading-[1.05] tracking-tight text-black/95">
-                    Solutions
-                  </span>
-                </div>
-              </div>
-              <p className="text-sm text-black">Truth · Transparency · Traceability · Integrity</p>
-              <p className="text-xs leading-relaxed text-black">
-                Singapore HQ
-                <br />
-                10, Sim Lim Tower, Jalan Besar #10-10, Singapore 208787
-                <br />
-                Email: ydb@unmaicarbon.earth
-                <br />
-                Phone: +65 9023 1823
-                <br />
-                Website: www.unmaicarbon.earth
-              </p>
-            </div>
-            <FooterList
-              title="Strategic Services"
-              items={[
-                "Net Zero Transition",
-                "Climate Policy Advisory",
-                "Climate Finance",
-                "Article 6 Implementation",
-                "Carbon Registry Systems",
-                "Digital MRV Infrastructure",
-              ]}
-            />
-            <FooterList
-              title="Global Engagements"
-              items={[
-                "Bhutan",
-                "Nigeria",
-                "Indonesia",
-                "Sri Lanka",
-                "Oman",
-                "Saudi Arabia",
-                "Pakistan",
-                "Kenya",
-              ]}
-            />
-            <FooterList
-              title="Institutional Participation"
-              items={[
-                "ISO Standards",
-                "UNFCCC Engagements",
-                "CAD Trust",
-                "VCMI",
-                "BioCarbon Standard",
-                "World Bank Collaboration",
-              ]}
-            />
-          </div>
-        </div>
-      </ScrollReveal>
-      <div className="bg-[#45464d] px-6 py-6">
-        <div className="mx-auto flex max-w-[1020px] flex-col items-start justify-between gap-4 text-xs text-white sm:flex-row sm:items-center">
-          <p>© 2026 UNMAI Carbon Solutions Pte Ltd.</p>
-          <p>Truth · Transparency · Traceability · Integrity</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-function FooterList({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div>
-      <h3 className="mb-4 text-[11px] font-bold uppercase tracking-wider text-black">{title}</h3>
-      <ul className="space-y-2.5 text-sm text-black">
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    </div>
   );
 }
 

@@ -228,9 +228,20 @@ function CtrlScrollZoomController() {
   return null;
 }
 
-function LocationDetailCard({ place }: { place: IndiaEngagementPlace }) {
+function LocationDetailCard({
+  place,
+  className,
+}: {
+  place: IndiaEngagementPlace;
+  className?: string;
+}) {
   return (
-    <div className="w-[min(420px,calc(100vw-180px))] max-w-[calc(100vw-180px)] overflow-hidden whitespace-normal wrap-break-word rounded-2xl border border-black/10 bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+    <div
+      className={[
+        "w-[min(420px,calc(100vw-180px))] max-w-[calc(100vw-180px)] overflow-hidden whitespace-normal wrap-break-word rounded-2xl border border-black/10 bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.08)]",
+        className ?? "",
+      ].join(" ")}
+    >
       <div className="flex flex-wrap items-start gap-3">
         <div className="min-w-0 flex-1">
           <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#006c49]">{place.state}</p>
@@ -268,12 +279,14 @@ function LocationDetailCard({ place }: { place: IndiaEngagementPlace }) {
 function PlaceMarker({
   place,
   active,
+  showTooltip,
   activePinIcon,
   inactivePinIcon,
   onSelect,
 }: {
   place: IndiaEngagementPlace;
   active: boolean;
+  showTooltip: boolean;
   activePinIcon: L.DivIcon;
   inactivePinIcon: L.DivIcon;
   onSelect: () => void;
@@ -286,7 +299,7 @@ function PlaceMarker({
         click: onSelect,
       }}
     >
-      {active ? (
+      {active && showTooltip ? (
         <Tooltip
           permanent
           interactive
@@ -304,10 +317,24 @@ function PlaceMarker({
 
 export function IndiaEngagementMap() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const places = INDIA_ENGAGEMENT_PLACES;
   const defaultCenter: L.LatLngTuple = [20.5937, 78.9629];
   const activePinIcon = useMemo(() => createLocationPinIcon(true), []);
   const inactivePinIcon = useMemo(() => createLocationPinIcon(false), []);
+  const selectedPlace = places.find((place) => place.id === selectedId) ?? null;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const syncMobile = () => setIsMobile(mediaQuery.matches);
+
+    syncMobile();
+    mediaQuery.addEventListener("change", syncMobile);
+
+    return () => {
+      mediaQuery.removeEventListener("change", syncMobile);
+    };
+  }, []);
 
   return (
     <section
@@ -316,11 +343,11 @@ export function IndiaEngagementMap() {
     >
       {/* Full-viewport-width map; panel overlays map */}
       <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden border-y border-black/[0.07] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)]">
-        <div className="relative min-h-[min(88vh,760px)] w-full [&_.india-map-tooltip]:border-0! [&_.india-map-tooltip]:bg-transparent! [&_.india-map-tooltip]:shadow-none! [&_.india-map-tooltip]:p-0! [&_.india-map-tooltip]:max-w-[calc(100vw-180px)] [&_.india-map-tooltip]:whitespace-normal!">
+        <div className="relative w-full [&_.india-map-tooltip]:border-0! [&_.india-map-tooltip]:bg-transparent! [&_.india-map-tooltip]:shadow-none! [&_.india-map-tooltip]:p-0! [&_.india-map-tooltip]:max-w-[calc(100vw-180px)] [&_.india-map-tooltip]:whitespace-normal! md:min-h-[min(88vh,760px)]">
           <MapContainer
             center={defaultCenter}
             zoom={5}
-            className="z-0 size-full min-h-[min(88vh,760px)] [&_.leaflet-control-attribution]:text-[10px]"
+            className="z-0 size-full min-h-[55vh] [&_.leaflet-control-attribution]:text-[10px] md:min-h-[min(88vh,760px)]"
             scrollWheelZoom={false}
             zoomControl
             worldCopyJump
@@ -352,6 +379,7 @@ export function IndiaEngagementMap() {
                 key={place.id}
                 place={place}
                 active={selectedId === place.id}
+                showTooltip={!isMobile}
                 activePinIcon={activePinIcon}
                 inactivePinIcon={inactivePinIcon}
                 onSelect={() => setSelectedId(place.id)}
@@ -359,8 +387,14 @@ export function IndiaEngagementMap() {
             ))}
           </MapContainer>
 
+          {isMobile && selectedPlace ? (
+            <div className="mx-4 mb-4 mt-4 md:hidden">
+              <LocationDetailCard place={selectedPlace} className="w-full max-w-none" />
+            </div>
+          ) : null}
+
           <aside
-            className="absolute left-[50px] top-1/2 z-1000 flex max-h-[min(80vh,560px)] w-[min(280px,calc(100vw-100px))] -translate-y-1/2 flex-col gap-2 overflow-y-auto rounded-2xl border border-black/10 bg-white/95 p-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-sm"
+            className="mx-4 my-4 flex max-h-[320px] flex-col gap-2 overflow-y-auto rounded-2xl border border-black/10 bg-white/95 p-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-sm md:absolute md:left-[50px] md:top-1/2 md:z-1000 md:my-0 md:max-h-[min(80vh,560px)] md:w-[min(280px,calc(100vw-100px))] md:-translate-y-1/2"
             aria-label="Engagement locations"
           >
             <button
