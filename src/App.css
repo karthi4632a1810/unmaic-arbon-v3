@@ -59,6 +59,23 @@
   }
 }
 
+.num-masking span{
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.flow-steps-item{
+  transition: all 0.3s ease-out;
+  outline: 2px dashed hsla(161, 100%, 21%, 0.1);
+  outline-offset: 8px;
+}
+.flow-steps-item:hover{
+  outline: 2px dashed #2b6193;
+  outline-offset: 0px;
+}
+
 .stats-hover-item{
   --accent: red;
   isolation: isolate;

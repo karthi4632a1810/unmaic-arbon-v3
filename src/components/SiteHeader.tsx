@@ -1,0 +1,171 @@
+import { forwardRef, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import imgLogoBlack from "../assets/logo-b.png";
+import imgLogoWhite from "../assets/logo-w.png";
+
+const NAV_PIN_SCROLL_PX = 150;
+
+const NAV_LINKS = [
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Digital Infrastructure", to: "/digital-infrastructure" },
+  { label: "Global Engagements", to: "/global-engagements" },
+  { label: "Insights", to: "/insights" },
+] as const;
+
+export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, ref) {
+  const { pathname } = useLocation();
+  const [navDocked, setNavDocked] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setNavDocked(window.scrollY >= NAV_PIN_SCROLL_PX);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) setMobileMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  return (
+    <header
+      ref={ref}
+      className={[
+        "fixed left-1/2 z-[99] -translate-x-1/2 transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
+        "top-0 w-screen rounded-none border-0 border-b border-white/10 bg-[rgba(24,26,31,0.30)] px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.10)] sm:px-6 bg-white",
+        !navDocked
+          ? "md:top-6 md:w-[min(1300px,calc(100%-2rem))] md:rounded-full md:border md:border-white/12 md:bg-[rgba(0,0,0,0.20)] md:px-8 md:py-3.5 md:shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
+          : "",
+      ].join(" ")}
+    >
+      <nav
+        className="mx-auto flex max-w-[1300px] flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6"
+        aria-label="Primary"
+      >
+        <div className="flex items-center justify-between gap-4">
+          <Link
+            to="/"
+            className={
+              navDocked
+                ? "flex items-center justify-center gap-2 text-xl font-bold tracking-tight text-black transition hover:text-black/90"
+                : "flex items-center justify-center gap-2 text-xl font-bold tracking-tight text-white transition hover:text-white/90"
+            }
+          >
+            {navDocked ? (
+              <img src={imgLogoBlack} alt="Unmai Carbon" className="block size-10" />
+            ) : (
+              <img src={imgLogoWhite} alt="Unmai Carbon" className="size-10 md:block" />
+            )}
+            <div className="flex flex-col">
+              <span
+                className={
+                  navDocked
+                    ? "text-xl font-bold tracking-tight text-black"
+                    : "text-xl font-bold tracking-tight text-white uppercase"
+                }
+              >
+                Unmai Carbon
+              </span>
+              <span
+                className={
+                  navDocked
+                    ? "text-xs font-bold uppercase tracking-tight text-black"
+                    : "text-xs font-bold uppercase tracking-tight text-white opacity-75"
+                }
+              >
+                Solutions
+              </span>
+            </div>
+          </Link>
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((v) => !v)}
+              aria-label="Toggle menu"
+              className="inline-flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white"
+            >
+              <span className="text-lg leading-none">{mobileMenuOpen ? "×" : "≡"}</span>
+            </button>
+          </div>
+        </div>
+        <div
+          className={`${
+            mobileMenuOpen ? "flex" : "hidden"
+          } flex-col items-stretch gap-2 rounded-2xl border border-white/12 bg-[rgba(20,22,26,0.92)] p-3 md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-x-6 md:gap-y-2 md:rounded-none md:border-0 md:bg-transparent md:p-0`}
+        >
+          {NAV_LINKS.map(({ label, to }) => {
+            const active = pathname === to;
+            return (
+              <Link
+                key={to}
+                to={to}
+                onClick={() => setMobileMenuOpen(false)}
+                className={
+                  navDocked
+                    ? `text-sm font-medium tracking-tight transition-colors duration-200 hover:text-black text-black/75 ${
+                        active ? "border-b-2 border-black pb-0.5 text-black" : ""
+                      }`
+                    : `text-sm font-medium tracking-tight transition-colors duration-200 hover:text-white ${
+                        active
+                          ? "border-b-2 border-white pb-0.5 text-white"
+                          : "text-neutral-300 md:text-neutral-300"
+                      }`
+                }
+              >
+                {label}
+              </Link>
+            );
+          })}
+        </div>
+        <div className="flex gap-2">
+          <a
+            href="#"
+            className={
+              navDocked
+                ? "flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 text-black/70 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-black hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0"
+                : "flex size-8 items-center justify-center rounded-md border border-white/20 bg-white/10 text-white transition duration-200 ease-out hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/20 hover:text-white hover:shadow-[0_8px_24px_rgba(255,255,255,0.12)] active:translate-y-0 motion-reduce:hover:translate-y-0"
+            }
+            aria-label="LinkedIn"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-3.5"
+              aria-hidden="true"
+            >
+              <path d="M6.94 8.98H3.8v10.1h3.14V8.98ZM5.37 7.6a1.82 1.82 0 1 0 0-3.64 1.82 1.82 0 0 0 0 3.64ZM20.2 19.08v-5.55c0-2.97-1.58-4.35-3.69-4.35-1.7 0-2.46.94-2.88 1.59V8.98h-3.01c.04.84 0 10.1 0 10.1h3.13v-5.64c0-.3.02-.6.11-.82.23-.6.76-1.22 1.65-1.22 1.16 0 1.63.89 1.63 2.19v5.49h3.06Z" />
+            </svg>
+          </a>
+          <a
+            href="#"
+            className={
+              navDocked
+                ? "flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 text-black/70 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-black hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0"
+                : "flex size-8 items-center justify-center rounded-md border border-white/20 bg-white/10 text-white transition duration-200 ease-out hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/20 hover:text-white hover:shadow-[0_8px_24px_rgba(255,255,255,0.12)] active:translate-y-0 motion-reduce:hover:translate-y-0"
+            }
+            aria-label="X"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-3.5"
+              aria-hidden="true"
+            >
+              <path d="M13.86 10.47 21.14 2h-1.72l-6.32 7.35L8.05 2H2.23l7.64 11.12L2.23 22h1.72l6.68-7.76L15.96 22h5.82l-7.92-11.53Zm-2.37 2.75-.77-1.1L4.56 3.3h2.66l4.96 7.1.77 1.1 6.47 9.26h-2.66l-5.27-7.54Z" />
+            </svg>
+          </a>
+        </div>
+      </nav>
+    </header>
+  );
+});

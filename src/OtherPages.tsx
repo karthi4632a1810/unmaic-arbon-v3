@@ -1,112 +1,11 @@
-import { type ReactNode, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { type ReactNode, useState } from "react";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
+import { INDIA_ENGAGEMENT_PLACES, IndiaEngagementMap } from "./components/IndiaEngagementMap";
+import { SiteHeader } from "./components/SiteHeader";
 
 const imgImage3 =
   "https://www.figma.com/api/mcp/asset/7c8496ff-75f5-4213-aa8c-30448363189a";
-
-const headerLinks = [
-  { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
-  { to: "/digital-infrastructure", label: "Digital Infrastructure" },
-  { to: "/global-engagements", label: "Global Engagements" },
-  { to: "/insights", label: "Insights" },
-  // { to: "/leadership", label: "Leadership" },
-  // { to: "/contact", label: "Contact" },
-] as const;
-
-const NAV_PIN_SCROLL_PX = 150;
-
-function SiteHeader({ onScheduleClick }: { onScheduleClick: () => void }) {
-  const { pathname } = useLocation();
-  const [navDocked, setNavDocked] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      setNavDocked(window.scrollY >= NAV_PIN_SCROLL_PX);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const onResize = () => {
-      if (window.innerWidth >= 768) setMobileMenuOpen(false);
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  return (
-    <header
-      className={[
-        "fixed left-1/2 z-[99] -translate-x-1/2 backdrop-blur-xl transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
-        "top-0 w-screen rounded-none border-0 border-b border-white/10 bg-[rgba(24,26,31,0.72)] px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.35)] sm:px-6",
-        !navDocked
-          ? "md:top-6 md:w-[min(1300px,calc(100%-2rem))] md:rounded-full md:border md:border-white/12 md:bg-[rgba(24,26,31,0.68)] md:px-8 md:py-3.5 md:shadow-[0_12px_40px_rgba(0,0,0,0.45)]"
-          : "",
-      ].join(" ")}
-    >
-      <nav
-        className="mx-auto flex max-w-[1300px] flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6"
-        aria-label="Primary"
-      >
-        <div className="flex items-center justify-between gap-4">
-          <Link to="/" className="text-xl font-bold tracking-tight text-white transition hover:text-white/90">
-            Unmai Carbon
-          </Link>
-          <div className="flex items-center gap-2 md:hidden">
-            <button
-              type="button"
-              onClick={onScheduleClick}
-              className="rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/15 transition duration-200 ease-out hover:bg-white/25"
-            >
-              Schedule
-            </button>
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen((v) => !v)}
-              aria-label="Toggle menu"
-              className="inline-flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white"
-            >
-              <span className="text-lg leading-none">{mobileMenuOpen ? "×" : "≡"}</span>
-            </button>
-          </div>
-        </div>
-        <div
-          className={`${
-            mobileMenuOpen ? "flex" : "hidden"
-          } flex-col items-stretch gap-2 rounded-2xl border border-white/12 bg-[rgba(20,22,26,0.92)] p-3 backdrop-blur-xl md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-x-6 md:gap-y-2 md:rounded-none md:border-0 md:bg-transparent md:p-0`}
-        >
-          {headerLinks.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              onClick={() => setMobileMenuOpen(false)}
-              className={`text-sm font-medium tracking-tight transition-colors duration-200 hover:text-white ${
-                pathname === item.to
-                  ? "border-b-2 border-white pb-0.5 text-white"
-                  : "text-neutral-300"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-        <button
-          type="button"
-          onClick={onScheduleClick}
-          className="hidden rounded-full bg-white/15 px-6 py-2.5 text-sm font-semibold text-white ring-1 ring-white/15 transition duration-200 ease-out hover:bg-white/25 md:inline-flex"
-        >
-          Schedule Consultation
-        </button>
-      </nav>
-    </header>
-  );
-}
 
 function EnterpriseBanner({
   title,
@@ -331,7 +230,7 @@ function PageScaffold({
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#191c1d] antialiased">
-      <SiteHeader onScheduleClick={() => setConsultationOpen(true)} />
+      <SiteHeader />
       <EnterpriseBanner title={title} subtitle={subtitle} backgroundImage={bannerImage} />
       <main className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">{children}</main>
       <SharedCta onScheduleClick={() => setConsultationOpen(true)} />
@@ -496,19 +395,7 @@ export function DigitalInfrastructurePage() {
 }
 
 export function GlobalEngagementsPage() {
-  const countries = [
-    "Bhutan",
-    "Nigeria",
-    "Indonesia",
-    "Sri Lanka",
-    "Oman",
-    "Saudi Arabia",
-    "Pakistan",
-    "Kenya",
-    "Tanzania",
-    "Iraq",
-    "Philippines",
-  ];
+  const countries = INDIA_ENGAGEMENT_PLACES.map((place) => place.name);
   return (
     <PageScaffold
       title="Global Engagements"
@@ -520,24 +407,11 @@ export function GlobalEngagementsPage() {
         subtitle="Sovereign and Multilateral Engagements Across Regions"
         paragraph="Country-level implementation support is delivered through strategic collaboration with governments, institutions, and climate stakeholders in priority geographies."
       />
+      <IndiaEngagementMap />
       <div className="mx-auto max-w-[1216px] space-y-8">
-        <SectionCard
-          title="Interactive Global Map"
-          meta="Geo Intelligence"
-          kpis={["Country Engagements", "Sovereign Mandates"]}
-          body="Country-level engagement footprint across sovereign and institutional climate mandates."
-        >
-          <div className="mt-5 grid grid-cols-3 gap-2">
-            {["Asia", "Africa", "Middle East"].map((region) => (
-              <div key={region} className="rounded-lg border border-black/10 bg-white px-3 py-2 text-center text-xs font-bold uppercase tracking-wide text-[#2b6193]">
-                {region}
-              </div>
-            ))}
-          </div>
-        </SectionCard>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {countries.map((country, i) => (
-            <SectionCard key={country} title={country} meta={`Country ${(i + 1).toString().padStart(2, "0")}`} />
+            <SectionCard key={country} title={country} meta={`Location ${(i + 1).toString().padStart(2, "0")}`} />
           ))}
         </div>
         <SectionCard
