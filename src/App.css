@@ -61,6 +61,9 @@
 video{
   opacity: 0.5 !important;
 }
+.leaflet-control-attribution.leaflet-control{
+display: none;
+}
 .num-masking span{
   mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
   mask-size: 100% 100%;
@@ -250,6 +253,29 @@ video{
   }
 }
 
+
+.engagement-location-link,
+.engagement-location-link:visited {
+  color: #131b2e !important;
+}
+
+.engagement-location-link:hover,
+.engagement-location-link:focus-visible {
+  color: #0a0a0a !important;
+}
+
+.engagement-location-link .engagement-location-link-icon,
+.engagement-location-link:visited .engagement-location-link-icon,
+.engagement-location-link:hover .engagement-location-link-icon,
+.engagement-location-link:focus-visible .engagement-location-link-icon {
+  color: #fff !important;
+  background-color: #131b2e;
+}
+
+.engagement-location-link:hover .engagement-location-link-icon,
+.engagement-location-link:focus-visible .engagement-location-link-icon {
+  background-color: #0a0a0a;
+}
 
 .india-map-detail-card .india-map-detail-cta,
 .india-map-detail-card .india-map-detail-cta:visited {

@@ -3,7 +3,9 @@ import { SiteCta } from "./components/SiteCta";
 import { SiteFooter } from "./components/SiteFooter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
-import { INDIA_ENGAGEMENT_PLACES, IndiaEngagementMap } from "./components/IndiaEngagementMap";
+import { EngagementInstitutionalSection } from "./components/EngagementInstitutionalSection";
+import { EngagementLocationGrid } from "./components/EngagementLocationGrid";
+import { IndiaEngagementMap } from "./components/IndiaEngagementMap";
 import { SiteHeader } from "./components/SiteHeader";
 
 function EnterpriseBanner({
@@ -260,7 +262,6 @@ export function DigitalInfrastructurePage() {
 }
 
 export function GlobalEngagementsPage() {
-  const countries = INDIA_ENGAGEMENT_PLACES.map((place) => place.name);
   return (
     <PageScaffold
       title="Global Engagements"
@@ -274,23 +275,8 @@ export function GlobalEngagementsPage() {
       />
       <IndiaEngagementMap />
       <div className="mx-auto max-w-[1216px] space-y-8">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {countries.map((country, i) => (
-            <SectionCard key={country} title={country} meta={`Location ${(i + 1).toString().padStart(2, "0")}`} />
-          ))}
-        </div>
-        <SectionCard
-          title="Multilateral Collaborations"
-          meta="Institutional Partners"
-          kpis={["ADB", "World Bank", "UNDP", "IFC"]}
-          body="Engagement pathways supporting policy and implementation across multilateral climate mandates."
-        />
-        <SectionCard
-          title="Regional Capacity Building"
-          meta="Implementation Support"
-          kpis={["Technical Advisory", "Institutional Readiness"]}
-          body="Technical and institutional readiness support for long-term market operationalization."
-        />
+        <EngagementLocationGrid />
+        <EngagementInstitutionalSection />
       </div>
     </PageScaffold>
   );
