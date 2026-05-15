@@ -287,38 +287,25 @@ display: none;
   color: #fff !important;
 }
 
-.india-map-canvas {
-  filter: grayscale(0.35) contrast(1.04) brightness(1.02);
+.engagement-globe-canvas {
+  cursor: grab;
 }
 
-.india-map-tone-overlay {
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.03) 45%, rgba(255, 255, 255, 0.04) 100%),
-    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.12), transparent 42%),
-    radial-gradient(circle at 75% 80%, rgba(0, 0, 0, 0.08), transparent 48%);
-  mix-blend-mode: multiply;
+.engagement-globe-canvas:active {
+  cursor: grabbing;
 }
 
-.india-map-shell .leaflet-control-zoom a {
-  border-color: rgba(0, 0, 0, 0.15) !important;
-  color: #131b2e !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-}
-
-.india-map-shell .leaflet-control-zoom a:hover {
-  background: #f5f5f5 !important;
-  color: #0a0a0a !important;
-}
-
-.india-map-shell .leaflet-control-attribution {
-  background: rgba(255, 255, 255, 0.85) !important;
-  color: #5c6b62 !important;
-  border-radius: 8px 0 0 0;
-  padding: 2px 8px !important;
-}
-
-.india-map-shell .leaflet-control-attribution a {
-  color: #131b2e !important;
+.globe-point-label {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(10, 14, 24, 0.92);
+  border: 1px solid hsl(71, 100%, 73%);
+  color: hsl(71, 100%, 73%);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .india-map-pin-pulse {

@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
-import L from "leaflet";
-import { CircleMarker, MapContainer, Marker, TileLayer, Tooltip, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { lazy, Suspense, useEffect, useState } from "react";
+
+const EngagementGlobeView = lazy(() =>
+  import("./EngagementGlobeView").then((m) => ({ default: m.EngagementGlobeView })),
+);
 
 /** Representative engagement locations — coordinates approximate city centers. */
-type IndiaEngagementPlace = {
+export type IndiaEngagementPlace = {
   id: string;
   name: string;
   state: string;
@@ -150,97 +151,6 @@ export const INDIA_ENGAGEMENT_PLACES = [
   },
 ] as const satisfies readonly IndiaEngagementPlace[];
 
-const FOCUS_ZOOM = 7;
-const MAP_BLACK = "#131b2e";
-const MAP_WHITE = "#ffffff";
-const MAP_GRAY = "#6b7280";
-
-function createLocationPinIcon(active: boolean) {
-  const ring = active ? MAP_WHITE : "rgba(255,255,255,0.55)";
-  const scale = active ? "1.12" : "1";
-  const pulse = active
-    ? `<span class="india-map-pin-pulse" style="position:absolute;inset:-10px;border-radius:9999px;border:2px solid ${MAP_WHITE};opacity:0.5;"></span>`
-    : "";
-
-  return L.divIcon({
-    className: "",
-    html: `
-      <div style="position:relative;width:36px;height:44px;display:flex;align-items:flex-end;justify-content:center;transform:scale(${scale});transition:transform 0.35s ease;">
-        ${pulse}
-        <svg width="32" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="filter:drop-shadow(0 10px 18px rgba(0,0,0,0.35));">
-          <defs>
-            <linearGradient id="pinGrad-${active ? "a" : "i"}" x1="12" y1="1" x2="12" y2="22" gradientUnits="userSpaceOnUse">
-              <stop stop-color="${active ? MAP_WHITE : "#d1d5db"}"/>
-              <stop offset="0.55" stop-color="${active ? "#374151" : MAP_GRAY}"/>
-              <stop offset="1" stop-color="${MAP_BLACK}"/>
-            </linearGradient>
-          </defs>
-          <path d="M12 22C11.2 20.96 10.12 19.63 8.77 18C6.25 14.95 4 12.23 4 8.94C4 4.56 7.58 1 12 1C16.42 1 20 4.56 20 8.94C20 12.23 17.75 14.95 15.23 18C13.88 19.63 12.8 20.96 12 22Z" fill="url(#pinGrad-${active ? "a" : "i"})" stroke="white" stroke-width="1.4"/>
-          <circle cx="12" cy="9" r="3.4" fill="white" stroke="${ring}" stroke-width="1.2"/>
-        </svg>
-      </div>
-    `,
-    iconSize: [36, 44],
-    iconAnchor: [18, 44],
-    popupAnchor: [0, -38],
-  });
-}
-
-function MapViewController({
-  selectedId,
-  places,
-}: {
-  selectedId: string | null;
-  places: readonly IndiaEngagementPlace[];
-}) {
-  const map = useMap();
-  const bounds = useMemo(
-    () => L.latLngBounds(places.map((p) => [p.lat, p.lng] as L.LatLngTuple)),
-    [places],
-  );
-
-  useEffect(() => {
-    if (!selectedId) {
-      map.flyToBounds(bounds, { padding: [48, 48], maxZoom: 6, duration: 0.65 });
-      return;
-    }
-    const p = places.find((x) => x.id === selectedId);
-    if (p) {
-      map.flyTo([p.lat, p.lng], FOCUS_ZOOM, { duration: 0.7 });
-    }
-  }, [selectedId, map, bounds, places]);
-
-  return null;
-}
-
-function CtrlScrollZoomController() {
-  const map = useMap();
-
-  useEffect(() => {
-    const container = map.getContainer();
-
-    const onWheel = (event: WheelEvent) => {
-      if (!(event.ctrlKey || event.metaKey)) return;
-
-      event.preventDefault();
-      event.stopPropagation();
-
-      const currentZoom = map.getZoom();
-      const delta = event.deltaY < 0 ? 1 : -1;
-      const nextZoom = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), currentZoom + delta));
-
-      if (nextZoom !== currentZoom) {
-        map.setZoom(nextZoom, { animate: true });
-      }
-    };
-
-    container.addEventListener("wheel", onWheel, { passive: false });
-    return () => container.removeEventListener("wheel", onWheel);
-  }, [map]);
-
-  return null;
-}
-
 function LocationDetailCard({
   place,
   className,
@@ -297,60 +207,6 @@ function LocationDetailCard({
   );
 }
 
-function PlaceMarker({
-  place,
-  active,
-  showTooltip,
-  activePinIcon,
-  inactivePinIcon,
-  onSelect,
-}: {
-  place: IndiaEngagementPlace;
-  active: boolean;
-  showTooltip: boolean;
-  activePinIcon: L.DivIcon;
-  inactivePinIcon: L.DivIcon;
-  onSelect: () => void;
-}) {
-  return (
-    <>
-      {active ? (
-        <CircleMarker
-          center={[place.lat, place.lng]}
-          radius={22}
-          pathOptions={{
-            color: MAP_WHITE,
-            fillColor: MAP_BLACK,
-            fillOpacity: 0.12,
-            weight: 2,
-            opacity: 0.7,
-          }}
-          className="india-map-active-ring"
-        />
-      ) : null}
-      <Marker
-        position={[place.lat, place.lng]}
-        icon={active ? activePinIcon : inactivePinIcon}
-        eventHandlers={{ click: onSelect }}
-        zIndexOffset={active ? 1000 : 0}
-      >
-        {active && showTooltip ? (
-          <Tooltip
-            permanent
-            interactive
-            direction="right"
-            offset={[24, -6]}
-            opacity={1}
-            className="india-map-tooltip"
-          >
-            <LocationDetailCard place={place} />
-          </Tooltip>
-        ) : null}
-      </Marker>
-    </>
-  );
-}
-
 function MapPinIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -369,13 +225,21 @@ function MapPinIcon({ className }: { className?: string }) {
   );
 }
 
+function GlobeLoadingFallback() {
+  return (
+    <div className="flex min-h-[58vh] flex-col items-center justify-center gap-4 bg-[#0a0e18] md:min-h-[min(78vh,720px)]">
+      <div className="size-12 animate-spin rounded-full border-2 border-[hsl(71,100%,73%)]/25 border-t-[hsl(71,100%,73%)]" />
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/55">
+        Loading 3D globe…
+      </p>
+    </div>
+  );
+}
+
 export function IndiaEngagementMap() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const places = INDIA_ENGAGEMENT_PLACES;
-  const defaultCenter: L.LatLngTuple = [20.5937, 78.9629];
-  const activePinIcon = useMemo(() => createLocationPinIcon(true), []);
-  const inactivePinIcon = useMemo(() => createLocationPinIcon(false), []);
   const selectedPlace = places.find((place) => place.id === selectedId) ?? null;
 
   useEffect(() => {
@@ -393,7 +257,7 @@ export function IndiaEngagementMap() {
   return (
     <section
       className="relative left-1/2 mb-12 w-screen max-w-none -translate-x-1/2 overflow-hidden bg-linear-to-b from-neutral-100 via-neutral-50 to-white py-10 sm:py-14"
-      aria-label="Interactive India engagement map"
+      aria-label="Interactive global engagement map"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
@@ -408,10 +272,10 @@ export function IndiaEngagementMap() {
         <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-2">
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#131b2e]">
-              Engagement Footprint
+              Global Footprint
             </p>
             <h2 className="text-2xl font-bold tracking-tight text-[#131b2e] sm:text-3xl">
-              Explore Our India Presence
+              Explore Our Global Presence
             </h2>
           </div>
           <div className="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/80 px-4 py-3 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)] backdrop-blur-sm">
@@ -429,55 +293,43 @@ export function IndiaEngagementMap() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-[28px] border border-black/15 bg-[#0a0a0a] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] ring-1 ring-white/10">
-          <div className="india-map-shell relative w-full [&_.india-map-tooltip]:max-w-[calc(100vw-180px)] [&_.india-map-tooltip]:border-0! [&_.india-map-tooltip]:bg-transparent! [&_.india-map-tooltip]:p-0! [&_.india-map-tooltip]:shadow-none! [&_.india-map-tooltip]:whitespace-normal! md:min-h-[min(78vh,720px)]">
-            <MapContainer
-              center={defaultCenter}
-              zoom={5}
-              className="india-map-canvas z-0 size-full min-h-[58vh] md:min-h-[min(78vh,720px)]"
-              scrollWheelZoom={false}
-              zoomControl
-              worldCopyJump
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0a0e18] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-white/5">
+          <div className="india-map-shell relative w-full md:min-h-[min(78vh,720px)]">
+            <Suspense fallback={<GlobeLoadingFallback />}>
+              <EngagementGlobeView
+                places={places}
+                selectedId={selectedId}
+                onSelectPlace={setSelectedId}
+                className="engagement-globe-canvas z-0 min-h-[58vh] w-full md:min-h-[min(78vh,720px)]"
               />
-              <MapViewController selectedId={selectedId} places={places} />
-              <CtrlScrollZoomController />
-              {places.map((place) => (
-                <PlaceMarker
-                  key={place.id}
-                  place={place}
-                  active={selectedId === place.id}
-                  showTooltip={!isMobile}
-                  activePinIcon={activePinIcon}
-                  inactivePinIcon={inactivePinIcon}
-                  onSelect={() => setSelectedId(place.id)}
-                />
-              ))}
-            </MapContainer>
+            </Suspense>
 
             <div
-              className="india-map-tone-overlay pointer-events-none absolute inset-0 z-[400]"
+              className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,transparent_42%,rgba(0,0,0,0.45)_100%)]"
               aria-hidden
             />
 
             <div
-              className="pointer-events-none absolute right-4 top-4 z-[500] hidden rounded-xl border border-white/20 bg-black/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-lg backdrop-blur-md sm:block"
+              className="pointer-events-none absolute right-4 top-4 z-20 hidden rounded-xl border border-white/15 bg-black/75 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-lg backdrop-blur-md sm:block"
               aria-hidden
             >
-              Ctrl + scroll to zoom
+              Drag to rotate · Scroll to zoom
             </div>
 
+            {!isMobile && selectedPlace ? (
+              <div className="absolute right-6 top-6 z-20 hidden max-w-[min(400px,42vw)] md:block">
+                <LocationDetailCard place={selectedPlace} />
+              </div>
+            ) : null}
+
             {isMobile && selectedPlace ? (
-              <div className="relative z-[500] mx-4 mb-4 mt-4 md:hidden">
+              <div className="relative z-20 mx-4 mb-4 mt-4 md:hidden">
                 <LocationDetailCard place={selectedPlace} className="w-full max-w-none" />
               </div>
             ) : null}
 
             <aside
-              className="india-map-panel relative z-[500] mx-4 my-4 flex max-h-[340px] flex-col gap-2 overflow-hidden rounded-2xl border border-black/12 bg-white/95 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] backdrop-blur-md md:absolute md:left-6 md:top-1/2 md:my-0 md:max-h-[min(76vh,580px)] md:w-[min(300px,calc(100vw-80px))] md:-translate-y-1/2 lg:left-8"
+              className="india-map-panel relative z-20 mx-4 my-4 flex max-h-[340px] flex-col gap-2 overflow-hidden rounded-2xl border border-black/12 bg-white/95 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] backdrop-blur-md md:absolute md:left-6 md:top-1/2 md:my-0 md:max-h-[min(76vh,580px)] md:w-[min(300px,calc(100vw-80px))] md:-translate-y-1/2 lg:left-8"
               aria-label="Engagement locations"
             >
               <div className="shrink-0 border-b border-black/10 bg-linear-to-r from-[#0a0a0a] to-[#131b2e] px-4 py-3.5">
@@ -519,9 +371,9 @@ export function IndiaEngagementMap() {
                         selectedId === null ? "text-black" : "text-[#131b2e]"
                       }`}
                     >
-                      All locations
+                      Global overview
                     </span>
-                    <span className="block text-[10px] text-[#5c6b62]">Full India overview</span>
+                    <span className="block text-[10px] text-[#5c6b62]">Full 3D globe view</span>
                   </span>
                 </button>
 
