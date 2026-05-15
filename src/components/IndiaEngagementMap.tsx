@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import L from "leaflet";
-import { LayersControl, MapContainer, Marker, TileLayer, Tooltip, useMap } from "react-leaflet";
+import { CircleMarker, MapContainer, Marker, TileLayer, Tooltip, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 /** Representative engagement locations — coordinates approximate city centers. */
@@ -150,26 +150,39 @@ export const INDIA_ENGAGEMENT_PLACES = [
   },
 ] as const satisfies readonly IndiaEngagementPlace[];
 
-/** Moderate zoom so the place is readable without a tight street-level view. */
 const FOCUS_ZOOM = 7;
+const MAP_BLACK = "#131b2e";
+const MAP_WHITE = "#ffffff";
+const MAP_GRAY = "#6b7280";
 
 function createLocationPinIcon(active: boolean) {
-  const fill = active ? "#006c49" : "#2b6193";
-  const shadow = active ? "0 10px 22px rgba(0,108,73,0.28)" : "0 8px 18px rgba(43,97,147,0.22)";
+  const ring = active ? MAP_WHITE : "rgba(255,255,255,0.55)";
+  const scale = active ? "1.12" : "1";
+  const pulse = active
+    ? `<span class="india-map-pin-pulse" style="position:absolute;inset:-10px;border-radius:9999px;border:2px solid ${MAP_WHITE};opacity:0.5;"></span>`
+    : "";
 
   return L.divIcon({
     className: "",
     html: `
-      <div style="width:32px;height:40px;display:flex;align-items:flex-end;justify-content:center;filter:${shadow};">
-        <svg width="28" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M12 22C11.2 20.96 10.12 19.63 8.77 18C6.25 14.95 4 12.23 4 8.94C4 4.56 7.58 1 12 1C16.42 1 20 4.56 20 8.94C20 12.23 17.75 14.95 15.23 18C13.88 19.63 12.8 20.96 12 22Z" fill="${fill}" stroke="white" stroke-width="1.2"/>
-          <circle cx="12" cy="9" r="3.2" fill="white"/>
+      <div style="position:relative;width:36px;height:44px;display:flex;align-items:flex-end;justify-content:center;transform:scale(${scale});transition:transform 0.35s ease;">
+        ${pulse}
+        <svg width="32" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="filter:drop-shadow(0 10px 18px rgba(0,0,0,0.35));">
+          <defs>
+            <linearGradient id="pinGrad-${active ? "a" : "i"}" x1="12" y1="1" x2="12" y2="22" gradientUnits="userSpaceOnUse">
+              <stop stop-color="${active ? MAP_WHITE : "#d1d5db"}"/>
+              <stop offset="0.55" stop-color="${active ? "#374151" : MAP_GRAY}"/>
+              <stop offset="1" stop-color="${MAP_BLACK}"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 22C11.2 20.96 10.12 19.63 8.77 18C6.25 14.95 4 12.23 4 8.94C4 4.56 7.58 1 12 1C16.42 1 20 4.56 20 8.94C20 12.23 17.75 14.95 15.23 18C13.88 19.63 12.8 20.96 12 22Z" fill="url(#pinGrad-${active ? "a" : "i"})" stroke="white" stroke-width="1.4"/>
+          <circle cx="12" cy="9" r="3.4" fill="white" stroke="${ring}" stroke-width="1.2"/>
         </svg>
       </div>
     `,
-    iconSize: [32, 40],
-    iconAnchor: [16, 40],
-    popupAnchor: [0, -34],
+    iconSize: [36, 44],
+    iconAnchor: [18, 44],
+    popupAnchor: [0, -38],
   });
 }
 
@@ -188,12 +201,12 @@ function MapViewController({
 
   useEffect(() => {
     if (!selectedId) {
-      map.flyToBounds(bounds, { padding: [36, 36], maxZoom: 6, duration: 0.55 });
+      map.flyToBounds(bounds, { padding: [48, 48], maxZoom: 6, duration: 0.65 });
       return;
     }
     const p = places.find((x) => x.id === selectedId);
     if (p) {
-      map.flyTo([p.lat, p.lng], FOCUS_ZOOM, { duration: 0.65 });
+      map.flyTo([p.lat, p.lng], FOCUS_ZOOM, { duration: 0.7 });
     }
   }, [selectedId, map, bounds, places]);
 
@@ -236,43 +249,51 @@ function LocationDetailCard({
   className?: string;
 }) {
   return (
-    <div
+    <article
       className={[
-        "w-[min(420px,calc(100vw-180px))] max-w-[calc(100vw-180px)] overflow-hidden whitespace-normal wrap-break-word rounded-2xl border border-black/10 bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.08)]",
+        "india-map-detail-card w-[min(420px,calc(100vw-180px))] max-w-[calc(100vw-180px)] overflow-hidden whitespace-normal wrap-break-word rounded-2xl border border-black/10 bg-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.18)]",
         className ?? "",
       ].join(" ")}
     >
-      <div className="flex flex-wrap items-start gap-3">
-        <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#006c49]">{place.state}</p>
-          <h3 className="mt-1 text-base font-semibold tracking-tight text-[#131b2e]">{place.name}</h3>
-          <p className="mt-1 text-xs font-medium leading-5 text-[#2b6193]">{place.focus}</p>
-        </div>
-        <span className="shrink-0 rounded-full bg-[#006c49]/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-[#006c49]">
-          {place.region}
-        </span>
-      </div>
-      <p className="mt-3 text-sm leading-6 text-[#444654]">{place.summary}</p>
-      <div className="mt-3 flex flex-wrap gap-2">
-        {place.highlights.map((item) => (
-          <span
-            key={item}
-            className="rounded-full border border-black/10 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#444654]"
-          >
-            {item}
+      <div className="bg-linear-to-r from-[#0a0a0a] via-[#131b2e] to-[#374151] px-5 py-4">
+        <div className="flex flex-wrap items-start gap-3">
+          <div className="min-w-0 flex-1">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">
+              {place.state}
+            </p>
+            <h3 className="mt-1 text-lg font-bold tracking-tight text-white">{place.name}</h3>
+            <p className="mt-1.5 text-xs font-medium leading-5 text-white/75">{place.focus}</p>
+          </div>
+          <span className="shrink-0 rounded-full border border-white/25 bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+            {place.region}
           </span>
-        ))}
+        </div>
       </div>
-      <a
-        href={place.link}
-        target="_blank"
-        rel="noreferrer noopener"
-        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#006c49] transition hover:text-[#004d35]"
-      >
-        Open external site
-        <span aria-hidden="true">↗</span>
-      </a>
-    </div>
+      <div className="space-y-4 p-5">
+        <p className="text-sm leading-6 text-[#444654]">{place.summary}</p>
+        <div className="flex flex-wrap gap-2">
+          {place.highlights.map((item) => (
+            <span
+              key={item}
+              className="rounded-full border border-black/12 bg-neutral-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#131b2e]"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+        <a
+          href={place.link}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="india-map-detail-cta inline-flex items-center gap-2 rounded-lg bg-[#131b2e] px-4 py-2.5 text-sm font-semibold text-white! no-underline shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] transition hover:bg-black hover:text-white! hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.45)]"
+        >
+          Open external site
+          <span className="text-inherit" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </div>
+    </article>
   );
 }
 
@@ -292,26 +313,59 @@ function PlaceMarker({
   onSelect: () => void;
 }) {
   return (
-    <Marker
-      position={[place.lat, place.lng]}
-      icon={active ? activePinIcon : inactivePinIcon}
-      eventHandlers={{
-        click: onSelect,
-      }}
-    >
-      {active && showTooltip ? (
-        <Tooltip
-          permanent
-          interactive
-          direction="right"
-          offset={[22, -4]}
-          opacity={1}
-          className="india-map-tooltip"
-        >
-          <LocationDetailCard place={place} />
-        </Tooltip>
+    <>
+      {active ? (
+        <CircleMarker
+          center={[place.lat, place.lng]}
+          radius={22}
+          pathOptions={{
+            color: MAP_WHITE,
+            fillColor: MAP_BLACK,
+            fillOpacity: 0.12,
+            weight: 2,
+            opacity: 0.7,
+          }}
+          className="india-map-active-ring"
+        />
       ) : null}
-    </Marker>
+      <Marker
+        position={[place.lat, place.lng]}
+        icon={active ? activePinIcon : inactivePinIcon}
+        eventHandlers={{ click: onSelect }}
+        zIndexOffset={active ? 1000 : 0}
+      >
+        {active && showTooltip ? (
+          <Tooltip
+            permanent
+            interactive
+            direction="right"
+            offset={[24, -6]}
+            opacity={1}
+            className="india-map-tooltip"
+          >
+            <LocationDetailCard place={place} />
+          </Tooltip>
+        ) : null}
+      </Marker>
+    </>
+  );
+}
+
+function MapPinIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      <path
+        d="M12 22C11.2 20.96 10.12 19.63 8.77 18C6.25 14.95 4 12.23 4 8.94C4 4.56 7.58 1 12 1C16.42 1 20 4.56 20 8.94C20 12.23 17.75 14.95 15.23 18C13.88 19.63 12.8 20.96 12 22Z"
+        fill="currentColor"
+      />
+      <circle cx="12" cy="9" r="3" fill="white" />
+    </svg>
   );
 }
 
@@ -338,95 +392,186 @@ export function IndiaEngagementMap() {
 
   return (
     <section
-      className="relative left-1/2 mb-12 w-screen max-w-none -translate-x-1/2 border-y border-black/[0.07] bg-linear-to-b from-slate-50/90 to-white py-10"
+      className="relative left-1/2 mb-12 w-screen max-w-none -translate-x-1/2 overflow-hidden bg-linear-to-b from-neutral-100 via-neutral-50 to-white py-10 sm:py-14"
       aria-label="Interactive India engagement map"
     >
-      {/* Full-viewport-width map; panel overlays map */}
-      <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden border-y border-black/[0.07] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)]">
-        <div className="relative w-full [&_.india-map-tooltip]:border-0! [&_.india-map-tooltip]:bg-transparent! [&_.india-map-tooltip]:shadow-none! [&_.india-map-tooltip]:p-0! [&_.india-map-tooltip]:max-w-[calc(100vw-180px)] [&_.india-map-tooltip]:whitespace-normal! md:min-h-[min(88vh,760px)]">
-          <MapContainer
-            center={defaultCenter}
-            zoom={5}
-            className="z-0 size-full min-h-[55vh] [&_.leaflet-control-attribution]:text-[10px] md:min-h-[min(88vh,760px)]"
-            scrollWheelZoom={false}
-            zoomControl
-            worldCopyJump
-          >
-            <LayersControl position="topright">
-              <LayersControl.BaseLayer name="Street map">
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-              </LayersControl.BaseLayer>
-              <LayersControl.BaseLayer checked name="Light map">
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                />
-              </LayersControl.BaseLayer>
-              <LayersControl.BaseLayer name="Satellite">
-                <TileLayer
-                  attribution="Tiles &copy; Esri"
-                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                />
-              </LayersControl.BaseLayer>
-            </LayersControl>
-            <MapViewController selectedId={selectedId} places={places} />
-            <CtrlScrollZoomController />
-            {places.map((place) => (
-              <PlaceMarker
-                key={place.id}
-                place={place}
-                active={selectedId === place.id}
-                showTooltip={!isMobile}
-                activePinIcon={activePinIcon}
-                inactivePinIcon={inactivePinIcon}
-                onSelect={() => setSelectedId(place.id)}
-              />
-            ))}
-          </MapContainer>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 30%, rgba(0,0,0,0.06), transparent 45%), radial-gradient(circle at 80% 70%, rgba(0,0,0,0.04), transparent 50%)",
+        }}
+        aria-hidden
+      />
 
-          {isMobile && selectedPlace ? (
-            <div className="mx-4 mb-4 mt-4 md:hidden">
-              <LocationDetailCard place={selectedPlace} className="w-full max-w-none" />
+      <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+          <div className="space-y-2">
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#131b2e]">
+              Engagement Footprint
+            </p>
+            <h2 className="text-2xl font-bold tracking-tight text-[#131b2e] sm:text-3xl">
+              Explore Our India Presence
+            </h2>
+          </div>
+          <div className="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/80 px-4 py-3 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)] backdrop-blur-sm">
+            <span className="flex size-10 items-center justify-center rounded-xl bg-neutral-100 text-[#131b2e]">
+              <MapPinIcon className="size-5" />
+            </span>
+            <div>
+              <p className="text-2xl font-bold leading-none tracking-tight text-[#131b2e]">
+                {places.length}
+              </p>
+              <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#5c6b62]">
+                Active locations
+              </p>
             </div>
-          ) : null}
+          </div>
+        </div>
 
-          <aside
-            className="mx-4 my-4 flex max-h-[320px] flex-col gap-2 overflow-y-auto rounded-2xl border border-black/10 bg-white/95 p-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-sm md:absolute md:left-[50px] md:top-1/2 md:z-1000 md:my-0 md:max-h-[min(80vh,560px)] md:w-[min(280px,calc(100vw-100px))] md:-translate-y-1/2"
-            aria-label="Engagement locations"
-          >
-            <button
-              type="button"
-              onClick={() => setSelectedId(null)}
-              className={`shrink-0 rounded-full border px-3 py-1.5 text-left text-xs font-semibold uppercase tracking-wide transition ${
-                selectedId === null
-                  ? "border-[#006c49] bg-[#006c49]/10 text-[#004d35]"
-                  : "border-black/15 bg-white text-[#444654] hover:border-[#006c49]/40 hover:bg-slate-50"
-              }`}
+        <div className="relative overflow-hidden rounded-[28px] border border-black/15 bg-[#0a0a0a] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)] ring-1 ring-white/10">
+          <div className="india-map-shell relative w-full [&_.india-map-tooltip]:max-w-[calc(100vw-180px)] [&_.india-map-tooltip]:border-0! [&_.india-map-tooltip]:bg-transparent! [&_.india-map-tooltip]:p-0! [&_.india-map-tooltip]:shadow-none! [&_.india-map-tooltip]:whitespace-normal! md:min-h-[min(78vh,720px)]">
+            <MapContainer
+              center={defaultCenter}
+              zoom={5}
+              className="india-map-canvas z-0 size-full min-h-[58vh] md:min-h-[min(78vh,720px)]"
+              scrollWheelZoom={false}
+              zoomControl
+              worldCopyJump
             >
-              All locations
-            </button>
-            {places.map((place) => {
-              const active = selectedId === place.id;
-              return (
-                <div key={place.id} className="w-full">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedId(place.id)}
-                    className={`w-full rounded-full border px-3 py-1.5 text-left text-xs font-semibold transition ${
-                      active
-                        ? "border-[#006c49] bg-[#006c49] text-white shadow-sm"
-                        : "border-black/15 bg-white text-[#131b2e] hover:border-[#006c49]/40 hover:bg-slate-50"
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+              />
+              <MapViewController selectedId={selectedId} places={places} />
+              <CtrlScrollZoomController />
+              {places.map((place) => (
+                <PlaceMarker
+                  key={place.id}
+                  place={place}
+                  active={selectedId === place.id}
+                  showTooltip={!isMobile}
+                  activePinIcon={activePinIcon}
+                  inactivePinIcon={inactivePinIcon}
+                  onSelect={() => setSelectedId(place.id)}
+                />
+              ))}
+            </MapContainer>
+
+            <div
+              className="india-map-tone-overlay pointer-events-none absolute inset-0 z-[400]"
+              aria-hidden
+            />
+
+            <div
+              className="pointer-events-none absolute right-4 top-4 z-[500] hidden rounded-xl border border-white/20 bg-black/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-lg backdrop-blur-md sm:block"
+              aria-hidden
+            >
+              Ctrl + scroll to zoom
+            </div>
+
+            {isMobile && selectedPlace ? (
+              <div className="relative z-[500] mx-4 mb-4 mt-4 md:hidden">
+                <LocationDetailCard place={selectedPlace} className="w-full max-w-none" />
+              </div>
+            ) : null}
+
+            <aside
+              className="india-map-panel relative z-[500] mx-4 my-4 flex max-h-[340px] flex-col gap-2 overflow-hidden rounded-2xl border border-black/12 bg-white/95 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] backdrop-blur-md md:absolute md:left-6 md:top-1/2 md:my-0 md:max-h-[min(76vh,580px)] md:w-[min(300px,calc(100vw-80px))] md:-translate-y-1/2 lg:left-8"
+              aria-label="Engagement locations"
+            >
+              <div className="shrink-0 border-b border-black/10 bg-linear-to-r from-[#0a0a0a] to-[#131b2e] px-4 py-3.5">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">
+                  Locations
+                </p>
+                <p className="mt-0.5 text-sm font-semibold text-white">Select a city to explore</p>
+              </div>
+
+              <div className="india-map-panel-scroll flex min-h-0 flex-1 flex-col gap-1.5 overflow-y-auto p-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedId(null)}
+                  className={`group flex shrink-0 items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition duration-300 ${
+                    selectedId === null
+                      ? "border-black bg-neutral-100 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08)]"
+                      : "border-black/8 bg-white hover:border-black/25 hover:bg-neutral-50"
+                  }`}
+                >
+                  <span
+                    className={`flex size-8 shrink-0 items-center justify-center rounded-lg transition ${
+                      selectedId === null
+                        ? "bg-[#131b2e] text-white"
+                        : "bg-neutral-100 text-[#131b2e] group-hover:bg-neutral-200"
                     }`}
                   >
-                    {place.name}
-                  </button>
-                </div>
-              );
-            })}
-          </aside>
+                    <svg viewBox="0 0 24 24" fill="none" className="size-4" aria-hidden="true">
+                      <path
+                        d="M3 10.5L12 4l9 6.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1v-9.5z"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span
+                      className={`block text-xs font-bold uppercase tracking-wide ${
+                        selectedId === null ? "text-black" : "text-[#131b2e]"
+                      }`}
+                    >
+                      All locations
+                    </span>
+                    <span className="block text-[10px] text-[#5c6b62]">Full India overview</span>
+                  </span>
+                </button>
+
+                {places.map((place, index) => {
+                  const active = selectedId === place.id;
+                  return (
+                    <button
+                      key={place.id}
+                      type="button"
+                      onClick={() => setSelectedId(place.id)}
+                      className={`group flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition duration-300 ${
+                        active
+                          ? "border-black bg-linear-to-r from-[#131b2e] to-[#374151] text-white shadow-[0_10px_28px_-12px_rgba(0,0,0,0.35)]"
+                          : "border-black/8 bg-white hover:border-black/25 hover:bg-neutral-50"
+                      }`}
+                    >
+                      <span
+                        className={`flex size-8 shrink-0 items-center justify-center rounded-lg text-[11px] font-bold tabular-nums transition ${
+                          active
+                            ? "bg-white/15 text-white"
+                            : "bg-neutral-100 text-[#131b2e] group-hover:bg-neutral-200"
+                        }`}
+                      >
+                        {(index + 1).toString().padStart(2, "0")}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span
+                          className={`block truncate text-sm font-semibold ${
+                            active ? "text-white" : "text-[#131b2e]"
+                          }`}
+                        >
+                          {place.name}
+                        </span>
+                        <span
+                          className={`block truncate text-[10px] uppercase tracking-wide ${
+                            active ? "text-white/75" : "text-[#5c6b62]"
+                          }`}
+                        >
+                          {place.region}
+                        </span>
+                      </span>
+                      <MapPinIcon
+                        className={`size-4 shrink-0 ${active ? "text-white" : "text-neutral-400"}`}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
     </section>

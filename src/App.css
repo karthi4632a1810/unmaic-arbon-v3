@@ -250,6 +250,110 @@ video{
   }
 }
 
+
+.india-map-detail-card .india-map-detail-cta,
+.india-map-detail-card .india-map-detail-cta:visited {
+  color: #fff !important;
+}
+
+.india-map-detail-card .india-map-detail-cta:hover,
+.india-map-detail-card .india-map-detail-cta:focus-visible {
+  color: #fff !important;
+}
+
+.india-map-canvas {
+  filter: grayscale(0.35) contrast(1.04) brightness(1.02);
+}
+
+.india-map-tone-overlay {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.03) 45%, rgba(255, 255, 255, 0.04) 100%),
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.12), transparent 42%),
+    radial-gradient(circle at 75% 80%, rgba(0, 0, 0, 0.08), transparent 48%);
+  mix-blend-mode: multiply;
+}
+
+.india-map-shell .leaflet-control-zoom a {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  color: #131b2e !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.india-map-shell .leaflet-control-zoom a:hover {
+  background: #f5f5f5 !important;
+  color: #0a0a0a !important;
+}
+
+.india-map-shell .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.85) !important;
+  color: #5c6b62 !important;
+  border-radius: 8px 0 0 0;
+  padding: 2px 8px !important;
+}
+
+.india-map-shell .leaflet-control-attribution a {
+  color: #131b2e !important;
+}
+
+.india-map-pin-pulse {
+  animation: india-map-pulse 2s ease-out infinite;
+}
+
+.india-map-active-ring {
+  animation: india-map-ring 2.4s ease-out infinite;
+}
+
+.india-map-panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+}
+
+.india-map-panel-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.india-map-panel-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
+}
+
+@keyframes india-map-pulse {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.65;
+  }
+  70% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes india-map-ring {
+  0% {
+    stroke-opacity: 0.55;
+    fill-opacity: 0.14;
+  }
+  50% {
+    stroke-opacity: 0.85;
+    fill-opacity: 0.08;
+  }
+  100% {
+    stroke-opacity: 0.55;
+    fill-opacity: 0.14;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .india-map-pin-pulse,
+  .india-map-active-ring {
+    animation: none;
+  }
+}
+
 .ticks {
   position: relative;
   width: 100%;
