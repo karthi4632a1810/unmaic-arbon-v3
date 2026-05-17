@@ -1,4 +1,5 @@
 import UnmaiCarbonHomePage from "./UnmaiCarbonHomePage";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { FounderAdvisoryBoardPage } from "./components/FounderAdvisoryBoardPage";
 import {
@@ -14,6 +15,7 @@ import {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<UnmaiCarbonHomePage />} />
         <Route path="/about" element={<AboutPage />} />
