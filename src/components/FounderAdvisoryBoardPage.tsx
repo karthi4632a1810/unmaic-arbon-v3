@@ -3,7 +3,6 @@ import photoAjay from "../assets/team/Ajay_Mathur.jpg";
 import photoBoudhyyan from "../assets/team/Boudhyyan Duttaa Photo.jpeg";
 import photoChintan from "../assets/team/Chintan Shah Photo.jpeg";
 import photoDinesh from "../assets/team/Dinesh Photo.jpeg";
-import photoGiselle from "../assets/team/Giselle Photo .jpeg";
 import photoKotteswari from "../assets/team/Kotteswari Photo.jpeg";
 import photoShinu from "../assets/team/Shinu Photo.jpeg";
 import photoSouvik from "../assets/team/Souvik Photo.jpeg";
@@ -12,85 +11,76 @@ import { ScheduleConsultationModal } from "./ScheduleConsultationModal";
 import { SiteCta } from "./SiteCta";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
+import { TeamBioModal } from "./TeamBioModal";
 
-type PersonProfile = {
+type TeamMember = {
   name: string;
-  role?: string;
-  bio: string;
-  focus: string[];
+  role: string;
+  image?: string;
+  linkedIn: string;
+  shortBio?: string;
+};
+
+type AdvisoryMember = {
+  name: string;
+  role: string;
   image: string;
+  linkedIn: string;
+  bio: string;
 };
 
-/* Future: dedicated founder spotlight — uncomment FOUNDER and <FounderSpotlight /> in JSX below.
-const FOUNDER: PersonProfile = {
-  name: "Boudhyyan Duttaa",
-  role: "Founder & CEO · UNMAI Carbon Solutions",
-  bio: "Leads UNMAI’s sovereign-grade climate advisory mandate across policy, carbon finance, and digital market infrastructure, with deep experience in international climate negotiations, Article 6 operationalization, and institutional design for high-integrity carbon registries and MRV ecosystems.",
-  focus: [
-    "Climate Policy",
-    "Article 6",
-    "Carbon Finance",
-    "Digital MRV",
-    "Institutional Governance",
-  ],
-  image: photoBoudhyyan,
-};
-*/
-
-const TEAM: PersonProfile[] = [
+const CORE_TEAM: TeamMember[] = [
   {
-    name: "Boudhyyan Duttaa",
-    bio: "Leads UNMAI’s sovereign-grade climate advisory mandate across policy, carbon finance, and digital market infrastructure, with deep experience in international climate negotiations, Article 6 operationalization, and institutional design for high-integrity carbon registries and MRV ecosystems.",
-    focus: [
-      "Climate Policy",
-      "Article 6",
-      "Carbon Finance",
-      "Digital MRV",
-      "Institutional Governance",
-    ],
-    image: photoBoudhyyan,
-  },
-  {
-    name: "Ajay Mathur",
-    bio: "Provides strategic guidance on climate policy, energy transition pathways, and institutional approaches to scalable carbon market development.",
-    focus: ["Climate Policy", "Energy Transition", "Institutional Strategy"],
-    image: photoAjay,
-  },
-  {
-    name: "Chintan Shah",
-    bio: "Advises on carbon market implementation, enterprise engagement, and program delivery across policy and finance stakeholders.",
-    focus: ["Carbon Markets", "Enterprise Engagement", "Program Delivery"],
-    image: photoChintan,
-  },
-  {
-    name: "Dinesh",
-    bio: "Supports advisory engagements spanning climate finance structuring, market readiness, and implementation planning for institutional clients.",
-    focus: ["Climate Finance", "Market Readiness", "Implementation"],
+    name: "Nithyanandam Yuvaraj Dinesh Babu",
+    role: "Founder & CEO",
     image: photoDinesh,
-  },
-  {
-    name: "Giselle",
-    bio: "Contributes expertise on international climate cooperation, stakeholder alignment, and governance-oriented market development.",
-    focus: ["International Cooperation", "Governance", "Stakeholder Alignment"],
-    image: photoGiselle,
+    linkedIn: "https://www.linkedin.com/in/nithyanandam-yuvaraj-dinesh-babu-a1076b3/",
   },
   {
     name: "Kotteswari",
-    bio: "Advises on regional program design, institutional coordination, and delivery frameworks for climate infrastructure initiatives.",
-    focus: ["Regional Programs", "Institutional Coordination", "Delivery"],
+    role: "Chief Digital Officer",
     image: photoKotteswari,
+    linkedIn: "https://www.linkedin.com/in/kotteswari-yuvaraj-dinesh-babu-8a8b0175/",
   },
   {
-    name: "Shinu",
-    bio: "Supports digital carbon infrastructure, registry interoperability, and standards-aligned MRV and traceability systems.",
-    focus: ["Digital Infrastructure", "Registries", "MRV"],
+    name: "Shinu Jose",
+    role: "Senior Carbon Project Specialist",
     image: photoShinu,
+    linkedIn: "https://www.linkedin.com/in/shinujosecarbon/",
   },
   {
-    name: "Souvik",
-    bio: "Guides strategic advisory on carbon project development, assurance frameworks, and market integrity across implementation cycles.",
-    focus: ["Project Development", "Assurance", "Market Integrity"],
+    name: "Souvik Mitra",
+    role: "Carbon Project Specialist",
     image: photoSouvik,
+    linkedIn: "https://www.linkedin.com/in/souvik-mitra-4770ab39/",
+  },
+  {
+    name: "Boudhyyan Duttaa",
+    role: "CBG Business Head",
+    image: photoBoudhyyan,
+    linkedIn: "https://www.linkedin.com/in/boudhhayanduttaa/",
+  },
+  {
+    name: "Mhamed Khalfa",
+    role: "Middle East Carbon Market Expert",
+    linkedIn: "https://www.linkedin.com/in/mhamed-khalfa/",
+  },
+];
+
+const ADVISORY_BOARD: AdvisoryMember[] = [
+  {
+    name: "Dr Ajay Mathur",
+    role: "Global Strategic Advisory Board",
+    image: photoAjay,
+    linkedIn: "https://www.linkedin.com/in/ajay-mathur-3666b3334/",
+    bio: "Dr. Mathur currently serves as Professor of Practice at the School of Public Policy, Indian Institute of Technology Delhi, and is globally recognized as one of India's foremost leaders in clean energy, climate policy, and sustainable development. He previously served as Director General of the International Solar Alliance, where he advanced global cooperation on solar energy deployment, climate finance, and energy access across developing countries. Earlier, he led The Energy and Resources Institute (TERI), strengthening its global role in climate change research, energy transition, decarbonization, and sustainability policy advisory. Dr. Mathur also served as Director General of the Bureau of Energy Efficiency, Government of India, where he played a key role in shaping India's landmark energy efficiency and market-based transition programs, including the Perform, Achieve and Trade (PAT) mechanism. Over the course of his career, he has worked extensively with governments, multilateral institutions, industry, and international organizations on climate governance, clean energy systems, and low-carbon development pathways. His leadership reflects a unique combination of policy expertise, institutional governance, technical understanding, and international climate diplomacy. Dr. Mathur continues to contribute significantly to global sustainability discourse through academic engagement, strategic advisory roles, and international cooperation initiatives.",
+  },
+  {
+    name: "Chintan Shah",
+    role: "Global Strategic Advisory Board",
+    image: photoChintan,
+    linkedIn: "https://www.linkedin.com/in/chintan-shah-5b82613/",
+    bio: "Chintan Shah is a renewable energy veteran with over three decades of experience in India's green energy sector. He is the Founder of SustCred, a consultancy firm, and has previously held leadership roles including Vice President & Head at Suzlon, Group President at ReNew, and Director at IREDA Ltd. Mr. Shah brings rich expertise of three decades in various roles across the value chain of India's Renewable Energy ecosystem including Solar, Wind, Storage, Manufacturing, Financing, R&D and Policy formulation. He has spearheaded multiple projects for appraisal, financing, policy formulation, planning and monitoring of Renewable Energy Projects. He started his career from TERI in the year 1996.",
   },
 ];
 
@@ -140,30 +130,36 @@ function SectionIntro({
   );
 }
 
-function FocusTags({ items }: { items: string[] }) {
+function MemberPhoto({ name, image }: { name: string; image?: string }) {
+  if (image) {
+    return (
+      <img
+        src={image}
+        alt={name}
+        className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+      />
+    );
+  }
+
+  const initials = name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
-    <ul className="flex flex-wrap gap-2">
-      {items.map((item) => (
-        <li
-          key={item}
-          className="rounded-full border border-black/10 bg-neutral-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#131b2e]"
-        >
-          {item}
-        </li>
-      ))}
-    </ul>
+    <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-[#131b2e] to-[#2b6193] text-4xl font-bold text-white/90">
+      {initials}
+    </div>
   );
 }
 
-function AdvisorCard({ person }: { person: PersonProfile }) {
+function CoreTeamCard({ person }: { person: TeamMember }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#334ac9]/20 hover:shadow-[0_20px_50px_-24px_rgba(51,74,201,0.18)] motion-reduce:hover:translate-y-0">
       <div className="relative aspect-[4/3] min-h-[420px] overflow-hidden bg-[#131b2e]">
-        <img
-          src={person.image}
-          alt={person.name}
-          className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
-        />
+        <MemberPhoto name={person.name} image={person.image} />
         <div
           className="absolute inset-0 bg-linear-to-t from-[#131b2e]/80 via-transparent to-transparent"
           aria-hidden
@@ -171,16 +167,77 @@ function AdvisorCard({ person }: { person: PersonProfile }) {
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
         <div className="space-y-1">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#006c49]">
-            Team
-          </p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#006c49]">Core Team</p>
           <h3 className="text-lg font-bold leading-snug text-[#131b2e]">{person.name}</h3>
-          {person.role ? (
-            <p className="text-sm font-medium text-[#2b6193]">{person.role}</p>
-          ) : null}
+          <p className="text-sm font-medium text-[#2b6193]">{person.role}</p>
         </div>
-        <p className="flex-1 text-sm leading-6 text-[#444654]">{person.bio}</p>
-        <FocusTags items={person.focus} />
+        <a
+          href={person.linkedIn}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="mt-auto inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#006c49] transition hover:underline"
+        >
+          LinkedIn
+          <span aria-hidden>↗</span>
+        </a>
+      </div>
+    </article>
+  );
+}
+
+function AdvisoryCard({
+  person,
+  onOpenBio,
+}: {
+  person: AdvisoryMember;
+  onOpenBio: () => void;
+}) {
+  return (
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#334ac9]/20 hover:shadow-[0_20px_50px_-24px_rgba(51,74,201,0.18)] motion-reduce:hover:translate-y-0">
+      <button
+        type="button"
+        onClick={onOpenBio}
+        className="relative aspect-[4/3] min-h-[420px] w-full overflow-hidden bg-[#131b2e] text-left"
+      >
+        <MemberPhoto name={person.name} image={person.image} />
+        <div
+          className="absolute inset-0 bg-linear-to-t from-[#131b2e]/80 via-transparent to-transparent"
+          aria-hidden
+        />
+      </button>
+      <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
+        <div className="space-y-1">
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#006c49]">
+            Advisory Board
+          </p>
+          <button
+            type="button"
+            onClick={onOpenBio}
+            className="text-left text-lg font-bold leading-snug text-[#131b2e] transition hover:text-[#006c49]"
+          >
+            {person.name}
+          </button>
+          <p className="text-sm font-medium text-[#2b6193]">{person.role}</p>
+        </div>
+        <p className="line-clamp-4 flex-1 text-sm leading-6 text-[#444654]">{person.bio}</p>
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={onOpenBio}
+            className="text-xs font-semibold uppercase tracking-[0.12em] text-[#131b2e] transition hover:text-[#006c49]"
+          >
+            Read full profile
+          </button>
+          <a
+            href={person.linkedIn}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="text-xs font-semibold uppercase tracking-[0.12em] text-[#006c49] transition hover:underline"
+            onClick={(e) => e.stopPropagation()}
+          >
+            LinkedIn ↗
+          </a>
+        </div>
       </div>
     </article>
   );
@@ -204,29 +261,54 @@ function PageShell({ children }: { children: ReactNode }) {
 }
 
 export function FounderAdvisoryBoardPage() {
+  const [activeAdvisor, setActiveAdvisor] = useState<AdvisoryMember | null>(null);
+
   return (
     <PageShell>
       <EnterpriseBanner
-        title="Founder & Advisory Board"
+        title="Leadership"
         subtitle="Institutional leadership guiding sovereign-grade climate advisory, carbon finance, and digital market infrastructure."
       />
       <main className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <SectionIntro
-          title="Our Team"
-          subtitle="Global Expertise Across Policy, Finance & Infrastructure"
-          paragraph="UNMAI’s leadership and advisory network brings together policy, finance, standards, and implementation depth to support governments and institutions building high-integrity carbon ecosystems."
+          title="Core Team"
+          subtitle="Leadership Across Policy, Finance & Digital Infrastructure"
+          paragraph="UNMAI’s core team brings together policy, finance, digital infrastructure, and carbon market implementation depth to support governments, institutions, and corporates."
         />
 
-        {/* Future: uncomment FOUNDER constant above and add FounderSpotlight hero here */}
-
         <div className="mx-auto grid max-w-[1216px] gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {TEAM.map((person) => (
+          {CORE_TEAM.map((person) => (
             <ScrollReveal key={person.name}>
-              <AdvisorCard person={person} />
+              <CoreTeamCard person={person} />
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <div className="mt-20">
+          <SectionIntro
+            title="Global Strategic Advisory Board"
+            subtitle="Strategic Guidance from Global Climate Leaders"
+            paragraph="Our advisory board provides strategic counsel on climate policy, energy transition, renewable markets, and institutional carbon market development."
+          />
+        </div>
+
+        <div className="mx-auto grid max-w-[1216px] gap-6 sm:grid-cols-2">
+          {ADVISORY_BOARD.map((person) => (
+            <ScrollReveal key={person.name}>
+              <AdvisoryCard person={person} onOpenBio={() => setActiveAdvisor(person)} />
             </ScrollReveal>
           ))}
         </div>
       </main>
+
+      <TeamBioModal
+        open={activeAdvisor !== null}
+        name={activeAdvisor?.name ?? ""}
+        role={activeAdvisor?.role}
+        bio={activeAdvisor?.bio ?? ""}
+        linkedIn={activeAdvisor?.linkedIn}
+        onClose={() => setActiveAdvisor(null)}
+      />
     </PageShell>
   );
 }

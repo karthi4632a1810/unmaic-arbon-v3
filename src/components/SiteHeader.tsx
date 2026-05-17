@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { COMPANY_LINKEDIN_URL } from "../data/siteReference";
 import imgLogoBlack from "../assets/logo-b.png";
 import imgLogoWhite from "../assets/logo-w.png";
 
@@ -10,7 +11,6 @@ const NAV_LINKS = [
   { label: "Services", to: "/services" },
   { label: "Digital Infrastructure", to: "/digital-infrastructure" },
   { label: "Global Engagements", to: "/global-engagements" },
-  { label: "Insights", to: "/insights" },
   { label: "Leadership", to: "/founder-advisory-board" },
 ] as const;
 
@@ -68,11 +68,11 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
             }
           >
             {navDocked ? (
-              <img src={imgLogoBlack} alt="Unmai Carbon" className="block size-10" />
+              <img src={imgLogoBlack} alt="UNMAI Carbon" className="block size-10" />
             ) : (
               <>
-                <img src={imgLogoBlack} alt="Unmai Carbon" className="block size-10 md:hidden" />
-                <img src={imgLogoWhite} alt="Unmai Carbon" className="hidden size-10 md:block" />
+                <img src={imgLogoBlack} alt="UNMAI Carbon" className="block size-10 md:hidden" />
+                <img src={imgLogoWhite} alt="UNMAI Carbon" className="hidden size-10 md:block" />
               </>
             )}
             <div className="flex flex-col">
@@ -83,7 +83,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
                     : "text-xl font-bold tracking-tight text-black md:text-white "
                 }
               >
-                Unmai Carbon
+                UNMAI Carbon
               </span>
               <span
                 className={
@@ -139,7 +139,13 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
             );
           })}
           <div className="mt-2 flex items-center gap-2 border-t border-black/10 pt-3 md:hidden">
-            <a href="#" className={socialLinkClass} aria-label="LinkedIn">
+            <a
+              href={COMPANY_LINKEDIN_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={socialLinkClass}
+              aria-label="LinkedIn"
+            >
               <svg
                 viewBox="0 0 24 24"
                 fill="currentColor"
@@ -150,22 +156,13 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
                 <path d="M6.94 8.98H3.8v10.1h3.14V8.98ZM5.37 7.6a1.82 1.82 0 1 0 0-3.64 1.82 1.82 0 0 0 0 3.64ZM20.2 19.08v-5.55c0-2.97-1.58-4.35-3.69-4.35-1.7 0-2.46.94-2.88 1.59V8.98h-3.01c.04.84 0 10.1 0 10.1h3.13v-5.64c0-.3.02-.6.11-.82.23-.6.76-1.22 1.65-1.22 1.16 0 1.63.89 1.63 2.19v5.49h3.06Z" />
               </svg>
             </a>
-            <a href="#" className={socialLinkClass} aria-label="X">
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                className="size-3.5"
-                aria-hidden="true"
-              >
-                <path d="M13.86 10.47 21.14 2h-1.72l-6.32 7.35L8.05 2H2.23l7.64 11.12L2.23 22h1.72l6.68-7.76L15.96 22h5.82l-7.92-11.53Zm-2.37 2.75-.77-1.1L4.56 3.3h2.66l4.96 7.1.77 1.1 6.47 9.26h-2.66l-5.27-7.54Z" />
-              </svg>
-            </a>
           </div>
         </div>
         <div className="hidden gap-2 md:flex">
           <a
-            href="#"
+            href={COMPANY_LINKEDIN_URL}
+            target="_blank"
+            rel="noreferrer noopener"
             className={socialLinkClass}
             aria-label="LinkedIn"
           >
@@ -177,21 +174,6 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
               aria-hidden="true"
             >
               <path d="M6.94 8.98H3.8v10.1h3.14V8.98ZM5.37 7.6a1.82 1.82 0 1 0 0-3.64 1.82 1.82 0 0 0 0 3.64ZM20.2 19.08v-5.55c0-2.97-1.58-4.35-3.69-4.35-1.7 0-2.46.94-2.88 1.59V8.98h-3.01c.04.84 0 10.1 0 10.1h3.13v-5.64c0-.3.02-.6.11-.82.23-.6.76-1.22 1.65-1.22 1.16 0 1.63.89 1.63 2.19v5.49h3.06Z" />
-            </svg>
-          </a>
-          <a
-            href="#"
-            className={socialLinkClass}
-            aria-label="X"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-3.5"
-              aria-hidden="true"
-            >
-              <path d="M13.86 10.47 21.14 2h-1.72l-6.32 7.35L8.05 2H2.23l7.64 11.12L2.23 22h1.72l6.68-7.76L15.96 22h5.82l-7.92-11.53Zm-2.37 2.75-.77-1.1L4.56 3.3h2.66l4.96 7.1.77 1.1 6.47 9.26h-2.66l-5.27-7.54Z" />
             </svg>
           </a>
         </div>

@@ -7,8 +7,6 @@ import {
   ContactPage,
   DigitalInfrastructurePage,
   GlobalEngagementsPage,
-  InsightsPage,
-  LeadershipPage,
   ServicesPage,
 } from "./OtherPages";
 
@@ -22,8 +20,8 @@ export default function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/digital-infrastructure" element={<DigitalInfrastructurePage />} />
         <Route path="/global-engagements" element={<GlobalEngagementsPage />} />
-        <Route path="/insights" element={<InsightsPage />} />
-        <Route path="/leadership" element={<LeadershipPage />} />
+        <Route path="/insights" element={<Navigate to="/" replace />} />
+        <Route path="/leadership" element={<Navigate to="/founder-advisory-board" replace />} />
         <Route path="/founder-advisory-board" element={<FounderAdvisoryBoardPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -30,7 +30,7 @@ const imgStatIcon4 =
 const platformFeatures = [
   {
     title: "National Carbon Registry Systems",
-    body: "Sovereign-grade registries for issuance, transfer, and retirement with full integrity controls.",
+    body: "Sovereign-grade, high integrity and Paris aligned registries for issuance, transfer, and retirement of domestic and international carbon credits / ITMOs with full transparent governance, traceability and accountability controls.",
   },
   {
     title: "Digital MRV Ecosystems",
@@ -41,8 +41,8 @@ const platformFeatures = [
     body: "Trusted digital traceability architecture across the full carbon credit lifecycle.",
   },
   {
-    title: "NAMBn Framework",
-    body: "Interoperable framework enabling governments and institutions to operationalize scalable carbon ecosystems.",
+    title: "NAMBI Framework",
+    body: "Interoperable carbon data framework towards achieving high-integrity carbon markets, and enabling climate finance to scale with confidence.",
   },
 ] as const;
 
@@ -50,20 +50,20 @@ const methodologyCards = [
   {
     n: "01",
     color: "text-[#4f65e3]",
-    title: "Net Zero Transition & Climate Policy Advisory",
-    body: "Designing decarbonization pathways, institutional readiness frameworks, NDC alignment, and Article 6 operationalization strategies.",
+    title: "Climate Policy & Carbon Market Advisory",
+    body: "Designing sectoral decarbonization pathways, Net Zero strategies, Long-term climate policy design (NDCs, LT-LEDS, CBAM readiness), Article 6 operationalization strategies, capacity building and institutional readiness programs.",
   },
   {
     n: "02",
     color: "text-[#006c49]",
-    title: "Climate Finance & Carbon Investment Strategy",
-    body: "Structuring scalable climate finance ecosystems, carbon-linked investments, and ESG-driven capital strategies.",
+    title: "Climate Finance & Investment Strategy",
+    body: "Structuring results-based finance and carbon credit-linked instruments, policy and investment advisory, ESG driven capital mobilization strategies and MRV-aligned financing mechanisms.",
   },
   {
     n: "03",
     color: "text-[#725400]",
     title: "Carbon Market Infrastructure & Governance",
-    body: "Building interoperable carbon registries, digital MRV ecosystems, and blockchain-enabled trust architecture.",
+    body: "Designing national and subnational carbon market frameworks, building interoperable carbon registries, digital MRV ecosystems, blockchain-enabled trust architecture, climate data standardization and infrastructure governance.",
   },
   {
     n: "04",
@@ -77,7 +77,7 @@ const flowSteps = [
   {
     n: "01",
     title: "Carbon Market Strategy",
-    body: "Strategic planning support across market design, compliance alignment, and implementation pathways.",
+    body: "Strategic planning across market design, compliance alignment, implementation pathways, advisory and trading support.",
   },
   {
     n: "02",
@@ -92,13 +92,21 @@ const flowSteps = [
   {
     n: "04",
     title: "Digital Carbon Infrastructure",
-    body: "Sovereign-ready digital systems that strengthen transparency, interoperability, and trust.",
+    body: "Sovereign-ready digital GHG-MRV platforms, carbon registries, dMRV solutions and dMRV benchmark & aggregation platform that strengthen transparency, accuracy, interoperability, and trust.",
   },
   {
     n: "05",
     title: "Capacity Building & Institutional Readiness",
-    body: "Capacity development and institutional readiness programs for governments and implementation stakeholders.",
+    body: "Capacity development and institutional readiness programs for governments, corporates and implementation stakeholders.",
   },
+] as const;
+
+const heroPills = [
+  "Climate Finance",
+  "Carbon Advisory",
+  "Carbon Trading",
+  "Global Carbon Interoperable Infrastructure",
+  "Article 6",
 ] as const;
 
 /** Hero body lines: visible on load (no delayed intro). */
@@ -395,31 +403,25 @@ export default function UnmaiCarbonHomePage() {
                 <div className="flex min-h-0 flex-col justify-center">
                   <div className="space-y-4">
                     <p className="text-base font-semibold leading-snug text-white">
-                    Enabling transparent climate finance, interoperable carbon systems, and trusted Article 6 implementation.
+                      Enabling transparent climate finance, interoperable carbon systems, and trusted
+                      Article 6 implementation, towards Net Zero achievement.
                     </p>
                     <p className="text-sm leading-relaxed text-[#cdcdcd]">
-                    UNMAI Carbon Solutions partners with governments, multilaterals, and enterprises to operationalize high-integrity carbon markets through digital infrastructure and climate finance frameworks.
+                      UNMAI Carbon Solutions partners with governments, multilaterals, and corporations
+                      to operationalize high-integrity carbon markets through carbon advisory, carbon
+                      trading, climate finance frameworks and digital infrastructure.
                     </p>
                   </div>
                 </div>
-                <div className="mt-6 flex shrink-0 items-center gap-4 lg:mt-8">
-                  <span className="h-px w-12 shrink-0 bg-[#e6ff80]" aria-hidden />
-                  <span className="text-sm font-bold uppercase tracking-wide text-white">
-                  Global Carbon Infrastructure 
-                  </span>
-                </div>
-                <div className="mt-6 flex shrink-0 items-center gap-4 lg:mt-2">
-                  <span className="h-px w-12 shrink-0 bg-[#e6ff80]" aria-hidden />
-                  <span className="text-sm font-bold uppercase tracking-wide text-white">
-                    Climate Finance
-                  </span>
-                </div>
-                <div className="mt-6 flex shrink-0 items-center gap-4 lg:mt-2">
-                  <span className="h-px w-12 shrink-0 bg-[#e6ff80]" aria-hidden />
-                  <span className="text-sm font-bold uppercase tracking-wide text-white">
-                    Article 6
-                  </span>
-                </div>
+                {heroPills.map((pill, index) => (
+                  <div
+                    key={pill}
+                    className={`flex shrink-0 items-center gap-4 ${index === 0 ? "mt-6 lg:mt-8" : "mt-6 lg:mt-2"}`}
+                  >
+                    <span className="h-px w-12 shrink-0 bg-[#e6ff80]" aria-hidden />
+                    <span className="text-sm font-bold uppercase tracking-wide text-white">{pill}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -433,14 +435,16 @@ export default function UnmaiCarbonHomePage() {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <p className="text-base font-bold uppercase tracking-[0.1em] text-[#006c49]">
-                Trust / Metrics
+                Trust Metrics
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-[#131b2e] sm:text-4xl">
-                Trusted Across Governments, Multilaterals & Climate Institutions
+                Trusted Across Governments, Multilaterals, Climate Institutions, NGOs and Global
+                Corporates
               </h2>
             </div>
             <p className="max-w-md text-left text-base leading-6 text-[#444654] lg:text-right">
-              Supporting sovereign carbon market development, climate finance systems, and Article 6 implementation across Asia, Africa, and the Middle East.
+              Supporting sovereign and corporate carbon market and digital infrastructure development,
+              climate finance, and Article 6 implementation across Asia, Africa, and globally.
             </p>
           </div>
           <div
@@ -494,9 +498,9 @@ export default function UnmaiCarbonHomePage() {
                     category: "Assets",
                     icon: imgStatIcon4,
                     variant: "plain" as const,
-                    end: 200,
+                    end: 800,
                     suffix: "M+",
-                    label: "tCOâ‚‚e project pipeline",
+                    label: "tCO2e project pipeline",
                     accentBorder: "",
                     accentHover:
                       " focus-within:bg-violet-500/[0.06]",
@@ -570,7 +574,8 @@ export default function UnmaiCarbonHomePage() {
               Building the Digital Backbone of Carbon Markets
             </h2>
             <p className="max-w-2xl text-base leading-7 text-[#d6d6db]">
-              Enterprise-grade digital infrastructure enabling transparency, interoperability, trust, and scalable climate market operations.
+              Mission Critical and institutional-grade digital infrastructure enabling transparency,
+              interoperability, trust, and scalable climate market operations.
             </p>
             <ul className="mt-8 space-y-3">
               {platformFeatures.map((item) => (

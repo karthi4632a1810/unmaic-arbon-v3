@@ -12,10 +12,10 @@ export function SiteCta() {
           </div>
           <div className="relative mx-auto flex max-w-3xl flex-col gap-6">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-5xl sm:leading-none sm:tracking-[-1.92px]">
-              Partner to Operationalize High-Integrity Carbon Markets.
+              Partner to Achieve High-Integrity Carbon Markets and Scale Climate Ambition.
             </h2>
             <p className="text-base leading-7 text-white/70 sm:text-lg">
-              Bridging climate policy, carbon finance, and digital innovation through sovereign-grade
+              Bridging climate policy, carbon finance, and digital innovation through institutional-grade
               advisory and interoperable carbon infrastructure.
             </p>
           </div>

@@ -3,7 +3,10 @@ import { SiteCta } from "./components/SiteCta";
 import { SiteFooter } from "./components/SiteFooter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
-import { EngagementInstitutionalSection } from "./components/EngagementInstitutionalSection";
+import {
+  EngagementGlobalCountries,
+  EngagementInstitutionalParticipation,
+} from "./components/EngagementGlobalSections";
 import { EngagementLocationGrid } from "./components/EngagementLocationGrid";
 import { IndiaEngagementMap } from "./components/IndiaEngagementMap";
 import { SiteHeader } from "./components/SiteHeader";
@@ -138,85 +141,110 @@ export function AboutPage() {
   return (
     <PageScaffold
       title="About UNMAI Carbon Solutions"
-      subtitle="Building trusted climate infrastructure through policy, finance, and digital innovation."
+      subtitle="Building trusted climate markets through policy, finance, advisory and digital innovation."
       bannerImage="https://images.unsplash.com/photo-1581092446327-9f89c1f2f2b6?auto=format&fit=crop&w=2000&q=80"
     >
       <SectionIntro
         title="About Overview"
         subtitle="Institutional Foundations and Global Climate Positioning"
-        paragraph="UNMAI Carbon Solutions combines sovereign-grade advisory, multilateral engagement, and interoperable digital infrastructure to advance high-integrity carbon market ecosystems."
+        paragraph="UNMAI Carbon Solutions bridges institutional-grade advisory, multilateral engagement, climate finance and interoperable digital infrastructure to advance high-integrity carbon market ecosystems."
       />
       <div className="mx-auto grid max-w-[1216px] gap-8 lg:grid-cols-2">
         <SectionCard
           title="Company Introduction"
           meta="Institutional Profile"
-          kpis={["Singapore HQ", "Global Advisory", "Enterprise Delivery"]}
-          body="UNMAI Carbon Solutions is a Singapore-headquartered global climate advisory and enterprise climate infrastructure firm supporting governments, institutions, and market actors."
+          kpis={["Singapore HQ", "Global Advisory", "Institutional Delivery"]}
+          body="UNMAI Carbon Solutions is a Singapore-Headquartered global climate advisory and climate infrastructure firm supporting governments, institutions, corporates and market actors."
         />
         <SectionCard
           title="Meaning of UNMAI"
           meta="Foundational Principle"
           kpis={["Truth", "Authenticity", "Integrity"]}
-          body='UNMAI derives from the Tamil principle of "Truth, Authenticity, Integrity, and Real," forming the foundation of our standards-based operating philosophy.'
+          body='UNMAI derives from the Tamil word உண்மை meaning "Truth, Authenticity, Integrity, and Real," embodying the firm&apos;s core philosophy.'
         />
-        <SectionCard title="T³I Philosophy" meta="Governance Framework" kpis={["Truth", "Transparency", "Traceability", "Integrity"]}>
-          <ul className="mt-4 space-y-2 text-[#444654]">
-            {["Truth", "Transparency", "Traceability", "Integrity"].map((v) => (
-              <li key={v}>• {v}</li>
-            ))}
-          </ul>
-        </SectionCard>
         <SectionCard
           title="Mission & Vision"
           meta="Strategic Direction"
-          kpis={["Sovereign-grade", "Interoperable", "Long-term Capability"]}
-          body="Our mission is to operationalize high-integrity carbon markets through sovereign-grade advisory, interoperable infrastructure, and long-term institutional capability."
-        />
+          kpis={["Transparency", "Interoperability", "Integrity"]}
+        >
+          <div className="mt-4 space-y-4 text-base leading-7 text-[#444654]">
+            <p>
+              <span className="font-bold text-[#131b2e]">Mission</span> — To accelerate high-integrity
+              carbon markets and climate ambition through trusted advisory, interoperable digital
+              infrastructure, climate finance solutions, and long-term institutional capacity building.
+            </p>
+            <p>
+              <span className="font-bold text-[#131b2e]">Vision</span> — To enable a transparent,
+              interoperable, and high-integrity global carbon market ecosystem that mobilizes climate
+              finance and accelerates the net-zero transition.
+            </p>
+          </div>
+        </SectionCard>
         <SectionCard
           title="Global Reach"
           meta="Geographic Footprint"
           kpis={["Asia", "Africa", "Middle East"]}
-          body="UNMAI supports climate infrastructure implementation across Asia, Africa, and the Middle East through country engagements, multilateral collaboration, and standards participation."
+          body="UNMAI supports clients across Asia, Africa, Middle East through country engagements, multilateral collaboration, corporate advisory and standards participation."
         />
         <SectionCard
-          title="Why UNMAI"
-          meta="Institutional Advantage"
-          kpis={["Policy", "Finance", "Digital Infrastructure"]}
-          body="Policy expertise, climate finance structuring, digital infrastructure, international negotiation support, and standards participation delivered through one institutional platform."
+          title="Why UNMAI Carbon"
+          meta="Advantage UNMAI Carbon"
+          kpis={["Policy", "Advisory", "Finance", "Capacity Building", "Digital"]}
+          body="Policy expertise, advisory experience, climate finance structuring, digital infrastructure, international negotiation support, building capacity and standards participation delivered through one platform."
         />
       </div>
     </PageScaffold>
   );
 }
 
+const SERVICES = [
+  {
+    title: "Net Zero Transition & Climate Advisory",
+    body: "Includes institutional-grade delivery model, implementation capability, strategic outcomes, and compliance-ready execution support.",
+    kpis: ["Strategic Outcomes", "Implementation Capability"],
+  },
+  {
+    title: "Climate Finance & Investment Strategy",
+    body: "Enables climate-aligned financing structures, investment mobilization, transaction advisory, and scalable capital deployment.",
+    kpis: ["Climate Finance", "Investment Mobilization"],
+  },
+  {
+    title: "Carbon Market Digital Infrastructure & Governance",
+    body: "Provides interoperable GHG-MRV & registry systems, dMRV solutions, and transparent data management.",
+    kpis: ["Carbon Registry", "National GHG-MRV", "Digital MRV"],
+  },
+  {
+    title: "Carbon Project Development",
+    body: "Delivers end-to-end project structuring, project aggregation, methodology alignment and development, validation readiness, verification and issuance support services.",
+    kpis: ["Projects Development", "Carbon Assets", "ITMOs"],
+  },
+  {
+    title: "Capacity Building & Institutional Readiness",
+    body: "Designs & delivers capacity building to enhance institutional capabilities, technical readiness, stakeholder engagement, and long-term implementation preparedness.",
+    kpis: ["Capacity Building", "Institutional Readiness"],
+  },
+] as const;
+
 export function ServicesPage() {
-  const services = [
-    "Net Zero Transition & Climate Advisory",
-    "Climate Finance & Investment Strategy",
-    "Carbon Market Infrastructure & Governance",
-    "Carbon Project Development",
-    "Digital MRV & Registry Systems",
-    "Capacity Building & Institutional Readiness",
-  ];
   return (
     <PageScaffold
       title="Strategic Climate & Carbon Market Services"
-      subtitle="Enterprise advisory and digital infrastructure for governments, multilaterals, and climate institutions."
+      subtitle="Institutional advisory and digital infrastructure for governments, multilaterals, climate institutions and corporates."
       bannerImage="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2000&q=80"
     >
       <SectionIntro
         title="Service Portfolio"
-        subtitle="Enterprise Services for Carbon Market Operationalization"
-        paragraph="Each service line is designed to deliver implementation-ready outcomes across policy, finance, infrastructure, and institutional readiness mandates."
+        subtitle="Services for Carbon Market Operationalization"
+        paragraph="Each service line is designed to deliver implementation-ready outcomes across policy, projects, finance, infrastructure, building capacity and institutional readiness mandates."
       />
       <div className="mx-auto grid max-w-[1216px] gap-6 md:grid-cols-2">
-        {services.map((service, i) => (
+        {SERVICES.map((service, i) => (
           <SectionCard
-            key={service}
-            title={service}
+            key={service.title}
+            title={service.title}
             meta={`Service ${String(i + 1).padStart(2, "0")}`}
-            kpis={["Strategic Outcomes", "Implementation Capability"]}
-            body="Includes institutional-grade delivery model, implementation capability, strategic outcomes, and compliance-ready execution support."
+            kpis={[...service.kpis]}
+            body={service.body}
           />
         ))}
       </div>
@@ -224,17 +252,25 @@ export function ServicesPage() {
   );
 }
 
+const DIGITAL_INFRASTRUCTURE_LAYERS = [
+  {
+    title: "National Carbon Registries",
+    body: "Provides sovereign-aligned registry infrastructure, transparent issuance workflows, interoperability and market linkages.",
+    kpis: ["Carbon Registries", "Market Infrastructure"],
+  },
+  {
+    title: "Digital MRV Infrastructure",
+    body: "Enables interoperable digital MRV solutions systems, automated reporting workflows, and transparent verification processes.",
+    kpis: ["Digital MRV", "Data Infrastructure"],
+  },
+  {
+    title: "NAMBĪ Digital Ecosystem",
+    body: "Unifies global dMRV ecosystem through interoperable platform that aggregates, benchmarks and standardizes climate action data towards achieving high-integrity carbon markets, and enabling climate finance to scale with confidence and transparency.",
+    kpis: ["dMRV Ecosystem", "dMRV Market Place"],
+  },
+] as const;
+
 export function DigitalInfrastructurePage() {
-  const items = [
-    "National Carbon Registries",
-    "Digital MRV Infrastructure",
-    "Blockchain-enabled Traceability",
-    "NAMBĪ Digital Ecosystem",
-    "Interoperability Frameworks",
-    "Carbon Data Standards",
-    "CAD Trust Integration",
-    "Registry Ecosystem Architecture",
-  ];
   return (
     <PageScaffold
       title="Digital Carbon Infrastructure"
@@ -246,14 +282,14 @@ export function DigitalInfrastructurePage() {
         subtitle="Systems Architecture for Interoperable Carbon Markets"
         paragraph="UNMAI designs standards-based digital layers that strengthen transparency, traceability, and operational trust across national and cross-border carbon ecosystems."
       />
-      <div className="mx-auto grid max-w-[1216px] gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {items.map((item, i) => (
+      <div className="mx-auto grid max-w-[1216px] gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {DIGITAL_INFRASTRUCTURE_LAYERS.map((layer, i) => (
           <SectionCard
-            key={item}
-            title={item}
-            meta={`System Layer ${i + 1}`}
-            kpis={["Interoperable", "Standards-based"]}
-            body="Architecture-driven implementation with standards-based system integration."
+            key={layer.title}
+            title={layer.title}
+            meta={`System Layer ${String(i + 1).padStart(2, "0")}`}
+            kpis={[...layer.kpis]}
+            body={layer.body}
           />
         ))}
       </div>
@@ -265,18 +301,26 @@ export function GlobalEngagementsPage() {
   return (
     <PageScaffold
       title="Global Engagements"
-      subtitle="Supporting climate market development across Asia, Africa, and the Middle East."
+      subtitle="Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems."
       bannerImage="https://images.unsplash.com/photo-1484589065579-248aad0d8b13?auto=format&fit=crop&w=2000&q=80"
     >
+      <SectionIntro
+        title="Global Engagements"
+        subtitle="Active Across Asia, Africa & The Middle East"
+        paragraph="Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems."
+      />
+      <div className="mx-auto max-w-[1216px] space-y-16 pb-4">
+        <EngagementGlobalCountries />
+        <EngagementInstitutionalParticipation />
+      </div>
       <SectionIntro
         title="India Engagement Footprint"
         subtitle="Interactive India Engagement Map"
         paragraph="Explore key India engagement locations and select each point to view regional focus, implementation context, and linked external references."
       />
       <IndiaEngagementMap />
-      <div className="mx-auto max-w-[1216px] space-y-8">
+      <div className="mx-auto max-w-[1216px] pt-8">
         <EngagementLocationGrid />
-        <EngagementInstitutionalSection />
       </div>
     </PageScaffold>
   );
@@ -436,7 +480,17 @@ export function ContactPage() {
             title="Institutional Presence"
             meta="LinkedIn"
             body="Institutional updates, climate intelligence briefings, and strategic advisory perspectives."
-          />
+            kpis={["Company Page"]}
+          >
+            <a
+              href="https://sg.linkedin.com/company/unmai-carbon-solutions"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="mt-4 inline-flex text-sm font-semibold text-[#006c49] transition hover:underline"
+            >
+              UNMAI Carbon Solutions on LinkedIn ↗
+            </a>
+          </SectionCard>
           <SectionCard
             title="Contact Intelligence"
             meta="Direct Channels"
