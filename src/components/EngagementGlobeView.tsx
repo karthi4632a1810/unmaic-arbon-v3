@@ -36,6 +36,7 @@ export function EngagementGlobeView({
   const containerRef = useRef<HTMLDivElement>(null);
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
   const [dims, setDims] = useState({ width: 800, height: 520 });
+  const [globeReady, setGlobeReady] = useState(false);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -67,6 +68,40 @@ export function EngagementGlobeView({
     }
   }, [selectedId, places]);
 
+  /** Ctrl/Cmd + scroll zooms the globe; plain scroll passes through to the page. */
+  useEffect(() => {
+    if (!globeReady) return;
+
+    const globe = globeRef.current;
+    const container = containerRef.current;
+    if (!globe || !container) return;
+
+    const controls = globe.controls();
+    controls.enableZoom = false;
+
+    const canvas = globe.renderer().domElement;
+    canvas.style.touchAction = "pan-y";
+
+    const onWheel = (event: WheelEvent) => {
+      if (!event.ctrlKey && !event.metaKey) return;
+
+      event.preventDefault();
+
+      const pov = globe.pointOfView();
+      const delta = Math.min(Math.abs(event.deltaY), 120);
+      const scale = 1 + Math.sign(event.deltaY) * delta * 0.0025;
+      const nextAltitude = Math.min(2.5, Math.max(0.28, pov.altitude * scale));
+
+      globe.pointOfView({ lat: pov.lat, lng: pov.lng, altitude: nextAltitude }, 0);
+    };
+
+    container.addEventListener("wheel", onWheel, { passive: false });
+
+    return () => {
+      container.removeEventListener("wheel", onWheel);
+    };
+  }, [globeReady, dims.width, dims.height]);
+
   const pointsData = useMemo<GlobePoint[]>(
     () =>
       places.map((place) => ({
@@ -84,9 +119,10 @@ export function EngagementGlobeView({
   }, [places, selectedId]);
 
   return (
-    <div ref={containerRef} className={className}>
+    <div ref={containerRef} className={["touch-pan-y", className].filter(Boolean).join(" ")}>
       <Globe
         ref={globeRef}
+        onGlobeReady={() => setGlobeReady(true)}
         width={dims.width}
         height={dims.height}
         globeImageUrl={GLOBE_IMAGE}

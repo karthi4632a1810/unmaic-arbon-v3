@@ -6,6 +6,7 @@ import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
 import { SiteHeader } from "./components/SiteHeader";
 import heroVideo from "./assets/unmai-carbon.mp4";
+import { cacheHeroVideoFromUrl, getCachedHeroVideo } from "./lib/heroVideoCache";
 import "./App.css";
 
 /** Tailwind `md` breakpoint — hero offset matches header height only below this width. */
@@ -107,6 +108,7 @@ const heroLine =
 function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<{ destroy: () => void } | null>(null);
+  const blobUrlRef = useRef<string | null>(null);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -128,41 +130,71 @@ function HeroVideo() {
       }
     };
 
-    const loadMp4Fallback = () => {
-      if (disposed) return;
+    const revokeBlobUrl = () => {
+      if (blobUrlRef.current) {
+        URL.revokeObjectURL(blobUrlRef.current);
+        blobUrlRef.current = null;
+      }
+    };
+
+    const setVideoSrc = (src: string) => {
+      video.src = src;
+      video.load();
+      attemptPlay();
+    };
+
+    const destroyHls = () => {
       if (hlsRef.current) {
         hlsRef.current.destroy();
         hlsRef.current = null;
       }
-      video.src = HERO_MP4_FALLBACK_SRC;
-      video.load();
-      attemptPlay();
+    };
+
+    const persistHeroVideoInBackground = () => {
+      void cacheHeroVideoFromUrl(HERO_MP4_FALLBACK_SRC);
+    };
+
+    const playFromCachedBlob = async (): Promise<boolean> => {
+      const cached = await getCachedHeroVideo(HERO_MP4_FALLBACK_SRC);
+      if (disposed || !cached) return false;
+
+      destroyHls();
+      revokeBlobUrl();
+      blobUrlRef.current = URL.createObjectURL(cached);
+      setVideoSrc(blobUrlRef.current);
+      return true;
+    };
+
+    const loadMp4Fallback = async () => {
+      if (disposed) return;
+      destroyHls();
+
+      const fromCache = await playFromCachedBlob();
+      if (fromCache || disposed) return;
+
+      setVideoSrc(HERO_MP4_FALLBACK_SRC);
+      persistHeroVideoInBackground();
     };
 
     const onVideoError = () => {
-      if (video.currentSrc !== HERO_MP4_FALLBACK_SRC) {
-        loadMp4Fallback();
+      if (hlsRef.current || video.src.includes(".m3u8")) {
+        void loadMp4Fallback();
       }
     };
 
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
+    const tryHlsPlayback = () => {
+      if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = HERO_HLS_SRC;
+        video.load();
+        attemptPlay();
+        return;
+      }
 
-    video.addEventListener("loadeddata", markReady);
-    video.addEventListener("canplay", markReady);
-    video.addEventListener("error", onVideoError);
-
-    if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = HERO_HLS_SRC;
-      video.load();
-      attemptPlay();
-    } else {
       import("hls.js")
         .then(({ default: Hls }) => {
           if (disposed) return;
           if (!Hls.isSupported()) {
-            loadMp4Fallback();
+            void loadMp4Fallback();
             return;
           }
 
@@ -180,14 +212,28 @@ function HeroVideo() {
           hls.on(Hls.Events.MANIFEST_PARSED, attemptPlay);
           hls.on(Hls.Events.ERROR, (_event, data) => {
             if (data.fatal) {
-              loadMp4Fallback();
+              void loadMp4Fallback();
             }
           });
         })
         .catch(() => {
-          loadMp4Fallback();
+          void loadMp4Fallback();
         });
-    }
+    };
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
+    video.addEventListener("loadeddata", markReady);
+    video.addEventListener("canplay", markReady);
+    video.addEventListener("error", onVideoError);
+
+    void (async () => {
+      const fromCache = await playFromCachedBlob();
+      if (disposed || fromCache) return;
+      tryHlsPlayback();
+    })();
 
     return () => {
       disposed = true;
@@ -195,10 +241,8 @@ function HeroVideo() {
       video.removeEventListener("loadeddata", markReady);
       video.removeEventListener("canplay", markReady);
       video.removeEventListener("error", onVideoError);
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
-        hlsRef.current = null;
-      }
+      destroyHls();
+      revokeBlobUrl();
       video.removeAttribute("src");
       video.load();
     };

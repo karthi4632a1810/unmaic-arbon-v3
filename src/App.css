@@ -1,8 +1,9 @@
 .di-bg{
-  background-image: url(/unmai-background.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+  background-image:radial-gradient(circle at center, hsla(106, 100%, 47%, 0.4) 1px, hsl(173, 100%,3%) 1px),  linear-gradient(148deg, hsl(173, 100%, 1%), hsl(173, 100%,3%));
+  /* background-image: url(/unmai-background.png); */
+  background-size: 30px 30px, cover;
+  background-repeat:repeat, no-repeat;
+} 
 .gradient-text-hero {
   height: max-content;
   background: linear-gradient(-90deg, #ffffff, #d8d8d8);
@@ -328,6 +329,15 @@ display: none;
 .india-map-panel-scroll::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 999px;
+}
+
+.india-map-locations-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.india-map-locations-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes india-map-pulse {
