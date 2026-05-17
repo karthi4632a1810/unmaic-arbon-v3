@@ -1,4 +1,6 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { useCachedImageUrl } from "../hooks/useCachedImageUrl";
+import { cacheTeamImagesFromUrls } from "../lib/teamImageCache";
 import photoAjay from "../assets/team/Ajay_Mathur 1.png";
 import photoBoudhyyan from "../assets/team/Boudhyyan Duttaa Photo 1.png";
 import photoChintan from "../assets/team/Chintan Shah Photo 1.png";
@@ -130,17 +132,12 @@ function SectionIntro({
   );
 }
 
-function MemberPhoto({ name, image }: { name: string; image?: string }) {
-  if (image) {
-    return (
-      <img
-        src={image}
-        alt={name}
-        className="h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.03]"
-      />
-    );
-  }
+const TEAM_IMAGE_URLS = [
+  ...CORE_TEAM.map((member) => member.image),
+  ...ADVISORY_BOARD.map((member) => member.image),
+].filter((url): url is string => Boolean(url));
 
+function MemberPhotoPlaceholder({ name }: { name: string }) {
   const initials = name
     .split(" ")
     .map((part) => part[0])
@@ -153,6 +150,30 @@ function MemberPhoto({ name, image }: { name: string; image?: string }) {
       {initials}
     </div>
   );
+}
+
+function CachedMemberPhoto({ name, image }: { name: string; image: string }) {
+  const displayUrl = useCachedImageUrl(image);
+
+  if (!displayUrl) {
+    return <MemberPhotoPlaceholder name={name} />;
+  }
+
+  return (
+    <img
+      src={displayUrl}
+      alt={name}
+      className="h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.03]"
+    />
+  );
+}
+
+function MemberPhoto({ name, image }: { name: string; image?: string }) {
+  if (image) {
+    return <CachedMemberPhoto name={name} image={image} />;
+  }
+
+  return <MemberPhotoPlaceholder name={name} />;
 }
 
 function MemberPhotoFrame({ children }: { children: ReactNode }) {
@@ -268,6 +289,10 @@ function PageShell({ children }: { children: ReactNode }) {
 
 export function FounderAdvisoryBoardPage() {
   const [activeAdvisor, setActiveAdvisor] = useState<AdvisoryMember | null>(null);
+
+  useEffect(() => {
+    void cacheTeamImagesFromUrls(TEAM_IMAGE_URLS);
+  }, []);
 
   return (
     <PageShell>
