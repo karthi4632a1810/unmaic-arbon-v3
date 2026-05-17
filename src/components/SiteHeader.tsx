@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { label: "Digital Infrastructure", to: "/digital-infrastructure" },
   { label: "Global Engagements", to: "/global-engagements" },
   { label: "Insights", to: "/insights" },
+  { label: "Leadership", to: "/founder-advisory-board" },
 ] as const;
 
 export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, ref) {

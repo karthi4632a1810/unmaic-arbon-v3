@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+﻿import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { ImpactCounter } from "./components/ImpactCounter";
 import { SiteCta } from "./components/SiteCta";
 import { SiteFooter } from "./components/SiteFooter";
@@ -9,7 +9,7 @@ import heroVideo from "./assets/unmai-carbon.mp4";
 import { cacheHeroVideoFromUrl, getCachedHeroVideo } from "./lib/heroVideoCache";
 import "./App.css";
 
-/** Tailwind `md` breakpoint — hero offset matches header height only below this width. */
+/** Tailwind `md` breakpoint â€” hero offset matches header height only below this width. */
 const MOBILE_MAX_WIDTH_PX = 767;
 
 const HERO_SECTION_BG = "linear-gradient(148deg, black, #272727)";
@@ -310,7 +310,7 @@ export default function UnmaiCarbonHomePage() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#191c1d] antialiased">
-      {/* Outside hero <section> so z-index isn’t trapped by stacking contexts — stays above all bands */}
+      {/* Outside hero <section> so z-index isnâ€™t trapped by stacking contexts â€” stays above all bands */}
       <SiteHeader ref={headerRef} />
 
       {/* Hero: mobile = video on top, dark content band below; md+ = 16:9 video with overlaid copy */}
@@ -496,7 +496,7 @@ export default function UnmaiCarbonHomePage() {
                     variant: "plain" as const,
                     end: 200,
                     suffix: "M+",
-                    label: "tCO₂e project pipeline",
+                    label: "tCOâ‚‚e project pipeline",
                     accentBorder: "",
                     accentHover:
                       " focus-within:bg-violet-500/[0.06]",
@@ -659,7 +659,7 @@ export default function UnmaiCarbonHomePage() {
       </section>
 
       {/* Workflow */}
-      <section className="border-t wave-bg border-black/5 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="border-t wave-bg border-black/5 px-4 pt-16 pb-28 sm:px-6 sm:pt-24 sm:pb-36 lg:px-8 lg:pb-44">
         <ScrollReveal>
           <div className="mx-auto max-w-[1300px] space-y-12">
           <div className="space-y-4 text-center">
@@ -688,50 +688,6 @@ export default function UnmaiCarbonHomePage() {
         </ScrollReveal>
       </section>
 
-      {/* Results */}
-      <section className="px-4 py-30 sm:px-6 sm:py-40 lg:px-8 lg:py-60">
-        <ScrollReveal>
-          <div className="mx-auto grid max-w-[1216px] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)] lg:gap-16">
-          <div className="space-y-4">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#2b6193]">
-              Global Engagements
-            </p>
-            <h2 className="font-display max-w-sm text-2xl font-bold leading-tight tracking-tight text-black sm:text-[31px] sm:leading-[45px] sm:tracking-[-1.44px]">
-              Active Across Asia, Africa & The Middle East
-            </h2>
-            <p className="max-w-xl text-base leading-7 text-[#444654]">
-              Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
-            <div className="space-y-2 rounded-xl border border-transparent bg-white/0 p-6 transition duration-300 ease-out hover:-translate-y-1 hover:border-[#2b6193]/20 hover:bg-white hover:shadow-xl hover:shadow-[#2b6193]/10 motion-reduce:hover:translate-y-0">
-              <p className="text-4xl font-bold tracking-tight text-[#2b6193] sm:text-[60px] sm:leading-none sm:tracking-[-3px]">
-                <ImpactCounter end={15} suffix="+" />
-              </p>
-              <p className="text-sm font-bold uppercase tracking-wider text-[#45464d]">
-                Countries engaged
-              </p>
-            </div>
-            <div className="space-y-2 rounded-xl border border-transparent bg-white/0 p-6 transition duration-300 ease-out hover:-translate-y-1 hover:border-[#c96b14]/25 hover:bg-white hover:shadow-xl hover:shadow-[#c96b14]/10 motion-reduce:hover:translate-y-0">
-              <p className="text-4xl font-bold tracking-tight text-[#c96b14] sm:text-[60px] sm:leading-none sm:tracking-[-3px]">
-                <ImpactCounter end={50} suffix="+ Years" />
-              </p>
-              <p className="text-sm font-bold uppercase tracking-wider text-[#45464d]">
-                Combined expertise
-              </p>
-            </div>
-            <div className="space-y-2 rounded-xl border border-transparent bg-white/0 p-6 transition duration-300 ease-out hover:-translate-y-1 hover:border-[#2b6193]/20 hover:bg-white hover:shadow-xl hover:shadow-[#2b6193]/10 motion-reduce:hover:translate-y-0">
-              <p className="text-4xl font-bold tracking-tight text-[#2b6193] sm:text-[60px] sm:leading-none sm:tracking-[-3px]">
-                <ImpactCounter end={6} suffix="+" />
-              </p>
-              <p className="text-sm font-bold uppercase tracking-wider text-[#45464d]">
-                Multilateral and sovereign engagements
-              </p>
-            </div>
-          </div>
-        </div>
-        </ScrollReveal>
-      </section>
 
       <SiteCta />
 

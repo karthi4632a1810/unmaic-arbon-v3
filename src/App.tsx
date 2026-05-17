@@ -1,5 +1,6 @@
 import UnmaiCarbonHomePage from "./UnmaiCarbonHomePage";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { FounderAdvisoryBoardPage } from "./components/FounderAdvisoryBoardPage";
 import {
   AboutPage,
   ContactPage,
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/global-engagements" element={<GlobalEngagementsPage />} />
         <Route path="/insights" element={<InsightsPage />} />
         <Route path="/leadership" element={<LeadershipPage />} />
+        <Route path="/founder-advisory-board" element={<FounderAdvisoryBoardPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
