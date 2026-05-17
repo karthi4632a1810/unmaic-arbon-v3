@@ -1,11 +1,11 @@
 import { useState, type ReactNode } from "react";
-import photoAjay from "../assets/team/Ajay_Mathur.jpg";
-import photoBoudhyyan from "../assets/team/Boudhyyan Duttaa Photo.jpeg";
-import photoChintan from "../assets/team/Chintan Shah Photo.jpeg";
-import photoDinesh from "../assets/team/Dinesh Photo.jpeg";
-import photoKotteswari from "../assets/team/Kotteswari Photo.jpeg";
-import photoShinu from "../assets/team/Shinu Photo.jpeg";
-import photoSouvik from "../assets/team/Souvik Photo.jpeg";
+import photoAjay from "../assets/team/Ajay_Mathur 1.png";
+import photoBoudhyyan from "../assets/team/Boudhyyan Duttaa Photo 1.png";
+import photoChintan from "../assets/team/Chintan Shah Photo 1.png";
+import photoDinesh from "../assets/team/Dinesh Photo 1.png";
+import photoKotteswari from "../assets/team/Kotteswari Photo 1.png";
+import photoShinu from "../assets/team/Shinu Photo 1.png";
+import photoSouvik from "../assets/team/Souvik Photo 1.png";
 import { ScrollReveal } from "./ScrollReveal";
 import { ScheduleConsultationModal } from "./ScheduleConsultationModal";
 import { SiteCta } from "./SiteCta";
@@ -136,7 +136,7 @@ function MemberPhoto({ name, image }: { name: string; image?: string }) {
       <img
         src={image}
         alt={name}
-        className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+        className="h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.03]"
       />
     );
   }
@@ -155,16 +155,24 @@ function MemberPhoto({ name, image }: { name: string; image?: string }) {
   );
 }
 
+function MemberPhotoFrame({ children }: { children: ReactNode }) {
+  return (
+    <div className="relative aspect-square w-full overflow-hidden bg-[#131b2e]">
+      {children}
+      <div
+        className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#131b2e]/70 via-transparent to-transparent"
+        aria-hidden
+      />
+    </div>
+  );
+}
+
 function CoreTeamCard({ person }: { person: TeamMember }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#334ac9]/20 hover:shadow-[0_20px_50px_-24px_rgba(51,74,201,0.18)] motion-reduce:hover:translate-y-0">
-      <div className="relative aspect-[4/3] min-h-[420px] overflow-hidden bg-[#131b2e]">
+      <MemberPhotoFrame>
         <MemberPhoto name={person.name} image={person.image} />
-        <div
-          className="absolute inset-0 bg-linear-to-t from-[#131b2e]/80 via-transparent to-transparent"
-          aria-hidden
-        />
-      </div>
+      </MemberPhotoFrame>
       <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
         <div className="space-y-1">
           <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#006c49]">Core Team</p>
@@ -197,13 +205,11 @@ function AdvisoryCard({
       <button
         type="button"
         onClick={onOpenBio}
-        className="relative aspect-[4/3] min-h-[420px] w-full overflow-hidden bg-[#131b2e] text-left"
+        className="relative w-full text-left"
       >
-        <MemberPhoto name={person.name} image={person.image} />
-        <div
-          className="absolute inset-0 bg-linear-to-t from-[#131b2e]/80 via-transparent to-transparent"
-          aria-hidden
-        />
+        <MemberPhotoFrame>
+          <MemberPhoto name={person.name} image={person.image} />
+        </MemberPhotoFrame>
       </button>
       <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
         <div className="space-y-1">
