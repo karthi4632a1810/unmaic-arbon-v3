@@ -7,6 +7,7 @@ import {
   EngagementGlobalCountries,
   EngagementInstitutionalParticipation,
 } from "./components/EngagementGlobalSections";
+import { IndiaEngagementMap } from "./components/IndiaEngagementMap";
 import { SiteHeader } from "./components/SiteHeader";
 
 function EnterpriseBanner({
@@ -307,6 +308,7 @@ export function GlobalEngagementsPage() {
         subtitle="Active Across Asia, Africa & The Middle East"
         paragraph="Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems."
       />
+      <IndiaEngagementMap />
       <div className="mx-auto max-w-[1216px] space-y-16 pb-4">
         <EngagementGlobalCountries />
         <EngagementInstitutionalParticipation />
