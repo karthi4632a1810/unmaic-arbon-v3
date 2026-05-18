@@ -73,34 +73,6 @@ const methodologyCards = [
   },
 ] as const;
 
-const flowSteps = [
-  {
-    n: "01",
-    title: "Carbon Market Strategy",
-    body: "Strategic planning across market design, compliance alignment, implementation pathways, advisory and trading support.",
-  },
-  {
-    n: "02",
-    title: "Climate Finance & Investment",
-    body: "Institutional structuring for climate-aligned investment mechanisms and carbon-linked financing systems.",
-  },
-  {
-    n: "03",
-    title: "International Negotiation Support",
-    body: "Technical and policy support for country delegations and cross-border climate engagement.",
-  },
-  {
-    n: "04",
-    title: "Digital Carbon Infrastructure",
-    body: "Sovereign-ready digital GHG-MRV platforms, carbon registries, dMRV solutions and dMRV benchmark & aggregation platform that strengthen transparency, accuracy, interoperability, and trust.",
-  },
-  {
-    n: "05",
-    title: "Capacity Building & Institutional Readiness",
-    body: "Capacity development and institutional readiness programs for governments, corporates and implementation stakeholders.",
-  },
-] as const;
-
 const heroPills = [
   "Climate Finance",
   "Carbon Advisory",
@@ -661,36 +633,6 @@ export default function UnmaiCarbonHomePage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Workflow */}
-      <section className="border-t wave-bg border-black/5 px-4 pt-16 pb-28 sm:px-6 sm:pt-24 sm:pb-36 lg:px-8 lg:pb-44">
-        <ScrollReveal>
-          <div className="mx-auto max-w-[1300px] space-y-12">
-          <div className="space-y-4 text-center">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#2b6193]">
-              Experience Section
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl sm:tracking-[-1.44px]">
-              Climate Intelligence & Strategic Expertise
-            </h2>
-          </div>
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
-            {flowSteps.map((step) => (
-              <div
-                key={step.n}
-                className="flow-steps-item group flex flex-col gap-2 rounded-xl border border-transparent bg-white/0 p-4 transition duration-300 ease-out hover:border-[#2b6193]/15 hover:bg-white hover:shadow-lg hover:shadow-black/[0.06] motion-reduce:hover:translate-y-0"
-              >
-                <span className="text-3xl font-bold text-[#006c49] transition group-hover:text-[#2b6193] sm:text-4xl">
-                  {step.n}
-                </span>
-                <h3 className="pt-2 text-base font-bold text-[#191c1d]">{step.title}</h3>
-                <p className="text-sm leading-5 text-[#45464d]">{step.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        </ScrollReveal>
       </section>
 
 

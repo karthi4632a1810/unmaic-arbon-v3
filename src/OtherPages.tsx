@@ -7,8 +7,6 @@ import {
   EngagementGlobalCountries,
   EngagementInstitutionalParticipation,
 } from "./components/EngagementGlobalSections";
-import { EngagementLocationGrid } from "./components/EngagementLocationGrid";
-import { IndiaEngagementMap } from "./components/IndiaEngagementMap";
 import { SiteHeader } from "./components/SiteHeader";
 
 function EnterpriseBanner({
@@ -312,15 +310,6 @@ export function GlobalEngagementsPage() {
       <div className="mx-auto max-w-[1216px] space-y-16 pb-4">
         <EngagementGlobalCountries />
         <EngagementInstitutionalParticipation />
-      </div>
-      <SectionIntro
-        title="India Engagement Footprint"
-        subtitle="Interactive India Engagement Map"
-        paragraph="Explore key India engagement locations and select each point to view regional focus, implementation context, and linked external references."
-      />
-      <IndiaEngagementMap />
-      <div className="mx-auto max-w-[1216px] pt-8">
-        <EngagementLocationGrid />
       </div>
     </PageScaffold>
   );

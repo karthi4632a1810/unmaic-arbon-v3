@@ -13,7 +13,6 @@ export const GLOBAL_ENGAGEMENT_COUNTRIES = [
   "India",
   "Philippines",
   "Tanzania",
-  "Dubai",
   "Germany",
   "Mozambique",
   "USA",
@@ -30,7 +29,6 @@ export const INSTITUTIONAL_PARTICIPATION = [
   "UNIDROIT",
   "CDOP",
   "ADB",
-  "CVF/V20",
   "Singapore Chemical Industry Council Limited",
 ] as const;
 

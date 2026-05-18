@@ -1,8 +1,8 @@
 .di-bg{
-  background-image:radial-gradient(circle at center, hsla(106, 100%, 47%, 0.4) 1px, hsl(173, 100%,3%) 1px),  linear-gradient(148deg, hsl(173, 100%, 1%), hsl(173, 100%,3%));
+  background-image:linear-gradient(148deg, hsl(173, 100%, 1%), hsl(173, 100%,3%));
   /* background-image: url(/unmai-background.png); */
-  background-size: 30px 30px, cover;
-  background-repeat:repeat, no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
 } 
 .gradient-text-hero {
   height: max-content;

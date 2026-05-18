@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { COMPANY_LINKEDIN_URL, COMPANY_TAGLINE } from "../data/siteReference";
 import { FooterReferenceColumns } from "./FooterReferenceColumns";
 import { ScrollReveal } from "./ScrollReveal";
@@ -14,6 +14,9 @@ const QUICK_LINKS = [
   { label: "Contact", to: "/contact" },
 ] as const;
 
+/** Footer reference lists are shown on the page body for these routes — hide duplicate in footer. */
+const HIDE_FOOTER_REFERENCE_PATHS = ["/global-engagements", "/founder-advisory-board"] as const;
+
 const LINKEDIN_ICON = (
   <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="size-3.5" aria-hidden="true">
     <path d="M6.94 8.98H3.8v10.1h3.14V8.98ZM5.37 7.6a1.82 1.82 0 1 0 0-3.64 1.82 1.82 0 0 0 0 3.64ZM20.2 19.08v-5.55c0-2.97-1.58-4.35-3.69-4.35-1.7 0-2.46.94-2.88 1.59V8.98h-3.01c.04.84 0 10.1 0 10.1h3.13v-5.64c0-.3.02-.6.11-.82.23-.6.76-1.22 1.65-1.22 1.16 0 1.63.89 1.63 2.19v5.49h3.06Z" />
@@ -21,6 +24,11 @@ const LINKEDIN_ICON = (
 );
 
 export function SiteFooter() {
+  const { pathname } = useLocation();
+  const showFooterReference = !HIDE_FOOTER_REFERENCE_PATHS.includes(
+    pathname as (typeof HIDE_FOOTER_REFERENCE_PATHS)[number],
+  );
+
   return (
     <footer className="bg-[#f9f9f9]">
       <ScrollReveal>
@@ -53,7 +61,7 @@ export function SiteFooter() {
               </div>
               <FooterQuickLinks />
             </div>
-            <FooterReferenceColumns />
+            {showFooterReference ? <FooterReferenceColumns /> : null}
           </div>
         </div>
       </ScrollReveal>
