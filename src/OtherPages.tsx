@@ -3,10 +3,7 @@ import { SiteCta } from "./components/SiteCta";
 import { SiteFooter } from "./components/SiteFooter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
-import {
-  EngagementGlobalCountries,
-  EngagementInstitutionalParticipation,
-} from "./components/EngagementGlobalSections";
+import { EngagementInstitutionalParticipation } from "./components/EngagementGlobalSections";
 import { IndiaEngagementMap } from "./components/IndiaEngagementMap";
 import { SiteHeader } from "./components/SiteHeader";
 
@@ -309,8 +306,7 @@ export function GlobalEngagementsPage() {
         paragraph="Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems."
       />
       <IndiaEngagementMap />
-      <div className="mx-auto max-w-[1216px] space-y-16 pb-4">
-        <EngagementGlobalCountries />
+      <div className="mx-auto max-w-[1216px] pb-4">
         <EngagementInstitutionalParticipation />
       </div>
     </PageScaffold>

@@ -11,9 +11,7 @@ export const GLOBAL_ENGAGEMENT_COUNTRIES = [
   "Mongolia",
   "Ghana",
   "India",
-  "Philippines",
   "Tanzania",
-  "Germany",
   "Mozambique",
   "USA",
 ] as const;

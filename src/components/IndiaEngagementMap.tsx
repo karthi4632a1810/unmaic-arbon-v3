@@ -30,8 +30,7 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     id: "singapore",
     country: "Singapore",
     capital: "Singapore",
-    engagement:
-      "ISO Carbon Data Model Member and CAD Trust User Forum member and Training of Government Officers on Paris Agreement",
+    engagement: "Training of Government Officers on Paris Agreement",
     link: FOUNDER_LINKEDIN_URL,
     lat: 1.3521,
     lng: 103.8198,
@@ -43,14 +42,6 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     engagement: "World Bank SuPRABHA and USAID PACE-D",
     lat: 28.6139,
     lng: 77.209,
-  },
-  {
-    id: "philippines",
-    country: "Philippines",
-    capital: "Manila",
-    engagement: "",
-    lat: 14.5995,
-    lng: 120.9842,
   },
   {
     id: "indonesia",
@@ -67,14 +58,6 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     engagement: "Establishment of GHG Training Centre at AIT Bangkok",
     lat: 13.7563,
     lng: 100.5018,
-  },
-  {
-    id: "germany",
-    country: "Germany",
-    capital: "Berlin",
-    engagement: "Senior Advisor for Perspectives (past)",
-    lat: 52.52,
-    lng: 13.405,
   },
   {
     id: "bangladesh",
