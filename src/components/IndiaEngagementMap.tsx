@@ -1,205 +1,136 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
+import { getCountryLabel, type GlobalEngagementPlace } from "../lib/engagementMapUtils";
 
 const EngagementGlobeView = lazy(() =>
   import("./EngagementGlobeView").then((m) => ({ default: m.EngagementGlobeView })),
 );
 
-/** Representative engagement locations — coordinates approximate city centers. */
-export type IndiaEngagementPlace = {
-  id: string;
-  name: string;
-  state: string;
-  region: string;
-  focus: string;
-  summary: string;
-  highlights: string[];
-  link: string;
-  lat: number;
-  lng: number;
-};
+const FOUNDER_LINKEDIN_URL =
+  "https://www.linkedin.com/in/nithyanandam-yuvaraj-dinesh-babu-a1076b3/";
 
-export const INDIA_ENGAGEMENT_PLACES = [
+/** Capital-city coordinates with engagement summaries for the global map. */
+export const GLOBAL_ENGAGEMENT_PLACES = [
   {
-    id: "delhi",
-    name: "New Delhi",
-    state: "Delhi NCR",
-    region: "North India",
-    focus: "National policy coordination and institutional engagement",
-    summary:
-      "Supports central-government dialogue, market readiness frameworks, and multi-stakeholder coordination for climate infrastructure programs.",
-    highlights: ["Policy", "Institutions", "Registry readiness"],
-    link: "https://example.com/engagements/new-delhi",
+    id: "mongolia",
+    country: "Mongolia",
+    capital: "Ulaanbaatar",
+    engagement: "ADB TA Support for Registry",
+    lat: 47.8864,
+    lng: 106.9057,
+  },
+  {
+    id: "kyrgyzstan",
+    country: "Kyrgyzstan",
+    capital: "Bishkek",
+    engagement: "A6 Implementation Framework Review",
+    lat: 42.8746,
+    lng: 74.5698,
+  },
+  {
+    id: "singapore",
+    country: "Singapore",
+    capital: "Singapore",
+    engagement:
+      "ISO Carbon Data Model Member and CAD Trust User Forum member and Training of Government Officers on Paris Agreement",
+    link: FOUNDER_LINKEDIN_URL,
+    lat: 1.3521,
+    lng: 103.8198,
+  },
+  {
+    id: "india",
+    country: "India",
+    capital: "New Delhi",
+    engagement: "World Bank SuPRABHA and USAID PACE-D",
     lat: 28.6139,
     lng: 77.209,
   },
   {
-    id: "mumbai",
-    name: "Mumbai",
-    state: "Maharashtra",
-    region: "West India",
-    focus: "Climate finance and market-linked investment outreach",
-    summary:
-      "Engagement focus includes finance institutions, carbon investment corridors, and implementation partnerships across enterprise stakeholders.",
-    highlights: ["Finance", "Private sector", "Article 6"],
-    link: "https://example.com/engagements/mumbai",
-    lat: 19.076,
-    lng: 72.8777,
+    id: "philippines",
+    country: "Philippines",
+    capital: "Manila",
+    engagement: "",
+    lat: 14.5995,
+    lng: 120.9842,
   },
   {
-    id: "bengaluru",
-    name: "Bengaluru",
-    state: "Karnataka",
-    region: "South India",
-    focus: "Digital MRV and climate-tech ecosystem collaboration",
-    summary:
-      "Supports technology-led implementation, interoperable carbon data systems, and applied digital infrastructure partnerships.",
-    highlights: ["Digital MRV", "Climate tech", "Interoperability"],
-    link: "https://example.com/engagements/bengaluru",
-    lat: 12.9716,
-    lng: 77.5946,
+    id: "indonesia",
+    country: "Indonesia",
+    capital: "Jakarta",
+    engagement: "A6 Strategy Framework Review",
+    lat: -6.2088,
+    lng: 106.8456,
   },
   {
-    id: "chennai",
-    name: "Chennai",
-    state: "Tamil Nadu",
-    region: "South India",
-    focus: "Industrial decarbonization and coastal resilience engagement",
-    summary:
-      "Coordinates with institutional and industrial stakeholders on transition pathways, carbon accounting, and implementation planning.",
-    highlights: ["Industry", "Transition", "Resilience"],
-    link: "https://example.com/engagements/chennai",
-    lat: 13.0827,
-    lng: 80.2707,
+    id: "thailand",
+    country: "Thailand",
+    capital: "Bangkok",
+    engagement: "Establishment of GHG Training Centre at AIT Bangkok",
+    lat: 13.7563,
+    lng: 100.5018,
   },
   {
-    id: "kolkata",
-    name: "Kolkata",
-    state: "West Bengal",
-    region: "East India",
-    focus: "Regional public-sector and program delivery coordination",
-    summary:
-      "Supports cross-institutional engagement for state-linked climate initiatives, operational planning, and stakeholder alignment.",
-    highlights: ["Programs", "Public sector", "Delivery"],
-    link: "https://example.com/engagements/kolkata",
-    lat: 22.5726,
-    lng: 88.3639,
+    id: "germany",
+    country: "Germany",
+    capital: "Berlin",
+    engagement: "Senior Advisor for Perspectives (past)",
+    lat: 52.52,
+    lng: 13.405,
   },
   {
-    id: "hyderabad",
-    name: "Hyderabad",
-    state: "Telangana",
-    region: "South-Central India",
-    focus: "Enterprise implementation and carbon systems coordination",
-    summary:
-      "Engagement spans implementation partnerships, digital workflows, and climate program execution with regional institutions.",
-    highlights: ["Execution", "Enterprise", "Systems"],
-    link: "https://example.com/engagements/hyderabad",
-    lat: 17.385,
-    lng: 78.4867,
+    id: "bangladesh",
+    country: "Bangladesh",
+    capital: "Dhaka",
+    engagement: "Rooftop Solar Advisory for IDCOL",
+    lat: 23.8103,
+    lng: 90.4125,
   },
   {
-    id: "ahmedabad",
-    name: "Ahmedabad",
-    state: "Gujarat",
-    region: "West India",
-    focus: "Industrial transition and standards-aligned market support",
-    summary:
-      "Focuses on climate market implementation for industrial ecosystems, traceability structures, and governance-aligned delivery models.",
-    highlights: ["Industry", "Standards", "Traceability"],
-    link: "https://example.com/engagements/ahmedabad",
-    lat: 23.0225,
-    lng: 72.5714,
+    id: "vietnam",
+    country: "Vietnam",
+    capital: "Hanoi",
+    engagement: "Carbon Credit Projects Advisory",
+    lat: 21.0285,
+    lng: 105.8542,
   },
   {
-    id: "kochi",
-    name: "Kochi",
-    state: "Kerala",
-    region: "South India",
-    focus: "Blue economy, resilience, and regional implementation pathways",
-    summary:
-      "Supports coastal and resilience-oriented climate discussions with implementation planning for local and regional priorities.",
-    highlights: ["Blue economy", "Resilience", "Regional planning"],
-    link: "https://example.com/engagements/kochi",
-    lat: 9.9312,
-    lng: 76.2673,
+    id: "china",
+    country: "China",
+    capital: "Beijing",
+    engagement: "Carbon Credit Projects Advisory",
+    lat: 39.9042,
+    lng: 116.4074,
   },
   {
-    id: "guwahati",
-    name: "Guwahati",
-    state: "Assam",
-    region: "North-East India",
-    focus: "Landscape programs and regional capacity-building support",
-    summary:
-      "Focuses on institutional readiness, ecosystem-linked interventions, and programmatic collaboration across the North-East corridor.",
-    highlights: ["Capacity building", "Landscape", "Readiness"],
-    link: "https://example.com/engagements/guwahati",
-    lat: 26.1445,
-    lng: 91.7362,
+    id: "middle-east",
+    country: "Middle East",
+    capital: "Riyadh",
+    engagement: "Carbon Credit Projects Advisory",
+    lat: 24.7136,
+    lng: 46.6753,
   },
   {
-    id: "jaipur",
-    name: "Jaipur",
-    state: "Rajasthan",
-    region: "North-West India",
-    focus: "State-level transition planning and institutional alignment",
-    summary:
-      "Supports strategic consultation around market preparedness, institutional pathways, and long-range implementation design.",
-    highlights: ["State strategy", "Alignment", "Planning"],
-    link: "https://example.com/engagements/jaipur",
-    lat: 26.9124,
-    lng: 75.7873,
+    id: "mozambique",
+    country: "Mozambique",
+    capital: "Maputo",
+    engagement: "Carbon Advisory",
+    showFootnoteStar: false,
+    lat: -25.9653,
+    lng: 32.5892,
   },
-] as const satisfies readonly IndiaEngagementPlace[];
+  {
+    id: "ghana",
+    country: "Ghana",
+    capital: "Accra",
+    engagement: "Carbon Projects Advisory and Carbon Finance",
+    lat: 5.6037,
+    lng: -0.187,
+  },
+] as const satisfies readonly GlobalEngagementPlace[];
 
-function ExternalLinkIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        d="M14 5h5v5M10 14L19 5M15 5h4v4M9 9H5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-4"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+/** @deprecated Use GLOBAL_ENGAGEMENT_PLACES */
+export const INDIA_ENGAGEMENT_PLACES = GLOBAL_ENGAGEMENT_PLACES;
 
-function LocationDetailCard({
-  place,
-  className,
-}: {
-  place: IndiaEngagementPlace;
-  className?: string;
-}) {
-  return (
-    <article
-      className={[
-        "india-map-detail-card flex items-center gap-3 rounded-xl border border-black/10 bg-white px-4 py-3 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.2)]",
-        className ?? "",
-      ].join(" ")}
-    >
-      <h3 className="min-w-0 truncate text-base font-bold tracking-tight text-[#131b2e]">
-        {place.name}
-      </h3>
-      <a
-        href={place.link}
-        target="_blank"
-        rel="noreferrer noopener"
-        aria-label={`Open ${place.name} (external site)`}
-        className="shrink-0 text-[#131b2e] no-underline transition hover:text-black"
-      >
-        <ExternalLinkIcon className="size-4" />
-      </a>
-    </article>
-  );
-}
+export type IndiaEngagementPlace = GlobalEngagementPlace;
 
 function MapPinIcon({ className }: { className?: string }) {
   return (
@@ -244,7 +175,7 @@ function LocationsHorizontalSlider({
   selectedId,
   onSelectPlace,
 }: {
-  places: readonly IndiaEngagementPlace[];
+  places: readonly GlobalEngagementPlace[];
   selectedId: string | null;
   onSelectPlace: (id: string | null) => void;
 }) {
@@ -303,7 +234,7 @@ function LocationsHorizontalSlider({
               <span
                 className={`text-sm font-semibold whitespace-nowrap ${active ? "text-white" : "text-[#131b2e]"}`}
               >
-                {place.name}
+                {getCountryLabel(place)}
               </span>
               <MapPinIcon
                 className={`size-4 shrink-0 ${active ? "text-white" : "text-neutral-400"}`}
@@ -338,21 +269,7 @@ function GlobeLoadingFallback() {
 
 export function IndiaEngagementMap() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const places = INDIA_ENGAGEMENT_PLACES;
-  const selectedPlace = places.find((place) => place.id === selectedId) ?? null;
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
-    const syncMobile = () => setIsMobile(mediaQuery.matches);
-
-    syncMobile();
-    mediaQuery.addEventListener("change", syncMobile);
-
-    return () => {
-      mediaQuery.removeEventListener("change", syncMobile);
-    };
-  }, []);
+  const places = GLOBAL_ENGAGEMENT_PLACES;
 
   return (
     <section
@@ -416,18 +333,10 @@ export function IndiaEngagementMap() {
               Drag to rotate · Ctrl + scroll to zoom
             </div>
 
-            {!isMobile && selectedPlace ? (
-              <div className="absolute left-6 top-6 z-20 hidden md:block">
-                <LocationDetailCard place={selectedPlace} />
-              </div>
-            ) : null}
-
-            {isMobile && selectedPlace ? (
-              <div className="relative z-20 mx-4 mb-4 mt-4 md:hidden">
-                <LocationDetailCard place={selectedPlace} className="w-full max-w-none" />
-              </div>
-            ) : null}
-
+            <p className="pointer-events-none absolute bottom-4 right-4 z-20 max-w-[min(300px,72vw)] text-right text-[10px] leading-relaxed text-white/55 sm:bottom-5 sm:right-5 sm:text-[11px]">
+              * Engagement links reference external sources and are not the official UNMAI Carbon
+              Solutions website.
+            </p>
           </div>
         </div>
 
@@ -436,6 +345,7 @@ export function IndiaEngagementMap() {
           selectedId={selectedId}
           onSelectPlace={setSelectedId}
         />
+
       </div>
     </section>
   );
