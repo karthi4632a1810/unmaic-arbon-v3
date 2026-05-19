@@ -482,7 +482,7 @@ export function ContactPage() {
             title="Contact Intelligence"
             meta="Direct Channels"
             body="Singapore HQ · 10, Sim Lim Tower, Jalan Besar #10-10, Singapore 208787"
-            kpis={["ydb@unmaicarbon.earth", "+65 9023 1823", "www.unmaicarbon.earth"]}
+            kpis={["admin@unmaicarbon.earth", "+65 9023 1823", "www.unmaicarbon.earth"]}
           />
         </div>
       </div>

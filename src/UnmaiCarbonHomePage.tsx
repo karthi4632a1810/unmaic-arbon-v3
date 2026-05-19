@@ -1,4 +1,4 @@
-﻿import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { ImpactCounter } from "./components/ImpactCounter";
 import { SiteCta } from "./components/SiteCta";
 import { SiteFooter } from "./components/SiteFooter";
@@ -6,6 +6,7 @@ import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
 import { SiteHeader } from "./components/SiteHeader";
 import heroVideo from "./assets/unmai-carbon.mp4";
+import heroThumbnail from "./assets/hero-thumbnail.png";
 import { cacheHeroVideoFromUrl, getCachedHeroVideo } from "./lib/heroVideoCache";
 import "./App.css";
 
@@ -239,6 +240,7 @@ function HeroVideo() {
         muted
         loop
         playsInline
+        poster={heroThumbnail}
         preload="metadata"
         controls={false}
         disablePictureInPicture

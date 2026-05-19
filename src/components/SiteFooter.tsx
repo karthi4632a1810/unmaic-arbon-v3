@@ -114,11 +114,11 @@ function FooterContact() {
       </div>
       <div className="flex flex-col gap-4">
         <a
-          href="mailto:ydb@unmaicarbon.earth"
+          href="mailto:admin@unmaicarbon.earth"
           className="group flex items-center gap-2.5 transition hover:text-[#006c49]"
         >
           <MailIcon className="size-4 shrink-0 text-black" />
-          <span className="group-hover:underline">ydb@unmaicarbon.earth</span>
+          <span className="group-hover:underline">admin@unmaicarbon.earth</span>
         </a>
         <a
           href="tel:+6590231823"
