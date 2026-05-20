@@ -2,32 +2,32 @@ import { ScrollReveal } from "./ScrollReveal";
 
 export const GLOBAL_ENGAGEMENT_COUNTRIES = [
   "Bhutan",
-  "Nigeria",
-  "Indonesia",
-  "Sri Lanka",
-  "Saudi Arabia",
-  "Pakistan",
-  "Kenya",
-  "Mongolia",
   "Ghana",
   "India",
-  "Tanzania",
+  "Indonesia",
+  "Kenya",
+  "Mongolia",
   "Mozambique",
+  "Nigeria",
+  "Pakistan",
+  "Saudi Arabia",
+  "Sri Lanka",
+  "Tanzania",
   "USA",
 ] as const;
 
 export const INSTITUTIONAL_PARTICIPATION = [
-  "ISO Standards",
-  "CAD Trust",
-  "VCMI",
+  "ADB",
   "BioCarbon Standard",
-  "The World Bank",
+  "CAD Trust",
+  "CDOP",
   "ChildFund International",
   "Gold Standard",
-  "UNIDROIT",
-  "CDOP",
-  "ADB",
+  "ISO Standards",
   "Singapore Chemical Industry Council Limited",
+  "The World Bank",
+  "UNIDROIT",
+  "VCMI",
 ] as const;
 
 export function EngagementGlobalCountries() {

@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { ScrollLink } from "./ScrollLink";
 import { COMPANY_LINKEDIN_URL, COMPANY_TAGLINE } from "../data/siteReference";
 import { FooterReferenceColumns } from "./FooterReferenceColumns";
 import { ScrollReveal } from "./ScrollReveal";
@@ -167,12 +168,12 @@ function FooterQuickLinks() {
           <ul key={columnIndex} className="space-y-4 text-sm text-black">
             {links.map(({ label, to }) => (
               <li key={to}>
-                <Link
+                <ScrollLink
                   to={to}
                   className="inline-block transition duration-200 ease-out hover:text-[#006c49] hover:underline"
                 >
                   {label}
-                </Link>
+                </ScrollLink>
               </li>
             ))}
           </ul>

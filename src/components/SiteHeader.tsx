@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { ScrollLink } from "./ScrollLink";
 import { COMPANY_LINKEDIN_URL } from "../data/siteReference";
 import imgLogoBlack from "../assets/logo-b.png";
 import imgLogoWhite from "../assets/logo-w.png";
@@ -59,7 +60,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
         aria-label="Primary"
       >
         <div className="flex items-center justify-between gap-4">
-          <Link
+          <ScrollLink
             to="/"
             className={
               navDocked
@@ -95,7 +96,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
                 Solutions
               </span>
             </div>
-          </Link>
+          </ScrollLink>
           <div className="flex items-center gap-2 md:hidden">
             <button
               type="button"
@@ -118,7 +119,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
           {NAV_LINKS.map(({ label, to }) => {
             const active = pathname === to;
             return (
-              <Link
+              <ScrollLink
                 key={to}
                 to={to}
                 onClick={() => setMobileMenuOpen(false)}
@@ -135,7 +136,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
                 }
               >
                 {label}
-              </Link>
+              </ScrollLink>
             );
           })}
           <div className="mt-2 flex items-center gap-2 border-t border-black/10 pt-3 md:hidden">

@@ -381,7 +381,7 @@ export default function UnmaiCarbonHomePage() {
                       Article 6 implementation, towards Net Zero achievement.
                     </p>
                     <p className="text-sm leading-relaxed text-[#cdcdcd]">
-                      UNMAI Carbon Solutions partners with governments, multilaterals, and corporations
+                      UNMAI Carbon Solutions supports governments, multilaterals, and corporations
                       to operationalize high-integrity carbon markets through carbon advisory, carbon
                       trading, climate finance frameworks and digital infrastructure.
                     </p>

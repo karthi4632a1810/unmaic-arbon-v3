@@ -5,6 +5,7 @@ import photoAjay from "../assets/team/Ajay_Mathur 1.png";
 import photoBoudhyyan from "../assets/team/Boudhyyan Duttaa Photo 1.png";
 import photoChintan from "../assets/team/Chintan Shah Photo 1.png";
 import photoDinesh from "../assets/team/Dinesh Photo 1.png";
+import photoKhalfa from "../assets/team/Khalfa.png";
 import photoKotteswari from "../assets/team/Kotteswari Photo 1.png";
 import photoShinu from "../assets/team/Shinu Photo 1.png";
 import photoSouvik from "../assets/team/Souvik Photo 1.png";
@@ -65,6 +66,7 @@ const CORE_TEAM: TeamMember[] = [
   {
     name: "Mhamed Khalfa",
     role: "Middle East Carbon Market Expert",
+    image: photoKhalfa,
     linkedIn: "https://www.linkedin.com/in/mhamed-khalfa/",
   },
 ];
