@@ -1,11 +1,30 @@
-import { type ReactNode, useState } from "react";
+import { lazy, Suspense, type ReactNode, useState } from "react";
 import { SiteCta } from "./components/SiteCta";
 import { SiteFooter } from "./components/SiteFooter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
 import { EngagementInstitutionalParticipation } from "./components/EngagementGlobalSections";
-import { IndiaEngagementMap } from "./components/IndiaEngagementMap";
 import { SiteHeader } from "./components/SiteHeader";
+
+const IndiaEngagementMap = lazy(() =>
+  import("./components/IndiaEngagementMap").then((m) => ({ default: m.IndiaEngagementMap })),
+);
+
+function MapSectionFallback() {
+  return (
+    <section
+      className="relative left-1/2 mb-12 flex min-h-[58vh] w-screen max-w-none -translate-x-1/2 items-center justify-center bg-[#0a0e18] md:min-h-[min(78vh,720px)]"
+      aria-label="Loading engagement map"
+    >
+      <div className="flex flex-col items-center gap-4">
+        <div className="size-12 animate-spin rounded-full border-2 border-[hsl(71,100%,73%)]/25 border-t-[hsl(71,100%,73%)]" />
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/55">
+          Loading engagement map…
+        </p>
+      </div>
+    </section>
+  );
+}
 
 function EnterpriseBanner({
   title,
@@ -305,7 +324,9 @@ export function GlobalEngagementsPage() {
         subtitle="Active Across Asia, Africa & The Middle East"
         paragraph="Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems."
       />
-      <IndiaEngagementMap />
+      <Suspense fallback={<MapSectionFallback />}>
+        <IndiaEngagementMap />
+      </Suspense>
       <div className="mx-auto max-w-[1216px] pb-4">
         <EngagementInstitutionalParticipation />
       </div>
@@ -394,18 +415,18 @@ export function ContactPage() {
     >
       <SectionIntro
         title="Contact & Engagement"
-        subtitle="Initiate a Strategic Climate Infrastructure Discussion"
+        subtitle="Initiate a Strategic Discussion"
         paragraph="Share your institutional priorities and our team will align a consultation pathway across policy, finance, and digital carbon market implementation."
       />
       <div className="mx-auto grid max-w-[1216px] gap-8 lg:grid-cols-[1.2fr_1fr]">
         <div className="space-y-6">
           <SectionCard
             title="Enterprise Contact Form"
-            meta="Strategic Inquiry"
-            kpis={["Response-ready", "Institutional Engagement", "Confidential"]}
+            // meta="Strategic Inquiry"
+            // kpis={["Response-ready", "Institutional Engagement", "Confidential"]}
           >
             <div className="mt-5 space-y-5">
-              <div className="grid gap-3 sm:grid-cols-3">
+              {/* <div className="grid gap-3 sm:grid-cols-3">
                 {[
                   { label: "Pathway", value: "Strategic Consultation" },
                   { label: "Response SLA", value: "< 24 Hours" },
@@ -418,7 +439,7 @@ export function ContactPage() {
                     <p className="mt-1 text-sm font-semibold text-[#131b2e]">{item.value}</p>
                   </div>
                 ))}
-              </div>
+              </div> */}
 
               <div className="grid gap-4">
                 {["Name", "Organization", "Email", "Country", "Inquiry Type"].map((f) => (
@@ -446,10 +467,10 @@ export function ContactPage() {
         </div>
         <div className="space-y-6">
           <SectionCard
-            title="Global Engagement Map"
-            meta="Geo Presence"
+            title="Geo Presence"
+            // meta="Global Engagement Map"
             body="Strategic advisory operations anchored in Singapore with active sovereign and multilateral engagement corridors."
-            kpis={["Asia", "Africa", "Middle East"]}
+            // kpis={["Asia", "Africa", "Middle East"]}
           >
             <div className="relative mt-5 overflow-hidden rounded-xl border border-black/10">
               <iframe

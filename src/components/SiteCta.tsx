@@ -2,7 +2,7 @@ import { ScrollReveal } from "./ScrollReveal";
 
 export function SiteCta() {
   return (
-    <section className="px-4 pt-16 pb-16 sm:px-6 sm:pt-24 lg:px-8 lg:pt-32 lg:pb-24">
+    <section className="px-4 pt-8 pb-16 sm:px-6 sm:pt-12 lg:px-8 lg:pt-16 lg:pb-24">
       <ScrollReveal>
         <div className="relative mx-auto max-w-[1216px] overflow-hidden rounded-[32px] bg-black px-8 py-16 text-center shadow-2xl shadow-black/30 transition duration-300 ease-out hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)] sm:px-12 sm:py-20">
           <div className="pointer-events-none absolute inset-0 opacity-10" aria-hidden>

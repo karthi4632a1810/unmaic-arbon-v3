@@ -80,13 +80,13 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
               <span
                 className={
                   navDocked
-                    ? "text-xl font-bold tracking-tight text-black"
-                    : "text-xl font-bold tracking-tight text-black md:text-white "
+                    ? "text-[1.75rem] font-bold tracking-tight text-black"
+                    : "text-[1.75rem] font-bold tracking-tight text-black md:text-white "
                 }
               >
-                UNMAI Carbon
+                UNMAI
               </span>
-              <span
+              {/* <span
                 className={
                   navDocked
                     ? "text-xs font-bold uppercase tracking-tight text-black"
@@ -94,7 +94,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
                 }
               >
                 Solutions
-              </span>
+              </span> */}
             </div>
           </ScrollLink>
           <div className="flex items-center gap-2 md:hidden">

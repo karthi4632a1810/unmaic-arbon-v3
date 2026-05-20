@@ -596,7 +596,7 @@ export default function UnmaiCarbonHomePage() {
       </section>
 
       {/* Precision methodology */}
-      <section className="bg-[#fafbfc] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 mb-30">
+      <section className="bg-[#fafbfc] px-4 pt-16 pb-10 sm:px-6 sm:pt-24 sm:pb-12 lg:px-8">
         <div className="mx-auto max-w-[1152px] space-y-12 lg:space-y-16">
           <ScrollReveal>
             <div className="flex flex-col items-center gap-4 text-center">

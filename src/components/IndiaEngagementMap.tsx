@@ -1,5 +1,5 @@
 import { lazy, Suspense, useRef, useState } from "react";
-import { getCountryLabel, type GlobalEngagementPlace } from "../lib/engagementMapUtils";
+import type { GlobalEngagementPlace } from "../lib/engagementMapUtils";
 
 const EngagementGlobeView = lazy(() =>
   import("./EngagementGlobeView").then((m) => ({ default: m.EngagementGlobeView })),
@@ -11,29 +11,29 @@ const FOUNDER_LINKEDIN_URL =
 /** Capital-city coordinates with engagement summaries for the global map. */
 export const GLOBAL_ENGAGEMENT_PLACES = [
   {
-    id: "mongolia",
-    country: "Mongolia",
-    capital: "Ulaanbaatar",
-    engagement: "ADB TA Support for Registry",
-    lat: 47.8864,
-    lng: 106.9057,
+    id: "bangladesh",
+    country: "Bangladesh",
+    capital: "Dhaka",
+    engagement: "Rooftop Solar Advisory for IDCOL",
+    lat: 23.8103,
+    lng: 90.4125,
   },
   {
-    id: "kyrgyzstan",
-    country: "Kyrgyzstan",
-    capital: "Bishkek",
-    engagement: "A6 Implementation Framework Review",
-    lat: 42.8746,
-    lng: 74.5698,
+    id: "china",
+    country: "China",
+    capital: "Beijing",
+    engagement: "Carbon Credit Projects Advisory",
+    lat: 39.9042,
+    lng: 116.4074,
   },
   {
-    id: "singapore",
-    country: "Singapore",
-    capital: "Singapore",
-    engagement: "Training of Government Officers on Paris Agreement",
-    link: FOUNDER_LINKEDIN_URL,
-    lat: 1.3521,
-    lng: 103.8198,
+    id: "ghana",
+    country: "Ghana",
+    capital: "Accra",
+    engagement: "Carbon Projects Advisory and Carbon Finance",
+    showFootnoteStar: false,
+    lat: 5.6037,
+    lng: -0.187,
   },
   {
     id: "india",
@@ -52,36 +52,12 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     lng: 106.8456,
   },
   {
-    id: "thailand",
-    country: "Thailand",
-    capital: "Bangkok",
-    engagement: "Establishment of GHG Training Centre at AIT Bangkok",
-    lat: 13.7563,
-    lng: 100.5018,
-  },
-  {
-    id: "bangladesh",
-    country: "Bangladesh",
-    capital: "Dhaka",
-    engagement: "Rooftop Solar Advisory for IDCOL",
-    lat: 23.8103,
-    lng: 90.4125,
-  },
-  {
-    id: "vietnam",
-    country: "Vietnam",
-    capital: "Hanoi",
-    engagement: "Carbon Credit Projects Advisory",
-    lat: 21.0285,
-    lng: 105.8542,
-  },
-  {
-    id: "china",
-    country: "China",
-    capital: "Beijing",
-    engagement: "Carbon Credit Projects Advisory",
-    lat: 39.9042,
-    lng: 116.4074,
+    id: "kyrgyzstan",
+    country: "Kyrgyzstan",
+    capital: "Bishkek",
+    engagement: "A6 Implementation Framework Review",
+    lat: 42.8746,
+    lng: 74.5698,
   },
   {
     id: "middle-east",
@@ -90,6 +66,14 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     engagement: "Carbon Credit Projects Advisory",
     lat: 24.7136,
     lng: 46.6753,
+  },
+  {
+    id: "mongolia",
+    country: "Mongolia",
+    capital: "Ulaanbaatar",
+    engagement: "ADB TA Support for Registry",
+    lat: 47.8864,
+    lng: 106.9057,
   },
   {
     id: "mozambique",
@@ -101,12 +85,29 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     lng: 32.5892,
   },
   {
-    id: "ghana",
-    country: "Ghana",
-    capital: "Accra",
-    engagement: "Carbon Projects Advisory and Carbon Finance",
-    lat: 5.6037,
-    lng: -0.187,
+    id: "singapore",
+    country: "Singapore",
+    capital: "Singapore",
+    engagement: "Training of Government Officers on Paris Agreement",
+    link: FOUNDER_LINKEDIN_URL,
+    lat: 1.3521,
+    lng: 103.8198,
+  },
+  {
+    id: "thailand",
+    country: "Thailand",
+    capital: "Bangkok",
+    engagement: "Establishment of GHG Training Centre at AIT Bangkok",
+    lat: 13.7563,
+    lng: 100.5018,
+  },
+  {
+    id: "vietnam",
+    country: "Vietnam",
+    capital: "Hanoi",
+    engagement: "Carbon Credit Projects Advisory",
+    lat: 21.0285,
+    lng: 105.8542,
   },
 ] as const satisfies readonly GlobalEngagementPlace[];
 
@@ -217,7 +218,7 @@ function LocationsHorizontalSlider({
               <span
                 className={`text-sm font-semibold whitespace-nowrap ${active ? "text-white" : "text-[#131b2e]"}`}
               >
-                {getCountryLabel(place)}
+                {place.country}
               </span>
               <MapPinIcon
                 className={`size-4 shrink-0 ${active ? "text-white" : "text-neutral-400"}`}
@@ -316,10 +317,10 @@ export function IndiaEngagementMap() {
               Drag to rotate · Ctrl + scroll to zoom
             </div>
 
-            <p className="pointer-events-none absolute bottom-4 right-4 z-20 max-w-[min(300px,72vw)] text-right text-[10px] leading-relaxed text-white/55 sm:bottom-5 sm:right-5 sm:text-[11px]">
+            {/* <p className="pointer-events-none absolute bottom-4 right-4 z-20 max-w-[min(300px,72vw)] text-right text-[10px] leading-relaxed text-white/55 sm:bottom-5 sm:right-5 sm:text-[11px]">
               * Engagement links reference external sources and are not the official UNMAI Carbon
               Solutions website.
-            </p>
+            </p> */}
           </div>
         </div>
 
