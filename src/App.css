@@ -288,8 +288,24 @@ display: none;
   color: #fff !important;
 }
 
+.globe-stage {
+  overflow: hidden;
+}
+
+/* Nudge globe left while canvas spans full map (globe shows through glass panel) */
+@media (min-width: 640px) {
+  .globe-stage .engagement-globe-canvas {
+    transform: translateX(-11%);
+  }
+}
+
 .engagement-globe-canvas {
   cursor: grab;
+}
+
+.india-map-country-panel {
+  -webkit-backdrop-filter: blur(14px) saturate(1.35);
+  backdrop-filter: blur(14px) saturate(1.35);
 }
 
 .engagement-globe-canvas:active {
@@ -456,13 +472,22 @@ display: none;
   border-radius: 999px;
 }
 
-.india-map-locations-scroll {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+.india-map-country-panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(71 100% 73% / 0.45) transparent;
 }
 
-.india-map-locations-scroll::-webkit-scrollbar {
-  display: none;
+.india-map-country-panel-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.india-map-country-panel-scroll::-webkit-scrollbar-thumb {
+  background: hsl(71 100% 73% / 0.45);
+  border-radius: 999px;
+}
+
+.india-map-country-panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 @keyframes india-map-pulse {

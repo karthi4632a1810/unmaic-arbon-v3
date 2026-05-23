@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef, useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import type { GlobalEngagementPlace } from "../lib/engagementMapUtils";
 
 const EngagementGlobeView = lazy(() =>
@@ -134,27 +134,7 @@ function MapPinIcon({ className }: { className?: string }) {
   );
 }
 
-function ChevronIcon({ direction, className }: { direction: "left" | "right"; className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        d={direction === "left" ? "M15 6l-6 6 6 6" : "M9 6l6 6-6 6"}
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function LocationsHorizontalSlider({
+function LocationsVerticalList({
   places,
   selectedId,
   onSelectPlace,
@@ -163,43 +143,32 @@ function LocationsHorizontalSlider({
   selectedId: string | null;
   onSelectPlace: (id: string | null) => void;
 }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollByAmount = (direction: "left" | "right") => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const amount = Math.max(container.clientWidth * 0.75, 200);
-    container.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
-  };
+  const itemClass = (active: boolean) =>
+    [
+      "flex w-full items-center gap-2.5 rounded-xl border px-3.5 py-2.5 text-left transition duration-200",
+      active
+        ? "border-[hsl(71,100%,73%)]/50 bg-[hsl(71,100%,73%)]/15 text-[hsl(71,100%,88%)] shadow-[0_0_20px_-4px_hsla(71,100%,73%,0.35)]"
+        : "border-transparent bg-transparent text-white/75 hover:border-white/10 hover:bg-white/[0.08] hover:text-white",
+    ].join(" ");
 
   return (
-    <div className="mt-4 flex items-center gap-2 sm:mt-5" aria-label="Engagement locations">
-      <button
-        type="button"
-        onClick={() => scrollByAmount("left")}
-        aria-label="Scroll locations left"
-        className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-black/12 bg-white text-[#131b2e] shadow-sm transition hover:border-black/25 hover:bg-neutral-50"
-      >
-        <ChevronIcon direction="left" className="size-4" />
-      </button>
-
-      <div
-        ref={scrollRef}
-        className="india-map-locations-scroll flex min-w-0 flex-1 gap-2 overflow-x-auto scroll-smooth py-0.5"
-      >
+    <nav
+      aria-label="Engagement locations"
+      className="india-map-country-panel flex h-full max-h-full w-full flex-col overflow-hidden rounded-2xl border border-white/15 bg-[rgba(10,14,24,0.22)] shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-md backdrop-saturate-150"
+    >
+      <p className="shrink-0 border-b border-white/8 bg-white/3 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
+        Locations
+      </p>
+      <div className="india-map-country-panel-scroll flex flex-col gap-1 overflow-y-auto p-2.5">
         <button
           type="button"
           onClick={() => onSelectPlace(null)}
-          className={`flex shrink-0 items-center gap-2 rounded-xl border px-4 py-2.5 transition duration-300 ${
-            selectedId === null
-              ? "border-black bg-linear-to-r from-[#131b2e] to-[#374151] text-white shadow-[0_8px_24px_-12px_rgba(0,0,0,0.3)]"
-              : "border-black/8 bg-white hover:border-black/25 hover:bg-neutral-50"
-          }`}
+          className={itemClass(selectedId === null)}
         >
-          <span className="text-sm font-semibold whitespace-nowrap">Global</span>
           <MapPinIcon
-            className={`size-4 shrink-0 ${selectedId === null ? "text-white" : "text-neutral-400"}`}
+            className={`size-4 shrink-0 ${selectedId === null ? "text-[hsl(71,100%,73%)]" : "text-white/45"}`}
           />
+          <span className="text-sm font-semibold">Global view</span>
         </button>
 
         {places.map((place) => {
@@ -209,40 +178,23 @@ function LocationsHorizontalSlider({
               key={place.id}
               type="button"
               onClick={() => onSelectPlace(place.id)}
-              className={`flex shrink-0 items-center gap-2 rounded-xl border px-4 py-2.5 transition duration-300 ${
-                active
-                  ? "border-black bg-linear-to-r from-[#131b2e] to-[#374151] text-white shadow-[0_8px_24px_-12px_rgba(0,0,0,0.3)]"
-                  : "border-black/8 bg-white hover:border-black/25 hover:bg-neutral-50"
-              }`}
+              className={itemClass(active)}
             >
-              <span
-                className={`text-sm font-semibold whitespace-nowrap ${active ? "text-white" : "text-[#131b2e]"}`}
-              >
-                {place.country}
-              </span>
               <MapPinIcon
-                className={`size-4 shrink-0 ${active ? "text-white" : "text-neutral-400"}`}
+                className={`size-4 shrink-0 ${active ? "text-[hsl(71,100%,73%)]" : "text-white/45"}`}
               />
+              <span className="text-sm font-semibold">{place.country}</span>
             </button>
           );
         })}
       </div>
-
-      <button
-        type="button"
-        onClick={() => scrollByAmount("right")}
-        aria-label="Scroll locations right"
-        className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-black/12 bg-white text-[#131b2e] shadow-sm transition hover:border-black/25 hover:bg-neutral-50"
-      >
-        <ChevronIcon direction="right" className="size-4" />
-      </button>
-    </div>
+    </nav>
   );
 }
 
 function GlobeLoadingFallback() {
   return (
-    <div className="flex min-h-[58vh] flex-col items-center justify-center gap-4 bg-[#0a0e18] md:min-h-[min(78vh,720px)]">
+    <div className="flex h-full min-h-full w-full flex-col items-center justify-center gap-4 bg-[#0a0e18]">
       <div className="size-12 animate-spin rounded-full border-2 border-[hsl(71,100%,73%)]/25 border-t-[hsl(71,100%,73%)]" />
       <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/55">
         Loading 3D globe…
@@ -295,40 +247,41 @@ export function IndiaEngagementMap() {
         </div>
 
         <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0a0e18] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-white/5">
-          <div className="india-map-shell relative w-full md:min-h-[min(78vh,720px)]">
-            <Suspense fallback={<GlobeLoadingFallback />}>
-              <EngagementGlobeView
-                places={places}
-                selectedId={selectedId}
-                onSelectPlace={setSelectedId}
-                className="engagement-globe-canvas z-0 min-h-[58vh] w-full md:min-h-[min(78vh,720px)]"
-              />
-            </Suspense>
+          <div className="india-map-shell relative min-h-[min(72vh,720px)] w-full">
+            <div className="globe-stage absolute inset-0 z-0">
+              <Suspense fallback={<GlobeLoadingFallback />}>
+                <EngagementGlobeView
+                  places={places}
+                  selectedId={selectedId}
+                  onSelectPlace={setSelectedId}
+                  className="engagement-globe-canvas h-full min-h-full w-full"
+                />
+              </Suspense>
+            </div>
 
             <div
-              className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,transparent_42%,rgba(0,0,0,0.45)_100%)]"
+              className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(ellipse_85%_75%_at_32%_50%,transparent_45%,rgba(0,0,0,0.35)_100%)]"
               aria-hidden
             />
 
             <div
-              className="pointer-events-none absolute right-4 top-4 z-20 hidden rounded-xl border border-white/15 bg-black/75 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-lg backdrop-blur-md sm:block"
+              className="pointer-events-none absolute bottom-4 left-4 z-20 hidden rounded-xl border border-white/15 bg-black/60 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/90 shadow-lg backdrop-blur-md sm:block"
               aria-hidden
             >
               Drag to rotate · Ctrl + scroll to zoom
             </div>
 
-            {/* <p className="pointer-events-none absolute bottom-4 right-4 z-20 max-w-[min(300px,72vw)] text-right text-[10px] leading-relaxed text-white/55 sm:bottom-5 sm:right-5 sm:text-[11px]">
-              * Engagement links reference external sources and are not the official UNMAI Carbon
-              Solutions website.
-            </p> */}
+            <aside className="pointer-events-none absolute inset-x-4 bottom-4 z-30 flex max-h-[min(40vh,360px)] items-stretch sm:inset-x-auto sm:right-6 sm:bottom-auto sm:top-1/2 sm:max-h-[min(58vh,580px)] sm:w-[min(340px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8">
+              <div className="pointer-events-auto w-full min-w-0">
+                <LocationsVerticalList
+                  places={places}
+                  selectedId={selectedId}
+                  onSelectPlace={setSelectedId}
+                />
+              </div>
+            </aside>
           </div>
         </div>
-
-        <LocationsHorizontalSlider
-          places={places}
-          selectedId={selectedId}
-          onSelectPlace={setSelectedId}
-        />
 
       </div>
     </section>

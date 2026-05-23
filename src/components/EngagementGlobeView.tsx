@@ -9,7 +9,7 @@ import {
 /** NASA Blue Marble — full-color daytime Earth */
 const GLOBE_IMAGE = "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg";
 const GLOBE_BUMP = "//unpkg.com/three-globe/example/img/earth-topology.png";
-const SPACE_BG = "rgba(10, 14, 24, 1)";
+const SPACE_BG = "rgba(10, 14, 24, 0)";
 const PIN_ACTIVE = "hsl(71, 100%, 73%)";
 const PIN_INACTIVE = "hsla(71, 100%, 73%, 0.55)";
 
@@ -60,7 +60,7 @@ export function EngagementGlobeView({
     if (!globe) return;
 
     if (!selectedId) {
-      globe.pointOfView({ lat: 22, lng: 79, altitude: 1.5 }, 1100);
+      globe.pointOfView({ lat: 20, lng: 58, altitude: 1.45 }, 1100);
       return;
     }
 

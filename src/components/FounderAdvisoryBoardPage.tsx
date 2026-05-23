@@ -1,14 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useCachedImageUrl } from "../hooks/useCachedImageUrl";
 import { cacheTeamImagesFromUrls } from "../lib/teamImageCache";
-import photoAjay from "../assets/team/Ajay_Mathur 1.png";
-import photoBoudhyyan from "../assets/team/Boudhyyan Duttaa Photo 1.png";
-import photoChintan from "../assets/team/Chintan Shah Photo 1.png";
-import photoDinesh from "../assets/team/Dinesh Photo 1.png";
-import photoKhalfa from "../assets/team/Khalfa.png";
-import photoKotteswari from "../assets/team/Kotteswari Photo 1.png";
-import photoShinu from "../assets/team/Shinu Photo 1.png";
-import photoSouvik from "../assets/team/Souvik Photo 1.png";
+import { TEAM_PHOTOS } from "../lib/teamPhotos";
 import { ScrollReveal } from "./ScrollReveal";
 import { ScheduleConsultationModal } from "./ScheduleConsultationModal";
 import { SiteCta } from "./SiteCta";
@@ -36,37 +29,37 @@ const CORE_TEAM: TeamMember[] = [
   {
     name: "Nithyanandam Yuvaraj Dinesh Babu",
     role: "Founder & CEO",
-    image: photoDinesh,
+    image: TEAM_PHOTOS.dinesh,
     linkedIn: "https://www.linkedin.com/in/nithyanandam-yuvaraj-dinesh-babu-a1076b3/",
   },
   {
     name: "Kotteswari",
     role: "Chief Digital Officer",
-    image: photoKotteswari,
+    image: TEAM_PHOTOS.kotteswari,
     linkedIn: "https://www.linkedin.com/in/kotteswari-yuvaraj-dinesh-babu-8a8b0175/",
   },
   {
     name: "Shinu Jose",
     role: "Senior Carbon Project Specialist",
-    image: photoShinu,
+    image: TEAM_PHOTOS.shinu,
     linkedIn: "https://www.linkedin.com/in/shinujosecarbon/",
   },
   {
     name: "Souvik Mitra",
     role: "Carbon Project Specialist",
-    image: photoSouvik,
+    image: TEAM_PHOTOS.souvik,
     linkedIn: "https://www.linkedin.com/in/souvik-mitra-4770ab39/",
   },
   {
     name: "Boudhyyan Duttaa",
     role: "CBG Business Head",
-    image: photoBoudhyyan,
+    image: TEAM_PHOTOS.boudhyyan,
     linkedIn: "https://www.linkedin.com/in/boudhhayanduttaa/",
   },
   {
     name: "Mhamed Khalfa",
     role: "Middle East Carbon Market Expert",
-    image: photoKhalfa,
+    image: TEAM_PHOTOS.khalfa,
     linkedIn: "https://www.linkedin.com/in/mhamed-khalfa/",
   },
 ];
@@ -75,14 +68,14 @@ const ADVISORY_BOARD: AdvisoryMember[] = [
   {
     name: "Dr Ajay Mathur",
     role: "Global Strategic Advisory Board",
-    image: photoAjay,
+    image: TEAM_PHOTOS.ajay,
     linkedIn: "https://www.linkedin.com/in/ajay-mathur-3666b3334/",
     bio: "Dr. Mathur currently serves as Professor of Practice at the School of Public Policy, Indian Institute of Technology Delhi, and is globally recognized as one of India's foremost leaders in clean energy, climate policy, and sustainable development. He previously served as Director General of the International Solar Alliance, where he advanced global cooperation on solar energy deployment, climate finance, and energy access across developing countries. Earlier, he led The Energy and Resources Institute (TERI), strengthening its global role in climate change research, energy transition, decarbonization, and sustainability policy advisory. Dr. Mathur also served as Director General of the Bureau of Energy Efficiency, Government of India, where he played a key role in shaping India's landmark energy efficiency and market-based transition programs, including the Perform, Achieve and Trade (PAT) mechanism. Over the course of his career, he has worked extensively with governments, multilateral institutions, industry, and international organizations on climate governance, clean energy systems, and low-carbon development pathways. His leadership reflects a unique combination of policy expertise, institutional governance, technical understanding, and international climate diplomacy. Dr. Mathur continues to contribute significantly to global sustainability discourse through academic engagement, strategic advisory roles, and international cooperation initiatives.",
   },
   {
     name: "Chintan Shah",
     role: "Global Strategic Advisory Board",
-    image: photoChintan,
+    image: TEAM_PHOTOS.chintan,
     linkedIn: "https://www.linkedin.com/in/chintan-shah-5b82613/",
     bio: "Chintan Shah is a renewable energy veteran with over three decades of experience in India's green energy sector. He is the Founder of SustCred, a consultancy firm, and has previously held leadership roles including Vice President & Head at Suzlon, Group President at ReNew, and Director at IREDA Ltd. Mr. Shah brings rich expertise of three decades in various roles across the value chain of India's Renewable Energy ecosystem including Solar, Wind, Storage, Manufacturing, Financing, R&D and Policy formulation. He has spearheaded multiple projects for appraisal, financing, policy formulation, planning and monitoring of Renewable Energy Projects. He started his career from TERI in the year 1996.",
   },
