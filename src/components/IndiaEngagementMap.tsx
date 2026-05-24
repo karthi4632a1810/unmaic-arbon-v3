@@ -145,7 +145,7 @@ function LocationsVerticalList({
 }) {
   const itemClass = (active: boolean) =>
     [
-      "flex w-full items-center gap-2.5 rounded-xl border px-3.5 py-2.5 text-left transition duration-200",
+      "flex w-full items-center rounded-xl border px-4 py-2.5 text-left transition duration-200",
       active
         ? "border-[hsl(71,100%,73%)]/50 bg-[hsl(71,100%,73%)]/15 text-[hsl(71,100%,88%)] shadow-[0_0_20px_-4px_hsla(71,100%,73%,0.35)]"
         : "border-transparent bg-transparent text-white/75 hover:border-white/10 hover:bg-white/[0.08] hover:text-white",
@@ -165,9 +165,6 @@ function LocationsVerticalList({
           onClick={() => onSelectPlace(null)}
           className={itemClass(selectedId === null)}
         >
-          <MapPinIcon
-            className={`size-4 shrink-0 ${selectedId === null ? "text-[hsl(71,100%,73%)]" : "text-white/45"}`}
-          />
           <span className="text-sm font-semibold">Global view</span>
         </button>
 
@@ -180,9 +177,6 @@ function LocationsVerticalList({
               onClick={() => onSelectPlace(place.id)}
               className={itemClass(active)}
             >
-              <MapPinIcon
-                className={`size-4 shrink-0 ${active ? "text-[hsl(71,100%,73%)]" : "text-white/45"}`}
-              />
               <span className="text-sm font-semibold">{place.country}</span>
             </button>
           );
@@ -247,7 +241,7 @@ export function IndiaEngagementMap() {
         </div>
 
         <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0a0e18] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-white/5">
-          <div className="india-map-shell relative min-h-[min(72vh,720px)] w-full">
+          <div className="india-map-shell relative min-h-[min(85vh,880px)] w-full">
             <div className="globe-stage absolute inset-0 z-0">
               <Suspense fallback={<GlobeLoadingFallback />}>
                 <EngagementGlobeView
@@ -271,7 +265,7 @@ export function IndiaEngagementMap() {
               Drag to rotate · Ctrl + scroll to zoom
             </div>
 
-            <aside className="pointer-events-none absolute inset-x-4 bottom-4 z-30 flex max-h-[min(40vh,360px)] items-stretch sm:inset-x-auto sm:right-6 sm:bottom-auto sm:top-1/2 sm:max-h-[min(58vh,580px)] sm:w-[min(340px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8">
+            <aside className="pointer-events-none absolute inset-x-4 bottom-4 z-30 flex max-h-[min(40vh,360px)] items-stretch sm:inset-x-auto sm:right-6 sm:bottom-auto sm:top-1/2 sm:max-h-[min(62vh,620px)] sm:w-[min(340px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8">
               <div className="pointer-events-auto w-full min-w-0">
                 <LocationsVerticalList
                   places={places}

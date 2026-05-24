@@ -60,7 +60,7 @@ export function EngagementGlobeView({
     if (!globe) return;
 
     if (!selectedId) {
-      globe.pointOfView({ lat: 20, lng: 58, altitude: 1.45 }, 1100);
+      globe.pointOfView({ lat: 20, lng: 58, altitude: 1.22 }, 1100);
       return;
     }
 

@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { useCachedImageUrl } from "../hooks/useCachedImageUrl";
 import { cacheTeamImagesFromUrls } from "../lib/teamImageCache";
 import { TEAM_PHOTOS } from "../lib/teamPhotos";
@@ -284,6 +284,10 @@ function PageShell({ children }: { children: ReactNode }) {
 
 export function FounderAdvisoryBoardPage() {
   const [activeAdvisor, setActiveAdvisor] = useState<AdvisoryMember | null>(null);
+  const coreTeamSorted = useMemo(
+    () => [...CORE_TEAM].sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" })),
+    [],
+  );
 
   useEffect(() => {
     void cacheTeamImagesFromUrls(TEAM_IMAGE_URLS);
@@ -303,7 +307,7 @@ export function FounderAdvisoryBoardPage() {
         />
 
         <div className="mx-auto grid max-w-[1216px] gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {CORE_TEAM.map((person) => (
+          {coreTeamSorted.map((person) => (
             <ScrollReveal key={person.name}>
               <CoreTeamCard person={person} />
             </ScrollReveal>
