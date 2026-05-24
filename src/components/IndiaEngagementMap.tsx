@@ -241,7 +241,7 @@ export function IndiaEngagementMap() {
         </div>
 
         <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0a0e18] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-white/5">
-          <div className="india-map-shell relative min-h-[min(85vh,880px)] w-full">
+          <div className="india-map-shell relative min-h-[min(92vh,960px)] w-full">
             <div className="globe-stage absolute inset-0 z-0">
               <Suspense fallback={<GlobeLoadingFallback />}>
                 <EngagementGlobeView
@@ -265,7 +265,7 @@ export function IndiaEngagementMap() {
               Drag to rotate · Ctrl + scroll to zoom
             </div>
 
-            <aside className="pointer-events-none absolute inset-x-4 bottom-4 z-30 flex max-h-[min(40vh,360px)] items-stretch sm:inset-x-auto sm:right-6 sm:bottom-auto sm:top-1/2 sm:max-h-[min(62vh,620px)] sm:w-[min(340px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8">
+            <aside className="pointer-events-none absolute inset-x-4 bottom-4 z-30 flex max-h-[min(42vh,380px)] items-stretch sm:inset-x-auto sm:right-6 sm:bottom-auto sm:top-1/2 sm:max-h-[min(66vh,680px)] sm:w-[min(340px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8">
               <div className="pointer-events-auto w-full min-w-0">
                 <LocationsVerticalList
                   places={places}
