@@ -1,44 +1,78 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Globe, { type GlobeMethods } from "react-globe.gl";
 import {
-  getCountryLabel,
+  getCountryViewTarget,
   getEngagementLine,
+  getMarkerHeadline,
+  getPlacesInCountry,
   type GlobalEngagementPlace,
 } from "../lib/engagementMapUtils";
 
 /** NASA Blue Marble — full-color daytime Earth */
 const GLOBE_IMAGE = "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg";
 const GLOBE_BUMP = "//unpkg.com/three-globe/example/img/earth-topology.png";
+const COUNTRIES_GEOJSON =
+  "//unpkg.com/three-globe/example/img/ne_110m_admin_0_countries.geojson";
 const SPACE_BG = "rgba(10, 14, 24, 0)";
 const PIN_ACTIVE = "hsl(71, 100%, 73%)";
 const PIN_INACTIVE = "hsla(71, 100%, 73%, 0.55)";
+const COUNTRY_FILL = "hsla(71, 100%, 73%, 0.22)";
+const COUNTRY_STROKE = "hsla(71, 100%, 73%, 0.92)";
 
 const PIN_SVG = `<svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true" focusable="false"><path d="M12 22C11.2 20.96 10.12 19.63 8.77 18C6.25 14.95 4 12.23 4 8.94C4 4.56 7.58 1 12 1C16.42 1 20 4.56 20 8.94C20 12.23 17.75 14.95 15.23 18C13.88 19.63 12.8 20.96 12 22Z" fill="currentColor"/><circle cx="12" cy="9" r="3" fill="#0a0e18"/></svg>`;
 
 const LINK_ICON_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><path d="M14 5h5v5M10 14L19 5M15 5h4v4M9 9H5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
+type CountryGeoFeature = {
+  properties: { ADMIN?: string; NAME?: string };
+};
+
 type HtmlGlobePlace = GlobalEngagementPlace & { active: boolean };
 
 type EngagementGlobeViewProps = {
   places: readonly GlobalEngagementPlace[];
-  selectedId: string | null;
-  onSelectPlace: (id: string) => void;
+  selectedCountry: string | null;
+  onSelectCountry: (country: string | null) => void;
   className?: string;
 };
 
+function getFeatureCountryName(feature: CountryGeoFeature) {
+  return feature.properties.ADMIN ?? feature.properties.NAME ?? "";
+}
+
 export function EngagementGlobeView({
   places,
-  selectedId,
-  onSelectPlace,
+  selectedCountry,
+  onSelectCountry,
   className,
 }: EngagementGlobeViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
-  const onSelectRef = useRef(onSelectPlace);
+  const onSelectRef = useRef(onSelectCountry);
   const [dims, setDims] = useState({ width: 800, height: 520 });
   const [globeReady, setGlobeReady] = useState(false);
+  const [countryFeatures, setCountryFeatures] = useState<CountryGeoFeature[]>([]);
 
-  onSelectRef.current = onSelectPlace;
+  onSelectRef.current = onSelectCountry;
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetch(COUNTRIES_GEOJSON)
+      .then((response) => response.json())
+      .then((data: { features?: CountryGeoFeature[] }) => {
+        if (!cancelled) {
+          setCountryFeatures(data.features ?? []);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setCountryFeatures([]);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -55,20 +89,25 @@ export function EngagementGlobeView({
     return () => ro.disconnect();
   }, []);
 
+  const selectedPlaces = useMemo(
+    () => getPlacesInCountry(places, selectedCountry),
+    [places, selectedCountry],
+  );
+
   useEffect(() => {
     const globe = globeRef.current;
     if (!globe) return;
 
-    if (!selectedId) {
+    if (!selectedCountry) {
       globe.pointOfView({ lat: 20, lng: 58, altitude: 1.58 }, 1100);
       return;
     }
 
-    const place = places.find((p) => p.id === selectedId);
-    if (place) {
-      globe.pointOfView({ lat: place.lat, lng: place.lng, altitude: 0.52 }, 1100);
+    const target = getCountryViewTarget(selectedPlaces);
+    if (target) {
+      globe.pointOfView(target, 1100);
     }
-  }, [selectedId, places]);
+  }, [selectedCountry, selectedPlaces]);
 
   useEffect(() => {
     if (!globeReady) return;
@@ -104,15 +143,26 @@ export function EngagementGlobeView({
   }, [globeReady, dims.width, dims.height]);
 
   const htmlElementsData = useMemo<HtmlGlobePlace[]>(
-    () => places.map((place) => ({ ...place, active: selectedId === place.id })),
-    [places, selectedId],
+    () =>
+      places.map((place) => ({
+        ...place,
+        active: selectedCountry !== null && place.country === selectedCountry,
+      })),
+    [places, selectedCountry],
   );
 
-  const ringsData = useMemo(() => {
-    if (!selectedId) return [];
-    const place = places.find((p) => p.id === selectedId);
-    return place ? [{ lat: place.lat, lng: place.lng }] : [];
-  }, [places, selectedId]);
+  const ringsData = useMemo(
+    () => selectedPlaces.map((place) => ({ lat: place.lat, lng: place.lng })),
+    [selectedPlaces],
+  );
+
+  const polygonsData = useMemo(() => {
+    if (!selectedCountry || countryFeatures.length === 0) return [];
+
+    return countryFeatures.filter(
+      (feature) => getFeatureCountryName(feature) === selectedCountry,
+    );
+  }, [countryFeatures, selectedCountry]);
 
   const buildPinElement = useCallback((place: HtmlGlobePlace) => {
     const wrapper = document.createElement("div");
@@ -148,10 +198,10 @@ export function EngagementGlobeView({
     const body = document.createElement("div");
     body.className = "engagement-globe-marker__tooltip-body";
 
-    const country = document.createElement("p");
-    country.className = "engagement-globe-marker__tooltip-country";
-    country.textContent = getCountryLabel(place);
-    body.appendChild(country);
+    const headline = document.createElement("p");
+    headline.className = "engagement-globe-marker__tooltip-country";
+    headline.textContent = getMarkerHeadline(place);
+    body.appendChild(headline);
 
     if (place.engagement.trim()) {
       const desc = document.createElement("p");
@@ -171,7 +221,7 @@ export function EngagementGlobeView({
 
       tooltip.addEventListener("click", (event) => {
         event.stopPropagation();
-        onSelectRef.current(place.id);
+        onSelectRef.current(place.country);
         wrapper.classList.add("engagement-globe-marker--open");
       });
     }
@@ -190,7 +240,7 @@ export function EngagementGlobeView({
     wrapper.appendChild(pin);
 
     const activate = () => {
-      onSelectRef.current(place.id);
+      onSelectRef.current(place.country);
       wrapper.classList.add("engagement-globe-marker--open");
     };
 
@@ -238,6 +288,12 @@ export function EngagementGlobeView({
         backgroundColor={SPACE_BG}
         atmosphereColor="rgba(120, 180, 255, 0.35)"
         atmosphereAltitude={0.2}
+        polygonsData={polygonsData}
+        polygonCapColor={() => COUNTRY_FILL}
+        polygonSideColor={() => "hsla(71, 100%, 73%, 0.08)"}
+        polygonStrokeColor={() => COUNTRY_STROKE}
+        polygonAltitude={0.012}
+        polygonLabel={() => ""}
         htmlElementsData={htmlElementsData}
         htmlLat="lat"
         htmlLng="lng"

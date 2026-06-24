@@ -1,10 +1,12 @@
-import { lazy, Suspense, type ReactNode, useState } from "react";
+import { lazy, Suspense, type ReactNode, useMemo, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { SiteCta } from "./components/SiteCta";
 import { SiteFooter } from "./components/SiteFooter";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
 import { EngagementInstitutionalParticipation } from "./components/EngagementGlobalSections";
 import { SiteHeader } from "./components/SiteHeader";
+import { PRESS_RELEASES } from "./data/news";
 
 const IndiaEngagementMap = lazy(() =>
   import("./components/IndiaEngagementMap").then((m) => ({ default: m.IndiaEngagementMap })),
@@ -77,7 +79,7 @@ function SectionCard({
   return (
     <article
       className={[
-        "relative overflow-hidden rounded-2xl border border-black/[0.07] bg-gradient-to-b from-white to-slate-50/90 p-6 shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#334ac9]/20 hover:shadow-[0_20px_50px_-24px_rgba(51,74,201,0.18)] motion-reduce:hover:translate-y-0 sm:p-8",
+        "relative overflow-hidden rounded-2xl border border-black/[0.07] bg-linear-to-b from-white to-slate-50/90 p-6 shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#334ac9]/20 hover:shadow-[0_20px_50px_-24px_rgba(51,74,201,0.18)] motion-reduce:hover:translate-y-0 sm:p-8",
         className ?? "",
       ].join(" ")}
     >
@@ -329,6 +331,149 @@ export function GlobalEngagementsPage() {
       </Suspense>
       <div className="mx-auto max-w-[1216px] pb-4">
         <EngagementInstitutionalParticipation />
+      </div>
+    </PageScaffold>
+  );
+}
+
+export function NewsPage() {
+  const items = useMemo(
+    () => [...PRESS_RELEASES].sort((a, b) => b.dateLabel.localeCompare(a.dateLabel)),
+    [],
+  );
+
+  return (
+    <PageScaffold
+      title="News"
+      subtitle="Press releases and announcements from UNMAI Carbon Solutions."
+      bannerImage="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=2000&q=80"
+    >
+      <SectionIntro
+        title="Press Releases"
+        subtitle="Latest Announcements"
+        paragraph="Download official press releases and key announcements."
+      />
+      <div className="mx-auto grid max-w-[1216px] gap-6 md:grid-cols-2">
+        {items.map((pr, i) => (
+          <ScrollReveal key={pr.id} delayMs={i * 90} className="h-full min-h-0">
+            <article className="flex h-full flex-col gap-5 rounded-2xl border border-black/10 bg-white p-6 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.25)]">
+              <div className="space-y-2">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#006c49]">
+                  {pr.dateLabel}
+                </p>
+                <h3 className="text-xl font-bold tracking-tight text-[#131b2e]">{pr.title}</h3>
+                <p className="text-sm leading-6 text-[#444654]">{pr.summary}</p>
+              </div>
+              <div className="mt-auto flex flex-wrap gap-3">
+                <Link
+                  to={`/news/${pr.id}`}
+                  className="inline-flex items-center justify-center rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white transition hover:bg-neutral-900"
+                >
+                  Read article
+                </Link>
+                {pr.sourceUrl ? (
+                  <a
+                    href={pr.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center justify-center rounded-lg border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#131b2e] transition hover:border-black/25 hover:bg-black/3"
+                  >
+                    {pr.sourceName ? `Source: ${pr.sourceName}` : "View source"} ↗
+                  </a>
+                ) : null}
+                {pr.pdfPath ? (
+                  <a
+                    href={pr.pdfPath}
+                    download
+                    className="inline-flex items-center justify-center rounded-lg border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#131b2e] transition hover:border-black/25 hover:bg-black/3"
+                  >
+                    Download PDF
+                  </a>
+                ) : null}
+              </div>
+            </article>
+          </ScrollReveal>
+        ))}
+      </div>
+    </PageScaffold>
+  );
+}
+
+export function NewsArticlePage() {
+  const { id } = useParams();
+  const article = PRESS_RELEASES.find((item) => item.id === id);
+
+  if (!article) {
+    return (
+      <PageScaffold
+        title="News"
+        subtitle="Press releases and announcements from UNMAI Carbon Solutions."
+        bannerImage="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=2000&q=80"
+      >
+        <div className="mx-auto max-w-[850px]">
+          <SectionCard title="Article not found" body="Please return to the News page to view available press releases." />
+          <div className="mt-6">
+            <Link to="/news" className="text-sm font-semibold text-[#006c49] transition hover:underline">
+              ← Back to News
+            </Link>
+          </div>
+        </div>
+      </PageScaffold>
+    );
+  }
+
+  return (
+    <PageScaffold
+      title="News"
+      subtitle="Press releases and announcements from UNMAI Carbon Solutions."
+      bannerImage="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=2000&q=80"
+    >
+      <div className="mx-auto max-w-[850px]">
+        <div className="mb-8">
+          <Link to="/news" className="text-sm font-semibold text-[#006c49] transition hover:underline">
+            ← Back to News
+          </Link>
+        </div>
+
+        <article className="rounded-2xl border border-black/10 bg-white p-7 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.20)] sm:p-10">
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#006c49]">
+            {article.dateLabel}
+          </p>
+          <h1 className="mt-3 text-2xl font-bold tracking-tight text-[#131b2e] sm:text-3xl">
+            {article.title}
+          </h1>
+          <p className="mt-3 text-base leading-7 text-[#444654]">{article.summary}</p>
+
+          <div className="mt-8 space-y-5 text-[15px] leading-7 text-[#2b2d33]">
+            {article.content.map((p, idx) => (
+              <p key={idx}>{p}</p>
+            ))}
+          </div>
+
+          {(article.pdfPath || article.sourceUrl) ? (
+            <div className="mt-10 flex flex-wrap gap-3 border-t border-black/10 pt-6">
+              {article.sourceUrl ? (
+                <a
+                  href={article.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center justify-center rounded-lg border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#131b2e] transition hover:border-black/25 hover:bg-black/3"
+                >
+                  {article.sourceName ? `Read on ${article.sourceName}` : "Read original article"} ↗
+                </a>
+              ) : null}
+              {article.pdfPath ? (
+                <a
+                  href={article.pdfPath}
+                  download
+                  className="inline-flex items-center justify-center rounded-lg border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#131b2e] transition hover:border-black/25 hover:bg-black/3"
+                >
+                  Download original PDF
+                </a>
+              ) : null}
+            </div>
+          ) : null}
+        </article>
       </div>
     </PageScaffold>
   );

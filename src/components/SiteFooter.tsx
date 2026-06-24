@@ -11,6 +11,7 @@ const QUICK_LINKS = [
   { label: "Services", to: "/services" },
   { label: "Digital Infrastructure", to: "/digital-infrastructure" },
   { label: "Global Engagements", to: "/global-engagements" },
+  { label: "News", to: "/news" },
   { label: "Leadership", to: "/founder-advisory-board" },
   { label: "Contact", to: "/contact" },
 ] as const;

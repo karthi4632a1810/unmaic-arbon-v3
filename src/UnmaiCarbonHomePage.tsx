@@ -8,6 +8,7 @@ import { SiteHeader } from "./components/SiteHeader";
 import heroVideo from "./assets/unmai-carbon.mp4";
 import heroThumbnail from "./assets/hero-thumbnail.png";
 import { cacheHeroVideoFromUrl, getCachedHeroVideo } from "./lib/heroVideoCache";
+import { PRESS_RELEASES } from "./data/news";
 import "./App.css";
 
 /** Tailwind `md` breakpoint â€” hero offset matches header height only below this width. */
@@ -28,7 +29,13 @@ const imgStatIcon3 =
   "https://www.figma.com/api/mcp/asset/e959a713-3190-4c66-85fe-479b21c2154e";
 const imgStatIcon4 =
   "https://www.figma.com/api/mcp/asset/c9b15b42-3300-415f-a02c-427695a041ce";
-const platformFeatures = [
+interface PlatformFeature {
+  title: string;
+  body: string;
+  link?: string;
+}
+
+const platformFeatures: readonly PlatformFeature[] = [
   {
     title: "National Carbon Registry Systems",
     body: "Sovereign-grade, high integrity and Paris aligned registries for issuance, transfer, and retirement of domestic and international carbon credits / ITMOs with full transparent governance, traceability and accountability controls.",
@@ -44,8 +51,9 @@ const platformFeatures = [
   {
     title: "NAMBI Framework",
     body: "Interoperable carbon data framework towards achieving high-integrity carbon markets, and enabling climate finance to scale with confidence.",
+    link: "https://www.nambi.earth/",
   },
-] as const;
+];
 
 const methodologyCards = [
   {
@@ -233,9 +241,8 @@ function HeroVideo() {
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
       <video
         ref={videoRef}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none ${
-          isReady ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none ${isReady ? "opacity-100" : "opacity-0"
+          }`}
         autoPlay
         muted
         loop
@@ -314,11 +321,11 @@ export default function UnmaiCarbonHomePage() {
           />
           <HeroVideo />
           <div
-            className="pointer-events-none absolute inset-0 z-[1] bg-black/35 transition-opacity duration-300 ease-out motion-reduce:transition-none md:bg-black/50"
+            className="pointer-events-none absolute inset-0 z-1 bg-black/35 transition-opacity duration-300 ease-out motion-reduce:transition-none md:bg-black/50"
             aria-hidden
           />
           <div
-            className="pointer-events-none absolute inset-0 z-[2] opacity-[0.12] transition-opacity duration-300 ease-out motion-reduce:transition-none md:opacity-20"
+            className="pointer-events-none absolute inset-0 z-2 opacity-[0.12] transition-opacity duration-300 ease-out motion-reduce:transition-none md:opacity-20"
             style={{
               backgroundImage:
                 "radial-gradient(ellipse 90% 60% at 50% 40%, rgba(197,197,214,0.35), transparent 55%)",
@@ -337,33 +344,33 @@ export default function UnmaiCarbonHomePage() {
             */}
             <div className="grid gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-x-12 xl:gap-x-16">
               <div className="flex min-h-0 flex-col gap-10 self-stretch lg:col-span-8 lg:justify-between lg:gap-12 xl:gap-14">
-                <div className="max-w-[52rem] space-y-6">
+                <div className="max-w-208 space-y-6">
                   <div className={heroLine}>
-                    <div className="flex items-center gap-2 items-center">
-                  <div className="mask-logo"></div>
-                    <p className="text-base font-bold uppercase tracking-[0.25em] text-[#e6ff80] sm:text-[26px] sm:leading-6 sm:tracking-[3.2px]">
-                    Building 
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <div className="mask-logo"></div>
+                      <p className="text-base font-bold uppercase tracking-[0.25em] text-[#e6ff80] sm:text-[26px] sm:leading-6 sm:tracking-[3.2px]">
+                        Building
+                      </p>
                     </div>
                   </div>
                   <div className={heroLine}>
                     <h1 className="text-5xl gradient-text font-bold tracking-[-0.02em] text-white sm:text-6xl lg:text-[80px] lg:leading-[1.01] lg:tracking-[-0.04em]">
                       <span className="gradient-text-hero">
-                      The Trust Layer <br /> For Global <br /> Carbon Markets.</span>
+                        The Trust Layer <br /> For Global <br /> Carbon Markets.</span>
                     </h1>
                   </div>
                 </div>
                 {/* <div className={`flex shrink-0 flex-wrap gap-4 ${heroLine}`}>
                   <button
                     type="button"
-                    className="rounded-lg bg-[#e7e8e9] px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-[#191c1d] shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-white hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md"
+                    className="rounded-lg bg-[#e7e8e9] px-8 py-4 text-sm font-bold uppercase tracking-widest text-[#191c1d] shadow-md transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-white hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-md"
                   >
                     Explore Strategic Services
                   </button>
                   <button
                     type="button"
                     onClick={() => setConsultationOpen(true)}
-                    className="rounded-lg border border-[#e6ff80] bg-black px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-white shadow-lg shadow-black/40 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-900 hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0 md:border-0"
+                    className="rounded-lg border border-[#e6ff80] bg-black px-8 py-4 text-sm font-bold uppercase tracking-widest text-white shadow-lg shadow-black/40 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-neutral-900 hover:shadow-xl active:translate-y-0 motion-reduce:hover:translate-y-0 md:border-0"
                   >
                     Schedule Executive Consultation
                   </button>
@@ -406,133 +413,186 @@ export default function UnmaiCarbonHomePage() {
       <section className="border-t border-black/5 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto flex max-w-[1300px] flex-col gap-12 lg:gap-16">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="space-y-2">
-              <p className="text-base font-bold uppercase tracking-[0.1em] text-[#006c49]">
-                Trust Metrics
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <div className="space-y-2">
+                <p className="text-base font-bold uppercase tracking-widest text-[#006c49]">
+                  Trust Metrics
+                </p>
+                <h2 className="text-3xl font-semibold tracking-tight text-[#131b2e] sm:text-4xl">
+                  Trusted Across Governments, Multilaterals, Climate Institutions, NGOs and Global
+                  Corporates
+                </h2>
+              </div>
+              <p className="max-w-md text-left text-base leading-6 text-[#444654] lg:text-right">
+                Supporting sovereign and corporate carbon market and digital infrastructure development,
+                climate finance, and Article 6 implementation across Asia, Africa, and globally.
               </p>
-              <h2 className="text-3xl font-semibold tracking-tight text-[#131b2e] sm:text-4xl">
-                Trusted Across Governments, Multilaterals, Climate Institutions, NGOs and Global
-                Corporates
-              </h2>
             </div>
-            <p className="max-w-md text-left text-base leading-6 text-[#444654] lg:text-right">
-              Supporting sovereign and corporate carbon market and digital infrastructure development,
-              climate finance, and Article 6 implementation across Asia, Africa, and globally.
-            </p>
-          </div>
-          <div
-            className="overflow-hidden rounded-2xl border border-black/[0.09] bg-[white] [background-image:radial-gradient(circle_at_center,rgba(0,0,0,0.055)_1px,transparent_1px)] [background-size:22px_22px]"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-4">
-              {(
-                [
-                  {
-                    step: "01",
-                    color: "black",
-                    category: "Region",
-                    icon: imgStatIcon1,
-                    variant: "plain" as const,
-                    end: 15,
-                    suffix: "+",
-                    label: "Global engagement countries",
-                    accentBorder: "border-[#2b6193]",
-                    accentHover:
-                      " focus-within:bg-emerald-500/[0.06]",
-                  },
-                  {
-                    step: "02",
-                    color: "hsl(217, 91%, 60%)",
-                    category: "Expertise",
-                    icon: imgStatIcon2,
-                    variant: "plain" as const,
-                    end: 50,
-                    suffix: "+",
-                    label: "Years combined experience",
-                    accentBorder: "border-[#2b6193]",
-                    accentHover:
-                      " focus-within:bg-sky-500/[0.06]",
-                  },
-                  {
-                    step: "03",
-                    color: "hsl(34, 90%, 55%)",
-                    category: "Capital",
-                    icon: imgStatIcon3,
-                    variant: "usd" as const,
-                    end: 5,
-                    suffix: "B+",
-                    label: "Climate portfolio",
-                    accentBorder: "border-[#2b6193]",
-                    accentHover:
-                      "h focus-within:bg-amber-500/[0.06]",
-                  },
-                  {
-                    step: "04",
-                    color: "hsl(257, 63%, 52%)",
-                    category: "Assets",
-                    icon: imgStatIcon4,
-                    variant: "plain" as const,
-                    end: 800,
-                    suffix: "M+",
-                    label: "tCO2e project pipeline",
-                    accentBorder: "",
-                    accentHover:
-                      " focus-within:bg-violet-500/[0.06]",
-                  },
-                ] as const
-              ).map((col, i) => (
-                <div
-                  data-step={i + 1}
-                  style={{ ["--accent"]: col.color } as CSSProperties}
-                  key={i}
-                  className={[
-                    "relative stats-hover-item group/stats flex min-h-[220px] flex-col px-6 py-9 transition-colors duration-300 ease-out sm:min-h-0 sm:px-8 sm:py-10 lg:min-h-[280px]",
-                    col.accentHover,
-                    i < 3
-                      ? `max-lg:border-b max-lg:border-dashed lg:border-b-0 lg:border-r lg:border-dashed ${col.accentBorder}`
-                      : "",
-                  ].join(" ")}
-                >
-                  <div className="relative z-[1] mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase leading-snug tracking-[0.14em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-xs">
-                    <span className="inline-flex items-center gap-1.5">
-                      {/* <span>{col.step}</span>
+            <div
+              className="overflow-hidden rounded-2xl border border-black/9 bg-[white] bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.055)_1px,transparent_1px)] bg-size-[22px_22px]"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-4">
+                {(
+                  [
+                    {
+                      step: "01",
+                      color: "black",
+                      category: "Region",
+                      icon: imgStatIcon1,
+                      variant: "plain" as const,
+                      end: 15,
+                      suffix: "+",
+                      label: "Global engagement countries",
+                      accentBorder: "border-[#2b6193]",
+                      accentHover:
+                        " focus-within:bg-emerald-500/[0.06]",
+                    },
+                    {
+                      step: "02",
+                      color: "hsl(217, 91%, 60%)",
+                      category: "Expertise",
+                      icon: imgStatIcon2,
+                      variant: "plain" as const,
+                      end: 50,
+                      suffix: "+",
+                      label: "Years combined experience",
+                      accentBorder: "border-[#2b6193]",
+                      accentHover:
+                        " focus-within:bg-sky-500/[0.06]",
+                    },
+                    {
+                      step: "03",
+                      color: "hsl(34, 90%, 55%)",
+                      category: "Capital",
+                      icon: imgStatIcon3,
+                      variant: "usd" as const,
+                      end: 5,
+                      suffix: "B+",
+                      label: "Climate portfolio",
+                      accentBorder: "border-[#2b6193]",
+                      accentHover:
+                        "h focus-within:bg-amber-500/[0.06]",
+                    },
+                    {
+                      step: "04",
+                      color: "hsl(257, 63%, 52%)",
+                      category: "Assets",
+                      icon: imgStatIcon4,
+                      variant: "plain" as const,
+                      end: 800,
+                      suffix: "M+",
+                      label: "tCO2e project pipeline",
+                      accentBorder: "",
+                      accentHover:
+                        " focus-within:bg-violet-500/[0.06]",
+                    },
+                  ] as const
+                ).map((col, i) => (
+                  <div
+                    data-step={i + 1}
+                    style={{ ["--accent"]: col.color } as CSSProperties}
+                    key={i}
+                    className={[
+                      "relative stats-hover-item group/stats flex min-h-[220px] flex-col px-6 py-9 transition-colors duration-300 ease-out sm:min-h-0 sm:px-8 sm:py-10 lg:min-h-[280px]",
+                      col.accentHover,
+                      i < 3
+                        ? `max-lg:border-b max-lg:border-dashed lg:border-b-0 lg:border-r lg:border-dashed ${col.accentBorder}`
+                        : "",
+                    ].join(" ")}
+                  >
+                    <div className="relative z-1 mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase leading-snug tracking-[0.14em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-xs">
+                      <span className="inline-flex items-center gap-1.5">
+                        {/* <span>{col.step}</span>
                       <img
                         src={col.icon}
                         alt=""
                         className="h-4 w-auto shrink-0 object-contain opacity-85 sm:h-5"
                         aria-hidden
                       /> */}
-                    </span>
-                    <span className="tracking-[0.14em]">{col.category}</span>
-                  </div>
-                  <div className="relative z-[1] flex flex-1 flex-col justify-center transition-colors duration-300">
-                    {col.variant === "usd" ? (
-                      <div className="inline-flex items-center gap-2">
-                        <span className="text-lg font-bold tabular-nums tracking-tight text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white sm:text-xl">
-                          USD
-                        </span>
+                      </span>
+                      <span className="tracking-[0.14em]">{col.category}</span>
+                    </div>
+                    <div className="relative z-1 flex flex-1 flex-col justify-center transition-colors duration-300">
+                      {col.variant === "usd" ? (
+                        <div className="inline-flex items-center gap-2">
+                          <span className="text-lg font-bold tabular-nums tracking-tight text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white sm:text-xl">
+                            USD
+                          </span>
+                          <ImpactCounter
+                            end={col.end}
+                            suffix={col.suffix}
+                            className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
+                          />
+                        </div>
+                      ) : (
                         <ImpactCounter
                           end={col.end}
                           suffix={col.suffix}
                           className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
                         />
-                      </div>
-                    ) : (
-                      <ImpactCounter
-                        end={col.end}
-                        suffix={col.suffix}
-                        className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
-                      />
-                    )}
+                      )}
+                    </div>
+                    <p className="relative z-1 mt-6 max-w-56 text-[13px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-sm">
+                      {col.label}
+                    </p>
                   </div>
-                  <p className="relative z-[1] mt-6 max-w-[14rem] text-[13px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-sm">
-                    {col.label}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
+      </section>
+
+      {/* UN Global Compact / Commitment to Integrity */}
+      <section className="px-4 py-8 sm:px-6 lg:px-8 bg-white border-t border-black/5">
+        <ScrollReveal>
+          <div className="mx-auto max-w-[1152px]">
+            <div className="relative overflow-hidden rounded-2xl border border-slate-100 bg-linear-to-r from-white via-slate-50/50 to-emerald-50/15 p-6 sm:p-8 shadow-[0_2px_15px_rgba(0,0,0,0.01)]">
+
+              {/* Decorative background grid/radial glow */}
+              <div className="absolute inset-0 -z-1 opacity-40" aria-hidden="true">
+                <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-[#006c49]/5 blur-2xl" />
+                {/* Dot grid pattern */}
+                <div
+                  className="absolute inset-0 opacity-[0.05]"
+                  style={{
+                    backgroundImage: "radial-gradient(#006c49 1px, transparent 1px)",
+                    backgroundSize: "20px 20px"
+                  }}
+                />
+              </div>
+
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+                {/* Left side: Logo */}
+                <div className="shrink-0">
+                  <div className="relative group flex items-center justify-center rounded-2xl border border-white/90 bg-white/90 p-4 shadow-[0_8px_20px_rgba(0,0,0,0.02)] backdrop-blur-xs transition-all duration-300 hover:scale-[1.02]">
+                    <img
+                      src="/un-global-compact.png"
+                      alt="United Nations Global Compact Participant logo"
+                      className="h-16 sm:h-30 w-auto object-contain"
+                    />
+                  </div>
+                </div>
+
+                {/* Right side: Content */}
+                <div className="flex-1 space-y-2 text-center md:text-left">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-center md:justify-start gap-2 sm:gap-3">
+                    <h3 className="text-[1.5rem] font-bold tracking-tight text-[#131b2e]">
+                      Our Commitment to <span className="text-[#006c49]">Integrity</span>
+                    </h3>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#006c49] border border-emerald-500/10">
+                      <span className="h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
+                      UN Global Compact Participant
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-[#444654]">
+                    As an active participant in the <strong>United Nations Global Compact</strong>, UNMAI Carbon Solutions is dedicated to upholding the highest global standards for sustainable and responsible business. We believe that true climate action requires measurable accountability, which is why we commit to documenting our efforts annually through the UNGC Communication on Progress (CoP) framework.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </ScrollReveal>
       </section>
 
@@ -540,58 +600,98 @@ export default function UnmaiCarbonHomePage() {
       <section className="di-bg px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto grid max-w-[1274px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div className="space-y-4">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e6ff80]">
-              Digital Infrastructure
-            </p>
-            <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-[44px] sm:leading-[48px] sm:tracking-[-1.92px]">
-              Building the Digital Backbone of Carbon Markets
-            </h2>
-            <p className="max-w-2xl text-base leading-7 text-[#d6d6db]">
-              Mission Critical and institutional-grade digital infrastructure enabling transparency,
-              interoperability, trust, and scalable climate market operations.
-            </p>
-            <ul className="mt-8 space-y-3">
-              {platformFeatures.map((item) => (
-                <li
-                  key={item.title}
-                  className="group flex gap-4 rounded-xl border border-transparent px-3 py-4 transition duration-300 ease-out hover:border-white/10 hover:bg-white/[0.06] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] sm:px-4"
-                >
-                  <div className="mt-1 flex size-6 shrink-0 items-center justify-center rounded-md border border-[#e6ff80]/25 bg-[#e6ff80]/10 text-[#e6ff80] transition duration-300 group-hover:scale-110 group-hover:bg-[#e6ff80] group-hover:text-[#003932]">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="size-4"
-                      aria-hidden="true"
+            <div className="space-y-4">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e6ff80]">
+                Digital Infrastructure
+              </p>
+              <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-[44px] sm:leading-[48px] sm:tracking-[-1.92px]">
+                Building the Digital Backbone of Carbon Markets
+              </h2>
+              <p className="max-w-2xl text-base leading-7 text-[#d6d6db]">
+                Mission Critical and institutional-grade digital infrastructure enabling transparency,
+                interoperability, trust, and scalable climate market operations.
+              </p>
+              <ul className="mt-8 space-y-3">
+                {platformFeatures.map((item) => {
+                  const content = (
+                    <>
+                      <div className="mt-1 flex size-6 shrink-0 items-center justify-center rounded-md border border-[#e6ff80]/25 bg-[#e6ff80]/10 text-[#e6ff80] transition duration-300 group-hover:scale-110 group-hover:bg-[#e6ff80] group-hover:text-[#003932]">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="size-4"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M5 12.5L9.2 16.5L19 7"
+                            stroke="currentColor"
+                            strokeWidth="2.4"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <div className="space-y-1">
+                        <h3 className="text-lg font-bold text-white transition group-hover:text-[#e6ff80] inline-flex items-center gap-1.5">
+                          {item.title}
+                          {item.link && (
+                            <svg
+                              className="size-3.5 opacity-60 transition duration-300 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                              aria-hidden="true"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                              />
+                            </svg>
+                          )}
+                        </h3>
+                        <p className="text-base leading-6 text-[#dbdbdb]">{item.body}</p>
+                      </div>
+                    </>
+                  );
+
+                  if (item.link) {
+                    return (
+                      <li key={item.title}>
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="group flex gap-4 rounded-xl border border-transparent px-3 py-4 transition duration-300 ease-out hover:border-white/10 hover:bg-white/6 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] sm:px-4 cursor-pointer"
+                        >
+                          {content}
+                        </a>
+                      </li>
+                    );
+                  }
+
+                  return (
+                    <li
+                      key={item.title}
+                      className="group flex gap-4 rounded-xl border border-transparent px-3 py-4 transition duration-300 ease-out hover:border-white/10 hover:bg-white/6 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] sm:px-4"
                     >
-                      <path
-                        d="M5 12.5L9.2 16.5L19 7"
-                        stroke="currentColor"
-                        strokeWidth="2.4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="text-lg font-bold text-white transition group-hover:text-[#e6ff80]">
-                      {item.title}
-                    </h3>
-                    <p className="text-base leading-6 text-[#dbdbdb]">{item.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+                      {content}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className="flex items-center justify-center mx-auto group relative aspect-square max-h-[min(90vw,560px)] overflow-hidden rounded-[30px] transition duration-500 ease-out lg:max-h-none">
+              <img
+                src={imgImage5}
+                alt="Carbon market platform visualization"
+                className="size-full object-cantain transition duration-500 ease-out group-hover:scale-[0.98] motion-reduce:group-hover:scale-100"
+              />
+            </div>
           </div>
-          <div className="flex items-center justify-center mx-auto group relative aspect-square max-h-[min(90vw,560px)] overflow-hidden rounded-[30px] transition duration-500 ease-out lg:max-h-none">
-            <img
-              src={imgImage5}
-              alt="Carbon market platform visualization"
-              className="size-full object-cantain transition duration-500 ease-out group-hover:scale-[0.98] motion-reduce:group-hover:scale-100"
-            />
-          </div>
-        </div>
         </ScrollReveal>
       </section>
 
@@ -612,9 +712,9 @@ export default function UnmaiCarbonHomePage() {
                 key={card.n}
                 delayMs={i * 100}
                 className="h-full min-h-0 cms-section"
-                
+
               >
-                <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-gradient-to-b from-white to-slate-50/90 p-6 shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#334ac9]/20 hover:shadow-[0_20px_50px_-24px_rgba(51,74,201,0.18)] motion-reduce:hover:translate-y-0 sm:p-8 hover:-rotate-2">
+                <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-linear-to-b from-white to-slate-50/90 p-6 shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#334ac9]/20 hover:shadow-[0_20px_50px_-24px_rgba(51,74,201,0.18)] motion-reduce:hover:translate-y-0 sm:p-8 hover:-rotate-2">
                   <div aria-hidden className="num-masking block leading-none mb-20">
                     <ImpactCounter
                       start={i}
@@ -624,7 +724,7 @@ export default function UnmaiCarbonHomePage() {
                       className={`pointer-events-none select-none font-black tabular-nums ${card.color} text-7xl leading-none opacity-[0.30] sm:text-[96px] sm:leading-none`}
                     />
                   </div>
-                  <div className="relative z-[1] -mt-14 space-y-3 sm:-mt-[4.25rem]">
+                  <div className="relative z-1 -mt-14 space-y-3 sm:-mt-17">
                     <h3 className="text-xl font-bold tracking-tight text-[#131b2e] sm:text-2xl">
                       {card.title}
                     </h3>
@@ -637,6 +737,76 @@ export default function UnmaiCarbonHomePage() {
         </div>
       </section>
 
+      {/* News */}
+      <section className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto max-w-[1152px]">
+          <ScrollReveal>
+            <div className="flex flex-col items-center gap-4 text-center">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#006c49]">
+                News
+              </p>
+              <h2 className="text-3xl font-bold tracking-tight text-[#131b2e] sm:text-5xl sm:tracking-[-1.2px]">
+                Press Releases
+              </h2>
+              <div className="h-1 w-12 rounded-full bg-[#334ac9]" aria-hidden />
+            </div>
+          </ScrollReveal>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {PRESS_RELEASES.map((pr, i) => (
+              <ScrollReveal key={pr.id} delayMs={i * 90} className="h-full min-h-0">
+                <article className="flex h-full flex-col gap-5 rounded-2xl border border-black/10 bg-white p-6 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.18)]">
+                  <div className="space-y-2">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#006c49]">
+                      {pr.dateLabel}
+                    </p>
+                    <h3 className="text-xl font-bold tracking-tight text-[#131b2e]">{pr.title}</h3>
+                    <p className="text-sm leading-6 text-[#444654]">{pr.summary}</p>
+                  </div>
+                  <div className="mt-auto flex flex-wrap gap-3">
+                    <a
+                      href={`/news/${pr.id}`}
+                      className="inline-flex items-center justify-center rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white transition hover:bg-neutral-900"
+                    >
+                      Read article
+                    </a>
+                    {pr.sourceUrl ? (
+                      <a
+                        href={pr.sourceUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="inline-flex items-center justify-center rounded-lg border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#131b2e] transition hover:border-black/25 hover:bg-black/3"
+                      >
+                        {pr.sourceName ? `Source: ${pr.sourceName}` : "View source"} ↗
+                      </a>
+                    ) : null}
+                    {pr.pdfPath ? (
+                      <a
+                        href={pr.pdfPath}
+                        download
+                        className="inline-flex items-center justify-center rounded-lg border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#131b2e] transition hover:border-black/25 hover:bg-black/3"
+                      >
+                        Download PDF
+                      </a>
+                    ) : null}
+                  </div>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <ScrollReveal>
+              <a
+                href="/news"
+                className="inline-flex items-center justify-center rounded-full border border-black/15 bg-white px-6 py-2.5 text-sm font-semibold text-[#131b2e] transition hover:border-black/25 hover:bg-black/3"
+              >
+                View all news
+              </a>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
 
       <SiteCta />
 

@@ -1,5 +1,8 @@
 import { lazy, Suspense, useState } from "react";
-import type { GlobalEngagementPlace } from "../lib/engagementMapUtils";
+import {
+  getEngagementCountryGroups,
+  type GlobalEngagementPlace,
+} from "../lib/engagementMapUtils";
 
 const EngagementGlobeView = lazy(() =>
   import("./EngagementGlobeView").then((m) => ({ default: m.EngagementGlobeView })),
@@ -25,6 +28,16 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     engagement: "Carbon Credit Projects Advisory",
     lat: 39.9042,
     lng: 116.4074,
+  },
+  {
+    id: "india-chennai",
+    country: "India",
+    capital: "Chennai",
+    city: "Chennai",
+    engagement: "Development of CBG Projects",
+    showFootnoteStar: false,
+    lat: 13.0827,
+    lng: 80.2707,
   },
   {
     id: "ghana",
@@ -135,13 +148,13 @@ function MapPinIcon({ className }: { className?: string }) {
 }
 
 function LocationsVerticalList({
-  places,
-  selectedId,
-  onSelectPlace,
+  countryGroups,
+  selectedCountry,
+  onSelectCountry,
 }: {
-  places: readonly GlobalEngagementPlace[];
-  selectedId: string | null;
-  onSelectPlace: (id: string | null) => void;
+  countryGroups: ReturnType<typeof getEngagementCountryGroups>;
+  selectedCountry: string | null;
+  onSelectCountry: (country: string | null) => void;
 }) {
   const itemClass = (active: boolean) =>
     [
@@ -157,27 +170,27 @@ function LocationsVerticalList({
       className="india-map-country-panel flex h-full max-h-full w-full flex-col overflow-hidden rounded-2xl border border-white/15 bg-[rgba(10,14,24,0.22)] shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-md backdrop-saturate-150"
     >
       <p className="shrink-0 border-b border-white/8 bg-white/3 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
-        Locations
+        Countries
       </p>
       <div className="india-map-country-panel-scroll flex flex-col gap-1 overflow-y-auto p-2.5">
         <button
           type="button"
-          onClick={() => onSelectPlace(null)}
-          className={itemClass(selectedId === null)}
+          onClick={() => onSelectCountry(null)}
+          className={itemClass(selectedCountry === null)}
         >
           <span className="text-sm font-semibold">Global view</span>
         </button>
 
-        {places.map((place) => {
-          const active = selectedId === place.id;
+        {countryGroups.map((group) => {
+          const active = selectedCountry === group.country;
           return (
             <button
-              key={place.id}
+              key={group.country}
               type="button"
-              onClick={() => onSelectPlace(place.id)}
+              onClick={() => onSelectCountry(group.country)}
               className={itemClass(active)}
             >
-              <span className="text-sm font-semibold">{place.country}</span>
+              <span className="text-sm font-semibold">{group.country}</span>
             </button>
           );
         })}
@@ -198,8 +211,9 @@ function GlobeLoadingFallback() {
 }
 
 export function IndiaEngagementMap() {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const places = GLOBAL_ENGAGEMENT_PLACES;
+  const countryGroups = getEngagementCountryGroups(places);
 
   return (
     <section
@@ -231,10 +245,10 @@ export function IndiaEngagementMap() {
             </span>
             <div>
               <p className="text-2xl font-bold leading-none tracking-tight text-[#131b2e]">
-                {places.length}
+                {countryGroups.length}
               </p>
               <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#5c6b62]">
-                Active locations
+                Countries
               </p>
             </div>
           </div>
@@ -246,8 +260,8 @@ export function IndiaEngagementMap() {
               <Suspense fallback={<GlobeLoadingFallback />}>
                 <EngagementGlobeView
                   places={places}
-                  selectedId={selectedId}
-                  onSelectPlace={setSelectedId}
+                  selectedCountry={selectedCountry}
+                  onSelectCountry={setSelectedCountry}
                   className="engagement-globe-canvas h-full min-h-full w-full"
                 />
               </Suspense>
@@ -268,9 +282,9 @@ export function IndiaEngagementMap() {
             <aside className="pointer-events-none absolute inset-x-4 bottom-4 z-30 flex max-h-[min(42vh,380px)] items-stretch sm:inset-x-auto sm:right-6 sm:bottom-auto sm:top-1/2 sm:max-h-[min(66vh,680px)] sm:w-[min(340px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8">
               <div className="pointer-events-auto w-full min-w-0">
                 <LocationsVerticalList
-                  places={places}
-                  selectedId={selectedId}
-                  onSelectPlace={setSelectedId}
+                  countryGroups={countryGroups}
+                  selectedCountry={selectedCountry}
+                  onSelectCountry={setSelectedCountry}
                 />
               </div>
             </aside>

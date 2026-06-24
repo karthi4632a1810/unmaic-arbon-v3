@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { label: "Services", to: "/services" },
   { label: "Digital Infrastructure", to: "/digital-infrastructure" },
   { label: "Global Engagements", to: "/global-engagements" },
+  { label: "News", to: "/news" },
   { label: "Leadership", to: "/founder-advisory-board" },
 ] as const;
 
@@ -48,7 +49,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
     <header
       ref={ref}
       className={[
-        "fixed left-1/2 z-[99] -translate-x-1/2 transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
+        "fixed left-1/2 z-99 -translate-x-1/2 transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
         "top-0 w-screen rounded-none border-0 border-b border-black/8 bg-white px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.08)] sm:px-6",
         !navDocked
           ? "md:top-6 md:w-[min(1300px,calc(100%-2rem))] md:rounded-full md:border md:border-white/12 md:bg-[rgba(0,0,0,0.20)] md:px-8 md:py-3.5 md:shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
