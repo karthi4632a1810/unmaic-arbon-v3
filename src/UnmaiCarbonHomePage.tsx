@@ -33,6 +33,7 @@ interface PlatformFeature {
   title: string;
   body: string;
   link?: string;
+  cls?: string;
 }
 
 const platformFeatures: readonly PlatformFeature[] = [
@@ -52,6 +53,7 @@ const platformFeatures: readonly PlatformFeature[] = [
     title: "NAMBI Framework",
     body: "Interoperable carbon data framework towards achieving high-integrity carbon markets, and enabling climate finance to scale with confidence.",
     link: "https://www.nambi.earth/",
+    cls: "custom-text",
   },
 ];
 
@@ -633,7 +635,7 @@ export default function UnmaiCarbonHomePage() {
                         </svg>
                       </div>
                       <div className="space-y-1">
-                        <h3 className="text-lg font-bold text-white transition group-hover:text-[#e6ff80] inline-flex items-center gap-1.5">
+                        <h3 className={`${item.cls || ""} text-lg font-bold text-white transition group-hover:text-[#e6ff80] inline-flex items-center gap-1.5`}>
                           {item.title}
                           {item.link && (
                             <svg
