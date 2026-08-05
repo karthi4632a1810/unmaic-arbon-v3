@@ -10,7 +10,7 @@
 | TRUST / METRICS — Trusted Across Governments, Multilaterals & Climate Institutions | TRUST METRICS (REMOVE BACK SLASH /) — Trusted Across Governments, Multilaterals, Climate Institutions, NGOs and Global Corporates | |
 | Supporting sovereign carbon market development, climate finance systems, and Article 6 implementation across Asia, Africa, and the Middle East. | Supporting sovereign and corporate carbon market and digital infrastructure development, climate finance, and Article 6 implementation across Asia, Africa, and globally. | |
 | Region 15+ Global Engagement Countries | NO CHANGE | |
-| Expertise 50+ YEARS COMBINED EXPERIENCE | NO CHANGE | |
+| Expertise 100+ YEARS COMBINED EXPERIENCE | NO CHANGE | |
 | CAPITAL USD5B+ CLIMATE PORTFOLIO | NO CHANGE | |
 | ASSETS 200M+ TCO₂E PROJECT PIPELINE | ASSETS 800M+ TCO2e PROJECT PIPELINE | |
 | **DIGITAL INFRASTRUCTURE** — Building the Digital Backbone of Carbon Markets — Enterprise-grade digital infrastructure enabling transparency, interoperability, trust, and scalable climate market operations. | **DIGITAL INFRASTRUCTURE** — **Building the Digital Backbone of Carbon Markets** — Mission Critical and institutional-grade digital infrastructure enabling transparency, interoperability, trust, and scalable climate market operations. | |
@@ -42,7 +42,7 @@
 | Current Version | Suggested Version | Remarks |
 |---|---|---|
 | GLOBAL ENGAGEMENTS — Active Across Asia, Africa & The Middle East — Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems. | NO CHANGE | |
-| 15+ COUNTRIES ENGAGED — 50+ Years COMBINED EXPERTISE — 6+ MULTILATERAL AND SOVEREIGN ENGAGEMENTS | NO CHANGE | |
+| 15+ COUNTRIES ENGAGED — 100+ Years COMBINED EXPERTISE — 6+ MULTILATERAL AND SOVEREIGN ENGAGEMENTS | NO CHANGE | |
 | Partner to Operationalize High-Integrity Carbon Markets. Bridging climate policy, carbon finance, and digital innovation through sovereign-grade advisory and interoperable carbon infrastructure. | **Partner to Achieve High-Integrity Carbon Markets and Scale Climate Ambition.** Bridging climate policy, carbon finance, and digital innovation through institutional-grade advisory and interoperable carbon infrastructure. | |
 | Unmai Carbon Solutions — Truth · Transparency · Traceability · Integrity | **UNMAI Carbon Solutions** — Truth . Transparency. Traceability . Integrity | **UNMAI in Capital Letters** |
 
@@ -146,5 +146,18 @@ Dr. Mathur currently serves as Professor of Practice at the School of Public Pol
 **LinkedIn:** https://www.linkedin.com/in/chintan-shah-5b82613/
 
 Chintan Shah is a renewable energy veteran with over three decades of experience in India's green energy sector. He is the Founder of **SustCred**, a consultancy firm, and has previously held leadership roles including Vice President & Head at Suzlon, Group President at ReNew, and Director at IREDA Ltd. Mr. Shah brings rich expertise of three decades in various roles across the value chain of India's Renewable Energy ecosystem including Solar, Wind, Storage, Manufacturing, Financing, R&D and Policy formulation. He has spearheaded multiple projects for appraisal, financing, policy formulation, planning and monitoring of Renewable Energy Projects. He started his career from TERI in the year 1996.
+
+---
+
+#### DR. BHASKAR NATARAJAN
+**LinkedIn:** https://in.linkedin.com/in/bhaskar-natarajan-64609150
+
+Dr. Bhaskar Natarajan has over thirty years’ experience in the field of climate change and sustainable development. Dr. Bhaskar has worked with the public and private sectors, civil society organizations and funding agencies. Dr. Bhaskar has worked with grassroots agencies to implement renewable energy and energy efficiency projects across India.
+
+He has worked on projects, supported by World Bank, USAID, ADB, UNDP, CIDA and DFID among others, and has been a part of several official government and industry committees of energy and environment.
+
+He has also written and published in national and international journals and other publications apart from contributing to a book on Renewable Energy Policy.
+
+Among key positions held are Deputy Chief of Party (Energy Efficiency) with the USAID PACE-D project, Managing Director of C-Quest Capital Green Ventures (the Indian arm of C-Quest Capital, US), Senior Advisor and Fellow with the Alliance for an Energy Efficient Economy. He currently advises CSOs on climate change and sustainability.
 
 > **Note:** Insert photos for all advisory board members.

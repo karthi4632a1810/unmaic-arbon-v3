@@ -4,12 +4,13 @@ type TeamBioModalProps = {
   open: boolean;
   name: string;
   role?: string;
+  category?: string;
   bio: string;
   linkedIn?: string;
   onClose: () => void;
 };
 
-export function TeamBioModal({ open, name, role, bio, linkedIn, onClose }: TeamBioModalProps) {
+export function TeamBioModal({ open, name, role, category, bio, linkedIn, onClose }: TeamBioModalProps) {
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -50,7 +51,7 @@ export function TeamBioModal({ open, name, role, bio, linkedIn, onClose }: TeamB
         <div className="space-y-4 pr-8">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#006c49]">
-              Global Strategic Advisory Board
+              {category || "Global Strategic Advisory Board"}
             </p>
             <h2 id="team-bio-modal-title" className="mt-2 text-2xl font-bold text-[#131b2e]">
               {name}

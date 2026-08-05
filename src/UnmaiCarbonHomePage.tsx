@@ -425,7 +425,7 @@ export default function UnmaiCarbonHomePage() {
                   Corporates
                 </h2>
               </div>
-              <p className="max-w-md text-left text-base leading-6 text-[#444654] lg:text-right">
+              <p className="max-w-md text-base leading-6 text-[#444654] text-justify">
                 Supporting sovereign and corporate carbon market and digital infrastructure development,
                 climate finance, and Article 6 implementation across Asia, Africa, and globally.
               </p>
@@ -455,7 +455,7 @@ export default function UnmaiCarbonHomePage() {
                       category: "Expertise",
                       icon: imgStatIcon2,
                       variant: "plain" as const,
-                      end: 50,
+                      end: 100,
                       suffix: "+",
                       label: "Years combined experience",
                       accentBorder: "border-[#2b6193]",
