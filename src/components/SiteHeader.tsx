@@ -22,7 +22,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const socialLinkClass = navDocked
     ? "flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 text-black/70 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-black hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0"
-    : "flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 text-black/70 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-black hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0 md:border-white/20 md:bg-white/10 md:text-white md:hover:border-white/30 md:hover:bg-white/20 md:hover:text-white md:hover:shadow-[0_8px_24px_rgba(255,255,255,0.12)]";
+    : "flex size-8 items-center justify-center rounded-md border border-black/10 bg-black/5 text-black/70 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-black hover:shadow-md active:translate-y-0 motion-reduce:hover:translate-y-0 lg:border-white/20 lg:bg-white/10 lg:text-white lg:hover:border-white/30 lg:hover:bg-white/20 lg:hover:text-white lg:hover:shadow-[0_8px_24px_rgba(255,255,255,0.12)]";
 
   useEffect(() => {
     const onScroll = () => {
@@ -35,7 +35,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
 
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768) setMobileMenuOpen(false);
+      if (window.innerWidth >= 1024) setMobileMenuOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -52,12 +52,12 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
         "fixed left-1/2 z-99 -translate-x-1/2 transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
         "top-0 w-screen rounded-none border-0 border-b border-black/8 bg-white px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.08)] sm:px-6",
         !navDocked
-          ? "md:top-6 md:w-[min(1300px,calc(100%-2rem))] md:rounded-full md:border md:border-white/12 md:bg-[rgba(0,0,0,0.20)] md:px-8 md:py-3.5 md:shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
+          ? "lg:top-6 lg:w-[min(1300px,calc(100%-2rem))] lg:rounded-full lg:border lg:border-white/12 lg:bg-[rgba(0,0,0,0.20)] lg:px-8 lg:py-3.5 lg:shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
           : "",
       ].join(" ")}
     >
       <nav
-        className="mx-auto flex max-w-[1300px] flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6"
+        className="mx-auto flex max-w-[1300px] flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-6"
         aria-label="Primary"
       >
         <div className="flex items-center justify-between gap-4">
@@ -66,23 +66,23 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
             className={
               navDocked
                 ? "flex items-center justify-center gap-2 text-xl font-bold tracking-tight text-black transition hover:text-black/90"
-                : "flex items-center justify-center gap-2 text-xl font-bold tracking-tight text-black transition hover:text-black/90 md:text-white md:hover:text-white/90"
+                : "flex items-center justify-center gap-2 text-xl font-bold tracking-tight text-black transition hover:text-black/90 lg:text-white lg:hover:text-white/90"
             }
           >
             {navDocked ? (
               <img src={imgLogoBlack} alt="UNMAI Carbon" className="block size-10" />
             ) : (
               <>
-                <img src={imgLogoBlack} alt="UNMAI Carbon" className="block size-10 md:hidden" />
-                <img src={imgLogoWhite} alt="UNMAI Carbon" className="hidden size-10 md:block" />
+                <img src={imgLogoBlack} alt="UNMAI Carbon" className="block size-10 lg:hidden" />
+                <img src={imgLogoWhite} alt="UNMAI Carbon" className="hidden size-10 lg:block" />
               </>
             )}
             <div className="flex flex-col">
               <span
                 className={
                   navDocked
-                    ? "text-[1.75rem] font-bold tracking-tight text-black"
-                    : "text-[1.75rem] font-bold tracking-tight text-black md:text-white "
+                    ? "text-2xl font-bold tracking-tight text-black xs:text-[1.75rem]"
+                    : "text-2xl font-bold tracking-tight text-black xs:text-[1.75rem] lg:text-white"
                 }
               >
                 UNMAI
@@ -98,7 +98,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
               </span> */}
             </div>
           </ScrollLink>
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen((v) => !v)}
@@ -115,7 +115,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
           id="site-mobile-menu"
           className={`${
             mobileMenuOpen ? "flex" : "hidden"
-          } flex-col items-stretch gap-2 rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,0.12)] md:flex md:flex-1 md:flex-row md:items-center md:justify-center md:gap-x-6 md:gap-y-2 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none`}
+          } max-h-[calc(100dvh-6rem)] flex-col items-stretch gap-2 overflow-y-auto rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,0.12)] lg:flex lg:max-h-none lg:flex-1 lg:flex-row lg:items-center lg:justify-center lg:gap-x-5 lg:gap-y-2 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none xl:gap-x-6`}
         >
           {NAV_LINKS.map(({ label, to }) => {
             const active = pathname === to;
@@ -126,13 +126,13 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
                 onClick={() => setMobileMenuOpen(false)}
                 className={
                   navDocked
-                    ? `text-sm font-medium tracking-tight text-black/80 transition-colors duration-200 hover:text-black ${
+                    ? `whitespace-nowrap text-sm font-medium tracking-tight text-black/80 transition-colors duration-200 hover:text-black ${
                         active ? "border-b-2 border-black pb-0.5 text-black" : ""
                       }`
-                    : `text-sm font-medium tracking-tight transition-colors duration-200 hover:text-black md:hover:text-white ${
+                    : `whitespace-nowrap text-sm font-medium tracking-tight transition-colors duration-200 hover:text-black lg:hover:text-white ${
                         active
-                          ? "border-b-2 border-black pb-0.5 text-black md:border-white md:text-white"
-                          : "text-black/80 md:text-neutral-300"
+                          ? "border-b-2 border-black pb-0.5 text-black lg:border-white lg:text-white"
+                          : "text-black/80 lg:text-neutral-300"
                       }`
                 }
               >
@@ -140,7 +140,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
               </ScrollLink>
             );
           })}
-          <div className="mt-2 flex items-center gap-2 border-t border-black/10 pt-3 md:hidden">
+          <div className="mt-2 flex items-center gap-2 border-t border-black/10 pt-3 lg:hidden">
             <a
               href={COMPANY_LINKEDIN_URL}
               target="_blank"
@@ -160,7 +160,7 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
             </a>
           </div>
         </div>
-        <div className="hidden gap-2 md:flex">
+        <div className="hidden gap-2 lg:flex">
           <a
             href={COMPANY_LINKEDIN_URL}
             target="_blank"

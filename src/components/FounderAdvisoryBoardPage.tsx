@@ -52,7 +52,7 @@ const CORE_TEAM: TeamMember[] = [
     linkedIn: "https://www.linkedin.com/in/souvik-mitra-4770ab39/",
   },
   {
-    name: "Boudhyyan Duttaa",
+    name: "Boudhhayan Duttaa",
     role: "CBG Business Head",
     image: TEAM_PHOTOS.boudhyyan,
     linkedIn: "https://www.linkedin.com/in/boudhhayanduttaa/",
@@ -92,7 +92,7 @@ const ADVISORY_BOARD: AdvisoryMember[] = [
 function EnterpriseBanner({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <section
-      className="relative overflow-hidden px-4 pb-14 pt-36 text-white sm:px-6 sm:pt-40 lg:px-8 lg:pt-44"
+      className="relative overflow-hidden px-4 pb-10 pt-24 text-white sm:px-6 sm:pb-12 sm:pt-28 lg:px-8 lg:pt-32"
       style={{
         backgroundImage:
           "linear-gradient(120deg, rgba(8,12,21,0.9), rgba(19,27,46,0.82)), url(https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=80)",
@@ -100,12 +100,16 @@ function EnterpriseBanner({ title, subtitle }: { title: string; subtitle: string
         backgroundPosition: "center",
       }}
     >
-      <div className="mx-auto max-w-[1216px] space-y-5">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#e6ff80]">
+      <div className="mx-auto max-w-[1216px] space-y-4 sm:space-y-5">
+        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#e6ff80] xs:text-xs">
           UNMAI Carbon Solutions
         </p>
-        <h1 className="max-w-4xl text-3xl font-bold tracking-tight sm:text-5xl">{title}</h1>
-        <p className="max-w-3xl text-base leading-7 text-white/80 sm:text-lg">{subtitle}</p>
+        <h1 className="max-w-4xl text-2xl font-bold leading-tight tracking-tight xs:text-3xl sm:text-4xl lg:text-5xl">
+          {title}
+        </h1>
+        <p className="max-w-3xl text-sm leading-6 text-white/80 xs:text-base xs:leading-7 sm:text-lg">
+          {subtitle}
+        </p>
       </div>
     </section>
   );
@@ -122,14 +126,16 @@ function SectionIntro({
 }) {
   return (
     <ScrollReveal>
-      <div className="mx-auto mb-12 flex max-w-[1216px] flex-col gap-6 border-b border-black/8 pb-8 md:mb-14 md:flex-row md:items-center md:justify-between md:gap-10">
+      <div className="mx-auto mb-8 flex max-w-[1216px] flex-col gap-5 border-b border-black/8 pb-6 sm:gap-6 sm:pb-8 md:mb-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         <div className="space-y-2">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#006c49]">{title}</p>
-          <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-[#131b2e] sm:text-4xl">
+          <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#006c49]">{title}</p>
+          <h2 className="display-head max-w-2xl text-[clamp(1.7rem,4.4vw,2.9rem)] font-bold leading-[1.05] tracking-[-0.02em] text-[#131b2e]">
             {subtitle}
           </h2>
         </div>
-        <p className="max-w-xl text-left text-base leading-7 text-[#444654] md:text-right">{paragraph}</p>
+        <p className="max-w-xl text-left text-sm leading-6 text-[#444654] xs:text-base xs:leading-7 lg:text-right">
+          {paragraph}
+        </p>
       </div>
     </ScrollReveal>
   );
@@ -181,15 +187,7 @@ function MemberPhoto({ name, image }: { name: string; image?: string }) {
   return <MemberPhotoPlaceholder name={name} />;
 }
 
-
-
-function CoreTeamCard({
-  person,
-  onOpenBio,
-}: {
-  person: TeamMember;
-  onOpenBio?: () => void;
-}) {
+function CoreTeamCard({ person, onOpenBio }: { person: TeamMember; onOpenBio?: () => void }) {
   const bioText = person.bio || person.shortBio;
   const hasBio = Boolean(bioText && onOpenBio);
 
@@ -199,15 +197,15 @@ function CoreTeamCard({
         <button
           type="button"
           onClick={onOpenBio}
-          className="relative flex w-full justify-center pt-8 pb-3"
+          className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8"
         >
-          <div className="relative size-48 sm:size-52 lg:size-56 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-[#006c49]/50">
+          <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-[#006c49]/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
             <MemberPhoto name={person.name} image={person.image} />
           </div>
         </button>
       ) : (
-        <div className="relative flex w-full justify-center pt-8 pb-3">
-          <div className="relative size-48 sm:size-52 lg:size-56 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-[#006c49]/50">
+        <div className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8">
+          <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-[#006c49]/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
             <MemberPhoto name={person.name} image={person.image} />
           </div>
         </div>
@@ -233,7 +231,9 @@ function CoreTeamCard({
           <p className="text-sm font-medium text-[#2b6193]">{person.role}</p>
         </div>
         {bioText ? (
-          <p className="line-clamp-4 flex-1 text-center text-sm leading-6 text-[#444654]">{bioText}</p>
+          <p className="line-clamp-4 flex-1 text-center text-sm leading-6 text-[#444654]">
+            {bioText}
+          </p>
         ) : (
           <div className="flex-1" />
         )}
@@ -264,21 +264,15 @@ function CoreTeamCard({
   );
 }
 
-function AdvisoryCard({
-  person,
-  onOpenBio,
-}: {
-  person: AdvisoryMember;
-  onOpenBio: () => void;
-}) {
+function AdvisoryCard({ person, onOpenBio }: { person: AdvisoryMember; onOpenBio: () => void }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#334ac9]/20 hover:shadow-[0_20px_50px_-24px_rgba(51,74,201,0.18)] motion-reduce:hover:translate-y-0">
       <button
         type="button"
         onClick={onOpenBio}
-        className="relative flex w-full justify-center pt-8 pb-3"
+        className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8"
       >
-        <div className="relative size-48 sm:size-52 lg:size-56 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-[#006c49]/50">
+        <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-[#006c49]/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
           <MemberPhoto name={person.name} image={person.image} />
         </div>
       </button>
@@ -296,7 +290,9 @@ function AdvisoryCard({
           </button>
           <p className="text-sm font-medium text-[#2b6193]">{person.role}</p>
         </div>
-        <p className="line-clamp-4 flex-1 text-center text-sm leading-6 text-[#444654]">{person.bio}</p>
+        <p className="line-clamp-4 flex-1 text-center text-sm leading-6 text-[#444654]">
+          {person.bio}
+        </p>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
           <button
             type="button"
@@ -350,7 +346,10 @@ type BioModalData = {
 export function FounderAdvisoryBoardPage() {
   const [activeBioMember, setActiveBioMember] = useState<BioModalData | null>(null);
   const coreTeamSorted = useMemo(
-    () => [...CORE_TEAM].sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" })),
+    () =>
+      [...CORE_TEAM].sort((a, b) =>
+        a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
+      ),
     [],
   );
 
@@ -364,7 +363,7 @@ export function FounderAdvisoryBoardPage() {
         title="Leadership"
         subtitle="Institutional leadership guiding sovereign-grade climate advisory, carbon finance, and digital market infrastructure."
       />
-      <main className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <main className="px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
         <SectionIntro
           title="Core Team"
           subtitle="Leadership Across Policy, Finance & Digital Infrastructure"
@@ -393,7 +392,7 @@ export function FounderAdvisoryBoardPage() {
           ))}
         </div>
 
-        <div className="mt-20">
+        <div className="mt-10 sm:mt-12">
           <SectionIntro
             title="Global Strategic Advisory Board"
             subtitle="Strategic Guidance from Global Climate Leaders"

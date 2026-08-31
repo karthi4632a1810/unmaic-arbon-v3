@@ -1,12 +1,53 @@
-.custom-text {
-  text-decoration-line: underline !important;
+/* ---- Five-element motifs ------------------------------------------------ */
+
+.motif-drift {
+  animation: motif-drift-x 26s linear infinite;
+}
+
+@keyframes motif-drift-x {
+  from {
+    transform: translateX(-140px);
+  }
+
+  to {
+    transform: translateX(140px);
+  }
+}
+
+.motif-orbit {
+  animation: motif-spin 68s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes motif-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/** Numerals and display headings: Archivo, widened. */
+.display-figure {
+  font-family: "Archivo", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-stretch: 115%;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+.display-head {
+  font-family: "Archivo", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-stretch: 105%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .motif-drift,
+  .motif-orbit {
+    animation: none;
+  }
 }
 
 .di-bg {
-  background-image: linear-gradient(148deg, hsl(173, 100%, 1%), hsl(173, 100%, 3%));
-  /* background-image: url(/unmai-background.png); */
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: linear-gradient(148deg, hsl(173, 100%, 1%), hsl(173, 100%, 3%));
 }
 
 .gradient-text-hero {
@@ -18,9 +59,18 @@
   font-weight: bold;
 }
 
+/* Hero headline: white at the top lines, cooling to grey by the last line. */
+.hero-title-sheen {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 44%, #c4ced7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
 .mask-logo {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   background-color: hsl(72, 100%, 75%);
   mask-image: url('/logo-w.png');
   mask-size: cover;
@@ -28,44 +78,11 @@
   mask-position: center;
 }
 
-.wave-bg {
-  position: relative;
-  isolation: isolate;
-}
-
-.wave-bg::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: 100vw;
-  height: 130%;
-  background-image: url('/wave.svg');
-  background-size: auto 100%;
-  background-position: center;
-  background-repeat: repeat-x;
-  z-index: -1;
-  opacity: 0.03;
-}
-
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+/* Matches the hero eyebrow's larger type at `lg`. */
+@media (min-width: 1024px) {
+  .mask-logo {
+    width: 21px;
+    height: 21px;
   }
 }
 
@@ -76,202 +93,6 @@ video {
 .leaflet-control-attribution.leaflet-control {
   display: none;
 }
-
-.num-masking span {
-  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-  mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-  mask-position: center;
-}
-
-.flow-steps-item {
-  transition: all 0.3s ease-out;
-  outline: 2px dashed hsla(161, 100%, 21%, 0.1);
-  outline-offset: 8px;
-}
-
-.flow-steps-item:hover {
-  outline: 2px dashed #2b6193;
-  outline-offset: 0px;
-}
-
-.stats-hover-item {
-  --accent: red;
-  isolation: isolate;
-  transition: 0.5s;
-}
-
-.stats-hover-item::before {
-  content: attr(data-step);
-  font-size: 2rem;
-  padding: 0.5rem 1rem;
-  text-align: right;
-  color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: hsl(209, 55%, 15%);
-  clip-path: circle(25% at 100% 0%);
-  transition: all 0.5s ease-out;
-  z-index: -1
-}
-
-.stats-hover-item:hover {
-  transform: scale(0.90);
-}
-
-.stats-hover-item:hover::before {
-  clip-path: circle(145% at 100% 0%);
-  background-color: #000000;
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.8);
-  }
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  &>div {
-    flex: 1 1 0;
-    padding: 32px;
-
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
 
 .engagement-location-link,
 .engagement-location-link:visited {
@@ -294,16 +115,6 @@ video {
 .engagement-location-link:hover .engagement-location-link-icon,
 .engagement-location-link:focus-visible .engagement-location-link-icon {
   background-color: #0a0a0a;
-}
-
-.india-map-detail-card .india-map-detail-cta,
-.india-map-detail-card .india-map-detail-cta:visited {
-  color: #fff !important;
-}
-
-.india-map-detail-card .india-map-detail-cta:hover,
-.india-map-detail-card .india-map-detail-cta:focus-visible {
-  color: #fff !important;
 }
 
 .globe-stage {
@@ -452,6 +263,8 @@ video {
     top: auto;
     bottom: calc(100% + 10px);
     transform: translateX(-50%);
+    /* Never wider than the phone viewport minus the map's own gutters */
+    width: min(200px, calc(100vw - 4rem));
   }
 }
 
@@ -547,28 +360,5 @@ video {
   .india-map-pin-pulse,
   .india-map-active-ring {
     animation: none;
-  }
-}
-
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
   }
 }

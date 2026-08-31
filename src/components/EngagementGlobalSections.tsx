@@ -1,7 +1,10 @@
 import { ScrollReveal } from "./ScrollReveal";
 
+/** Alphabetical. */
 export const GLOBAL_ENGAGEMENT_COUNTRIES = [
   "Bhutan",
+  "Dubai",
+  "Germany",
   "Ghana",
   "India",
   "Indonesia",
@@ -10,18 +13,21 @@ export const GLOBAL_ENGAGEMENT_COUNTRIES = [
   "Mozambique",
   "Nigeria",
   "Pakistan",
+  "Philippines",
   "Saudi Arabia",
   "Sri Lanka",
   "Tanzania",
   "USA",
 ] as const;
 
+/** Alphabetical. */
 export const INSTITUTIONAL_PARTICIPATION = [
   "ADB",
   "BioCarbon Standard",
   "CAD Trust",
   "CDOP",
   "ChildFund International",
+  "CVF/V20",
   "Gold Standard",
   "ISO Standards",
   "Singapore Chemical Industry Council Limited",
@@ -34,11 +40,11 @@ export function EngagementGlobalCountries() {
   return (
     <section className="mx-auto max-w-[1216px]" aria-label="Global engagement countries">
       <ScrollReveal>
-        <div className="mb-8 flex flex-col gap-2 sm:mb-10">
+        <div className="mb-6 flex flex-col gap-2 sm:mb-8">
           <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#131b2e]">
             Global Engagements
           </p>
-          <h2 className="text-2xl font-bold tracking-tight text-[#131b2e] sm:text-3xl">
+          <h2 className="text-xl font-bold tracking-tight text-[#131b2e] xs:text-2xl sm:text-3xl">
             Countries & Regions
           </h2>
         </div>
@@ -62,11 +68,11 @@ export function EngagementInstitutionalParticipation() {
   return (
     <section className="mx-auto max-w-[1216px]" aria-label="Institutional participation">
       <ScrollReveal>
-        <div className="mb-8 flex flex-col gap-2 sm:mb-10">
+        <div className="mb-6 flex flex-col gap-2 sm:mb-8">
           <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#131b2e]">
             Institutional Participation
           </p>
-          <h2 className="text-2xl font-bold tracking-tight text-[#131b2e] sm:text-3xl">
+          <h2 className="text-xl font-bold tracking-tight text-[#131b2e] xs:text-2xl sm:text-3xl">
             Standards, Partners & Multilateral Engagement
           </h2>
         </div>

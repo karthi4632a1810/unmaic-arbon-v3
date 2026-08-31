@@ -2,21 +2,27 @@ export type PressRelease = {
   id: string;
   title: string;
   dateLabel: string;
+  /** ISO date used for ordering — `dateLabel` is display copy only. */
+  publishedAt: string;
   pdfPath?: string;
   sourceUrl?: string;
   sourceName?: string;
+  /** Mark shown beside the release in the press list. */
+  icon?: "handshake" | "person" | "people" | "announcement";
   summary: string;
   content: string[];
 };
 
-export const PRESS_RELEASES: PressRelease[] = [
+const RELEASES: PressRelease[] = [
   {
     id: "teri-unmai-mou",
     title: "TERI Partners with UNMAI Carbon Solutions to Strengthen Carbon Markets and Climate Action",
     dateLabel: "April 2026",
+    publishedAt: "2026-04-01",
     sourceUrl:
       "https://www.energetica-india.net/news/teri-partners-with-unmai-carbon-solutions-to-strengthen-carbon-markets-and-climate-action",
     sourceName: "Energetica India",
+    icon: "handshake",
     summary:
       "The Energy and Resources Institute has signed an MoU with UNMAI Carbon Solutions to collaborate on climate change, decarbonisation, and carbon markets.",
     content: [
@@ -31,7 +37,9 @@ export const PRESS_RELEASES: PressRelease[] = [
     id: "pr-ajay-mathur",
     title: "UNMAI appoints Dr Ajay Mathur as Global Strategic Advisor",
     dateLabel: "May 2026",
+    publishedAt: "2026-05-13",
     pdfPath: "/UNMAI PR Dr Ajay Mathur.pdf",
+    icon: "person",
     summary:
       "UNMAI Carbon Solutions Pte Ltd announces Dr Ajay Mathur as its first Global Strategic Advisor to the Global Strategic Advisory Board.",
     content: [
@@ -48,7 +56,9 @@ export const PRESS_RELEASES: PressRelease[] = [
     id: "pr-chintan-shah",
     title: "UNMAI appoints Chintan Shah to Global Strategic Advisory Board",
     dateLabel: "May 2026",
+    publishedAt: "2026-05-19",
     pdfPath: "/UNMAI PR Chintan Shah Final.pdf",
+    icon: "people",
     summary:
       "UNMAI Carbon Solutions Pte Ltd announces the appointment of Chintan Shah to its Global Strategic Advisory Board.",
     content: [
@@ -62,4 +72,9 @@ export const PRESS_RELEASES: PressRelease[] = [
     ],
   },
 ];
+
+/** Newest first — every press-release list on the site renders this order. */
+export const PRESS_RELEASES: PressRelease[] = [...RELEASES].sort((a, b) =>
+  b.publishedAt.localeCompare(a.publishedAt),
+);
 

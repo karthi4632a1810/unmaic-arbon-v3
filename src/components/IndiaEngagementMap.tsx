@@ -11,7 +11,7 @@ const EngagementGlobeView = lazy(() =>
 const FOUNDER_LINKEDIN_URL =
   "https://www.linkedin.com/in/nithyanandam-yuvaraj-dinesh-babu-a1076b3/";
 
-/** Capital-city coordinates with engagement summaries for the global map. */
+/** Capital-city coordinates with engagement summaries, alphabetical by country. */
 export const GLOBAL_ENGAGEMENT_PLACES = [
   {
     id: "bangladesh",
@@ -30,6 +30,15 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     lng: 116.4074,
   },
   {
+    id: "ghana",
+    country: "Ghana",
+    capital: "Accra",
+    engagement: "Carbon Projects Advisory and Carbon Finance",
+    showFootnoteStar: false,
+    lat: 5.6037,
+    lng: -0.187,
+  },
+  {
     id: "india-chennai",
     country: "India",
     capital: "Chennai",
@@ -38,15 +47,6 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     showFootnoteStar: false,
     lat: 13.0827,
     lng: 80.2707,
-  },
-  {
-    id: "ghana",
-    country: "Ghana",
-    capital: "Accra",
-    engagement: "Carbon Projects Advisory and Carbon Finance",
-    showFootnoteStar: false,
-    lat: 5.6037,
-    lng: -0.187,
   },
   {
     id: "india",
@@ -217,7 +217,7 @@ export function IndiaEngagementMap() {
 
   return (
     <section
-      className="relative left-1/2 mb-12 w-screen max-w-none -translate-x-1/2 overflow-hidden bg-linear-to-b from-neutral-100 via-neutral-50 to-white py-10 sm:py-14"
+      className="relative left-1/2 mb-8 w-screen max-w-none -translate-x-1/2 overflow-hidden bg-linear-to-b from-neutral-100 via-neutral-50 to-white py-8 sm:mb-10 sm:py-10 lg:py-12"
       aria-label="Interactive global engagement map"
     >
       <div
@@ -230,16 +230,16 @@ export function IndiaEngagementMap() {
       />
 
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-2">
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#131b2e]">
               Global Footprint
             </p>
-            <h2 className="text-2xl font-bold tracking-tight text-[#131b2e] sm:text-3xl">
+            <h2 className="text-xl font-bold tracking-tight text-[#131b2e] xs:text-2xl sm:text-3xl">
               Explore Our Global Presence
             </h2>
           </div>
-          <div className="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/80 px-4 py-3 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)] backdrop-blur-sm">
+          <div className="flex w-fit items-center gap-3 rounded-2xl border border-black/10 bg-white/80 px-4 py-3 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)] backdrop-blur-sm">
             <span className="flex size-10 items-center justify-center rounded-xl bg-neutral-100 text-[#131b2e]">
               <MapPinIcon className="size-5" />
             </span>
@@ -254,8 +254,8 @@ export function IndiaEngagementMap() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0a0e18] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-white/5">
-          <div className="india-map-shell relative min-h-[min(92vh,960px)] w-full">
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0e18] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-white/5 sm:rounded-[28px]">
+          <div className="india-map-shell relative min-h-[min(76vh,560px)] w-full sm:min-h-[min(86vh,760px)] lg:min-h-[min(92vh,960px)]">
             <div className="globe-stage absolute inset-0 z-0">
               <Suspense fallback={<GlobeLoadingFallback />}>
                 <EngagementGlobeView
@@ -279,7 +279,7 @@ export function IndiaEngagementMap() {
               Drag to rotate · Ctrl + scroll to zoom
             </div>
 
-            <aside className="pointer-events-none absolute inset-x-4 bottom-4 z-30 flex max-h-[min(42vh,380px)] items-stretch sm:inset-x-auto sm:right-6 sm:bottom-auto sm:top-1/2 sm:max-h-[min(66vh,680px)] sm:w-[min(340px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8">
+            <aside className="pointer-events-none absolute inset-x-3 bottom-3 z-30 flex max-h-[min(38vh,300px)] items-stretch xs:inset-x-4 xs:bottom-4 sm:inset-x-auto sm:bottom-auto sm:right-6 sm:top-1/2 sm:max-h-[min(66vh,680px)] sm:w-[min(320px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8 lg:w-[min(340px,calc(100%-4rem))]">
               <div className="pointer-events-auto w-full min-w-0">
                 <LocationsVerticalList
                   countryGroups={countryGroups}

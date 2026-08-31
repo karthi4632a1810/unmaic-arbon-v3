@@ -39,7 +39,7 @@ export function TeamBioModal({ open, name, role, category, bio, linkedIn, onClos
         aria-label="Close"
         onClick={onClose}
       />
-      <div className="relative max-h-[min(88vh,720px)] w-full max-w-2xl overflow-y-auto rounded-2xl border border-black/10 bg-white p-6 shadow-2xl sm:p-8">
+      <div className="relative max-h-[min(88dvh,720px)] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-2xl border border-black/10 bg-white p-5 shadow-2xl xs:p-6 sm:p-8">
         <button
           type="button"
           onClick={onClose}
@@ -53,12 +53,23 @@ export function TeamBioModal({ open, name, role, category, bio, linkedIn, onClos
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#006c49]">
               {category || "Global Strategic Advisory Board"}
             </p>
-            <h2 id="team-bio-modal-title" className="mt-2 text-2xl font-bold text-[#131b2e]">
+            <h2 id="team-bio-modal-title" className="mt-2 text-xl font-bold text-[#131b2e] xs:text-2xl">
               {name}
             </h2>
             {role ? <p className="mt-1 text-sm font-medium text-[#2b6193]">{role}</p> : null}
           </div>
-          <p className="text-base leading-7 text-[#444654]">{bio}</p>
+          {/* Bios keep blank-line paragraph breaks — render them instead of collapsing to one block */}
+          <div className="space-y-4">
+            {bio
+              .split(/\n\s*\n/)
+              .map((paragraph) => paragraph.trim())
+              .filter(Boolean)
+              .map((paragraph) => (
+                <p key={paragraph} className="text-sm leading-6 text-[#444654] xs:text-base xs:leading-7">
+                  {paragraph}
+                </p>
+              ))}
+          </div>
           {linkedIn ? (
             <a
               href={linkedIn}

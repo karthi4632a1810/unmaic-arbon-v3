@@ -46,7 +46,7 @@ export function EngagementLocationGrid() {
   return (
     <section className="mx-auto max-w-[1216px]" aria-label="Global engagement locations">
       <ScrollReveal>
-        <div className="mb-10 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-2">
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#131b2e]">
               Location Directory

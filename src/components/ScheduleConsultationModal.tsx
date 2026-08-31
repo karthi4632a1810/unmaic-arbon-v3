@@ -27,13 +27,13 @@ export function ScheduleConsultationModal({ open, onClose }: ScheduleConsultatio
         className="absolute inset-0 bg-black/70"
         onClick={onClose}
       />
-      <div className="relative z-[1] w-full max-w-xl rounded-2xl border border-white/10 bg-white p-6 shadow-2xl sm:p-8">
+      <div className="relative z-[1] max-h-[calc(100dvh-2rem)] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 bg-white p-5 shadow-2xl xs:p-6 sm:p-8">
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#2b6193]">
               Schedule Consultation
             </p>
-            <h2 className="mt-2 text-2xl font-bold text-[#131b2e] sm:text-3xl">
+            <h2 className="mt-2 text-xl font-bold text-[#131b2e] xs:text-2xl sm:text-3xl">
               Start a Strategic Engagement
             </h2>
           </div>
@@ -81,14 +81,17 @@ export function ScheduleConsultationModal({ open, onClose }: ScheduleConsultatio
               <input
                 key={field}
                 required
+                type={field === "Email" ? "email" : "text"}
+                aria-label={field}
                 placeholder={field}
-                className="rounded-lg border border-black/10 px-4 py-3 text-sm text-[#131b2e] outline-none transition focus:border-[#2b6193]/35"
+                className="w-full min-w-0 rounded-lg border border-black/10 px-4 py-3 text-base text-[#131b2e] outline-none transition focus:border-[#2b6193]/35 sm:text-sm"
               />
             ))}
             <textarea
               required
+              aria-label="Consultation Objective"
               placeholder="Consultation Objective"
-              className="h-24 rounded-lg border border-black/10 px-4 py-3 text-sm text-[#131b2e] outline-none transition focus:border-[#2b6193]/35"
+              className="h-24 w-full min-w-0 resize-y rounded-lg border border-black/10 px-4 py-3 text-base text-[#131b2e] outline-none transition focus:border-[#2b6193]/35 sm:text-sm"
             />
             <button
               type="submit"

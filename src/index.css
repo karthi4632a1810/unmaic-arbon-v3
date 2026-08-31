@@ -1,13 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --font-family-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-family-display: "Poppins", ui-sans-serif, sans-serif;
+  /* v4 reads `--font-*`; the old `--font-family-*` keys never registered, so every
+     `font-sans` element was falling back to the system stack instead of Inter. */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo", "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Small phones (320–399px) opt out of the `xs:` step. */
+  --breakpoint-xs: 25rem;
 }
 
 body {
   margin: 0;
-  font-family: var(--font-family-sans);
+  font-family: var(--font-sans);
   overflow-x: clip;
 }
 #root > div:first-child{

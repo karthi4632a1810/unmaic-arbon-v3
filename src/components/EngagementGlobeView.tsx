@@ -40,6 +40,17 @@ function getFeatureCountryName(feature: CountryGeoFeature) {
   return feature.properties.ADMIN ?? feature.properties.NAME ?? "";
 }
 
+/**
+ * The camera's field of view is vertical, so a portrait container (phones) renders the globe
+ * wider than the viewport and crops it. Pull the camera back by the aspect deficit to fit.
+ */
+function fitAltitude(baseAltitude: number, { width, height }: { width: number; height: number }) {
+  if (!width || !height) return baseAltitude;
+  const aspect = width / height;
+  if (aspect >= 1) return baseAltitude;
+  return Math.min(3.6, (baseAltitude / aspect) * 1.15);
+}
+
 export function EngagementGlobeView({
   places,
   selectedCountry,
@@ -49,6 +60,8 @@ export function EngagementGlobeView({
   const containerRef = useRef<HTMLDivElement>(null);
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
   const onSelectRef = useRef(onSelectCountry);
+  /** Latest measured size, read inside effects so a resize never re-frames the user's view. */
+  const dimsRef = useRef({ width: 800, height: 520 });
   const [dims, setDims] = useState({ width: 800, height: 520 });
   const [globeReady, setGlobeReady] = useState(false);
   const [countryFeatures, setCountryFeatures] = useState<CountryGeoFeature[]>([]);
@@ -79,7 +92,9 @@ export function EngagementGlobeView({
     if (!el) return;
 
     const sync = () => {
-      setDims({ width: el.clientWidth, height: el.clientHeight });
+      const next = { width: el.clientWidth, height: el.clientHeight };
+      dimsRef.current = next;
+      setDims(next);
     };
 
     sync();
@@ -99,15 +114,22 @@ export function EngagementGlobeView({
     if (!globe) return;
 
     if (!selectedCountry) {
-      globe.pointOfView({ lat: 20, lng: 58, altitude: 1.58 }, 1100);
+      globe.pointOfView(
+        { lat: 20, lng: 58, altitude: fitAltitude(1.58, dimsRef.current) },
+        globeReady ? 1100 : 0,
+      );
       return;
     }
 
     const target = getCountryViewTarget(selectedPlaces);
     if (target) {
-      globe.pointOfView(target, 1100);
+      globe.pointOfView(
+        { ...target, altitude: fitAltitude(target.altitude, dimsRef.current) },
+        1100,
+      );
     }
-  }, [selectedCountry, selectedPlaces]);
+    // `globeReady` re-frames the initial view once the container has been measured.
+  }, [selectedCountry, selectedPlaces, globeReady]);
 
   useEffect(() => {
     if (!globeReady) return;

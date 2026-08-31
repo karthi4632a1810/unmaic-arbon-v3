@@ -46,7 +46,7 @@ export function EngagementInstitutionalSection() {
   return (
     <section className="mx-auto max-w-[1216px]" aria-label="Institutional engagement programs">
       <ScrollReveal>
-        <div className="mb-8 flex flex-col gap-2 sm:mb-10">
+        <div className="mb-6 flex flex-col gap-2 sm:mb-8">
           <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#131b2e]">
             Beyond Locations
           </p>
