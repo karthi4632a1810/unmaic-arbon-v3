@@ -17,7 +17,7 @@ import "./App.css";
  * Below `lg` the header is a solid bar in normal document flow-space (not the floating pill),
  * so the hero is pushed down by the measured header height.
  */
-const HEADER_OFFSET_MAX_WIDTH_PX = 1023;
+const HEADER_OFFSET_MAX_WIDTH_PX = 767;
 
 export default function UnmaiCarbonHomePage() {
   const headerRef = useRef<HTMLElement>(null);

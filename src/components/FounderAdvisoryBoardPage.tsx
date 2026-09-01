@@ -92,24 +92,32 @@ const ADVISORY_BOARD: AdvisoryMember[] = [
 function EnterpriseBanner({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <section
-      className="relative overflow-hidden px-4 pb-10 pt-24 text-white sm:px-6 sm:pb-12 sm:pt-28 lg:px-8 lg:pt-32"
+      className="relative overflow-hidden px-4 pb-12 pt-24 text-white sm:px-6 sm:pb-14 sm:pt-28 lg:px-8 lg:pt-32"
       style={{
         backgroundImage:
-          "linear-gradient(120deg, rgba(8,12,21,0.9), rgba(19,27,46,0.82)), url(https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=80)",
+          "linear-gradient(125deg, rgba(4,10,20,0.86) 0%, rgba(6,18,32,0.78) 50%, rgba(3,10,22,0.88) 100%), url(https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=80)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="mx-auto max-w-[1216px] space-y-4 sm:space-y-5">
-        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#e6ff80] xs:text-xs">
-          UNMAI Carbon Solutions
-        </p>
-        <h1 className="max-w-4xl text-2xl font-bold leading-tight tracking-tight xs:text-3xl sm:text-4xl lg:text-5xl">
-          {title}
-        </h1>
-        <p className="max-w-3xl text-sm leading-6 text-white/80 xs:text-base xs:leading-7 sm:text-lg">
-          {subtitle}
-        </p>
+      <div className="relative mx-auto max-w-[1216px]">
+        <div className="max-w-4xl border-l-2 border-neutral-400 pl-5 sm:pl-6">
+          <div className="flex items-center gap-2">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#d4d4d8] xs:text-xs">
+              UNMAI Carbon Solutions
+            </p>
+            <span className="text-white/40">•</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">
+              Leadership
+            </span>
+          </div>
+          <h1 className="display-head mt-3 text-2xl font-bold leading-tight tracking-tight xs:text-3xl sm:text-4xl lg:text-5xl">
+            {title}
+          </h1>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-white/85 xs:text-base xs:leading-7 sm:text-lg">
+            {subtitle}
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -128,7 +136,7 @@ function SectionIntro({
     <ScrollReveal>
       <div className="mx-auto mb-8 flex max-w-[1216px] flex-col gap-5 border-b border-black/8 pb-6 sm:gap-6 sm:pb-8 md:mb-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         <div className="space-y-2">
-          <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#006c49]">{title}</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-neutral-500">{title}</p>
           <h2 className="display-head max-w-2xl text-[clamp(1.7rem,4.4vw,2.9rem)] font-bold leading-[1.05] tracking-[-0.02em] text-[#131b2e]">
             {subtitle}
           </h2>
@@ -199,27 +207,27 @@ function CoreTeamCard({ person, onOpenBio }: { person: TeamMember; onOpenBio?: (
           onClick={onOpenBio}
           className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8"
         >
-          <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-[#006c49]/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
+          <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
             <MemberPhoto name={person.name} image={person.image} />
           </div>
         </button>
       ) : (
         <div className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8">
-          <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-[#006c49]/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
+          <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
             <MemberPhoto name={person.name} image={person.image} />
           </div>
         </div>
       )}
       <div className="flex flex-1 flex-col items-center gap-3 p-5 text-center sm:p-6">
         <div className="space-y-1">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#006c49]">
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-500">
             Core Team
           </p>
           {hasBio ? (
             <button
               type="button"
               onClick={onOpenBio}
-              className="text-center text-lg font-bold leading-snug text-[#131b2e] transition hover:text-[#006c49] sm:text-xl"
+              className="text-center text-lg font-bold leading-snug text-[#131b2e] transition hover:text-neutral-900 sm:text-xl"
             >
               {person.name}
             </button>
@@ -242,7 +250,7 @@ function CoreTeamCard({ person, onOpenBio }: { person: TeamMember; onOpenBio?: (
             <button
               type="button"
               onClick={onOpenBio}
-              className="text-xs font-semibold uppercase tracking-[0.12em] text-[#131b2e] transition hover:text-[#006c49]"
+              className="text-xs font-semibold uppercase tracking-[0.12em] text-[#131b2e] transition hover:text-neutral-900"
             >
               Read full profile
             </button>
@@ -252,7 +260,7 @@ function CoreTeamCard({ person, onOpenBio }: { person: TeamMember; onOpenBio?: (
               href={person.linkedIn}
               target="_blank"
               rel="noreferrer noopener"
-              className="text-xs font-semibold uppercase tracking-[0.12em] text-[#006c49] transition hover:underline"
+              className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-600 transition hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
               LinkedIn ↗
@@ -272,19 +280,19 @@ function AdvisoryCard({ person, onOpenBio }: { person: AdvisoryMember; onOpenBio
         onClick={onOpenBio}
         className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8"
       >
-        <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-[#006c49]/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
+        <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
           <MemberPhoto name={person.name} image={person.image} />
         </div>
       </button>
       <div className="flex flex-1 flex-col items-center gap-3 p-5 text-center sm:p-6">
         <div className="space-y-1">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#006c49]">
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-500">
             Advisory Board
           </p>
           <button
             type="button"
             onClick={onOpenBio}
-            className="text-center text-lg font-bold leading-snug text-[#131b2e] transition hover:text-[#006c49] sm:text-xl"
+            className="text-center text-lg font-bold leading-snug text-[#131b2e] transition hover:text-neutral-900 sm:text-xl"
           >
             {person.name}
           </button>
@@ -297,7 +305,7 @@ function AdvisoryCard({ person, onOpenBio }: { person: AdvisoryMember; onOpenBio
           <button
             type="button"
             onClick={onOpenBio}
-            className="text-xs font-semibold uppercase tracking-[0.12em] text-[#131b2e] transition hover:text-[#006c49]"
+            className="text-xs font-semibold uppercase tracking-[0.12em] text-[#131b2e] transition hover:text-neutral-900"
           >
             Read full profile
           </button>
@@ -306,7 +314,7 @@ function AdvisoryCard({ person, onOpenBio }: { person: AdvisoryMember; onOpenBio
               href={person.linkedIn}
               target="_blank"
               rel="noreferrer noopener"
-              className="text-xs font-semibold uppercase tracking-[0.12em] text-[#006c49] transition hover:underline"
+              className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-600 transition hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
               LinkedIn ↗

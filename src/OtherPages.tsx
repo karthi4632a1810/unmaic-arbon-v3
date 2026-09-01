@@ -31,7 +31,7 @@ function MapSectionFallback() {
       aria-label="Loading engagement map"
     >
       <div className="flex flex-col items-center gap-4">
-        <div className="size-12 animate-spin rounded-full border-2 border-[hsl(71,100%,73%)]/25 border-t-[hsl(71,100%,73%)]" />
+        <div className="size-12 animate-spin rounded-full border-2 border-white/20 border-t-white" />
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/55">
           Loading engagement map…
         </p>
@@ -123,20 +123,20 @@ export function AboutPage() {
       element="land"
       title="About UNMAI Carbon Solutions"
       subtitle="Building trusted climate markets through policy, finance, advisory and digital innovation."
-      bannerImage="https://images.unsplash.com/photo-1581092446327-9f89c1f2f2b6?auto=format&fit=crop&w=2000&q=80"
+      bannerImage={ELEMENT_BY_ID.land.bgImage}
     >
       {/* The name itself, set as the page's opening statement */}
       <ScrollReveal>
-        <div className="mx-auto mb-10 max-w-[1216px] overflow-hidden rounded-2xl bg-[#0a1410] sm:mb-12">
+        <div className="mx-auto mb-10 max-w-[1216px] overflow-hidden rounded-2xl bg-[#18181b] sm:mb-12">
           <div className="relative grid gap-6 p-6 sm:p-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12">
             <p
-              className="display-figure select-none text-[clamp(3.5rem,13vw,7rem)] font-extrabold leading-none text-[#006c49]"
+              className="display-figure select-none text-[clamp(3.5rem,13vw,7rem)] font-extrabold leading-none text-[#71717a]"
               lang="ta"
             >
               உண்மை
             </p>
             <div className="space-y-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#e6ff80]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#d4d4d8]">
                 Foundational Principle
               </p>
               <h2 className="display-head text-xl font-bold tracking-tight text-white sm:text-2xl">
@@ -151,7 +151,7 @@ export function AboutPage() {
                 {["Truth", "Authenticity", "Integrity"].map((value) => (
                   <span
                     key={value}
-                    className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#006c49]"
+                    className="text-[11px] font-bold uppercase tracking-[0.16em] text-neutral-400"
                   >
                     {value}
                   </span>
@@ -217,7 +217,7 @@ export function ServicesPage() {
       element="fire"
       title="Strategic Climate & Carbon Market Services"
       subtitle="Institutional advisory and digital infrastructure for governments, multilaterals, climate institutions and corporates."
-      bannerImage="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2000&q=80"
+      bannerImage={ELEMENT_BY_ID.fire.bgImage}
     >
       <SectionHeading
         eyebrow="Service Portfolio"
@@ -256,21 +256,21 @@ const DIGITAL_INFRASTRUCTURE_LAYERS = [
 export function DigitalInfrastructurePage() {
   return (
     <PageScaffold
-      element="air"
+      element="space"
       title="Digital Carbon Infrastructure"
       subtitle="Building interoperable systems for trusted carbon market operations."
-      bannerImage="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80"
+      bannerImage={ELEMENT_BY_ID.space.bgImage}
     >
       <SectionHeading
         eyebrow="Infrastructure Stack"
         title="Systems architecture for interoperable carbon markets"
         paragraph="UNMAI designs standards-based digital layers that strengthen transparency, traceability, and operational trust across national and cross-border carbon ecosystems."
-        hue={ELEMENT_BY_ID.air.hue}
+        hue={ELEMENT_BY_ID.space.hue}
       />
 
       {/* Full-bleed dark band — the stack reads as slabs seen from above */}
-      <section className="relative left-1/2 mt-8 w-screen max-w-none -translate-x-1/2 overflow-hidden bg-[#00120f] px-4 py-10 sm:mt-10 sm:px-6 sm:py-12 lg:px-8">
-        <Streamlines className="pointer-events-none absolute inset-0 h-full w-full text-[#e6ff80]/20" />
+      <section className="relative left-1/2 mt-8 w-screen max-w-none -translate-x-1/2 overflow-hidden bg-[#18181b] px-4 py-10 sm:mt-10 sm:px-6 sm:py-12 lg:px-8">
+        <Streamlines className="pointer-events-none absolute inset-0 h-full w-full text-white/10" />
         <div className="relative">
           <SlabStack items={DIGITAL_INFRASTRUCTURE_LAYERS} />
         </div>
@@ -284,16 +284,16 @@ export function DigitalInfrastructurePage() {
 export function GlobalEngagementsPage() {
   return (
     <PageScaffold
-      element="space"
+      element="air"
       title="Global Engagements"
       subtitle="Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems."
-      bannerImage="https://images.unsplash.com/photo-1484589065579-248aad0d8b13?auto=format&fit=crop&w=2000&q=80"
+      bannerImage={ELEMENT_BY_ID.air.bgImage}
     >
       <SectionHeading
         eyebrow="Global Engagements"
         title="Active across Asia, Africa & the Middle East"
         paragraph="Supporting governments, institutions, and climate stakeholders in operationalizing carbon markets and climate finance systems."
-        hue={ELEMENT_BY_ID.space.hue}
+        hue={ELEMENT_BY_ID.air.hue}
       />
 
       <div className="mt-8 sm:mt-10">
@@ -398,7 +398,7 @@ export function NewsPage() {
       element="water"
       title="News"
       subtitle="Press releases and announcements from UNMAI Carbon Solutions."
-      bannerImage="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=2000&q=80"
+      bannerImage={ELEMENT_BY_ID.water.bgImage}
     >
       <SectionHeading
         eyebrow="Press Releases"
@@ -424,7 +424,7 @@ export function NewsArticlePage() {
         element="water"
         title="News"
         subtitle="Press releases and announcements from UNMAI Carbon Solutions."
-        bannerImage="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=2000&q=80"
+        bannerImage={ELEMENT_BY_ID.water.bgImage}
       >
         <div className="mx-auto max-w-[850px] space-y-6">
           <h2 className="display-head text-xl font-bold text-[#131b2e]">Article not found</h2>
@@ -447,7 +447,7 @@ export function NewsArticlePage() {
       element="water"
       title="News"
       subtitle="Press releases and announcements from UNMAI Carbon Solutions."
-      bannerImage="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=2000&q=80"
+      bannerImage={ELEMENT_BY_ID.water.bgImage}
     >
       <article className="mx-auto max-w-[720px]">
         <Link
@@ -534,7 +534,7 @@ export function ContactPage() {
       element="water"
       title="Contact UNMAI"
       subtitle="Connect with our team for strategic climate and carbon market engagements."
-      bannerImage="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2000&q=80"
+      bannerImage="https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=2000&q=80"
     >
       <SectionHeading
         eyebrow="Contact & Engagement"

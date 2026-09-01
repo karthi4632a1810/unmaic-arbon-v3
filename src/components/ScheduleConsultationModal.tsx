@@ -61,8 +61,8 @@ export function ScheduleConsultationModal({ open, onClose }: ScheduleConsultatio
         </div>
 
         {submitted ? (
-          <div className="rounded-xl border border-[#006c49]/20 bg-[#006c49]/5 px-5 py-6">
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#006c49]">Thank you</p>
+          <div className="rounded-xl border border-neutral-200 bg-neutral-100 px-5 py-6">
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-neutral-800">Thank you</p>
             <h3 className="mt-2 text-xl font-bold text-[#131b2e]">Message received successfully.</h3>
             <p className="mt-2 text-sm leading-6 text-[#444654]">
               Our team will review your consultation request and connect with you shortly.

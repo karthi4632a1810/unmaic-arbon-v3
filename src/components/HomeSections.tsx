@@ -13,347 +13,168 @@ const SECTION = "px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12";
 
 /* -------------------------------------------------------------------- land */
 
-function GlobeContinentIcon({ className = "size-[104px]" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden="true">
-      {/* Outer dashed ring */}
-      <circle cx="50" cy="50" r="46" stroke="#006c49" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.55" />
-      {/* Inner circle background */}
-      <circle cx="50" cy="50" r="36" fill="#edf7f2" stroke="#006c49" strokeWidth="1.5" />
-      {/* Globe sphere */}
-      <circle cx="50" cy="50" r="22" stroke="#006c49" strokeWidth="2" />
-      {/* Longitude ellipse */}
-      <ellipse cx="50" cy="50" rx="10" ry="22" stroke="#006c49" strokeWidth="1.3" strokeDasharray="3 2" />
-      {/* Latitude lines */}
-      <path d="M28 43 Q50 47 72 43" stroke="#006c49" strokeWidth="1.2" strokeDasharray="3 2" fill="none" />
-      <path d="M28 57 Q50 53 72 57" stroke="#006c49" strokeWidth="1.2" strokeDasharray="3 2" fill="none" />
-      {/* Africa + Europe continent blob */}
-      <path
-        d="M47 35 C49 33,54 33,56 36 C58 38,57 41,55 42 C57 43,58 46,56 48 C55 50,52 50,51 51 C50 53,50 55,48 56 C46 57,44 55,43 52 C42 50,43 48,42 46 C41 44,41 41,43 39 C45 37,46 36,47 35Z"
-        fill="#006c49"
-        fillOpacity="0.85"
-      />
-      {/* Americas sliver */}
-      <path
-        d="M30 41 C31 39,33 39,33 41 C33 44,32 46,32 48 C32 50,33 52,32 53 C31 54,29 53,29 51 C28 48,29 44,30 41Z"
-        fill="#006c49"
-        fillOpacity="0.65"
-      />
-    </svg>
-  );
-}
-
-function ExpertiseIcon({ className = "size-[104px]" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden="true">
-      {/* Outer dashed ring */}
-      <circle cx="50" cy="50" r="46" stroke="#006c49" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.55" />
-      {/* Inner circle background */}
-      <circle cx="50" cy="50" r="36" fill="#edf7f2" stroke="#006c49" strokeWidth="1.5" />
-      {/* Center person head */}
-      <circle cx="50" cy="40" r="8" stroke="#006c49" strokeWidth="2.2" fill="none" />
-      {/* Center person shoulders */}
-      <path d="M36 66 C36 57, 42 53, 50 53 C58 53, 64 57, 64 66" stroke="#006c49" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-      {/* Left person head */}
-      <circle cx="32" cy="44" r="6" stroke="#006c49" strokeWidth="1.8" fill="none" />
-      {/* Left person shoulders */}
-      <path d="M20 66 C20 59, 25 56, 33 56 C36 56, 39 57, 41 59" stroke="#006c49" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-      {/* Right person head */}
-      <circle cx="68" cy="44" r="6" stroke="#006c49" strokeWidth="1.8" fill="none" />
-      {/* Right person shoulders */}
-      <path d="M59 59 C61 57, 64 56, 67 56 C75 56, 80 59, 80 66" stroke="#006c49" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-    </svg>
-  );
-}
-
-function CapitalGrowthIcon({ className = "size-[104px]" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden="true">
-      {/* Outer dashed ring */}
-      <circle cx="50" cy="50" r="46" stroke="#006c49" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.55" />
-      {/* Inner circle background */}
-      <circle cx="50" cy="50" r="36" fill="#edf7f2" stroke="#006c49" strokeWidth="1.5" />
-      {/* Bar 1 — short */}
-      <rect x="31" y="57" width="9" height="14" rx="1.5" fill="#006c49" fillOpacity="0.35" stroke="#006c49" strokeWidth="1.8" />
-      {/* Bar 2 — medium */}
-      <rect x="46" y="48" width="9" height="23" rx="1.5" fill="#006c49" fillOpacity="0.65" stroke="#006c49" strokeWidth="1.8" />
-      {/* Bar 3 — tall */}
-      <rect x="61" y="38" width="9" height="33" rx="1.5" fill="#006c49" stroke="#006c49" strokeWidth="1.8" />
-      {/* Trend line */}
-      <path d="M30 54 L44 42 L55 49 L70 33" stroke="#006c49" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
-      {/* Arrow tip */}
-      <path d="M60 33 H70 V43" stroke="#006c49" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function LeavesIcon({ className = "size-[104px]" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden="true">
-      {/* Outer dashed ring */}
-      <circle cx="50" cy="50" r="46" stroke="#006c49" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.55" />
-      {/* Inner circle background */}
-      <circle cx="50" cy="50" r="36" fill="#edf7f2" stroke="#006c49" strokeWidth="1.5" />
-      {/* Left leaf — large, lighter */}
-      <path
-        d="M36 66 C36 50, 50 37, 64 33 C64 50, 52 66, 36 66Z"
-        fill="#006c49"
-        fillOpacity="0.28"
-        stroke="#006c49"
-        strokeWidth="2.2"
-        strokeLinejoin="round"
-      />
-      {/* Left leaf midrib */}
-      <path d="M36 66 C46 54, 55 44, 64 33" stroke="#006c49" strokeWidth="1.6" strokeLinecap="round" />
-      {/* Right leaf — smaller, darker */}
-      <path
-        d="M51 66 C51 54, 62 46, 72 43 C72 56, 63 66, 51 66Z"
-        fill="#006c49"
-        fillOpacity="0.65"
-        stroke="#006c49"
-        strokeWidth="2.2"
-        strokeLinejoin="round"
-      />
-      {/* Right leaf midrib */}
-      <path d="M51 66 C58 58, 65 51, 72 43" stroke="#006c49" strokeWidth="1.6" strokeLinecap="round" />
-      {/* Stem */}
-      <path d="M36 66 C41 71, 47 72, 51 66" stroke="#006c49" strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function WorldMapMesh() {
-  return (
-    <svg
-      viewBox="0 0 300 160"
-      fill="none"
-      className="pointer-events-none absolute inset-x-0 top-0 h-44 w-full opacity-[0.22]"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <circle cx="45" cy="35" r="1.5" fill="#006c49" />
-      <circle cx="60" cy="40" r="1.5" fill="#006c49" />
-      <circle cx="70" cy="30" r="1.5" fill="#006c49" />
-      <circle cx="85" cy="45" r="1.5" fill="#006c49" />
-      <circle cx="95" cy="35" r="1.5" fill="#006c49" />
-      <circle cx="135" cy="25" r="1.5" fill="#006c49" />
-      <circle cx="150" cy="30" r="1.5" fill="#006c49" />
-      <circle cx="165" cy="25" r="1.5" fill="#006c49" />
-      <circle cx="180" cy="40" r="1.5" fill="#006c49" />
-      <circle cx="195" cy="45" r="1.5" fill="#006c49" />
-      <circle cx="215" cy="50" r="1.5" fill="#006c49" />
-      <circle cx="230" cy="65" r="1.5" fill="#006c49" />
-      <path
-        d="M-10 55 C 50 25, 110 85, 180 45 S 260 65, 310 35"
-        stroke="#006c49"
-        strokeWidth="0.8"
-        strokeDasharray="2 3.5"
-      />
-      <path
-        d="M-10 75 C 40 45, 100 105, 170 65 S 250 85, 310 55"
-        stroke="#006c49"
-        strokeWidth="0.6"
-        strokeDasharray="2 3.5"
-      />
-    </svg>
-  );
-}
-
-function CardWaveMesh() {
-  return (
-    <svg
-      viewBox="0 0 300 160"
-      fill="none"
-      className="pointer-events-none absolute inset-x-0 top-0 h-44 w-full opacity-[0.22]"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M-20 50 C 60 15, 140 85, 220 40 S 320 65, 360 30"
-        stroke="#006c49"
-        strokeWidth="1"
-        strokeDasharray="2 3.5"
-      />
-      <path
-        d="M-20 75 C 50 40, 130 105, 210 65 S 310 90, 360 55"
-        stroke="#006c49"
-        strokeWidth="1"
-        strokeDasharray="2 3.5"
-      />
-      <path
-        d="M-20 100 C 40 65, 120 125, 200 88 S 300 115, 360 80"
-        stroke="#006c49"
-        strokeWidth="0.8"
-        strokeDasharray="2 3.5"
-      />
-      <path
-        d="M-20 125 C 30 90, 110 145, 190 110 S 290 140, 360 105"
-        stroke="#006c49"
-        strokeWidth="0.6"
-        strokeDasharray="2 3.5"
-      />
-    </svg>
-  );
-}
-
-const TRUST_METRICS = [
-  {
-    num: 1,
-    category: "REGION",
-    end: 15,
-    suffix: "+",
-    prefix: "",
-    label: "GLOBAL ENGAGEMENT COUNTRIES",
-    Icon: GlobeContinentIcon,
-    Mesh: WorldMapMesh,
-  },
-  {
-    num: 2,
-    category: "EXPERTISE",
-    end: 100,
-    suffix: "+",
-    prefix: "",
-    label: "YEARS COMBINED EXPERIENCE",
-    Icon: ExpertiseIcon,
-    Mesh: CardWaveMesh,
-  },
-  {
-    num: 3,
-    category: "CAPITAL",
-    end: 5,
-    suffix: "B+",
-    prefix: "USD",
-    label: "CLIMATE PORTFOLIO",
-    Icon: CapitalGrowthIcon,
-    Mesh: CardWaveMesh,
-  },
-  {
-    num: 4,
-    category: "ASSETS",
-    end: 800,
-    suffix: "M+",
-    prefix: "",
-    label: "TCO2E PROJECT PIPELINE",
-    Icon: LeavesIcon,
-    Mesh: CardWaveMesh,
-  },
-] as const;
+const imgStatIcon1 =
+  "https://www.figma.com/api/mcp/asset/212b28f2-54f2-4cde-93fb-b518601ddc1c";
+const imgStatIcon2 =
+  "https://www.figma.com/api/mcp/asset/0b180b3b-76f4-45f5-a398-05bf7cf608b4";
+const imgStatIcon3 =
+  "https://www.figma.com/api/mcp/asset/e959a713-3190-4c66-85fe-479b21c2154e";
+const imgStatIcon4 =
+  "https://www.figma.com/api/mcp/asset/c9b15b42-3300-415f-a02c-427695a041ce";
 
 export function TrustMetricsSection() {
   return (
-    <section className="relative overflow-hidden border-t border-black/5 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-      <div className="mx-auto max-w-[1300px]">
-        <ScrollReveal>
-          {/* Eyebrow with line and open circle */}
-          <div className="flex items-center gap-3">
-            <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#006c49]">
-              Trust Metrics
-            </span>
-            <div className="flex items-center">
-              <span className="h-[1.5px] w-20 bg-[#006c49]/80 sm:w-28" />
-              <span className="size-2 rounded-full border-2 border-[#006c49] bg-white -ml-0.5" />
+    <section className="border-t border-black/5 px-4 py-16 sm:px-6 sm:py-24 lg:px-8 bg-white">
+      <ScrollReveal>
+        <div className="mx-auto flex max-w-[1300px] flex-col gap-12 lg:gap-16">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="space-y-2">
+              <p className="text-base font-bold uppercase tracking-widest text-neutral-500">
+                Trust Metrics
+              </p>
+              <h2 className="text-3xl font-semibold tracking-tight text-[#131b2e] sm:text-4xl">
+                Trusted Across Governments, Multilaterals, Climate Institutions, NGOs and Global
+                Corporates
+              </h2>
             </div>
-          </div>
-
-          <div className="mt-5 grid gap-6 border-b border-black/8 pb-8 lg:grid-cols-[minmax(0,1.25fr)_auto_minmax(0,0.9fr)] lg:items-center lg:gap-10 lg:pb-10">
-            <h2 className="display-head text-2xl font-bold leading-[1.18] tracking-[-0.02em] text-[#131b2e] xs:text-3xl sm:text-3xl lg:text-[2rem]">
-              Trusted Across Governments, Multilaterals,Climate Institutions, NGOs and Global Corporates
-            </h2>
-
-            {/* Vertical divider */}
-            <div className="hidden h-20 w-px bg-neutral-300/80 lg:block" aria-hidden="true" />
-
-            <p className="text-sm leading-6 text-[#5c6b62] xs:text-base xs:leading-7">
-              Supporting sovereign and corporate carbon market and digital infrastructure
-              development, climate finance, and Article 6 implementation across Asia, Africa, and
-              globally.
+            <p className="max-w-md text-base leading-6 text-[#444654] text-justify">
+              Supporting sovereign and corporate carbon market and digital infrastructure development,
+              climate finance, and Article 6 implementation across Asia, Africa, and globally.
             </p>
           </div>
-        </ScrollReveal>
-
-        {/* 4 Cards Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {TRUST_METRICS.map((metric, i) => {
-            const Icon = metric.Icon;
-            const Mesh = metric.Mesh;
-            return (
-              <ScrollReveal key={metric.category} delayMs={i * 80} className="h-full">
-                <article className="group relative flex h-full min-h-[380px] flex-col items-center justify-between overflow-visible rounded-2xl border border-neutral-200/90 bg-white px-5 pb-8 pt-9 text-center shadow-[0_4px_24px_rgba(0,0,0,0.05)] transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,108,73,0.12)]">
-                  {/* Top floating number badge */}
-                  <div className="absolute -top-4 left-1/2 flex size-8 -translate-x-1/2 items-center justify-center rounded-full bg-[#004d2e] text-sm font-bold text-white shadow-[0_2px_8px_rgba(0,77,46,0.35)] ring-4 ring-white">
-                    {metric.num}
-                  </div>
-
-                  {/* Subtle wavy contour dot mesh */}
-                  <Mesh />
-
-                  {/* Large Icon Container */}
-                  <div className="relative z-1 mb-1 mt-1 flex size-[112px] items-center justify-center transition duration-300 group-hover:scale-105">
-                    <Icon className="size-[108px]" />
-                  </div>
-
-                  {/* Category label with underline */}
-                  <div className="relative z-1 flex flex-col items-center">
-                    <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#006c49]">
-                      {metric.category}
+          <div
+            className="overflow-hidden rounded-2xl border border-black/9 bg-[white] bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.055)_1px,transparent_1px)] bg-size-[22px_22px]"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-4">
+              {(
+                [
+                  {
+                    step: "01",
+                    color: "black",
+                    category: "Region",
+                    icon: imgStatIcon1,
+                    variant: "plain" as const,
+                    end: 15,
+                    suffix: "+",
+                    label: "Global engagement countries",
+                    accentBorder: "border-[#2b6193]",
+                    accentHover:
+                      " focus-within:bg-emerald-500/[0.06]",
+                  },
+                  {
+                    step: "02",
+                    color: "hsl(217, 91%, 60%)",
+                    category: "Expertise",
+                    icon: imgStatIcon2,
+                    variant: "plain" as const,
+                    end: 100,
+                    suffix: "+",
+                    label: "Years combined experience",
+                    accentBorder: "border-[#2b6193]",
+                    accentHover:
+                      " focus-within:bg-sky-500/[0.06]",
+                  },
+                  {
+                    step: "03",
+                    color: "hsl(34, 90%, 55%)",
+                    category: "Capital",
+                    icon: imgStatIcon3,
+                    variant: "usd" as const,
+                    end: 5,
+                    suffix: "B+",
+                    label: "Climate portfolio",
+                    accentBorder: "border-[#2b6193]",
+                    accentHover:
+                      "h focus-within:bg-amber-500/[0.06]",
+                  },
+                  {
+                    step: "04",
+                    color: "hsl(257, 63%, 52%)",
+                    category: "Assets",
+                    icon: imgStatIcon4,
+                    variant: "plain" as const,
+                    end: 800,
+                    suffix: "M+",
+                    label: "tCO2e project pipeline",
+                    accentBorder: "",
+                    accentHover:
+                      " focus-within:bg-violet-500/[0.06]",
+                  },
+                ] as const
+              ).map((col, i) => (
+                <div
+                  data-step={i + 1}
+                  style={{ ["--accent"]: col.color } as CSSProperties}
+                  key={i}
+                  className={[
+                    "relative stats-hover-item group/stats flex min-h-[220px] flex-col px-6 py-9 transition-colors duration-300 ease-out sm:min-h-0 sm:px-8 sm:py-10 lg:min-h-[280px]",
+                    col.accentHover,
+                    i < 3
+                      ? `max-lg:border-b max-lg:border-dashed lg:border-b-0 lg:border-r lg:border-dashed ${col.accentBorder}`
+                      : "",
+                  ].join(" ")}
+                >
+                  <div className="relative z-1 mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase leading-snug tracking-[0.14em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-xs">
+                    <span className="inline-flex items-center gap-1.5">
                     </span>
-                    <div className="my-2 h-[2px] w-8 rounded-full bg-[#006c49]/70" />
+                    <span className="tracking-[0.14em]">{col.category}</span>
                   </div>
-
-                  {/* Impact Counter Number */}
-                  <div className="relative z-1 my-1 flex items-baseline justify-center gap-1.5">
-                    {metric.prefix ? (
-                      <span className="text-base font-bold tracking-tight text-[#131b2e] sm:text-lg">
-                        {metric.prefix}
-                      </span>
-                    ) : null}
-                    <ImpactCounter
-                      end={metric.end}
-                      suffix={metric.suffix}
-                      className="display-head text-4xl font-extrabold tracking-tight text-[#131b2e] sm:text-5xl"
-                    />
+                  <div className="relative z-1 flex flex-1 flex-col justify-center transition-colors duration-300">
+                    {col.variant === "usd" ? (
+                      <div className="inline-flex items-center gap-2">
+                        <span className="text-lg font-bold tabular-nums tracking-tight text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white sm:text-xl">
+                          USD
+                        </span>
+                        <ImpactCounter
+                          end={col.end}
+                          suffix={col.suffix}
+                          className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
+                        />
+                      </div>
+                    ) : (
+                      <ImpactCounter
+                        end={col.end}
+                        suffix={col.suffix}
+                        className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
+                      />
+                    )}
                   </div>
-
-                  {/* Description Label */}
-                  <p className="relative z-1 mt-auto max-w-[200px] text-[11px] font-bold uppercase leading-snug tracking-[0.08em] text-[#5c6b62]">
-                    {metric.label}
+                  <p className="relative z-1 mt-6 max-w-56 text-[13px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-sm">
+                    {col.label}
                   </p>
-
-                  {/* Bottom dark green foundation bar */}
-                  <div className="absolute inset-x-0 bottom-0 h-1.5 rounded-b-2xl bg-[#005a36]" aria-hidden="true" />
-                </article>
-              </ScrollReveal>
-            );
-          })}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }
 
 export function CredentialStrip() {
   return (
-    <section className={`bg-[#f8fbf9] ${SECTION}`}>
+    <section className={`bg-[#fafafa] ${SECTION}`}>
       <div className="mx-auto max-w-[1300px]">
         <ScrollReveal>
           {/* Outer card */}
-          <div className="relative overflow-hidden rounded-2xl border border-[#006c49]/12 bg-white shadow-[0_4px_32px_rgba(0,108,73,0.07)]">
+          <div className="relative overflow-hidden rounded-2xl border border-neutral-200/80 bg-white shadow-[0_4px_28px_rgba(0,0,0,0.04)]">
 
             {/* Faint globe watermark — top right */}
             <svg
               viewBox="0 0 300 300"
-              className="pointer-events-none absolute -right-10 -top-10 h-[320px] w-[320px] opacity-[0.07]"
+              className="pointer-events-none absolute -right-10 -top-10 h-[320px] w-[320px] opacity-[0.05]"
               fill="none"
               aria-hidden="true"
             >
-              <circle cx="150" cy="150" r="140" stroke="#006c49" strokeWidth="2" />
-              <circle cx="150" cy="150" r="100" stroke="#006c49" strokeWidth="1.5" />
-              <circle cx="150" cy="150" r="60" stroke="#006c49" strokeWidth="1" />
-              <ellipse cx="150" cy="150" rx="50" ry="140" stroke="#006c49" strokeWidth="1.5" />
-              <ellipse cx="150" cy="150" rx="100" ry="140" stroke="#006c49" strokeWidth="1" />
-              <line x1="10" y1="150" x2="290" y2="150" stroke="#006c49" strokeWidth="1.2" />
-              <path d="M20 100 Q150 120 280 100" stroke="#006c49" strokeWidth="1" fill="none" />
-              <path d="M20 200 Q150 180 280 200" stroke="#006c49" strokeWidth="1" fill="none" />
+              <circle cx="150" cy="150" r="140" stroke="#18181b" strokeWidth="2" />
+              <circle cx="150" cy="150" r="100" stroke="#18181b" strokeWidth="1.5" />
+              <circle cx="150" cy="150" r="60" stroke="#18181b" strokeWidth="1" />
+              <ellipse cx="150" cy="150" rx="50" ry="140" stroke="#18181b" strokeWidth="1.5" />
+              <ellipse cx="150" cy="150" rx="100" ry="140" stroke="#18181b" strokeWidth="1" />
+              <line x1="10" y1="150" x2="290" y2="150" stroke="#18181b" strokeWidth="1.2" />
+              <path d="M20 100 Q150 120 280 100" stroke="#18181b" strokeWidth="1" fill="none" />
+              <path d="M20 200 Q150 180 280 200" stroke="#18181b" strokeWidth="1" fill="none" />
               {[...Array(8)].map((_, row) =>
                 [...Array(8)].map((_, col) => (
                   <circle
@@ -361,7 +182,7 @@ export function CredentialStrip() {
                     cx={30 + col * 36}
                     cy={30 + row * 36}
                     r="2"
-                    fill="#006c49"
+                    fill="#18181b"
                   />
                 ))
               )}
@@ -370,20 +191,20 @@ export function CredentialStrip() {
             {/* Decorative leaves — bottom right */}
             <svg
               viewBox="0 0 120 100"
-              className="pointer-events-none absolute bottom-0 right-12 h-24 w-28 opacity-[0.18]"
+              className="pointer-events-none absolute bottom-0 right-12 h-24 w-28 opacity-[0.12]"
               fill="none"
               aria-hidden="true"
             >
-              <path d="M20 80 C20 50, 55 20, 80 12 C80 45, 55 80, 20 80Z" fill="#006c49" />
-              <path d="M20 80 C42 58, 62 36, 80 12" stroke="#006c49" strokeWidth="2" strokeLinecap="round" />
-              <path d="M55 80 C55 58, 78 42, 98 36 C98 58, 78 80, 55 80Z" fill="#006c49" fillOpacity="0.7" />
-              <path d="M55 80 C68 64, 82 50, 98 36" stroke="#006c49" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M20 80 C20 50, 55 20, 80 12 C80 45, 55 80, 20 80Z" fill="#52525b" />
+              <path d="M20 80 C42 58, 62 36, 80 12" stroke="#52525b" strokeWidth="2" strokeLinecap="round" />
+              <path d="M55 80 C55 58, 78 42, 98 36 C98 58, 78 80, 55 80Z" fill="#52525b" fillOpacity="0.7" />
+              <path d="M55 80 C68 64, 82 50, 98 36" stroke="#52525b" strokeWidth="1.8" strokeLinecap="round" />
             </svg>
 
             <div className="flex flex-col items-stretch lg:flex-row">
 
               {/* ── Left: Logo panel ── */}
-              <div className="relative flex shrink-0 flex-col items-center justify-center gap-4 bg-[#f3faf6] px-10 py-10 lg:w-[260px] lg:py-12">
+              <div className="relative flex shrink-0 flex-col items-center justify-center gap-4 bg-neutral-100/70 px-10 py-10 lg:w-[260px] lg:py-12">
                 {/* Dot grid background */}
                 <svg
                   viewBox="0 0 200 200"
@@ -393,58 +214,58 @@ export function CredentialStrip() {
                 >
                   {[...Array(8)].map((_, row) =>
                     [...Array(8)].map((_, col) => (
-                      <circle key={`${row}-${col}`} cx={14 + col * 26} cy={14 + row * 26} r="2" fill="#006c49" />
+                      <circle key={`${row}-${col}`} cx={14 + col * 26} cy={14 + row * 26} r="2" fill="#52525b" />
                     ))
                   )}
                 </svg>
 
                 {/* Decorative leaf top-left */}
-                <svg viewBox="0 0 60 60" className="absolute left-3 top-3 h-10 w-10 opacity-50" fill="none" aria-hidden="true">
-                  <path d="M8 48 C8 28, 28 12, 46 8 C46 28, 28 48, 8 48Z" fill="#006c49" fillOpacity="0.6" />
-                  <path d="M8 48 C24 34, 36 20, 46 8" stroke="#006c49" strokeWidth="1.5" strokeLinecap="round" />
+                <svg viewBox="0 0 60 60" className="absolute left-3 top-3 h-10 w-10 opacity-35" fill="none" aria-hidden="true">
+                  <path d="M8 48 C8 28, 28 12, 46 8 C46 28, 28 48, 8 48Z" fill="#52525b" fillOpacity="0.6" />
+                  <path d="M8 48 C24 34, 36 20, 46 8" stroke="#52525b" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
 
                 {/* UN Logo in rounded white card */}
-                <div className="relative z-10 flex h-[140px] w-[140px] items-center justify-center rounded-2xl border border-[#006c49]/15 bg-white shadow-[0_4px_20px_rgba(0,108,73,0.1)]">
+                <div className="relative z-10 flex h-[140px] w-[140px] items-center justify-center rounded-2xl border border-neutral-200 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
                   <img
                     src="/un-global-compact.png"
                     alt="United Nations Global Compact Participant"
-                    className="h-[120px] w-auto object-contain"
+                    className="h-[120px] w-auto object-contain grayscale opacity-90 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
                   />
                 </div>
               </div>
 
               {/* ── Divider with arrow circle ── */}
               <div className="relative flex items-center justify-center lg:w-0">
-                <div className="absolute hidden h-full w-px bg-[#006c49]/12 lg:block" aria-hidden="true" />
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-[#006c49]/25 bg-white shadow-sm lg:absolute lg:z-10">
+                <div className="absolute hidden h-full w-px bg-neutral-200 lg:block" aria-hidden="true" />
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-sm lg:absolute lg:z-10">
                   <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden="true">
-                    <path d="M6 4l4 4-4 4" stroke="#006c49" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M6 4l4 4-4 4" stroke="#52525b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
               </div>
 
               {/* ── Right: Content ── */}
               <div className="relative z-10 flex flex-1 flex-col justify-center gap-4 px-8 py-10 lg:px-12 lg:py-12">
-                <h2 className="display-head text-2xl font-bold leading-tight tracking-[-0.02em] text-[#131b2e] sm:text-3xl lg:text-[2rem]">
+                <h2 className="display-head text-2xl font-bold leading-tight tracking-[-0.02em] text-neutral-900 sm:text-3xl lg:text-[2rem]">
                   Our Commitment to{" "}
-                  <span className="text-[#006c49]">Integrity</span>
+                  <span className="text-neutral-500">Integrity</span>
                 </h2>
 
                 {/* Badge */}
-                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#006c49]/20 bg-[#f0f9f5] px-3 py-1.5">
+                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1.5">
                   <svg viewBox="0 0 20 20" className="size-4 shrink-0" fill="none" aria-hidden="true">
-                    <path d="M10 3 C10 3, 14 5, 14 10 C14 14, 10 17, 10 17 C10 17, 6 14, 6 10 C6 5, 10 3, 10 3Z" fill="#006c49" fillOpacity="0.3" stroke="#006c49" strokeWidth="1.5" />
-                    <path d="M7 10 C7 7, 8 5, 10 4" stroke="#006c49" strokeWidth="1.2" strokeLinecap="round" />
+                    <path d="M10 3 C10 3, 14 5, 14 10 C14 14, 10 17, 10 17 C10 17, 6 14, 6 10 C6 5, 10 3, 10 3Z" fill="#71717a" fillOpacity="0.25" stroke="#3f3f46" strokeWidth="1.5" />
+                    <path d="M7 10 C7 7, 8 5, 10 4" stroke="#3f3f46" strokeWidth="1.2" strokeLinecap="round" />
                   </svg>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#006c49]">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-700">
                     UN Global Compact Participant
                   </span>
                 </div>
 
-                <p className="max-w-2xl text-[15px] leading-7 text-[#4a5a52]">
+                <p className="max-w-2xl text-[15px] leading-7 text-neutral-600">
                   As an active participant in the{" "}
-                  <strong className="font-semibold text-[#131b2e]">United Nations Global Compact</strong>,
+                  <strong className="font-semibold text-neutral-900">United Nations Global Compact</strong>,
                   UNMAI Carbon Solutions is dedicated to upholding the highest global standards for
                   sustainable and responsible business. We believe that true climate action requires
                   measurable accountability, which is why we commit to documenting our efforts annually
@@ -467,9 +288,9 @@ const PLATFORM_LAYERS = [
     body: "Sovereign-grade, high integrity and Paris aligned registries for issuance, transfer, and retirement of domestic and international carbon credits / ITMOs with full transparent governance, traceability and accountability controls.",
     icon: (
       <svg viewBox="0 0 28 28" fill="none" className="size-6" aria-hidden="true">
-        <rect x="2" y="2" width="24" height="24" rx="4" stroke="#e6ff80" strokeWidth="1.5" fill="none" />
-        <path d="M14 7v6l4 3" stroke="#e6ff80" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M8 18l2 2 5-6" stroke="#e6ff80" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="2" y="2" width="24" height="24" rx="4" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+        <path d="M14 7v6l4 3" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 18l2 2 5-6" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -478,10 +299,10 @@ const PLATFORM_LAYERS = [
     body: "Monitoring, Reporting, and Verification infrastructure built for transparent and scalable implementation.",
     icon: (
       <svg viewBox="0 0 28 28" fill="none" className="size-6" aria-hidden="true">
-        <rect x="2" y="2" width="24" height="24" rx="4" stroke="#e6ff80" strokeWidth="1.5" fill="none" />
-        <rect x="8" y="8" width="12" height="4" rx="1" stroke="#e6ff80" strokeWidth="1.5" fill="none" />
-        <rect x="8" y="16" width="12" height="4" rx="1" stroke="#e6ff80" strokeWidth="1.5" fill="none" />
-        <line x1="14" y1="12" x2="14" y2="16" stroke="#e6ff80" strokeWidth="1.5" />
+        <rect x="2" y="2" width="24" height="24" rx="4" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+        <rect x="8" y="8" width="12" height="4" rx="1" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+        <rect x="8" y="16" width="12" height="4" rx="1" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+        <line x1="14" y1="12" x2="14" y2="16" stroke="#ffffff" strokeWidth="1.5" />
       </svg>
     ),
   },
@@ -490,12 +311,12 @@ const PLATFORM_LAYERS = [
     body: "Trusted digital traceability architecture across the full carbon credit lifecycle.",
     icon: (
       <svg viewBox="0 0 28 28" fill="none" className="size-6" aria-hidden="true">
-        <rect x="2" y="2" width="24" height="24" rx="4" stroke="#e6ff80" strokeWidth="1.5" fill="none" />
-        <circle cx="10" cy="10" r="3" stroke="#e6ff80" strokeWidth="1.5" fill="none" />
-        <circle cx="18" cy="18" r="3" stroke="#e6ff80" strokeWidth="1.5" fill="none" />
-        <line x1="12.5" y1="12.5" x2="15.5" y2="15.5" stroke="#e6ff80" strokeWidth="1.5" />
-        <circle cx="18" cy="10" r="2" stroke="#e6ff80" strokeWidth="1.2" fill="none" />
-        <circle cx="10" cy="18" r="2" stroke="#e6ff80" strokeWidth="1.2" fill="none" />
+        <rect x="2" y="2" width="24" height="24" rx="4" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+        <circle cx="10" cy="10" r="3" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+        <circle cx="18" cy="18" r="3" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+        <line x1="12.5" y1="12.5" x2="15.5" y2="15.5" stroke="#ffffff" strokeWidth="1.5" />
+        <circle cx="18" cy="10" r="2" stroke="#ffffff" strokeWidth="1.2" fill="none" />
+        <circle cx="10" cy="18" r="2" stroke="#ffffff" strokeWidth="1.2" fill="none" />
       </svg>
     ),
   },
@@ -505,8 +326,8 @@ const PLATFORM_LAYERS = [
     link: "https://www.nambi.earth/",
     icon: (
       <svg viewBox="0 0 28 28" fill="none" className="size-6" aria-hidden="true">
-        <rect x="2" y="2" width="24" height="24" rx="4" stroke="#e6ff80" strokeWidth="1.5" fill="none" />
-        <path d="M8 8h12M8 12h12M8 16h8M8 20h5" stroke="#e6ff80" strokeWidth="1.5" strokeLinecap="round" />
+        <rect x="2" y="2" width="24" height="24" rx="4" stroke="#ffffff" strokeWidth="1.5" fill="none" />
+        <path d="M8 8h12M8 12h12M8 16h8M8 20h5" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -560,12 +381,12 @@ function InfraCard({
           href={layer.link}
           target="_blank"
           rel="noreferrer noopener"
-          className="block rounded-xl border border-white/8 bg-white/[0.04] p-5 transition duration-300 hover:border-[#e6ff80]/30 hover:bg-white/[0.07]"
+          className="block rounded-xl border border-white/8 bg-white/[0.04] p-5 transition duration-300 hover:border-white/25 hover:bg-white/[0.07]"
         >
           {content}
         </a>
       ) : (
-        <div className="rounded-xl border border-white/8 bg-white/[0.04] p-5 transition duration-300 hover:border-[#e6ff80]/30 hover:bg-white/[0.07]">
+        <div className="rounded-xl border border-white/8 bg-white/[0.04] p-5 transition duration-300 hover:border-white/25 hover:bg-white/[0.07]">
           {content}
         </div>
       )}
@@ -576,48 +397,59 @@ function InfraCard({
 export function DigitalInfrastructureSection() {
   return (
     <section className={`di-bg relative overflow-hidden ${SECTION}`}>
-      {/* Full background image — uncropped, natural aspect ratio */}
-      <img
-        src="/third-section-background.png"
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full object-contain object-right-bottom"
-      />
-      <Streamlines className="pointer-events-none absolute inset-0 h-full w-full text-[#e6ff80]/25" />
+      <Streamlines className="pointer-events-none absolute inset-0 h-full w-full text-white/10" />
 
       <div className="relative mx-auto max-w-[1300px]">
-        <ScrollReveal>
-          {/* Eyebrow with diamond + line */}
-          <div className="flex items-center gap-3">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#e6ff80]">
-              Digital Infrastructure
-            </p>
-            <div className="flex items-center gap-1">
-              <span className="h-px w-20 bg-[#e6ff80]/40 sm:w-28" />
-              <svg viewBox="0 0 10 10" className="size-2.5 text-[#e6ff80]" fill="currentColor" aria-hidden="true">
-                <rect x="5" y="0" width="7" height="7" rx="1" transform="rotate(45 5 0)" />
-              </svg>
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          {/* Left column: Text & Features */}
+          <div className="lg:col-span-7">
+            <ScrollReveal>
+              {/* Eyebrow with diamond + line */}
+              <div className="flex items-center gap-3">
+                <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-neutral-400">
+                  Digital Infrastructure
+                </p>
+                <div className="flex items-center gap-1">
+                  <span className="h-px w-20 bg-white/25 sm:w-28" />
+                  <svg viewBox="0 0 10 10" className="size-2.5 text-neutral-400" fill="currentColor" aria-hidden="true">
+                    <rect x="5" y="0" width="7" height="7" rx="1" transform="rotate(45 5 0)" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Heading + description stacked */}
+              <div className="mt-6">
+                <h2 className="display-head text-[clamp(1.9rem,4vw,3.2rem)] font-bold leading-[1.05] tracking-[-0.02em] text-white">
+                  Building the Digital Backbone<br />
+                  of <span className="text-white">Carbon Markets</span>
+                </h2>
+                <p className="mt-4 text-sm leading-6 text-[#c9cfc9] xs:text-[15px] xs:leading-7">
+                  Mission critical and institutional-grade digital infrastructure enabling transparency,
+                  interoperability, trust, and scalable climate market operations.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {/* Cards stacked on the left */}
+            <div className="mt-8 flex flex-col gap-3.5 sm:mt-10">
+              {PLATFORM_LAYERS.map((layer, i) => (
+                <InfraCard key={layer.title} layer={layer} delayMs={i * 80} />
+              ))}
             </div>
           </div>
 
-          {/* Heading + description stacked */}
-          <div className="mt-6 lg:max-w-[55%]">
-            <h2 className="display-head text-[clamp(1.9rem,5.2vw,3.4rem)] font-bold leading-[1.05] tracking-[-0.02em] text-white">
-              Building the Digital Backbone<br />
-              of <span className="text-[#e6ff80]">Carbon Markets</span>
-            </h2>
-            <p className="mt-4 text-sm leading-6 text-[#c9cfc9] xs:text-[15px] xs:leading-7">
-              Mission critical and institutional-grade digital infrastructure enabling transparency,
-              interoperability, trust, and scalable climate market operations.
-            </p>
+          {/* Right column: Platform Visualization Image */}
+          <div className="lg:col-span-5">
+            <ScrollReveal delayMs={150}>
+              <div className="group relative mx-auto flex aspect-square max-h-[min(90vw,520px)] w-full items-center justify-center overflow-hidden rounded-[30px] transition duration-500 ease-out lg:max-h-none">
+                <img
+                  src="/unmai-carbon-img.png"
+                  alt="Carbon market platform visualization"
+                  className="size-full object-contain transition duration-500 ease-out group-hover:scale-[0.98] motion-reduce:group-hover:scale-100"
+                />
+              </div>
+            </ScrollReveal>
           </div>
-        </ScrollReveal>
-
-        {/* Cards stacked on the left — right side shows bg image */}
-        <div className="mt-10 flex flex-col gap-4 sm:mt-12 lg:max-w-[55%]">
-          {PLATFORM_LAYERS.map((layer, i) => (
-            <InfraCard key={layer.title} layer={layer} delayMs={i * 80} />
-          ))}
         </div>
       </div>
     </section>
@@ -724,22 +556,22 @@ const SERVICES = [
     icon: "policy",
     title: "Climate Policy & Carbon Market Advisory",
     body: "Designing sectoral decarbonization pathways, Net Zero strategies, Long-term climate policy design (NDCs, LT-LEDS, CBAM readiness), Article 6 operationalization strategies, capacity building and institutional readiness programs.",
-    accent: "#4f65e3",
-    tint: "#eaedfc",
+    accent: "#4a5568",
+    tint: "#eceef1",
   },
   {
     icon: "finance",
     title: "Climate Finance & Investment Strategy",
     body: "Structuring results-based finance and carbon credit-linked instruments, policy and investment advisory, ESG driven capital mobilization strategies and MRV-aligned financing mechanisms.",
-    accent: "#006c49",
-    tint: "#e7f1ec",
+    accent: "#4a5568",
+    tint: "#eceef1",
   },
   {
     icon: "infrastructure",
     title: "Carbon Market Infrastructure & Governance",
     body: "Designing national and subnational carbon market frameworks, building interoperable carbon registries, digital MRV ecosystems, blockchain-enabled trust architecture, climate data standardization and infrastructure governance.",
-    accent: "#a35311",
-    tint: "#f7ece3",
+    accent: "#4a5568",
+    tint: "#eceef1",
   },
   {
     icon: "governance",
@@ -764,14 +596,14 @@ export function StrategicServicesSection() {
     >
       <div className="relative mx-auto max-w-[1300px]">
         <ScrollReveal className="mx-auto max-w-[1150px] text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#006c49] sm:text-xs">
+          <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-neutral-500 sm:text-xs">
             Our Core Services
           </p>
 
-          {/* Rule with the leaf sitting on it, as in the reference */}
+          {/* Rule with the leaf sitting on it */}
           <div className="mt-4 flex items-center justify-center gap-3" aria-hidden>
             <span className="h-px w-16 bg-[#131b2e]/10 sm:w-28" />
-            <svg viewBox="0 0 24 24" className="size-[18px] text-[#006c49]" fill="none">
+            <svg viewBox="0 0 24 24" className="size-[18px] text-neutral-400" fill="none">
               <path
                 d="M20.2 3.9c-9.2.2-13.7 4.6-13.2 13.3 9.2-.2 13.7-4.6 13.2-13.3z"
                 fill="currentColor"
@@ -791,7 +623,7 @@ export function StrategicServicesSection() {
           </h2>
           <span
             className="mx-auto mt-5 block h-1 w-24 rounded-full"
-            style={{ backgroundImage: "linear-gradient(90deg,#006c49,#4f65e3)" }}
+            style={{ backgroundImage: "linear-gradient(90deg,#4a5568,#71717a)" }}
             aria-hidden
           />
         </ScrollReveal>
@@ -860,9 +692,9 @@ export function StrategicServicesSection() {
 /* ------------------------------------------------------------------- water */
 
 const PRESS_ACCENTS = [
-  { line: "#17915b", tint: "#e5f3ec" },
-  { line: "#3b5bdb", tint: "#e9edfc" },
-  { line: "#6d4aec", tint: "#eeeafd" },
+  { line: "#4a5568", tint: "#eceef1" },
+  { line: "#4a5568", tint: "#eceef1" },
+  { line: "#4a5568", tint: "#eceef1" },
 ] as const;
 
 const PRESS_ICONS = {
@@ -939,13 +771,13 @@ function PressPromoCard() {
   return (
     <div
       className="relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-3xl p-7 sm:p-9"
-      style={{ backgroundImage: "linear-gradient(160deg,#0d3a20 0%,#082616 45%,#04180d 100%)" }}
+      style={{ backgroundImage: "linear-gradient(160deg,#18181b 0%,#121215 45%,#09090b 100%)" }}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-45"
+        className="pointer-events-none absolute inset-0 opacity-25"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(160,235,170,0.55) 1px, transparent 1px)",
+            "radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px)",
           backgroundSize: "13px 13px",
           maskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, #000 10%, transparent 78%)",
           WebkitMaskImage: "radial-gradient(ellipse 75% 55% at 50% 30%, #000 10%, transparent 78%)",
@@ -956,7 +788,7 @@ function PressPromoCard() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 60% 45% at 50% 28%, rgba(60,190,100,0.22), transparent 70%)",
+            "radial-gradient(ellipse 60% 45% at 50% 28%, rgba(255,255,255,0.06), transparent 70%)",
         }}
         aria-hidden
       />
@@ -964,15 +796,15 @@ function PressPromoCard() {
       {/* Leaf mark in its rings */}
       <div className="relative flex flex-1 items-center justify-center py-6">
         <span
-          className="flex size-32 items-center justify-center rounded-full border border-[#5fd44f]/35 shadow-[0_0_0_18px_rgba(95,212,79,0.05)] sm:size-36"
+          className="flex size-32 items-center justify-center rounded-full border border-white/20 shadow-[0_0_0_18px_rgba(255,255,255,0.03)] sm:size-36"
           aria-hidden
         >
           <span
-            className="flex size-24 items-center justify-center rounded-full border border-[#5fd44f]/45 sm:size-28"
+            className="flex size-24 items-center justify-center rounded-full border border-white/30 sm:size-28"
             style={{
               backgroundImage:
-                "radial-gradient(circle at 50% 40%, rgba(95,212,79,0.28), rgba(95,212,79,0.04) 70%)",
-              boxShadow: "0 0 46px -8px rgba(95,212,79,0.55)",
+                "radial-gradient(circle at 50% 40%, rgba(255,255,255,0.12), rgba(255,255,255,0.02) 70%)",
+              boxShadow: "0 0 36px -8px rgba(255,255,255,0.2)",
             }}
           >
             <svg
@@ -998,18 +830,18 @@ function PressPromoCard() {
           <br />
           Building Trust.
           <br />
-          <span className="text-[#5fd44f]">Creating Impact.</span>
+          <span className="text-neutral-300">Creating Impact.</span>
         </p>
-        <span className="mt-4 block h-1 w-12 rounded-full bg-[#5fd44f]" aria-hidden />
+        <span className="mt-4 block h-1 w-12 rounded-full bg-neutral-400" aria-hidden />
         <p className="mt-4 max-w-[320px] text-sm leading-6 text-white/70">
           Stories of collaboration, innovation, and leadership in shaping a sustainable future.
         </p>
         <ScrollLink
           to="/news"
-          className="group mt-7 inline-flex items-center gap-3 rounded-full border border-[#5fd44f]/50 py-2 pl-6 pr-2 text-sm font-bold text-white transition duration-300 hover:border-[#5fd44f] hover:bg-[#5fd44f]/10"
+          className="group mt-7 inline-flex items-center gap-3 rounded-full border border-white/20 py-2 pl-6 pr-2 text-sm font-bold text-white transition duration-300 hover:border-white hover:bg-white/10"
         >
           View all news
-          <span className="flex size-8 items-center justify-center rounded-full bg-[#5fd44f]/15 text-[#5fd44f] transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0">
+          <span className="flex size-8 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0">
             <ArrowRight className="size-4" />
           </span>
         </ScrollLink>
@@ -1022,23 +854,23 @@ export function PressReleasesSection() {
   return (
     <section
       className={`relative overflow-hidden ${SECTION}`}
-      style={{ backgroundImage: "linear-gradient(180deg,#ffffff 0%,#f4f7f8 40%,#eef3f4 100%)" }}
+      style={{ backgroundImage: "linear-gradient(180deg,#ffffff 0%,#f8fafb 40%,#f1f5f7 100%)" }}
     >
       <div className="mx-auto max-w-[1300px]">
         <ScrollReveal className="mx-auto max-w-[760px] text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#0d5c33] sm:text-xs">
+          <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-neutral-500 sm:text-xs">
             News &amp; Updates
           </p>
           <div className="mt-3 flex flex-col items-center gap-1" aria-hidden>
-            <span className="h-px w-24 bg-[#0d5c33]/20" />
-            <svg viewBox="0 0 24 24" className="size-[17px] text-[#17915b]" fill="none">
+            <span className="h-px w-24 bg-[#131b2e]/10" />
+            <svg viewBox="0 0 24 24" className="size-[17px] text-neutral-400" fill="none">
               <path
                 d="M20.2 3.9c-9.2.2-13.7 4.6-13.2 13.3 9.2-.2 13.7-4.6 13.2-13.3z"
                 fill="currentColor"
               />
             </svg>
           </div>
-          <h2 className="display-head mt-2 text-[clamp(1.9rem,5vw,3.2rem)] font-bold leading-[1.06] tracking-[-0.02em] text-[#0d5c33]">
+          <h2 className="display-head mt-2 text-[clamp(1.9rem,5vw,3.2rem)] font-bold leading-[1.06] tracking-[-0.02em] text-[#131b2e]">
             Press Releases
           </h2>
           <p className="mx-auto mt-4 max-w-[620px] text-sm leading-7 text-[#4d5a63] xs:text-base">
@@ -1157,7 +989,7 @@ export function PressReleasesSection() {
                                   href={release.sourceUrl}
                                   target="_blank"
                                   rel="noreferrer noopener"
-                                  className="inline-flex items-center gap-1.5 px-1 text-[13px] font-bold text-[#131b2e] transition hover:text-[#17915b]"
+                                  className="inline-flex items-center gap-1.5 px-1 text-[13px] font-bold text-[#131b2e] transition hover:text-neutral-900"
                                 >
                                   {release.sourceName ? `Source: ${release.sourceName}` : "View source"}
                                   <svg
@@ -1198,8 +1030,8 @@ export function PressReleasesSection() {
           <ScrollReveal className="flex justify-center lg:col-start-2">
               <ScrollLink
                 to="/news"
-                className="group inline-flex items-center gap-3 rounded-full py-2.5 pl-8 pr-3 text-[15px] font-bold text-white shadow-[0_18px_40px_-22px_rgba(13,92,51,0.9)] transition duration-300 hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
-                style={{ backgroundImage: "linear-gradient(120deg,#0d5c33,#17915b)" }}
+                className="group inline-flex items-center gap-3 rounded-full py-2.5 pl-8 pr-3 text-[15px] font-bold text-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.6)] transition duration-300 hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
+                style={{ backgroundImage: "linear-gradient(120deg,#18181b,#27272a)" }}
               >
                 View all press releases
                 <span className="flex size-9 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0">

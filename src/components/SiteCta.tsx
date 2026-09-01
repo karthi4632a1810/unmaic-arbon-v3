@@ -5,11 +5,11 @@ import { COMPANY_BROCHURE_URL } from "../data/siteReference";
 
 /** Space (Aagayam) — the element that holds the other four. */
 
-const PANEL_BG = "linear-gradient(155deg,#0b2417 0%,#08190f 48%,#05110a 100%)";
+const PANEL_BG = "linear-gradient(155deg,#18181b 0%,#111113 48%,#09090b 100%)";
 const PANEL_GLOW =
-  "radial-gradient(ellipse 72% 95% at 100% 0%, rgba(80,180,92,0.58), transparent 64%), radial-gradient(ellipse 55% 65% at 8% 50%, rgba(28,104,58,0.35), transparent 72%)";
+  "radial-gradient(ellipse 72% 95% at 100% 0%, rgba(255,255,255,0.08), transparent 64%), radial-gradient(ellipse 55% 65% at 8% 50%, rgba(255,255,255,0.04), transparent 72%)";
 
-const ACCENT = "#5fd44f";
+const ACCENT = "#e4e4e7";
 
 const FEATURES = [
   {
@@ -39,7 +39,7 @@ function FlowLines({ className = "" }: { className?: string }) {
           d={`M600 ${20 + i * 10} C ${450 - i * 7} ${118 + i * 9}, ${360 - i * 5} ${250 + i * 5}, ${210 - i * 9} 400`}
           stroke="currentColor"
           strokeWidth="1"
-          opacity={0.45 - i * 0.02}
+          opacity={0.3 - i * 0.015}
         />
       ))}
     </svg>
@@ -49,19 +49,14 @@ function FlowLines({ className = "" }: { className?: string }) {
 function LeafBadge() {
   return (
     <span
-      className="flex size-14 shrink-0 items-center justify-center rounded-full border"
-      style={{
-        borderColor: "rgba(95,212,79,0.45)",
-        backgroundColor: "rgba(95,212,79,0.08)",
-        boxShadow: "0 0 34px -6px rgba(95,212,79,0.55)",
-      }}
+      className="flex size-14 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5 shadow-[0_0_34px_-6px_rgba(255,255,255,0.15)]"
       aria-hidden
     >
       <svg
         viewBox="0 0 24 24"
-        className="size-7"
+        className="size-7 text-white"
         fill="none"
-        stroke={ACCENT}
+        stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -143,7 +138,7 @@ export function SiteCta() {
     <section className="px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
       <ScrollReveal>
         <div
-          className="relative mx-auto max-w-[1216px] overflow-hidden rounded-3xl px-5 py-10 shadow-[0_36px_90px_-48px_rgba(4,24,12,0.9)] xs:px-8 sm:rounded-[32px] sm:px-12 sm:py-14"
+          className="relative mx-auto max-w-[1216px] overflow-hidden rounded-3xl px-5 py-10 shadow-[0_36px_90px_-48px_rgba(0,0,0,0.8)] xs:px-8 sm:rounded-[32px] sm:px-12 sm:py-14"
           style={{ backgroundImage: PANEL_BG }}
         >
           <div
@@ -151,19 +146,19 @@ export function SiteCta() {
             style={{ backgroundImage: PANEL_GLOW }}
             aria-hidden
           />
-          <DotSphere className="pointer-events-none absolute -left-56 top-1/2 h-[460px] w-[460px] -translate-y-1/2 text-[#5fd44f] opacity-45 sm:-left-52 lg:-left-56 lg:h-[560px] lg:w-[560px]" />
-          <FlowLines className="pointer-events-none absolute -bottom-6 -right-20 h-[420px] w-[620px] text-[#9ae985] opacity-40 lg:h-[520px] lg:w-[720px]" />
+          <DotSphere className="pointer-events-none absolute -left-56 top-1/2 h-[460px] w-[460px] -translate-y-1/2 text-white opacity-20 sm:-left-52 lg:-left-56 lg:h-[560px] lg:w-[560px]" />
+          <FlowLines className="pointer-events-none absolute -bottom-6 -right-20 h-[420px] w-[620px] text-white opacity-15 lg:h-[520px] lg:w-[720px]" />
 
           <div className="relative flex flex-col items-center text-center">
             {/* Leaf badge riding a rule, as the crown of the panel */}
             <div className="flex w-full max-w-[880px] items-center justify-center gap-4">
               <span className="hidden flex-1 items-center gap-2 sm:flex">
-                <span className="size-1.5 rounded-full bg-[#5fd44f]/70" />
+                <span className="size-1.5 rounded-full bg-white/40" />
                 <span
                   className="h-px flex-1"
                   style={{
                     backgroundImage:
-                      "linear-gradient(90deg,rgba(95,212,79,0.15),rgba(95,212,79,0.7))",
+                      "linear-gradient(90deg,rgba(255,255,255,0.05),rgba(255,255,255,0.4))",
                   }}
                 />
               </span>
@@ -173,10 +168,10 @@ export function SiteCta() {
                   className="h-px flex-1"
                   style={{
                     backgroundImage:
-                      "linear-gradient(90deg,rgba(95,212,79,0.7),rgba(95,212,79,0.15))",
+                      "linear-gradient(90deg,rgba(255,255,255,0.4),rgba(255,255,255,0.05))",
                   }}
                 />
-                <span className="size-1.5 rounded-full bg-[#5fd44f]/70" />
+                <span className="size-1.5 rounded-full bg-white/40" />
               </span>
             </div>
 
@@ -195,10 +190,10 @@ export function SiteCta() {
             <div className="mt-8 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
               <ScrollLink
                 to="/contact"
-                className="group inline-flex w-full items-center justify-center gap-3 rounded-xl px-9 py-4.5 text-base font-bold text-white shadow-[0_0_38px_-8px_rgba(95,212,79,0.75)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_46px_-6px_rgba(95,212,79,0.9)] motion-reduce:hover:translate-y-0 sm:w-auto"
+                className="group inline-flex w-full items-center justify-center gap-3 rounded-xl px-9 py-4.5 text-base font-bold text-neutral-900 shadow-[0_0_38px_-8px_rgba(255,255,255,0.35)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_46px_-6px_rgba(255,255,255,0.5)] motion-reduce:hover:translate-y-0 sm:w-auto"
                 style={{
-                  backgroundImage: "linear-gradient(180deg,#6ad557 0%,#3f9f42 100%)",
-                  border: "1px solid rgba(150,238,132,0.45)",
+                  backgroundImage: "linear-gradient(180deg,#ffffff 0%,#e4e4e7 100%)",
+                  border: "1px solid rgba(255,255,255,0.8)",
                 }}
               >
                 <HandshakeIcon className="size-5" />
@@ -214,7 +209,7 @@ export function SiteCta() {
               <a
                 href={COMPANY_BROCHURE_URL}
                 download
-                className="inline-flex w-full items-center justify-center gap-3 rounded-xl border border-[#5fd44f]/55 px-9 py-4.5 text-base font-bold text-white transition duration-300 hover:-translate-y-0.5 hover:border-[#5fd44f] hover:bg-[#5fd44f]/10 motion-reduce:hover:translate-y-0 sm:w-auto"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-xl border border-white/25 px-9 py-4.5 text-base font-bold text-white transition duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/10 motion-reduce:hover:translate-y-0 sm:w-auto"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -239,7 +234,7 @@ export function SiteCta() {
               {FEATURES.map((feature) => (
                 <li key={feature.id} className="flex items-start gap-3.5 sm:px-5 lg:px-7">
                   <span
-                    className="flex size-11 shrink-0 items-center justify-center rounded-full border border-[#5fd44f]/40 bg-[#5fd44f]/8 text-[#5fd44f]"
+                    className="flex size-11 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white"
                     aria-hidden
                   >
                     <FeatureIcon id={feature.id} className="size-5" />

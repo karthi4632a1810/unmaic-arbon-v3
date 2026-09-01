@@ -53,7 +53,7 @@ export function EngagementGlobalCountries() {
         {GLOBAL_ENGAGEMENT_COUNTRIES.map((country, index) => (
           <ScrollReveal key={country} delayMs={index * 30}>
             <li className="list-none">
-              <span className="inline-block rounded-lg border border-black/10 bg-white px-4 py-2.5 text-sm font-semibold text-[#131b2e] shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-200 hover:border-[#006c49]/25 hover:bg-[#006c49]/5">
+              <span className="inline-block rounded-lg border border-black/10 bg-white px-4 py-2.5 text-sm font-semibold text-[#131b2e] shadow-[0_1px_0_rgba(0,0,0,0.04)] transition duration-200 hover:border-neutral-300 hover:bg-neutral-100">
                 {country}
               </span>
             </li>

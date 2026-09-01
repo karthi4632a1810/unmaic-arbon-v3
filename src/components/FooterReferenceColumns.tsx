@@ -55,7 +55,7 @@ function ReferenceColumn({
     <div>
       <div className="flex items-center gap-4">
         <span
-          className="flex size-12 shrink-0 items-center justify-center rounded-full border border-[#131b2e]/8 bg-[#f2f8f4] text-[#17915b] shadow-[0_6px_16px_-12px_rgba(19,27,46,0.6)]"
+          className="flex size-12 shrink-0 items-center justify-center rounded-full border border-[#131b2e]/8 bg-neutral-100 text-neutral-700 shadow-sm"
           aria-hidden
         >
           <svg
@@ -74,14 +74,14 @@ function ReferenceColumn({
           <h3 className="text-[13px] font-bold uppercase tracking-[0.14em] text-[#131b2e] sm:text-sm">
             {title}
           </h3>
-          <span className="mt-2 block h-0.75 w-9 rounded-full bg-[#17915b]" aria-hidden />
+          <span className="mt-2 block h-0.75 w-9 rounded-full bg-neutral-800" aria-hidden />
         </div>
       </div>
 
       <ul className={`mt-6 space-y-3 text-[13px] leading-6 text-[#4d5a63] sm:text-sm ${columnsClass}`}>
         {items.map((item) => (
           <li key={item} className="flex gap-2.5 break-inside-avoid">
-            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#17915b]" aria-hidden />
+            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-neutral-400" aria-hidden />
             {item}
           </li>
         ))}

@@ -49,6 +49,16 @@ export const GLOBAL_ENGAGEMENT_PLACES = [
     lng: 80.2707,
   },
   {
+    id: "india-mumbai",
+    country: "India",
+    capital: "Mumbai",
+    city: "Mumbai",
+    engagement: "Carbon Advisory & Market Solutions",
+    showFootnoteStar: false,
+    lat: 19.076,
+    lng: 72.8777,
+  },
+  {
     id: "india",
     country: "India",
     capital: "New Delhi",
@@ -160,7 +170,7 @@ function LocationsVerticalList({
     [
       "flex w-full items-center rounded-xl border px-4 py-2.5 text-left transition duration-200",
       active
-        ? "border-[hsl(71,100%,73%)]/50 bg-[hsl(71,100%,73%)]/15 text-[hsl(71,100%,88%)] shadow-[0_0_20px_-4px_hsla(71,100%,73%,0.35)]"
+        ? "border-white/40 bg-white/15 text-white shadow-[0_0_20px_-4px_rgba(255,255,255,0.2)] font-bold"
         : "border-transparent bg-transparent text-white/75 hover:border-white/10 hover:bg-white/[0.08] hover:text-white",
     ].join(" ");
 
@@ -202,7 +212,7 @@ function LocationsVerticalList({
 function GlobeLoadingFallback() {
   return (
     <div className="flex h-full min-h-full w-full flex-col items-center justify-center gap-4 bg-[#0a0e18]">
-      <div className="size-12 animate-spin rounded-full border-2 border-[hsl(71,100%,73%)]/25 border-t-[hsl(71,100%,73%)]" />
+      <div className="size-12 animate-spin rounded-full border-2 border-white/20 border-t-white" />
       <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/55">
         Loading 3D globe…
       </p>

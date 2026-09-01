@@ -4,37 +4,9 @@
  * so no two sections on the site share a layout.
  */
 import type { CSSProperties, ReactNode } from "react";
-import {
-  OrbitField,
-  RayFan,
-  StrataField,
-  Streamlines,
-} from "./ElementMotifs";
+import { OrbitField } from "./ElementMotifs";
 import { ScrollReveal } from "./ScrollReveal";
 import { ELEMENT_BY_ID, type ElementId } from "../lib/elements";
-
-/** Motif that sits over each page banner, chosen by the page's element. */
-function BannerMotif({ id }: { id: ElementId }) {
-  const shared = "pointer-events-none absolute inset-0 h-full w-full";
-
-  switch (id) {
-    case "land":
-      return <StrataField className={`${shared} text-white/25`} lines={7} />;
-    case "air":
-      return <Streamlines className={`${shared} text-white/25`} />;
-    case "fire":
-      return (
-        <RayFan className="pointer-events-none absolute -bottom-40 left-1/2 h-[560px] w-[900px] -translate-x-1/2 text-white/20" />
-      );
-    case "water":
-      return <StrataField className={`${shared} text-white/20`} lines={5} />;
-    case "space":
-    default:
-      return (
-        <OrbitField className="pointer-events-none absolute -right-24 top-1/2 h-[420px] w-[820px] -translate-y-1/2 text-white/25" />
-      );
-  }
-}
 
 export function PageBanner({
   element,
@@ -47,32 +19,33 @@ export function PageBanner({
   subtitle: string;
   backgroundImage?: string;
 }) {
-  const { hue } = ELEMENT_BY_ID[element];
+  const { hue, bgImage, elementLabel } = ELEMENT_BY_ID[element];
+  const finalBgImage = backgroundImage || bgImage;
 
   return (
     <section
-      className="relative overflow-hidden px-4 pb-10 pt-24 text-white sm:px-6 sm:pb-12 sm:pt-28 lg:px-8 lg:pt-32"
-      style={
-        backgroundImage
-          ? {
-              backgroundImage: `linear-gradient(120deg, rgba(8,12,21,0.9), rgba(16,24,39,0.78)), url(${backgroundImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }
-          : { background: "#131b2e" }
-      }
+      className="relative overflow-hidden px-4 pb-12 pt-24 text-white sm:px-6 sm:pb-14 sm:pt-28 lg:px-8 lg:pt-32"
+      style={{
+        backgroundImage: `linear-gradient(125deg, rgba(4,10,20,0.86) 0%, rgba(6,18,32,0.78) 50%, rgba(3,10,22,0.88) 100%), url(${finalBgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      <BannerMotif id={element} />
-
       <div className="relative mx-auto max-w-[1216px]">
         <div className="max-w-4xl border-l-2 pl-5 sm:pl-6" style={{ borderColor: hue }}>
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#e6ff80] xs:text-xs">
-            UNMAI Carbon Solutions
-          </p>
+          <div className="flex items-center gap-2">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#d4d4d8] xs:text-xs">
+              UNMAI Carbon Solutions
+            </p>
+            <span className="text-white/40">•</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">
+              {elementLabel}
+            </span>
+          </div>
           <h1 className="display-head mt-3 text-2xl font-bold leading-tight tracking-tight xs:text-3xl sm:text-4xl lg:text-5xl">
             {title}
           </h1>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-white/80 xs:text-base xs:leading-7 sm:text-lg">
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-white/85 xs:text-base xs:leading-7 sm:text-lg">
             {subtitle}
           </p>
         </div>
@@ -86,7 +59,7 @@ export function SectionHeading({
   eyebrow,
   title,
   paragraph,
-  hue = "#006c49",
+  hue = "#4a5568",
   align = "split",
 }: {
   eyebrow: string;
@@ -151,10 +124,10 @@ export function DossierList({
     <dl className="mx-auto max-w-[1216px] border-t border-black/12">
       {entries.map((entry, i) => (
         <ScrollReveal key={entry.title} delayMs={i * 60}>
-          <div className="group grid gap-x-10 gap-y-3 border-b border-black/12 py-7 transition-colors duration-500 hover:bg-[#006c49]/[0.03] sm:py-8 lg:grid-cols-[minmax(0,13rem)_minmax(0,1fr)]">
+          <div className="group grid gap-x-10 gap-y-3 border-b border-black/12 py-7 transition-colors duration-500 hover:bg-neutral-500/[0.03] sm:py-8 lg:grid-cols-[minmax(0,13rem)_minmax(0,1fr)]">
             <dt className="flex items-start gap-3">
               <span
-                className="mt-1.5 h-4 w-1 shrink-0 bg-[#006c49] transition-all duration-500 group-hover:h-6"
+                className="mt-1.5 h-4 w-1 shrink-0 bg-[#4a5568] transition-all duration-500 group-hover:h-6"
                 aria-hidden
               />
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#5c6b62]">
@@ -175,7 +148,7 @@ export function DossierList({
                   {entry.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#006c49]"
+                      className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#4a5568]"
                     >
                       {tag}
                     </span>
@@ -273,9 +246,9 @@ export function SlabStack({
       {items.map((item, i) => (
         <li key={item.title} className={`list-none ${SLAB_STEP[i] ?? ""}`}>
           <ScrollReveal delayMs={i * 90}>
-            <article className="group relative overflow-hidden rounded-lg border border-white/10 bg-[#0d1a19] transition duration-500 hover:border-[#e6ff80]/35 hover:bg-[#102220]">
+            <article className="group relative overflow-hidden rounded-lg border border-white/10 bg-[#141416] transition duration-500 hover:border-white/25 hover:bg-[#1a1a1e]">
               <span
-                className="absolute inset-x-0 top-0 h-1.5 bg-linear-to-r from-[#e6ff80]/70 via-[#e6ff80]/25 to-transparent"
+                className="absolute inset-x-0 top-0 h-1.5 bg-linear-to-r from-white/60 via-white/20 to-transparent"
                 aria-hidden
               />
               <div className="grid gap-4 p-5 pt-7 sm:p-7 sm:pt-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-10">
@@ -290,7 +263,7 @@ export function SlabStack({
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#e6ff80]"
+                        className="text-[11px] font-bold uppercase tracking-[0.14em] text-neutral-300"
                       >
                         {tag}
                       </span>
@@ -327,7 +300,7 @@ export function RosterBand({
       <div className="relative mx-auto max-w-[1216px]">
         <ScrollReveal>
           <div className="flex flex-col gap-2 border-b border-white/12 pb-5">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#e6ff80]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-neutral-400">
               {eyebrow}
             </p>
             <h2 className="display-head text-xl font-bold tracking-tight text-white xs:text-2xl sm:text-3xl">
@@ -344,8 +317,8 @@ export function RosterBand({
           {items.map((item, i) => (
             <li key={item} className="list-none">
               <ScrollReveal delayMs={i * 30}>
-                <span className="flex items-center gap-3 border-b border-white/8 py-3 text-sm font-semibold text-white/85 transition-colors duration-300 hover:text-[#e6ff80]">
-                  <span className="size-1 shrink-0 rounded-full bg-[#e6ff80]" aria-hidden />
+                <span className="flex items-center gap-3 border-b border-white/8 py-3 text-sm font-semibold text-white/85 transition-colors duration-300 hover:text-white">
+                  <span className="size-1 shrink-0 rounded-full bg-neutral-400" aria-hidden />
                   {item}
                 </span>
               </ScrollReveal>

@@ -14,10 +14,10 @@ const GLOBE_BUMP = "//unpkg.com/three-globe/example/img/earth-topology.png";
 const COUNTRIES_GEOJSON =
   "//unpkg.com/three-globe/example/img/ne_110m_admin_0_countries.geojson";
 const SPACE_BG = "rgba(10, 14, 24, 0)";
-const PIN_ACTIVE = "hsl(71, 100%, 73%)";
-const PIN_INACTIVE = "hsla(71, 100%, 73%, 0.55)";
-const COUNTRY_FILL = "hsla(71, 100%, 73%, 0.22)";
-const COUNTRY_STROKE = "hsla(71, 100%, 73%, 0.92)";
+const PIN_ACTIVE = "#ffffff";
+const PIN_INACTIVE = "rgba(255, 255, 255, 0.55)";
+const COUNTRY_FILL = "rgba(255, 255, 255, 0.18)";
+const COUNTRY_STROKE = "rgba(255, 255, 255, 0.85)";
 
 const PIN_SVG = `<svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true" focusable="false"><path d="M12 22C11.2 20.96 10.12 19.63 8.77 18C6.25 14.95 4 12.23 4 8.94C4 4.56 7.58 1 12 1C16.42 1 20 4.56 20 8.94C20 12.23 17.75 14.95 15.23 18C13.88 19.63 12.8 20.96 12 22Z" fill="currentColor"/><circle cx="12" cy="9" r="3" fill="#0a0e18"/></svg>`;
 

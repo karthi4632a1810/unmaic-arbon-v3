@@ -19,8 +19,9 @@ const QUICK_LINKS = [
 /** Footer reference lists are shown on the page body for these routes — hide duplicate in footer. */
 const HIDE_FOOTER_REFERENCE_PATHS = ["/global-engagements", "/founder-advisory-board"] as const;
 
-/** Wordmark, logo diamond and the tagline dots — brighter than the functional accents. */
-const BRAND_GREEN = "#2fa84f";
+/** Wordmark, logo diamond and the tagline dots — sleek neutral dark styling. */
+const BRAND_DARK = "#18181b";
+const BRAND_GRAY = "#71717a";
 
 const CONTACT_EMAIL = "admin@unmaicarbon.earth";
 const CONTACT_PHONE = "+65 9023 1823";
@@ -156,7 +157,7 @@ export function SiteFooter() {
         <div className="mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
           <div className="relative pb-9 pt-10 sm:pb-10 sm:pt-12">
             <DotSphere
-              className="pointer-events-none absolute -right-24 -top-20 h-[420px] w-[420px] text-[#17915b] opacity-[0.18]"
+              className="pointer-events-none absolute -right-24 -top-20 h-[420px] w-[420px] text-neutral-400 opacity-[0.12]"
               nodes={false}
             />
 
@@ -165,7 +166,7 @@ export function SiteFooter() {
               target="_blank"
               rel="noreferrer noopener"
               aria-label="UNMAI Carbon Solutions on LinkedIn"
-              className="absolute right-0 top-8 flex size-10 items-center justify-center rounded-xl border border-[#131b2e]/12 bg-white text-[#131b2e] transition duration-300 hover:-translate-y-0.5 hover:border-[#17915b]/40 hover:text-[#17915b] motion-reduce:hover:translate-y-0 sm:top-10"
+              className="absolute right-0 top-8 flex size-10 items-center justify-center rounded-xl border border-[#131b2e]/12 bg-white text-[#131b2e] transition duration-300 hover:-translate-y-0.5 hover:border-neutral-400 hover:text-neutral-900 motion-reduce:hover:translate-y-0 sm:top-10"
             >
               {LINKEDIN_ICON}
             </a>
@@ -178,7 +179,7 @@ export function SiteFooter() {
                   <span
                     className="size-13 shrink-0"
                     style={{
-                      backgroundColor: BRAND_GREEN,
+                      backgroundColor: BRAND_DARK,
                       maskImage: "url('/logo-w.png')",
                       WebkitMaskImage: "url('/logo-w.png')",
                       maskSize: "contain",
@@ -192,7 +193,7 @@ export function SiteFooter() {
                   />
                   <span className="flex flex-col gap-1">
                     <span className="text-[1.35rem] font-extrabold leading-none tracking-[-0.02em] text-[#1f2937] sm:text-[1.55rem]">
-                      UNMAI <span style={{ color: BRAND_GREEN }}>Carbon</span> Solutions
+                      UNMAI <span style={{ color: BRAND_DARK }}>Carbon</span> Solutions
                     </span>
                     <span className="flex flex-wrap items-center gap-x-2 text-[13px] leading-tight text-[#6b7280]">
                       {COMPANY_TAGLINE.split("·").map((part, i) => (
@@ -200,7 +201,7 @@ export function SiteFooter() {
                           {i > 0 ? (
                             <span
                               className="size-1.5 rounded-full"
-                              style={{ backgroundColor: BRAND_GREEN }}
+                              style={{ backgroundColor: BRAND_GRAY }}
                               aria-hidden
                             />
                           ) : null}
@@ -222,14 +223,14 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="LinkedIn"
-                    className="flex size-11 items-center justify-center rounded-full border border-[#131b2e]/10 bg-white text-[#17915b] transition duration-300 hover:-translate-y-0.5 hover:border-[#17915b]/40 hover:bg-[#17915b]/6 motion-reduce:hover:translate-y-0"
+                    className="flex size-11 items-center justify-center rounded-full border border-[#131b2e]/10 bg-white text-neutral-700 transition duration-300 hover:-translate-y-0.5 hover:border-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 motion-reduce:hover:translate-y-0"
                   >
                     {LINKEDIN_ICON}
                   </a>
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
                     aria-label={`Email ${CONTACT_EMAIL}`}
-                    className="flex size-11 items-center justify-center rounded-full border border-[#131b2e]/10 bg-white text-[#17915b] transition duration-300 hover:-translate-y-0.5 hover:border-[#17915b]/40 hover:bg-[#17915b]/6 motion-reduce:hover:translate-y-0"
+                    className="flex size-11 items-center justify-center rounded-full border border-[#131b2e]/10 bg-white text-neutral-700 transition duration-300 hover:-translate-y-0.5 hover:border-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 motion-reduce:hover:translate-y-0"
                   >
                     <MailIcon className="size-4" />
                   </a>
@@ -241,7 +242,7 @@ export function SiteFooter() {
                 <ul className="flex flex-col gap-5">
                   <li className="flex gap-3.5">
                     <span
-                      className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#e8f4ee] text-[#17915b]"
+                      className="flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-neutral-700"
                       aria-hidden
                     >
                       <MapPinIcon className="size-5" />
@@ -254,28 +255,28 @@ export function SiteFooter() {
                   </li>
                   <li className="flex items-center gap-3.5">
                     <span
-                      className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#e8f4ee] text-[#17915b]"
+                      className="flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-neutral-700"
                       aria-hidden
                     >
                       <MailIcon className="size-5" />
                     </span>
                     <a
                       href={`mailto:${CONTACT_EMAIL}`}
-                      className="text-sm font-semibold text-[#131b2e] transition hover:text-[#17915b]"
+                      className="text-sm font-semibold text-[#131b2e] transition hover:text-neutral-900"
                     >
                       {CONTACT_EMAIL}
                     </a>
                   </li>
                   <li className="flex items-center gap-3.5">
                     <span
-                      className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#e8f4ee] text-[#17915b]"
+                      className="flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-neutral-700"
                       aria-hidden
                     >
                       <PhoneIcon className="size-5" />
                     </span>
                     <a
                       href="tel:+6590231823"
-                      className="text-sm font-semibold text-[#131b2e] transition hover:text-[#17915b]"
+                      className="text-sm font-semibold text-[#131b2e] transition hover:text-neutral-900"
                     >
                       {CONTACT_PHONE}
                     </a>
@@ -290,9 +291,9 @@ export function SiteFooter() {
                     <li key={to}>
                       <ScrollLink
                         to={to}
-                        className="group inline-flex items-center gap-2 text-sm text-[#3f4a54] transition duration-200 hover:text-[#17915b]"
+                        className="group inline-flex items-center gap-2 text-sm text-[#3f4a54] transition duration-200 hover:text-neutral-900"
                       >
-                        <ChevronRight className="size-3.5 shrink-0 text-[#17915b] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0" />
+                        <ChevronRight className="size-3.5 shrink-0 text-neutral-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-neutral-900 motion-reduce:group-hover:translate-x-0" />
                         {label}
                       </ScrollLink>
                     </li>
@@ -306,11 +307,11 @@ export function SiteFooter() {
 
           {/* Closing note */}
           <div className="pb-8">
-            <div className="relative overflow-hidden rounded-2xl border border-[#131b2e]/8 bg-[linear-gradient(110deg,#fbfdfc_0%,#f3f9f5_100%)] px-5 py-5 sm:px-7">
-              <SproutFlourish className="pointer-events-none absolute -right-4 bottom-0 h-[130px] w-[300px] text-[#17915b] opacity-30" />
+            <div className="relative overflow-hidden rounded-2xl border border-[#131b2e]/8 bg-[linear-gradient(110deg,#fafafa_0%,#f4f4f5_100%)] px-5 py-5 sm:px-7">
+              <SproutFlourish className="pointer-events-none absolute -right-4 bottom-0 h-[130px] w-[300px] text-neutral-400 opacity-20" />
               <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-7">
                 <span
-                  className="flex size-12 shrink-0 items-center justify-center rounded-full border border-[#17915b]/20 bg-white text-[#17915b] shadow-[0_6px_18px_-10px_rgba(23,145,91,0.6)]"
+                  className="flex size-12 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm"
                   aria-hidden
                 >
                   <svg viewBox="0 0 24 24" className="size-6" fill="none">
@@ -331,14 +332,14 @@ export function SiteFooter() {
                   <p className="text-base font-bold leading-tight text-[#131b2e]">
                     Building trust. Enabling action.
                   </p>
-                  <p className="mt-1 text-base font-semibold leading-tight text-[#17915b]">
+                  <p className="mt-1 text-base font-semibold leading-tight text-neutral-600">
                     Creating a sustainable future together.
                   </p>
                 </div>
 
                 <ScrollLink
                   to="/contact"
-                  className="group inline-flex w-fit items-center gap-3 rounded-full border border-[#131b2e]/10 bg-white px-6 py-3 text-sm font-bold text-[#131b2e] shadow-[0_10px_26px_-18px_rgba(19,27,46,0.6)] transition duration-300 hover:-translate-y-0.5 hover:border-[#17915b]/40 hover:text-[#17915b] motion-reduce:hover:translate-y-0"
+                  className="group inline-flex w-fit items-center gap-3 rounded-full border border-[#131b2e]/10 bg-white px-6 py-3 text-sm font-bold text-[#131b2e] shadow-[0_10px_26px_-18px_rgba(19,27,46,0.6)] transition duration-300 hover:-translate-y-0.5 hover:border-neutral-400 hover:text-neutral-900 motion-reduce:hover:translate-y-0"
                 >
                   Partner With Us
                   <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0" />
@@ -356,14 +357,14 @@ export function SiteFooter() {
                   href="https://www.unmaicarbon.earth"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="transition hover:text-[#17915b]"
+                  className="transition hover:text-neutral-900"
                 >
                   www.unmaicarbon.earth
                 </a>
                 <span className="text-[#131b2e]/20" aria-hidden>
                   |
                 </span>
-                <ScrollLink to="/contact" className="transition hover:text-[#17915b]">
+                <ScrollLink to="/contact" className="transition hover:text-neutral-900">
                   Contact
                 </ScrollLink>
                 <span className="text-[#131b2e]/20" aria-hidden>

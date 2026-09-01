@@ -50,7 +50,7 @@ export function TeamBioModal({ open, name, role, category, bio, linkedIn, onClos
         </button>
         <div className="space-y-4 pr-8">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#006c49]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500">
               {category || "Global Strategic Advisory Board"}
             </p>
             <h2 id="team-bio-modal-title" className="mt-2 text-xl font-bold text-[#131b2e] xs:text-2xl">
@@ -75,7 +75,7 @@ export function TeamBioModal({ open, name, role, category, bio, linkedIn, onClos
               href={linkedIn}
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#006c49] transition hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-700 transition hover:text-neutral-900 hover:underline"
             >
               View LinkedIn profile
               <span aria-hidden>↗</span>

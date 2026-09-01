@@ -195,7 +195,7 @@ export function OrbitField({ className = "" }: { className?: string }) {
                 cx={Math.cos(angle) * 300}
                 cy={Math.sin(angle) * 120}
                 r="5"
-                fill={element.id === "space" ? "#e6ff80" : element.hue}
+                fill={element.id === "space" ? "#d4d4d8" : element.hue}
                 opacity="0.9"
               />
             );
