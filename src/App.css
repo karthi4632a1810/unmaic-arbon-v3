@@ -46,6 +46,110 @@
   }
 }
 
+/* ---- Chronometer & Countdown Animations ----------------------------------- */
+
+.chrono-spin-cw {
+  animation: chrono-spin 50s linear infinite;
+  transform-origin: center;
+}
+
+.chrono-spin-ccw {
+  animation: chrono-spin-reverse 35s linear infinite;
+  transform-origin: center;
+}
+
+.chrono-sweep {
+  animation: chrono-sweep-rot 12s linear infinite;
+  transform-origin: center;
+}
+
+.chrono-sweep-fast {
+  animation: chrono-sweep-rot 60s linear infinite;
+  transform-origin: center;
+}
+
+.chrono-pulse-ambient {
+  animation: chrono-ambient-glow 4s ease-in-out infinite;
+}
+
+.chrono-tick-pulse {
+  animation: chrono-tick 1s ease-in-out infinite;
+}
+
+.chrono-shimmer-flow {
+  animation: chrono-shimmer 3.2s ease-in-out infinite;
+}
+
+@keyframes chrono-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes chrono-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes chrono-sweep-rot {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes chrono-ambient-glow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.32;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes chrono-tick {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes chrono-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chrono-spin-cw,
+  .chrono-spin-ccw,
+  .chrono-sweep,
+  .chrono-sweep-fast,
+  .chrono-pulse-ambient,
+  .chrono-tick-pulse,
+  .chrono-shimmer-flow {
+    animation: none;
+  }
+}
+
 .di-bg {
   background: linear-gradient(148deg, #09090b 0%, #121215 50%, #18181b 100%);
 }
