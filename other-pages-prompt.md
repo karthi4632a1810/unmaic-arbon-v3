@@ -127,7 +127,7 @@ SECTIONS:
 
 3. Blockchain-enabled Traceability
 
-4. NAMBĪ Digital Ecosystem
+4. NAMBI Digital Ecosystem
 
 5. Interoperability Frameworks
 

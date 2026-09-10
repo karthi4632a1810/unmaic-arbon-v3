@@ -240,7 +240,7 @@ Description:
 
 4.
 Title:
-"NAMBĪ Digital Infrastructure"
+"NAMBI Digital Infrastructure"
 
 Description:
 "Interoperable digital public infrastructure designed to harmonize global carbon market ecosystems."

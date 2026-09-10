@@ -233,9 +233,6 @@ export function SpectrumList({
 
 /* ------------------------------------------------- digital infrastructure */
 
-/** Slabs seen slightly from above: a lit top edge, each one stepped further right. */
-const SLAB_STEP = ["lg:ml-0", "lg:ml-10", "lg:ml-20"] as const;
-
 export function SlabStack({
   items,
 }: {
@@ -244,7 +241,7 @@ export function SlabStack({
   return (
     <ol className="mx-auto max-w-[1216px] space-y-4 sm:space-y-5">
       {items.map((item, i) => (
-        <li key={item.title} className={`list-none ${SLAB_STEP[i] ?? ""}`}>
+        <li key={item.title} className="list-none w-full">
           <ScrollReveal delayMs={i * 90}>
             <article className="group relative overflow-hidden rounded-lg border border-white/10 bg-[#141416] transition duration-500 hover:border-white/25 hover:bg-[#1a1a1e]">
               <span
@@ -256,7 +253,7 @@ export function SlabStack({
                   {item.title}
                 </h3>
                 <div className="min-w-0 space-y-4">
-                  <p className="text-sm leading-6 text-[#c9cbc9] xs:text-base xs:leading-7">
+                  <p className="text-sm leading-6 text-neutral-300 xs:text-base xs:leading-7">
                     {item.body}
                   </p>
                   <div className="flex flex-wrap gap-x-5 gap-y-2">

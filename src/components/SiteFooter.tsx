@@ -1,4 +1,4 @@
-﻿import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ScrollLink } from "./ScrollLink";
 import { COMPANY_INSTAGRAM_URL, COMPANY_LINKEDIN_URL, COMPANY_TAGLINE } from "../data/siteReference";
 import { FooterReferenceColumns } from "./FooterReferenceColumns";
@@ -16,10 +16,10 @@ const QUICK_LINKS = [
   { label: "Contact", to: "/contact" },
 ] as const;
 
-/** Footer reference lists are shown on the page body for these routes â€” hide duplicate in footer. */
+/** Footer reference lists are shown on the page body for these routes — hide duplicate in footer. */
 const HIDE_FOOTER_REFERENCE_PATHS = ["/global-engagements", "/founder-advisory-board"] as const;
 
-/** Wordmark, logo diamond and the tagline dots â€” sleek neutral dark styling. */
+/** Wordmark, logo diamond and the tagline dots — sleek neutral dark styling. */
 const BRAND_DARK = "#18181b";
 const BRAND_GRAY = "#71717a";
 
@@ -126,7 +126,7 @@ function ArrowRight({ className = "size-4" }: { className?: string }) {
   );
 }
 
-/** Sprout riding a horizon line â€” the closing mark of the page. */
+/** Sprout riding a horizon line — the closing mark of the page. */
 function SproutFlourish({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 340 150" className={className} fill="none" aria-hidden="true">

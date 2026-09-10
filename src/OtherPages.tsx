@@ -33,7 +33,7 @@ function MapSectionFallback() {
       <div className="flex flex-col items-center gap-4">
         <div className="size-12 animate-spin rounded-full border-2 border-white/20 border-t-white" />
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/55">
-          Loading engagement mapâ€¦
+          Loading engagement map…
         </p>
       </div>
     </section>
@@ -90,12 +90,12 @@ const ABOUT_ENTRIES = [
     body: (
       <div className="space-y-3">
         <p>
-          <span className="font-bold text-[#131b2e]">Mission</span> â€” To accelerate high-integrity
+          <span className="font-bold text-[#131b2e]">Mission</span> — To accelerate high-integrity
           carbon markets and climate ambition through trusted advisory, interoperable digital
           infrastructure, climate finance solutions, and long-term institutional capacity building.
         </p>
         <p>
-          <span className="font-bold text-[#131b2e]">Vision</span> â€” To enable a transparent,
+          <span className="font-bold text-[#131b2e]">Vision</span> — To enable a transparent,
           interoperable, and high-integrity global carbon market ecosystem that mobilizes climate
           finance and accelerates the net-zero transition.
         </p>
@@ -128,14 +128,16 @@ export function AboutPage() {
       {/* The name itself, set as the page's opening statement */}
       <ScrollReveal>
         <div className="mx-auto mb-10 max-w-[1216px] overflow-hidden rounded-2xl bg-[#18181b] sm:mb-12">
-          <div className="relative grid gap-6 p-6 sm:p-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12">
-            <p
-              className="display-figure select-none text-[clamp(3.5rem,13vw,7rem)] font-extrabold leading-none text-[#71717a]"
-              lang="ta"
-            >
-              à®‰à®£à¯à®®à¯ˆ
-            </p>
-            <div className="space-y-4">
+          <div className="grid gap-8 p-6 sm:p-8 md:p-10 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-12">
+            <div className="flex shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-8 py-7 sm:px-10 sm:py-9">
+              <p
+                className="display-figure select-none text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-none text-neutral-300 tracking-tight"
+                lang="ta"
+              >
+                உண்மை
+              </p>
+            </div>
+            <div className="min-w-0 space-y-4">
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#d4d4d8]">
                 Foundational Principle
               </p>
@@ -143,8 +145,8 @@ export function AboutPage() {
                 UNMAI means truth
               </h2>
               <p className="text-sm leading-6 text-white/75 xs:text-base xs:leading-7">
-                UNMAI derives from the Tamil word à®‰à®£à¯à®®à¯ˆ meaning â€œTruth, Authenticity, Integrity, and
-                Real,â€ embodying the firmâ€™s core philosophy â€” and the reason every system we build
+                UNMAI derives from the Tamil word உண்மை meaning “Truth, Authenticity, Integrity, and
+                Real,” embodying the firm’s core philosophy — and the reason every system we build
                 is designed to be checked.
               </p>
               <div className="flex flex-wrap gap-x-5 gap-y-2 pt-1">
@@ -176,7 +178,7 @@ export function AboutPage() {
   );
 }
 
-/* ----------------------------------------------------- services â€” fire */
+/* ----------------------------------------------------- services — fire */
 
 const SERVICES = [
   {
@@ -233,7 +235,7 @@ export function ServicesPage() {
   );
 }
 
-/* ------------------------------------- digital infrastructure â€” air */
+/* ------------------------------------- digital infrastructure — air */
 
 const DIGITAL_INFRASTRUCTURE_LAYERS = [
   {
@@ -247,7 +249,7 @@ const DIGITAL_INFRASTRUCTURE_LAYERS = [
     tags: ["Digital MRV", "Data Infrastructure"],
   },
   {
-    title: "NAMBÄª Digital Ecosystem",
+    title: "NAMBI Digital Ecosystem",
     body: "Unifies global dMRV ecosystem through interoperable platform that aggregates, benchmarks and standardizes climate action data towards achieving high-integrity carbon markets, and enabling climate finance to scale with confidence and transparency.",
     tags: ["dMRV Ecosystem", "dMRV Market Place"],
   },
@@ -268,7 +270,7 @@ export function DigitalInfrastructurePage() {
         hue={ELEMENT_BY_ID.space.hue}
       />
 
-      {/* Full-bleed dark band â€” the stack reads as slabs seen from above */}
+      {/* Full-bleed dark band — the stack reads as slabs seen from above */}
       <section className="relative left-1/2 mt-8 w-screen max-w-none -translate-x-1/2 overflow-hidden bg-[#18181b] px-4 py-10 sm:mt-10 sm:px-6 sm:py-12 lg:px-8">
         <Streamlines className="pointer-events-none absolute inset-0 h-full w-full text-white/10" />
         <div className="relative">
@@ -279,7 +281,7 @@ export function DigitalInfrastructurePage() {
   );
 }
 
-/* --------------------------------------------- global engagements â€” space */
+/* --------------------------------------------- global engagements — space */
 
 export function GlobalEngagementsPage() {
   return (
@@ -331,7 +333,7 @@ export function GlobalEngagementsPage() {
   );
 }
 
-/* --------------------------------------------------------- news â€” water */
+/* --------------------------------------------------------- news — water */
 
 function NewsLedger({ items }: { items: typeof PRESS_RELEASES }) {
   return (
@@ -362,7 +364,7 @@ function NewsLedger({ items }: { items: typeof PRESS_RELEASES }) {
                   className="inline-flex items-center gap-1.5 text-[#131b2e] transition hover:text-[#2b6193]"
                 >
                   Read article
-                  <span aria-hidden>â†’</span>
+                  <span aria-hidden>→</span>
                 </ScrollLink>
                 {release.sourceUrl ? (
                   <a
@@ -371,7 +373,7 @@ function NewsLedger({ items }: { items: typeof PRESS_RELEASES }) {
                     rel="noreferrer noopener"
                     className="text-[#71717a] transition hover:text-[#2b6193]"
                   >
-                    {release.sourceName ? `Source: ${release.sourceName}` : "View source"} â†—
+                    {release.sourceName ? `Source: ${release.sourceName}` : "View source"} ↗
                   </a>
                 ) : null}
                 {release.pdfPath ? (
@@ -435,7 +437,7 @@ export function NewsArticlePage() {
             to="/news"
             className="inline-flex text-sm font-semibold text-[#2b6193] transition hover:underline"
           >
-            â† Back to News
+            ← Back to News
           </Link>
         </div>
       </PageScaffold>
@@ -454,7 +456,7 @@ export function NewsArticlePage() {
           to="/news"
           className="text-sm font-semibold text-[#2b6193] transition hover:underline"
         >
-          â† Back to News
+          ← Back to News
         </Link>
 
         <p className="mt-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#2b6193]">
@@ -482,7 +484,7 @@ export function NewsArticlePage() {
                 rel="noreferrer noopener"
                 className="text-[#131b2e] transition hover:text-[#2b6193]"
               >
-                {article.sourceName ? `Read on ${article.sourceName}` : "Read original article"} â†—
+                {article.sourceName ? `Read on ${article.sourceName}` : "Read original article"} ↗
               </a>
             ) : null}
             {article.pdfPath ? (
@@ -583,7 +585,7 @@ export function ContactPage() {
                 className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#131b2e] px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-[#2b6193]"
               >
                 Submit inquiry
-                <span aria-hidden>â†’</span>
+                <span aria-hidden>→</span>
               </button>
             </div>
           </form>
