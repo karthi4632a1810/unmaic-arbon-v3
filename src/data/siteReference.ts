@@ -1,4 +1,4 @@
-export {
+﻿export {
   GLOBAL_ENGAGEMENT_COUNTRIES,
   INSTITUTIONAL_PARTICIPATION,
 } from "../components/EngagementGlobalSections";
@@ -12,6 +12,7 @@ export const FOOTER_STRATEGIC_SERVICES = [
   "Net Zero Transition & Climate Advisory",
 ] as const;
 
+export const COMPANY_INSTAGRAM_URL = "https://www.instagram.com/unmaicarbonsolutions";
 export const COMPANY_LINKEDIN_URL = "https://sg.linkedin.com/company/unmai-carbon-solutions";
 
 /**

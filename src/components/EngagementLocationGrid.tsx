@@ -63,7 +63,7 @@ export function EngagementLocationGrid() {
               <p className="text-2xl font-bold leading-none tracking-tight text-[#131b2e]">
                 {places.length}
               </p>
-              <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#5c6b62]">
+              <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#71717a]">
                 Engagement hubs
               </p>
             </div>
@@ -78,13 +78,13 @@ export function EngagementLocationGrid() {
               <div className="relative overflow-hidden border-b border-black/6 bg-linear-to-br from-neutral-50 via-[#f4f4f5] to-neutral-100 px-5 py-4">
                 <div className="relative flex items-start justify-between gap-3">
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#5c6b62]">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#71717a]">
                       Location {(index + 1).toString().padStart(2, "0")}
                     </p>
                     <h3 className="mt-1 text-xl font-bold tracking-tight text-[#131b2e]">
                       {getCountryLabel(place)}
                     </h3>
-                    <p className="mt-0.5 text-xs font-medium text-[#5c6b62]">{place.capital}</p>
+                    <p className="mt-0.5 text-xs font-medium text-[#71717a]">{place.capital}</p>
                   </div>
                   <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-black/10 bg-white text-[#131b2e] shadow-sm">
                     <LocationPinIcon className="size-5" />

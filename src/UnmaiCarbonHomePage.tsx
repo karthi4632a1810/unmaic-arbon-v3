@@ -1,9 +1,10 @@
-import { useLayoutEffect, useRef, useState } from "react";
+﻿import { useLayoutEffect, useRef, useState } from "react";
 import { SiteCta } from "./components/SiteCta";
 import { SiteFooter } from "./components/SiteFooter";
 import { ScheduleConsultationModal } from "./components/ScheduleConsultationModal";
 import { SiteHeader } from "./components/SiteHeader";
 import { HeroSection } from "./components/HeroSection";
+import { CounterSection } from "./components/CounterSection";
 import {
   CredentialStrip,
   DigitalInfrastructureSection,
@@ -62,6 +63,8 @@ export default function UnmaiCarbonHomePage() {
       <SiteHeader ref={headerRef} />
 
       <HeroSection marginTop={heroMarginTop} />
+
+      <CounterSection />
 
       <TrustMetricsSection />
 

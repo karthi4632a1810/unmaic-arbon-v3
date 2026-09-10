@@ -84,7 +84,7 @@ export function EngagementInstitutionalSection() {
                 <p className="mt-3 max-w-prose text-base leading-7 text-[#444654]">{block.body}</p>
 
                 <div className="mt-6 border-t border-dashed border-black/10 pt-5">
-                  <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#5c6b62]">
+                  <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#71717a]">
                     {block.itemsLabel}
                   </p>
                   <ul className="flex flex-wrap gap-2">

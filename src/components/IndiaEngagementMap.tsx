@@ -257,7 +257,7 @@ export function IndiaEngagementMap() {
               <p className="text-2xl font-bold leading-none tracking-tight text-[#131b2e]">
                 {countryGroups.length}
               </p>
-              <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#5c6b62]">
+              <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#71717a]">
                 Countries
               </p>
             </div>

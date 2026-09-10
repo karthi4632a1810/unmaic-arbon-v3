@@ -1,6 +1,6 @@
-import { useLocation } from "react-router-dom";
+﻿import { useLocation } from "react-router-dom";
 import { ScrollLink } from "./ScrollLink";
-import { COMPANY_LINKEDIN_URL, COMPANY_TAGLINE } from "../data/siteReference";
+import { COMPANY_INSTAGRAM_URL, COMPANY_LINKEDIN_URL, COMPANY_TAGLINE } from "../data/siteReference";
 import { FooterReferenceColumns } from "./FooterReferenceColumns";
 import { DotSphere } from "./ElementMotifs";
 import { ScrollReveal } from "./ScrollReveal";
@@ -16,15 +16,21 @@ const QUICK_LINKS = [
   { label: "Contact", to: "/contact" },
 ] as const;
 
-/** Footer reference lists are shown on the page body for these routes — hide duplicate in footer. */
+/** Footer reference lists are shown on the page body for these routes â€” hide duplicate in footer. */
 const HIDE_FOOTER_REFERENCE_PATHS = ["/global-engagements", "/founder-advisory-board"] as const;
 
-/** Wordmark, logo diamond and the tagline dots — sleek neutral dark styling. */
+/** Wordmark, logo diamond and the tagline dots â€” sleek neutral dark styling. */
 const BRAND_DARK = "#18181b";
 const BRAND_GRAY = "#71717a";
 
 const CONTACT_EMAIL = "admin@unmaicarbon.earth";
 const CONTACT_PHONE = "+65 9023 1823";
+
+const INSTAGRAM_ICON = (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden="true">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+  </svg>
+);
 
 const LINKEDIN_ICON = (
   <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden="true">
@@ -120,7 +126,7 @@ function ArrowRight({ className = "size-4" }: { className?: string }) {
   );
 }
 
-/** Sprout riding a horizon line — the closing mark of the page. */
+/** Sprout riding a horizon line â€” the closing mark of the page. */
 function SproutFlourish({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 340 150" className={className} fill="none" aria-hidden="true">
@@ -161,15 +167,26 @@ export function SiteFooter() {
               nodes={false}
             />
 
-            <a
-              href={COMPANY_LINKEDIN_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="UNMAI Carbon Solutions on LinkedIn"
-              className="absolute right-0 top-8 flex size-10 items-center justify-center rounded-xl border border-[#131b2e]/12 bg-white text-[#131b2e] transition duration-300 hover:-translate-y-0.5 hover:border-neutral-400 hover:text-neutral-900 motion-reduce:hover:translate-y-0 sm:top-10"
-            >
-              {LINKEDIN_ICON}
-            </a>
+            <div className="absolute right-0 top-8 flex items-center gap-2.5 sm:top-10">
+              <a
+                href={COMPANY_INSTAGRAM_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="UNMAI Carbon Solutions on Instagram"
+                className="flex size-10 items-center justify-center rounded-xl border border-[#131b2e]/12 bg-white text-[#131b2e] transition duration-300 hover:-translate-y-0.5 hover:border-neutral-400 hover:text-neutral-900 motion-reduce:hover:translate-y-0"
+              >
+                {INSTAGRAM_ICON}
+              </a>
+              <a
+                href={COMPANY_LINKEDIN_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="UNMAI Carbon Solutions on LinkedIn"
+                className="flex size-10 items-center justify-center rounded-xl border border-[#131b2e]/12 bg-white text-[#131b2e] transition duration-300 hover:-translate-y-0.5 hover:border-neutral-400 hover:text-neutral-900 motion-reduce:hover:translate-y-0"
+              >
+                {LINKEDIN_ICON}
+              </a>
+            </div>
 
             <div className="relative grid gap-9 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.95fr)_minmax(0,1fr)] lg:gap-0 lg:divide-x lg:divide-[#131b2e]/8">
               {/* Identity */}
@@ -196,7 +213,7 @@ export function SiteFooter() {
                       UNMAI <span style={{ color: BRAND_DARK }}>Carbon</span> Solutions
                     </span>
                     <span className="flex flex-wrap items-center gap-x-2 text-[13px] leading-tight text-[#6b7280]">
-                      {COMPANY_TAGLINE.split("·").map((part, i) => (
+                      {COMPANY_TAGLINE.split("Â·").map((part, i) => (
                         <span key={part} className="inline-flex items-center gap-2">
                           {i > 0 ? (
                             <span
@@ -218,6 +235,15 @@ export function SiteFooter() {
                 </p>
 
                 <div className="mt-6 flex gap-3">
+                  <a
+                    href={COMPANY_INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Instagram"
+                    className="flex size-11 items-center justify-center rounded-full border border-[#131b2e]/10 bg-white text-neutral-700 transition duration-300 hover:-translate-y-0.5 hover:border-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 motion-reduce:hover:translate-y-0"
+                  >
+                    {INSTAGRAM_ICON}
+                  </a>
                   <a
                     href={COMPANY_LINKEDIN_URL}
                     target="_blank"
@@ -351,7 +377,7 @@ export function SiteFooter() {
           {/* Bottom bar */}
           <div className="border-t border-[#131b2e]/8 py-6">
             <div className="flex flex-col items-center gap-3 text-center text-xs text-[#6b7580] sm:flex-row sm:justify-between sm:text-left">
-              <p>© 2026 UNMAI Carbon Solutions Pte Ltd. All rights reserved.</p>
+              <p>Â© 2026 UNMAI Carbon Solutions Pte Ltd. All rights reserved.</p>
               <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
                 <a
                   href="https://www.unmaicarbon.earth"
@@ -379,3 +405,4 @@ export function SiteFooter() {
     </footer>
   );
 }
+

@@ -59,7 +59,7 @@ export function TrustMetricsSection() {
                     label: "Global engagement countries",
                     accentBorder: "border-[#2b6193]",
                     accentHover:
-                      " focus-within:bg-emerald-500/[0.06]",
+                      " focus-within:bg-black/[0.04]",
                   },
                   {
                     step: "02",
@@ -114,7 +114,7 @@ export function TrustMetricsSection() {
                       : "",
                   ].join(" ")}
                 >
-                  <div className="relative z-1 mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase leading-snug tracking-[0.14em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-xs">
+                  <div className="relative z-1 mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase leading-snug tracking-[0.14em] text-[#71717a] transition-colors duration-300 group-hover/stats:text-white sm:text-xs">
                     <span className="inline-flex items-center gap-1.5">
                     </span>
                     <span className="tracking-[0.14em]">{col.category}</span>
@@ -139,7 +139,7 @@ export function TrustMetricsSection() {
                       />
                     )}
                   </div>
-                  <p className="relative z-1 mt-6 max-w-56 text-[13px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#5c6b62] transition-colors duration-300 group-hover/stats:text-white sm:text-sm">
+                  <p className="relative z-1 mt-6 max-w-56 text-[13px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#71717a] transition-colors duration-300 group-hover/stats:text-white sm:text-sm">
                     {col.label}
                   </p>
                 </div>
@@ -369,7 +369,7 @@ function InfraCard({
             </svg>
           ) : null}
         </h3>
-        <p className="mt-1.5 text-[13px] leading-relaxed text-[#b0b8b2]">{layer.body}</p>
+        <p className="mt-1.5 text-[13px] leading-relaxed text-neutral-400">{layer.body}</p>
       </div>
     </div>
   );
@@ -423,7 +423,7 @@ export function DigitalInfrastructureSection() {
                   Building the Digital Backbone<br />
                   of <span className="text-white">Carbon Markets</span>
                 </h2>
-                <p className="mt-4 text-sm leading-6 text-[#c9cfc9] xs:text-[15px] xs:leading-7">
+                <p className="mt-4 text-sm leading-6 text-neutral-300 xs:text-[15px] xs:leading-7">
                   Mission critical and institutional-grade digital infrastructure enabling transparency,
                   interoperability, trust, and scalable climate market operations.
                 </p>

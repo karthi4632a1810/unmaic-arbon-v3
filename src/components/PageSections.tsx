@@ -130,7 +130,7 @@ export function DossierList({
                 className="mt-1.5 h-4 w-1 shrink-0 bg-[#4a5568] transition-all duration-500 group-hover:h-6"
                 aria-hidden
               />
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#5c6b62]">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#71717a]">
                 {entry.label}
               </span>
             </dt>

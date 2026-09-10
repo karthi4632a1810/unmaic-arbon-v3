@@ -33,7 +33,7 @@ function MapSectionFallback() {
       <div className="flex flex-col items-center gap-4">
         <div className="size-12 animate-spin rounded-full border-2 border-white/20 border-t-white" />
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/55">
-          Loading engagement map…
+          Loading engagement mapâ€¦
         </p>
       </div>
     </section>
@@ -75,7 +75,7 @@ function PageScaffold({
   );
 }
 
-/* ------------------------------------------------------- about — land */
+/* ------------------------------------------------------- about â€” land */
 
 const ABOUT_ENTRIES = [
   {
@@ -90,12 +90,12 @@ const ABOUT_ENTRIES = [
     body: (
       <div className="space-y-3">
         <p>
-          <span className="font-bold text-[#131b2e]">Mission</span> — To accelerate high-integrity
+          <span className="font-bold text-[#131b2e]">Mission</span> â€” To accelerate high-integrity
           carbon markets and climate ambition through trusted advisory, interoperable digital
           infrastructure, climate finance solutions, and long-term institutional capacity building.
         </p>
         <p>
-          <span className="font-bold text-[#131b2e]">Vision</span> — To enable a transparent,
+          <span className="font-bold text-[#131b2e]">Vision</span> â€” To enable a transparent,
           interoperable, and high-integrity global carbon market ecosystem that mobilizes climate
           finance and accelerates the net-zero transition.
         </p>
@@ -133,7 +133,7 @@ export function AboutPage() {
               className="display-figure select-none text-[clamp(3.5rem,13vw,7rem)] font-extrabold leading-none text-[#71717a]"
               lang="ta"
             >
-              உண்மை
+              à®‰à®£à¯à®®à¯ˆ
             </p>
             <div className="space-y-4">
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#d4d4d8]">
@@ -143,8 +143,8 @@ export function AboutPage() {
                 UNMAI means truth
               </h2>
               <p className="text-sm leading-6 text-white/75 xs:text-base xs:leading-7">
-                UNMAI derives from the Tamil word உண்மை meaning “Truth, Authenticity, Integrity, and
-                Real,” embodying the firm’s core philosophy — and the reason every system we build
+                UNMAI derives from the Tamil word à®‰à®£à¯à®®à¯ˆ meaning â€œTruth, Authenticity, Integrity, and
+                Real,â€ embodying the firmâ€™s core philosophy â€” and the reason every system we build
                 is designed to be checked.
               </p>
               <div className="flex flex-wrap gap-x-5 gap-y-2 pt-1">
@@ -176,7 +176,7 @@ export function AboutPage() {
   );
 }
 
-/* ----------------------------------------------------- services — fire */
+/* ----------------------------------------------------- services â€” fire */
 
 const SERVICES = [
   {
@@ -233,7 +233,7 @@ export function ServicesPage() {
   );
 }
 
-/* ------------------------------------- digital infrastructure — air */
+/* ------------------------------------- digital infrastructure â€” air */
 
 const DIGITAL_INFRASTRUCTURE_LAYERS = [
   {
@@ -247,7 +247,7 @@ const DIGITAL_INFRASTRUCTURE_LAYERS = [
     tags: ["Digital MRV", "Data Infrastructure"],
   },
   {
-    title: "NAMBĪ Digital Ecosystem",
+    title: "NAMBÄª Digital Ecosystem",
     body: "Unifies global dMRV ecosystem through interoperable platform that aggregates, benchmarks and standardizes climate action data towards achieving high-integrity carbon markets, and enabling climate finance to scale with confidence and transparency.",
     tags: ["dMRV Ecosystem", "dMRV Market Place"],
   },
@@ -268,7 +268,7 @@ export function DigitalInfrastructurePage() {
         hue={ELEMENT_BY_ID.space.hue}
       />
 
-      {/* Full-bleed dark band — the stack reads as slabs seen from above */}
+      {/* Full-bleed dark band â€” the stack reads as slabs seen from above */}
       <section className="relative left-1/2 mt-8 w-screen max-w-none -translate-x-1/2 overflow-hidden bg-[#18181b] px-4 py-10 sm:mt-10 sm:px-6 sm:py-12 lg:px-8">
         <Streamlines className="pointer-events-none absolute inset-0 h-full w-full text-white/10" />
         <div className="relative">
@@ -279,7 +279,7 @@ export function DigitalInfrastructurePage() {
   );
 }
 
-/* --------------------------------------------- global engagements — space */
+/* --------------------------------------------- global engagements â€” space */
 
 export function GlobalEngagementsPage() {
   return (
@@ -331,7 +331,7 @@ export function GlobalEngagementsPage() {
   );
 }
 
-/* --------------------------------------------------------- news — water */
+/* --------------------------------------------------------- news â€” water */
 
 function NewsLedger({ items }: { items: typeof PRESS_RELEASES }) {
   return (
@@ -362,23 +362,23 @@ function NewsLedger({ items }: { items: typeof PRESS_RELEASES }) {
                   className="inline-flex items-center gap-1.5 text-[#131b2e] transition hover:text-[#2b6193]"
                 >
                   Read article
-                  <span aria-hidden>→</span>
+                  <span aria-hidden>â†’</span>
                 </ScrollLink>
                 {release.sourceUrl ? (
                   <a
                     href={release.sourceUrl}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="text-[#5c6b62] transition hover:text-[#2b6193]"
+                    className="text-[#71717a] transition hover:text-[#2b6193]"
                   >
-                    {release.sourceName ? `Source: ${release.sourceName}` : "View source"} ↗
+                    {release.sourceName ? `Source: ${release.sourceName}` : "View source"} â†—
                   </a>
                 ) : null}
                 {release.pdfPath ? (
                   <a
                     href={release.pdfPath}
                     download
-                    className="text-[#5c6b62] transition hover:text-[#2b6193]"
+                    className="text-[#71717a] transition hover:text-[#2b6193]"
                   >
                     Download PDF
                   </a>
@@ -435,7 +435,7 @@ export function NewsArticlePage() {
             to="/news"
             className="inline-flex text-sm font-semibold text-[#2b6193] transition hover:underline"
           >
-            ← Back to News
+            â† Back to News
           </Link>
         </div>
       </PageScaffold>
@@ -454,7 +454,7 @@ export function NewsArticlePage() {
           to="/news"
           className="text-sm font-semibold text-[#2b6193] transition hover:underline"
         >
-          ← Back to News
+          â† Back to News
         </Link>
 
         <p className="mt-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#2b6193]">
@@ -482,14 +482,14 @@ export function NewsArticlePage() {
                 rel="noreferrer noopener"
                 className="text-[#131b2e] transition hover:text-[#2b6193]"
               >
-                {article.sourceName ? `Read on ${article.sourceName}` : "Read original article"} ↗
+                {article.sourceName ? `Read on ${article.sourceName}` : "Read original article"} â†—
               </a>
             ) : null}
             {article.pdfPath ? (
               <a
                 href={article.pdfPath}
                 download
-                className="text-[#5c6b62] transition hover:text-[#2b6193]"
+                className="text-[#71717a] transition hover:text-[#2b6193]"
               >
                 Download original PDF
               </a>
@@ -501,7 +501,7 @@ export function NewsArticlePage() {
   );
 }
 
-/* ------------------------------------------------------ contact — water */
+/* ------------------------------------------------------ contact â€” water */
 
 /** `text-base` on mobile + a matching inputMode keeps iOS from zooming the page on focus. */
 const CONTACT_FIELDS: ReadonlyArray<{
@@ -521,6 +521,11 @@ const CONTACT_CHANNELS: ReadonlyArray<{ label: string; value: string; href?: str
   { label: "Singapore HQ", value: "10, Sim Lim Tower, Jalan Besar #10-10, Singapore 208787" },
   { label: "Email", value: "admin@unmaicarbon.earth", href: "mailto:admin@unmaicarbon.earth" },
   { label: "Telephone", value: "+65 9023 1823", href: "tel:+6590231823" },
+  {
+    label: "Instagram",
+    value: "@unmaicarbonsolutions",
+    href: "https://www.instagram.com/unmaicarbonsolutions",
+  },
   {
     label: "LinkedIn",
     value: "UNMAI Carbon Solutions",
@@ -578,7 +583,7 @@ export function ContactPage() {
                 className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#131b2e] px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-[#2b6193]"
               >
                 Submit inquiry
-                <span aria-hidden>→</span>
+                <span aria-hidden>â†’</span>
               </button>
             </div>
           </form>
@@ -592,7 +597,7 @@ export function ContactPage() {
                   key={channel.label}
                   className="grid gap-1 border-b border-black/12 py-4 sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-4"
                 >
-                  <dt className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5c6b62]">
+                  <dt className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#71717a]">
                     {channel.label}
                   </dt>
                   <dd className="min-w-0 text-sm leading-6 text-[#131b2e]">
@@ -633,3 +638,4 @@ export function ContactPage() {
     </PageScaffold>
   );
 }
+
