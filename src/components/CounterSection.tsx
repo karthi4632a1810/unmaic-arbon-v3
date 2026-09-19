@@ -231,7 +231,11 @@ function ChronoBadge() {
   );
 }
 
-export function CounterSection() {
+export interface CounterSectionProps {
+  standalone?: boolean;
+}
+
+export function CounterSection({ standalone = false }: CounterSectionProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft);
   const [brochureOpen, setBrochureOpen] = useState(false);
 
@@ -247,10 +251,12 @@ export function CounterSection() {
 
   return (
     <>
-      <section className="px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12 bg-white">
+      <section className={standalone ? "w-full py-2 sm:py-4" : "px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12 bg-white"}>
         <ScrollReveal>
           <div
-            className="relative mx-auto max-w-[1216px] overflow-hidden rounded-3xl px-5 py-10 shadow-[0_36px_90px_-48px_rgba(0,0,0,0.8)] xs:px-8 sm:rounded-[32px] sm:px-12 sm:py-14 border border-white/10"
+            className={`relative mx-auto max-w-[1216px] overflow-hidden rounded-3xl px-5 py-10 shadow-[0_36px_90px_-48px_rgba(0,0,0,0.8)] xs:px-8 sm:rounded-[32px] sm:px-12 sm:py-14 border border-white/10 ${
+              standalone ? "border-white/15 shadow-[0_0_80px_-20px_rgba(255,255,255,0.08)]" : ""
+            }`}
             style={{ backgroundImage: PANEL_BG }}
           >
             {/* Ambient background glow */}

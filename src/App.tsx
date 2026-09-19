@@ -2,6 +2,7 @@ import UnmaiCarbonHomePage from "./UnmaiCarbonHomePage";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { FounderAdvisoryBoardPage } from "./components/FounderAdvisoryBoardPage";
+import { CdmCountdownPage } from "./components/CdmCountdownPage";
 import {
   AboutPage,
   ContactPage,
@@ -28,6 +29,9 @@ export default function App() {
         <Route path="/leadership" element={<Navigate to="/founder-advisory-board" replace />} />
         <Route path="/founder-advisory-board" element={<FounderAdvisoryBoardPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/cdm-countdown" element={<CdmCountdownPage />} />
+        <Route path="/counter" element={<CdmCountdownPage />} />
+        <Route path="/cdm-counter" element={<CdmCountdownPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
