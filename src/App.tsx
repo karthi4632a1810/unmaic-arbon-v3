@@ -30,8 +30,9 @@ export default function App() {
         <Route path="/founder-advisory-board" element={<FounderAdvisoryBoardPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/cdm-countdown" element={<CdmCountdownPage />} />
-        <Route path="/counter" element={<CdmCountdownPage />} />
-        <Route path="/cdm-counter" element={<CdmCountdownPage />} />
+        <Route path="/counter" element={<Navigate to="/#counter" replace />} />
+        <Route path="/cdm-counter" element={<Navigate to="/#counter" replace />} />
+        <Route path="/countdown" element={<Navigate to="/#counter" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

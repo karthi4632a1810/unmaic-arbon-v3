@@ -251,7 +251,11 @@ export function CounterSection({ standalone = false }: CounterSectionProps) {
 
   return (
     <>
-      <section className={standalone ? "w-full py-2 sm:py-4" : "px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12 bg-white"}>
+      <section
+        id={standalone ? undefined : "counter"}
+        data-section="counter"
+        className={standalone ? "w-full py-2 sm:py-4" : "scroll-mt-24 sm:scroll-mt-28 px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12 bg-white"}
+      >
         <ScrollReveal>
           <div
             className={`relative mx-auto max-w-[1216px] overflow-hidden rounded-3xl px-5 py-10 shadow-[0_36px_90px_-48px_rgba(0,0,0,0.8)] xs:px-8 sm:rounded-[32px] sm:px-12 sm:py-14 border border-white/10 ${
