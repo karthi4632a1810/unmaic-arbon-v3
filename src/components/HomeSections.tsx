@@ -45,7 +45,7 @@ export function TrustMetricsSection() {
           <div
             className="overflow-hidden rounded-2xl border border-black/9 bg-[white] bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.055)_1px,transparent_1px)] bg-size-[22px_22px]"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4">
               {(
                 [
                   {
@@ -107,39 +107,38 @@ export function TrustMetricsSection() {
                   style={{ ["--accent"]: col.color } as CSSProperties}
                   key={i}
                   className={[
-                    "relative stats-hover-item group/stats flex min-h-[220px] flex-col px-6 py-9 transition-colors duration-300 ease-out sm:min-h-0 sm:px-8 sm:py-10 lg:min-h-[280px]",
+                    "relative stats-hover-item group/stats flex min-h-[160px] xs:min-h-[180px] flex-col p-4 xs:p-6 sm:p-8 lg:min-h-[280px] lg:p-10 transition-colors duration-300 ease-out",
                     col.accentHover,
-                    i < 3
-                      ? `max-lg:border-b max-lg:border-dashed lg:border-b-0 lg:border-r lg:border-dashed ${col.accentBorder}`
-                      : "",
+                    // Responsive dashed dividers: 2x2 grid on mobile & tablet, 4-col on desktop
+                    i % 2 === 0 ? "border-r border-dashed border-[#2b6193]/60" : "border-r-0",
+                    i < 2 ? "border-b border-dashed border-[#2b6193]/60" : "border-b-0",
+                    i < 3 ? "lg:border-r lg:border-dashed border-[#2b6193]/60 lg:border-b-0" : "lg:border-r-0 lg:border-b-0",
                   ].join(" ")}
                 >
-                  <div className="relative z-1 mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase leading-snug tracking-[0.14em] text-[#71717a] transition-colors duration-300 group-hover/stats:text-white sm:text-xs">
-                    <span className="inline-flex items-center gap-1.5">
-                    </span>
+                  <div className="relative z-1 mb-3 sm:mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] sm:text-xs font-semibold uppercase leading-snug tracking-[0.14em] text-[#71717a] transition-colors duration-300 group-hover/stats:text-white">
                     <span className="tracking-[0.14em]">{col.category}</span>
                   </div>
                   <div className="relative z-1 flex flex-1 flex-col justify-center transition-colors duration-300">
                     {col.variant === "usd" ? (
-                      <div className="inline-flex items-center gap-2">
-                        <span className="text-lg font-bold tabular-nums tracking-tight text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white sm:text-xl">
+                      <div className="inline-flex items-center gap-1 sm:gap-2">
+                        <span className="text-sm sm:text-xl font-bold tabular-nums tracking-tight text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white">
                           USD
                         </span>
                         <ImpactCounter
                           end={col.end}
                           suffix={col.suffix}
-                          className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
+                          className="text-[clamp(1.75rem,4.5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
                         />
                       </div>
                     ) : (
                       <ImpactCounter
                         end={col.end}
                         suffix={col.suffix}
-                        className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
+                        className="text-[clamp(1.75rem,4.5vw,3.75rem)] font-bold leading-none tracking-[-0.04em] text-[#131b2e] transition-colors duration-300 group-hover/stats:text-white"
                       />
                     )}
                   </div>
-                  <p className="relative z-1 mt-6 max-w-56 text-[13px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#71717a] transition-colors duration-300 group-hover/stats:text-white sm:text-sm">
+                  <p className="relative z-1 mt-3 sm:mt-6 max-w-56 text-xs sm:text-sm font-semibold uppercase leading-snug tracking-[0.06em] text-[#71717a] transition-colors duration-300 group-hover/stats:text-white">
                     {col.label}
                   </p>
                 </div>
@@ -154,7 +153,7 @@ export function TrustMetricsSection() {
 
 export function CredentialStrip() {
   return (
-    <section className={`bg-[#fafafa] ${SECTION}`}>
+    <section className={`hidden md:block bg-[#fafafa] ${SECTION}`}>
       <div className="mx-auto max-w-[1300px]">
         <ScrollReveal>
           {/* Outer card */}
@@ -770,7 +769,7 @@ function ArrowRight({ className = "size-4" }: { className?: string }) {
 function PressPromoCard() {
   return (
     <div
-      className="relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-3xl p-7 sm:p-9"
+      className="relative flex min-h-[460px] flex-col justify-between overflow-hidden rounded-3xl p-7 sm:p-9"
       style={{ backgroundImage: "linear-gradient(160deg,#18181b 0%,#121215 45%,#09090b 100%)" }}
     >
       <div
@@ -853,7 +852,7 @@ function PressPromoCard() {
 export function PressReleasesSection() {
   return (
     <section
-      className={`relative overflow-hidden ${SECTION}`}
+      className={`relative ${SECTION}`}
       style={{ backgroundImage: "linear-gradient(180deg,#ffffff 0%,#f8fafb 40%,#f1f5f7 100%)" }}
     >
       <div className="mx-auto max-w-[1300px]">
@@ -880,9 +879,13 @@ export function PressReleasesSection() {
         </ScrollReveal>
 
         <div className="mt-10 grid gap-6 sm:mt-12 lg:grid-cols-[minmax(0,0.56fr)_minmax(0,1fr)] lg:gap-x-8 lg:gap-y-6">
-          <ScrollReveal className="lg:h-full">
-            <PressPromoCard />
-          </ScrollReveal>
+          <div className="lg:row-span-2 lg:h-full">
+            <div className="lg:sticky lg:top-24">
+              <ScrollReveal>
+                <PressPromoCard />
+              </ScrollReveal>
+            </div>
+          </div>
 
           <ol className="flex flex-col gap-5">
               {PRESS_RELEASES.map((release, i) => {

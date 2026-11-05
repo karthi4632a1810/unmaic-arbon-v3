@@ -1,0 +1,497 @@
+[
+  {
+    "status": "published",
+    "published": true,
+    "startDate": "2026-10-06T16:00:00+05:30",
+    "endDate": "2026-10-06T17:00:00+05:30",
+    "timezone": "Asia/Kolkata",
+    "category": "Webinar",
+    "schemaVersion": 1,
+    "branding": {
+      "primaryColor": "#059669",
+      "secondaryColor": "#0f172a",
+      "accentColor": "#10b981",
+      "textColor": "#ffffff",
+      "backgroundColor": "#030712",
+      "font": "Plus Jakarta Sans",
+      "buttonStyle": "rounded-md",
+      "sectionSpacing": "standard",
+      "containerWidth": "standard",
+      "themePreset": "dark"
+    },
+    "header": {
+      "visible": true,
+      "layout": "centered",
+      "position": "fixed",
+      "topGap": 0,
+      "radius": "none",
+      "background": "blur",
+      "scrollBehavior": "always-visible",
+      "logoText": "UNMAI CARBON",
+      "navigation": [
+        {
+          "label": "Overview",
+          "link": "#hero",
+          "isAnchor": true
+        },
+        {
+          "label": "Details",
+          "link": "#details",
+          "isAnchor": true
+        },
+        {
+          "label": "Takeaways",
+          "link": "#takeaways",
+          "isAnchor": true
+        },
+        {
+          "label": "Speakers",
+          "link": "#speakers",
+          "isAnchor": true
+        },
+        {
+          "label": "Agenda",
+          "link": "#schedule",
+          "isAnchor": true
+        },
+        {
+          "label": "Materials",
+          "link": "#materials",
+          "isAnchor": true
+        }
+      ],
+      "ctaButton": {
+        "visible": true,
+        "label": "Download Slides",
+        "link": "/assets/webinar/LEGACY CERs FINAL WEBINAR 6 OCT 2026 V2.0.pdf",
+        "targetType": "external",
+        "openNewTab": true,
+        "presetStyle": "solid-emerald",
+        "style": "primary"
+      }
+    },
+    "hero": {
+      "id": "hero_webinar_1",
+      "type": "hero",
+      "visible": true,
+      "settings": {
+        "paddingY": "none",
+        "bgType": "dark",
+        "animation": "fade-up"
+      },
+      "content": {
+        "heading": "Extending the Utility of Legacy UNFCCC CDM CERs",
+        "subtitle": "Join to know what comes next for Legacy CERs before the CDM registry closes",
+        "description": "The CDM stops accepting cancellations on 25 November 2026 and shuts for good on 31 December. That leaves roughly 1.275 billion legacy CERs, worth close to USD 6.4 billion, at risk unless holders act before the deadline.\n\nHosted by UNMAI Carbon Solutions, this session breaks down what's actually available before the deadline — from Article 6.4 transition to our Legacy CERs Platform for voluntary cancellation, reissuance, and trading.",
+        "bgType": "gradient",
+        "gradientFrom": "#061325",
+        "gradientTo": "#020617",
+        "gradientAngle": 135,
+        "overlay": "dark",
+        "overlayStrength": 70,
+        "contentAlignment": "center",
+        "verticalPosition": "center",
+        "contentWidth": "medium",
+        "animation": "fade-up",
+        "badgeText": "CONCLUDED WEBINAR • 6 OCTOBER 2026 • ARCHIVED BRIEFING",
+        "buttons": [
+          {
+            "id": "btn_download_deck",
+            "label": "Download Presentation (PDF)",
+            "link": "/assets/webinar/LEGACY CERs FINAL WEBINAR 6 OCT 2026 V2.0.pdf",
+            "openNewTab": true,
+            "style": "primary"
+          },
+          {
+            "id": "btn_view_materials",
+            "label": "Webinar Materials & Recording",
+            "link": "#materials",
+            "style": "outline"
+          }
+        ]
+      }
+    },
+    "sections": [
+      {
+        "id": "sec_webinar_details_tbl",
+        "type": "table",
+        "visible": true,
+        "anchorId": "details",
+        "settings": {
+          "paddingY": "standard",
+          "bgType": "default"
+        },
+        "content": {
+          "badge": "LOGISTICS & SPECIFICATIONS",
+          "heading": "Webinar Details Block",
+          "subtitle": "Key session information, timings, and archived documentation",
+          "cardBackground": "dark",
+          "layoutStyle": "key-value",
+          "striped": true,
+          "bordered": true,
+          "footnote": "Online session conducted via Microsoft Teams on 6 October 2026.",
+          "ctaText": "Download Presentation (PDF)",
+          "ctaLink": "/assets/webinar/LEGACY CERs FINAL WEBINAR 6 OCT 2026 V2.0.pdf",
+          "columns": [
+            {
+              "id": "col_1",
+              "key": "field",
+              "label": "Parameter"
+            },
+            {
+              "id": "col_2",
+              "key": "value",
+              "label": "Specification"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row_1",
+              "label": "Date",
+              "value": "6 October 2026, Tuesday"
+            },
+            {
+              "id": "row_2",
+              "label": "Time",
+              "value": "4:00 - 5:00 PM (IST)"
+            },
+            {
+              "id": "row_3",
+              "label": "Mode",
+              "value": "Online - Microsoft Teams (Concluded)"
+            },
+            {
+              "id": "row_4",
+              "label": "Panel",
+              "value": "Dr Ajay Mathur, Dr Axel Michaelowa, Yuvaraj Dinesh Babu, Dhruv Kohli"
+            },
+            {
+              "id": "row_5",
+              "label": "Presentation Deck",
+              "value": "LEGACY CERs FINAL WEBINAR 6 OCT 2026 V2.0.pdf (7.1 MB)",
+              "link": "/assets/webinar/LEGACY CERs FINAL WEBINAR 6 OCT 2026 V2.0.pdf",
+              "linkText": "Download PDF"
+            },
+            {
+              "id": "row_6",
+              "label": "Further Inquiries",
+              "value": "rimi.pathak@unmaicarbon.earth",
+              "link": "mailto:rimi.pathak@unmaicarbon.earth",
+              "linkText": "Send Email"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sec_webinar_takeaways",
+        "type": "highlights",
+        "visible": true,
+        "anchorId": "takeaways",
+        "settings": {
+          "paddingY": "standard",
+          "bgType": "muted"
+        },
+        "content": {
+          "badge": "SESSION HIGHLIGHTS",
+          "heading": "What You Will Learn",
+          "subtitle": "Critical insights and operational solutions ahead of the permanent registry closure",
+          "columns": 2,
+          "cards": [
+            {
+              "id": "hl_1",
+              "icon": "AlertCircle",
+              "title": "Current Status of Legacy CDM CERs",
+              "description": "The registry approaches closure on 31 December 2026 (cancellations cease on 25 Nov). Learn the direct implications for credits already issued across international accounts."
+            },
+            {
+              "id": "hl_2",
+              "icon": "Globe",
+              "title": "Integrity Frameworks & Voluntary Markets",
+              "description": "A global perspective on how international integrity frameworks (ICVCM, VCMI) and voluntary carbon markets are positioning legacy credits as the Kyoto CDM era concludes."
+            },
+            {
+              "id": "hl_3",
+              "icon": "TrendingUp",
+              "title": "Preserve Value vs Extinction Pathways",
+              "description": "An assessment of available options ahead of the deadline, clarifying which transition pathways preserve credit utility and economic value versus those resulting in extinction."
+            },
+            {
+              "id": "hl_4",
+              "icon": "Layers",
+              "title": "UNMAI Legacy CERs Platform Walkthrough",
+              "description": "A guided demonstration of UNMAI's purpose-built platform: voluntary cancellation, 1:1 digital reissuance, provenance tracking, and active institutional trading."
+            }
+          ]
+        }
+      },
+      {
+        "id": "sec_webinar_speakers",
+        "type": "speakers",
+        "visible": true,
+        "anchorId": "speakers",
+        "settings": {
+          "paddingY": "standard",
+          "bgType": "default"
+        },
+        "content": {
+          "badge": "DISTINGUISHED SPEAKERS",
+          "heading": "Distinguished Panelists",
+          "subtitle": "Leading voices in carbon markets, climate policy, and international clean energy",
+          "columns": 4,
+          "hidePhotos": true,
+          "cardStyle": "text-only",
+          "speakers": [
+            {
+              "id": "spk_ajay",
+              "name": "Dr Ajay Mathur",
+              "role": "Professor of Practice, IIT Delhi",
+              "designation": "Professor of Practice, IIT Delhi",
+              "organization": "IIT Delhi",
+              "bio": "Former Director General of the International Solar Alliance (ISA) and TERI. Contributed significantly to international climate governance and renewable transition policies.",
+              "featured": true,
+              "topics": [
+                "Keynote Address",
+                "Global Climate Transition",
+                "Market Architecture"
+              ]
+            },
+            {
+              "id": "spk_axel",
+              "name": "Dr Axel Michaelowa",
+              "role": "Senior Founding Partner, Perspectives Climate Group",
+              "designation": "Senior Founding Partner, Perspectives Climate Group",
+              "organization": "Perspectives Climate Group",
+              "bio": "Internationally recognised expert in climate policy and carbon markets with over three decades of experience. Member of the UNMAI Global Strategic Advisory Board.",
+              "featured": true,
+              "topics": [
+                "High-Level Remarks",
+                "Article 6.4 Transition",
+                "Global Perspectives"
+              ]
+            },
+            {
+              "id": "spk_dinesh",
+              "name": "Yuvaraj Dinesh Babu",
+              "role": "Founder & CEO, UNMAI Carbon Solutions",
+              "designation": "Founder & CEO, UNMAI Carbon Solutions",
+              "organization": "UNMAI Carbon Solutions",
+              "bio": "Over 25 years of global climate finance and carbon market leadership. Architect of UNMAI's digital infrastructure for high-integrity credits and legacy asset preservation.",
+              "featured": true,
+              "topics": [
+                "Lead Presentation",
+                "Opportunities & Process",
+                "The Way Forward"
+              ]
+            },
+            {
+              "id": "spk_dhruv",
+              "name": "Dhruv Kohli",
+              "role": "Carbon Finance, Viviid Green",
+              "designation": "Carbon Finance, Viviid Green",
+              "organization": "Viviid Green",
+              "bio": "Carbon finance practitioner focused on credit retirement protocols, project developers' asset preservation, and active user experience on the UNMAI Legacy CERs platform.",
+              "topics": [
+                "User Experience",
+                "Platform Walkthrough",
+                "Key Features"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "sec_webinar_agenda",
+        "type": "schedule",
+        "visible": true,
+        "anchorId": "schedule",
+        "settings": {
+          "paddingY": "standard",
+          "bgType": "muted"
+        },
+        "content": {
+          "badge": "SESSION SCHEDULE",
+          "heading": "Speakers and Sessions",
+          "subtitle": "INSIGHTS | VANTAGE POINT | THE ROAD AHEAD",
+          "days": [
+            {
+              "id": "day_1",
+              "dayNumber": 1,
+              "date": "6 October 2026",
+              "label": "Tuesday, 6 Oct",
+              "items": [
+                {
+                  "id": "ses_1",
+                  "title": "Opening Remarks & Context Setting",
+                  "startTime": "16:00",
+                  "endTime": "16:05",
+                  "speaker": "Secretariat & Organizing Team",
+                  "description": "Welcome address, session roadmap, and introduction of distinguished panelists.",
+                  "category": "Plenary"
+                },
+                {
+                  "id": "ses_2",
+                  "title": "Keynote Address: Clean Energy Transitions & Global Carbon Mechanisms",
+                  "startTime": "16:05",
+                  "endTime": "16:15",
+                  "speaker": "Dr Ajay Mathur (Professor of Practice, IIT Delhi)",
+                  "description": "High-level overview of sovereign decarbonization pathways, clean power finance, and the systemic role of verified carbon assets.",
+                  "category": "Keynote"
+                },
+                {
+                  "id": "ses_3",
+                  "title": "High-Level Remarks: CDM Phase-Out & Article 6.4 Transition Landscape",
+                  "startTime": "16:15",
+                  "endTime": "16:25",
+                  "speaker": "Dr Axel Michaelowa (Senior Founding Partner, Perspectives Climate Group)",
+                  "description": "Analysis of UNFCCC Decision 4/CMP.20, cut-off milestones, and international carbon governance requirements for credit preservation.",
+                  "category": "Policy"
+                },
+                {
+                  "id": "ses_4",
+                  "title": "Lead Presentation: Extending the Utility of Legacy UNFCCC CDM CERs",
+                  "startTime": "16:25",
+                  "endTime": "16:45",
+                  "speaker": "Yuvaraj Dinesh Babu (Founder & CEO, UNMAI Carbon Solutions)",
+                  "description": "Actionable options before the deadline: voluntary cancellation, UNMAI Legacy CERs platform reissuance, verifiable provenance, and institutional market participation.",
+                  "category": "Lead Presentation"
+                },
+                {
+                  "id": "ses_5",
+                  "title": "Platform Experience & Developer Perspective",
+                  "startTime": "16:45",
+                  "endTime": "16:50",
+                  "speaker": "Dhruv Kohli (Carbon Finance, Viviid Green)",
+                  "description": "Real-world walkthrough of the onboarding process, credit registration, and asset transition experience on UNMAI's digital infrastructure.",
+                  "category": "Case Study"
+                },
+                {
+                  "id": "ses_6",
+                  "title": "Interactive Q&A and The Road Ahead",
+                  "startTime": "16:50",
+                  "endTime": "17:00",
+                  "speaker": "Full Panel",
+                  "description": "Open Q&A with Dr Ajay Mathur, Dr Axel Michaelowa, and Yuvaraj Dinesh Babu addressing participant questions and next operational steps.",
+                  "category": "Q&A"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "sec_webinar_infographics",
+        "type": "gallery",
+        "visible": true,
+        "anchorId": "materials",
+        "settings": {
+          "paddingY": "standard",
+          "bgType": "dark"
+        },
+        "content": {
+          "badge": "RESOURCES & VISUAL GUIDES",
+          "heading": "Webinar Materials",
+          "subtitle": "Official presentation slides, session recording, brochure, and transition infographics",
+          "columns": 3,
+          "downloads": [
+            {
+              "id": "dl_presentation",
+              "label": "Download Presentation Deck (PDF)",
+              "url": "/assets/webinar/LEGACY CERs FINAL WEBINAR 6 OCT 2026 V2.0.pdf",
+              "isExternal": false
+            },
+            {
+              "id": "dl_recording",
+              "label": "Watch Webinar Recording",
+              "url": "https://drive.google.com/drive/folders/1UrMIhffgykWawIGw0CvX0FiGtyJln2hU?usp=sharing",
+              "isExternal": true
+            },
+            {
+              "id": "dl_brochure",
+              "label": "Download Official Brochure",
+              "url": "/assets/webinar/Legacy CERs Brochure.jpeg",
+              "isExternal": false
+            }
+          ],
+          "images": [
+            {
+              "id": "img_brochure",
+              "url": "/assets/webinar/Legacy CERs Brochure.jpeg",
+              "caption": "Official Legacy CERs Platform Brochure"
+            },
+            {
+              "id": "img_infographic",
+              "url": "/assets/webinar/reissue_infographic.png",
+              "caption": "Legacy CERs: Reissue Before the Registry Closes (Four Choices & Route)"
+            },
+            {
+              "id": "img_comic1",
+              "url": "/assets/webinar/comic_strip_part1.png",
+              "caption": "Comic Strip: The Deadline Crisis, Reality Check & Decision Window"
+            },
+            {
+              "id": "img_comic2",
+              "url": "/assets/webinar/comic_strip_part2.png",
+              "caption": "Comic Strip: The Second Life of CERs — From Legacy to Digital"
+            },
+            {
+              "id": "img_poster",
+              "url": "/assets/webinar/webinar_poster.png",
+              "caption": "Official Webinar Announcement Poster"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sec_webinar_contact",
+        "type": "contact",
+        "visible": true,
+        "anchorId": "contact",
+        "settings": {
+          "paddingY": "standard",
+          "bgType": "dark"
+        },
+        "content": {
+          "heading": "Further Queries",
+          "subtitle": "For queries regarding the Legacy CERs webinar or platform onboarding, please contact:",
+          "email": "rimi.pathak@unmaicarbon.earth",
+          "showForm": false
+        }
+      }
+    ],
+    "footer": {
+      "visible": true,
+      "copyrightText": "© 2026 UNMAI Carbon Solutions Pte. Ltd. All rights reserved.",
+      "disclaimer": "UNMAI Carbon Solutions is an independent climate advisory and digital solutions provider headquartered in Singapore. This session is an informational and technical briefing.",
+      "quickLinks": [
+        {
+          "label": "UNMAI Carbon Earth",
+          "link": "https://www.unmaicarbon.earth/"
+        },
+        {
+          "label": "Legacy CERs Registry",
+          "link": "https://www.legacycers.earth/"
+        }
+      ],
+      "socialLinks": [
+        {
+          "platform": "linkedin",
+          "url": "https://www.linkedin.com/company/unmai-carbon/"
+        }
+      ]
+    },
+    "seo": {
+      "title": "Webinar: Extending the Utility of Legacy UNFCCC CDM CERs | UNMAI Carbon",
+      "description": "Archived briefing and transition guidance from Dr Ajay Mathur, Dr Axel Michaelowa, and Yuvaraj Dinesh Babu on the 2026 CDM registry closure."
+    },
+    "id": "evt_webinar_cdm_cers_2026",
+    "name": "Extending the Utility of Legacy UNFCCC CDM CERs",
+    "slug": "extending-legacy-cdm-cers-webinar",
+    "analytics": {
+      "views": 1698,
+      "ctaClicks": 420,
+      "registrations": 148
+    },
+    "createdAt": "2026-09-28T09:00:00Z",
+    "updatedAt": "2026-10-05T07:35:14+02:00"
+  }
+]

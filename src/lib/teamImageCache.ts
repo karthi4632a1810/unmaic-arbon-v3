@@ -1,8 +1,27 @@
-import { cacheBlobFromUrl, cacheManyFromUrls, getCachedBlob, mediaCacheKey } from "./mediaCache";
+import {
+  cacheBlobFromUrl,
+  cacheManyFromUrls,
+  deleteCachedBlob,
+  getCachedBlob,
+  mediaCacheKey,
+} from "./mediaCache";
 
 export function teamImageCacheKey(sourceUrl: string): string {
-  return mediaCacheKey("team-image", sourceUrl);
+  return mediaCacheKey("team-image-v2", sourceUrl);
 }
+
+// Invalidate legacy cached entries in IndexedDB & localStorage
+void (async () => {
+  try {
+    await deleteCachedBlob("team-image:/team/Rimi_Pathak.png");
+    await deleteCachedBlob("team-image:/team/Rimi_Pathak_400.png");
+    if (typeof localStorage !== "undefined") {
+      localStorage.removeItem("rimi");
+      localStorage.removeItem("Rimi_Pathak");
+      localStorage.removeItem("team_photos");
+    }
+  } catch {}
+})();
 
 export async function getCachedTeamImage(sourceUrl: string): Promise<Blob | null> {
   return getCachedBlob(teamImageCacheKey(sourceUrl));

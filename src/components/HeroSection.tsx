@@ -217,7 +217,7 @@ export function HeroSection({ marginTop }: { marginTop?: number }) {
         />
       </div>
 
-      <ScrollReveal className="relative z-10 flex min-h-0 w-full flex-col justify-center bg-[linear-gradient(148deg,black,#272727)] px-4 pb-12 pt-8 max-md:shrink-0 sm:px-6 md:absolute md:inset-0 md:bg-none md:bg-transparent md:px-0 md:pb-14 md:pt-24 lg:pb-16 lg:pt-28">
+      <ScrollReveal className="relative z-10 flex min-h-0 w-full flex-col justify-center bg-[linear-gradient(148deg,black,#272727)] px-4 pb-12 pt-24 max-md:shrink-0 sm:px-6 md:absolute md:inset-0 md:bg-none md:bg-transparent md:px-0 md:pb-14 md:pt-24 lg:pb-16 lg:pt-28">
         <div className="mx-auto flex w-full max-w-[1300px] min-h-0 flex-col justify-center md:px-6 lg:px-8">
           {/*
             Figma alignment: equal-height columns; tops align (eyebrow & headline with right body);
@@ -255,25 +255,38 @@ export function HeroSection({ marginTop }: { marginTop?: number }) {
                     Article 6 implementation, towards Net Zero achievement.
                   </p>
                   <p className="text-sm leading-relaxed text-[#cdcdcd]">
-                    UNMAI Carbon Solutions supports governments, multilaterals, and corporations to
+                    UNMAI Carbon Solutions partners with governments, multilaterals, and corporations to
                     operationalize high-integrity carbon markets through carbon advisory, carbon
                     trading, climate finance frameworks and digital infrastructure.
                   </p>
                 </div>
               </div>
-              {heroPills.map((pill, index) => (
-                <div
-                  key={pill}
-                  className={`flex shrink-0 items-center gap-4 ${
-                    index === 0 ? "mt-6 lg:mt-8" : "mt-6 lg:mt-2"
-                  }`}
-                >
-                  <span className="h-px w-12 shrink-0 bg-neutral-400" aria-hidden />
-                  <span className="text-sm font-bold uppercase tracking-wide text-white">
+              {/* Mobile/Tablet: compact pill badges; Desktop (lg+): architectural lines */}
+              <div className="flex flex-wrap gap-2 pt-2 lg:hidden">
+                {heroPills.map((pill) => (
+                  <span
+                    key={pill}
+                    className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-xs backdrop-blur-xs"
+                  >
                     {pill}
                   </span>
-                </div>
-              ))}
+                ))}
+              </div>
+              <div className="hidden lg:flex lg:flex-col">
+                {heroPills.map((pill, index) => (
+                  <div
+                    key={pill}
+                    className={`flex shrink-0 items-center gap-4 ${
+                      index === 0 ? "mt-8" : "mt-2"
+                    }`}
+                  >
+                    <span className="h-px w-12 shrink-0 bg-neutral-400" aria-hidden />
+                    <span className="text-sm font-bold uppercase tracking-wide text-white">
+                      {pill}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

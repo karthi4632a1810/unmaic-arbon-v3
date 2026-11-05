@@ -307,16 +307,16 @@ export function RosterBand({
         </ScrollReveal>
 
         <ul
-          className={`mt-6 grid gap-x-8 gap-y-px sm:grid-cols-2 ${
+          className={`mt-6 grid gap-x-4 sm:gap-x-8 gap-y-px grid-cols-2 sm:grid-cols-2 ${
             columns === 3 ? "lg:grid-cols-3" : ""
           }`}
         >
           {items.map((item, i) => (
             <li key={item} className="list-none">
-              <ScrollReveal delayMs={i * 30}>
-                <span className="flex items-center gap-3 border-b border-white/8 py-3 text-sm font-semibold text-white/85 transition-colors duration-300 hover:text-white">
+              <ScrollReveal delayMs={i * 20}>
+                <span className="flex items-center gap-2 sm:gap-3 border-b border-white/8 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-white/85 transition-colors duration-300 hover:text-white">
                   <span className="size-1 shrink-0 rounded-full bg-neutral-400" aria-hidden />
-                  {item}
+                  <span className="truncate">{item}</span>
                 </span>
               </ScrollReveal>
             </li>

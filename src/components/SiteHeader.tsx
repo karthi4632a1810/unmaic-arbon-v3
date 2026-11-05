@@ -1,32 +1,34 @@
-﻿import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ScrollLink } from "./ScrollLink";
-import { COMPANY_INSTAGRAM_URL, COMPANY_LINKEDIN_URL } from "../data/siteReference";
+import { COMPANY_LINKEDIN_URL } from "../data/siteReference";
 import imgLogoBlack from "../assets/logo-b.png";
 import imgLogoWhite from "../assets/logo-w.png";
 
 const NAV_PIN_SCROLL_PX = 150;
 
-const NAV_LINKS = [
+type NavLinkItem = {
+  label: string;
+  to: string;
+  isExternal?: boolean;
+  isHighlighted?: boolean;
+};
+
+const NAV_LINKS: readonly NavLinkItem[] = [
   { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
   { label: "Digital Infrastructure", to: "/digital-infrastructure" },
   { label: "Global Engagements", to: "/global-engagements" },
   { label: "News", to: "/news" },
+  { label: "Events", to: "/events" },
   { label: "Leadership", to: "/founder-advisory-board" },
+  {
+    label: "Legacy CERs Registry",
+    to: "https://www.legacycers.earth/",
+    isExternal: true,
+    isHighlighted: true,
+  },
 ] as const;
-
-const INSTAGRAM_ICON = (
-  <svg
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-    className="size-3.5"
-    aria-hidden="true"
-  >
-    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-  </svg>
-);
 
 export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, ref) {
   const { pathname } = useLocation();
@@ -62,10 +64,10 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
       ref={ref}
       className={[
         "fixed left-1/2 z-99 -translate-x-1/2 transition-[top,width,border-radius,padding,box-shadow,background-color,border-color,border-width] duration-500 ease-in-out motion-reduce:transition-none",
-        "top-0 w-screen rounded-none border-0 border-b border-black/8 bg-white px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.08)] sm:px-6",
-        !navDocked
-          ? "lg:top-6 lg:w-[min(1300px,calc(100%-2rem))] lg:rounded-full lg:border lg:border-white/12 lg:bg-[rgba(0,0,0,0.20)] lg:px-8 lg:py-3.5 lg:shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
-          : "",
+        "top-0 w-full max-w-full rounded-none border-0 border-b px-4 py-3 sm:px-6",
+        navDocked
+          ? "border-black/8 bg-white/95 text-black shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-md"
+          : "border-white/10 bg-[#0a0e18]/85 text-white shadow-lg backdrop-blur-md lg:top-6 lg:w-[min(1300px,calc(100%-2rem))] lg:rounded-full lg:border lg:border-white/12 lg:bg-[rgba(0,0,0,0.20)] lg:px-8 lg:py-3.5 lg:shadow-[0_12px_40px_rgba(0,0,0,0.10)]",
       ].join(" ")}
     >
       <nav
@@ -81,20 +83,17 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
                 : "flex items-center justify-center gap-2 text-xl font-bold tracking-tight text-black transition hover:text-black/90 lg:text-white lg:hover:text-white/90"
             }
           >
-            {navDocked ? (
-              <img src={imgLogoBlack} alt="UNMAI Carbon" className="block size-10" />
-            ) : (
-              <>
-                <img src={imgLogoBlack} alt="UNMAI Carbon" className="block size-10 lg:hidden" />
-                <img src={imgLogoWhite} alt="UNMAI Carbon" className="hidden size-10 lg:block" />
-              </>
-            )}
+            <img
+              src={navDocked ? imgLogoBlack : imgLogoWhite}
+              alt="UNMAI Carbon"
+              className="block size-10"
+            />
             <div className="flex flex-col">
               <span
                 className={
                   navDocked
                     ? "text-2xl font-bold tracking-tight text-black xs:text-[1.75rem]"
-                    : "text-2xl font-bold tracking-tight text-black xs:text-[1.75rem] lg:text-white"
+                    : "text-2xl font-bold tracking-tight text-white xs:text-[1.75rem]"
                 }
               >
                 UNMAI
@@ -108,7 +107,11 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
               aria-controls="site-mobile-menu"
-              className="inline-flex size-10 items-center justify-center rounded-full border border-black/10 bg-black/5 text-black transition hover:bg-black/10"
+              className={`inline-flex size-10 items-center justify-center rounded-full border transition ${
+                navDocked
+                  ? "border-black/10 bg-black/5 text-black hover:bg-black/10"
+                  : "border-white/20 bg-white/10 text-white hover:bg-white/20"
+              }`}
             >
               <span className="text-lg leading-none">{mobileMenuOpen ? "×" : "≡"}</span>
             </button>
@@ -118,10 +121,32 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
           id="site-mobile-menu"
           className={`${
             mobileMenuOpen ? "flex" : "hidden"
-          } max-h-[calc(100dvh-6rem)] flex-col items-stretch gap-2 overflow-y-auto rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,0.12)] lg:flex lg:max-h-none lg:flex-1 lg:flex-row lg:items-center lg:justify-center lg:gap-x-5 lg:gap-y-2 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none xl:gap-x-6`}
+          } max-h-[calc(100dvh-6rem)] flex-col items-stretch gap-2 overflow-y-auto rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,0.12)] lg:flex lg:max-h-none lg:flex-1 lg:flex-row lg:items-center lg:justify-center lg:gap-x-3.5 lg:gap-y-2 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none xl:gap-x-5 2xl:gap-x-6`}
         >
-          {NAV_LINKS.map(({ label, to }) => {
-            const active = pathname === to;
+          {NAV_LINKS.map(({ label, to, isExternal, isHighlighted }) => {
+            const active = pathname === to || (to === "/events" && pathname.startsWith("/events"));
+            if (isExternal) {
+              return (
+                <a
+                  key={to}
+                  href={to}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={
+                    isHighlighted
+                      ? navDocked
+                        ? "whitespace-nowrap text-sm font-bold tracking-tight text-red-600 transition-colors duration-200 hover:text-red-700"
+                        : "whitespace-nowrap text-sm font-bold tracking-tight text-red-600 transition-colors duration-200 hover:text-red-700 lg:text-red-400 lg:hover:text-red-300"
+                      : navDocked
+                        ? "whitespace-nowrap text-sm font-medium tracking-tight text-black/80 transition-colors duration-200 hover:text-black"
+                        : "whitespace-nowrap text-sm font-medium tracking-tight text-black/80 transition-colors duration-200 hover:text-black lg:text-neutral-300 lg:hover:text-white"
+                  }
+                >
+                  {label}
+                </a>
+              );
+            }
             return (
               <ScrollLink
                 key={to}
@@ -145,15 +170,6 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
           })}
           <div className="mt-2 flex items-center gap-2 border-t border-black/10 pt-3 lg:hidden">
             <a
-              href={COMPANY_INSTAGRAM_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              className={socialLinkClass}
-              aria-label="Instagram"
-            >
-              {INSTAGRAM_ICON}
-            </a>
-            <a
               href={COMPANY_LINKEDIN_URL}
               target="_blank"
               rel="noreferrer noopener"
@@ -173,15 +189,6 @@ export const SiteHeader = forwardRef<HTMLElement>(function SiteHeader(_props, re
           </div>
         </div>
         <div className="hidden gap-2 lg:flex">
-          <a
-            href={COMPANY_INSTAGRAM_URL}
-            target="_blank"
-            rel="noreferrer noopener"
-            className={socialLinkClass}
-            aria-label="Instagram"
-          >
-            {INSTAGRAM_ICON}
-          </a>
           <a
             href={COMPANY_LINKEDIN_URL}
             target="_blank"

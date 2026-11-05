@@ -214,6 +214,17 @@
   background-color: #000000;
 }
 
+@media (max-width: 640px) {
+  .stats-hover-item::before {
+    font-size: 1.1rem;
+    padding: 0.25rem 0.55rem;
+    clip-path: circle(30% at 100% 0%);
+  }
+  .stats-hover-item:hover {
+    transform: none;
+  }
+}
+
 /* Matches the hero eyebrow's larger type at `lg`. */
 @media (min-width: 1024px) {
   .mask-logo {

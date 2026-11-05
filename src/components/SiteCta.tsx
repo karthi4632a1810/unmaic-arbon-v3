@@ -1,7 +1,7 @@
 import { DotSphere } from "./ElementMotifs";
 import { ScrollLink } from "./ScrollLink";
 import { ScrollReveal } from "./ScrollReveal";
-import { COMPANY_BROCHURE_URL } from "../data/siteReference";
+import { COMPANY_PRESENTATION_URL } from "../data/siteReference";
 
 /** Space (Aagayam) — the element that holds the other four. */
 
@@ -207,7 +207,7 @@ export function SiteCta() {
               </ScrollLink>
 
               <a
-                href={COMPANY_BROCHURE_URL}
+                href={COMPANY_PRESENTATION_URL}
                 download
                 className="inline-flex w-full items-center justify-center gap-3 rounded-xl border border-white/25 px-9 py-4.5 text-base font-bold text-white transition duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/10 motion-reduce:hover:translate-y-0 sm:w-auto"
               >
@@ -225,7 +225,7 @@ export function SiteCta() {
                   <path d="m7.8 10.4 4.2 4.2 4.2-4.2" />
                   <path d="M4.6 19.5h14.8" />
                 </svg>
-                Download Brochure
+                Download Presentation
               </a>
             </div>
 

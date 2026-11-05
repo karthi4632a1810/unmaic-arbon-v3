@@ -7,12 +7,14 @@ function teamPhoto(filename: string) {
 
 export const TEAM_PHOTOS = {
   ajay: teamPhoto("Ajay_Mathur 1.png"),
+  axel: teamPhoto("Axel_Michaelowa.jpg"),
   bhaskar: teamPhoto("bhaskar-natarajan.jpg"),
   boudhyyan: teamPhoto("Boudhyyan Duttaa Photo 1.png"),
   chintan: teamPhoto("Chintan Shah Photo 1.png"),
   dinesh: teamPhoto("Dinesh Photo 1.png"),
   khalfa: teamPhoto("Khalfa.png"),
   kotteswari: teamPhoto("Kotteswari Photo 1.png"),
+  rimi: teamPhoto("Rimi_Pathak_v2.png"),
   shinu: teamPhoto("Shinu Photo 1.png"),
   souvik: teamPhoto("Souvik Photo 1.png"),
 } as const;

@@ -70,6 +70,15 @@ export async function getCachedBlob(cacheKey: string): Promise<Blob | null> {
   }
 }
 
+export async function deleteCachedBlob(cacheKey: string): Promise<boolean> {
+  try {
+    await runTransaction<undefined>("readwrite", (store) => store.delete(cacheKey));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export async function cacheBlobFromUrl(cacheKey: string, sourceUrl: string): Promise<boolean> {
   try {
     const existing = await getCachedBlob(cacheKey);

@@ -103,7 +103,8 @@ export function Streamlines({ className = "" }: { className?: string }) {
     <svg
       viewBox="0 0 1200 540"
       preserveAspectRatio="none"
-      className={className}
+      className={`overflow-hidden ${className}`}
+      style={{ overflow: "hidden" }}
       aria-hidden="true"
     >
       {bands.map((y, i) => (

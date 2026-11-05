@@ -1,4 +1,4 @@
-﻿export {
+export {
   GLOBAL_ENGAGEMENT_COUNTRIES,
   INSTITUTIONAL_PARTICIPATION,
 } from "../components/EngagementGlobalSections";
@@ -12,13 +12,11 @@ export const FOOTER_STRATEGIC_SERVICES = [
   "Net Zero Transition & Climate Advisory",
 ] as const;
 
-export const COMPANY_INSTAGRAM_URL = "https://www.instagram.com/unmaicarbonsolutions";
 export const COMPANY_LINKEDIN_URL = "https://sg.linkedin.com/company/unmai-carbon-solutions";
 
 /**
- * Brochure offered by the site-wide CTA. Drop the PDF at `public/unmai-carbon-brochure.pdf`
- * (or point this at whatever filename you ship) — the link downloads it directly.
+ * Corporate presentation offered by the site-wide CTA.
  */
-export const COMPANY_BROCHURE_URL = "/unmai-carbon-brochure.pdf";
+export const COMPANY_PRESENTATION_URL = "/UNMAI_CORPORATE PPT 1.pptx";
 
 export const COMPANY_TAGLINE = "Truth · Transparency · Traceability · Integrity";

@@ -63,6 +63,12 @@ const CORE_TEAM: TeamMember[] = [
     image: TEAM_PHOTOS.khalfa,
     linkedIn: "https://www.linkedin.com/in/mhamed-khalfa/",
   },
+  {
+    name: "Rimi Pathak",
+    role: "Carbon Market & Communications Specialist",
+    image: TEAM_PHOTOS.rimi,
+    linkedIn: "https://www.linkedin.com/in/rimi-pathak-44a687276/",
+  },
 ];
 
 const ADVISORY_BOARD: AdvisoryMember[] = [
@@ -72,6 +78,13 @@ const ADVISORY_BOARD: AdvisoryMember[] = [
     image: TEAM_PHOTOS.ajay,
     linkedIn: "https://www.linkedin.com/in/ajay-mathur-3666b3334/",
     bio: "Dr. Mathur currently serves as Professor of Practice at the School of Public Policy, Indian Institute of Technology Delhi, and is globally recognized as one of India's foremost leaders in clean energy, climate policy, and sustainable development. He previously served as Director General of the International Solar Alliance, where he advanced global cooperation on solar energy deployment, climate finance, and energy access across developing countries. Earlier, he led The Energy and Resources Institute (TERI), strengthening its global role in climate change research, energy transition, decarbonization, and sustainability policy advisory. Dr. Mathur also served as Director General of the Bureau of Energy Efficiency, Government of India, where he played a key role in shaping India's landmark energy efficiency and market-based transition programs, including the Perform, Achieve and Trade (PAT) mechanism. Over the course of his career, he has worked extensively with governments, multilateral institutions, industry, and international organizations on climate governance, clean energy systems, and low-carbon development pathways. His leadership reflects a unique combination of policy expertise, institutional governance, technical understanding, and international climate diplomacy. Dr. Mathur continues to contribute significantly to global sustainability discourse through academic engagement, strategic advisory roles, and international cooperation initiatives.",
+  },
+  {
+    name: "Dr. Axel Michaelowa",
+    role: "Global Strategic Advisory Board",
+    image: TEAM_PHOTOS.axel,
+    linkedIn: "https://www.linkedin.com/in/axel-michaelowa-863739a/",
+    bio: "Dr Michaelowa is an internationally recognised expert in climate policy and carbon markets, with more than three decades of experience working on international climate policy instruments and the UNFCCC process. He is a Senior Founding Partner of Perspectives Climate Group and Research Director at Perspectives Climate Research, and leads research on international climate policy at the University of Zurich. His work spans the design of carbon markets, domestic climate policy instruments, climate finance and the evolution of crediting mechanisms under the Kyoto Protocol and Paris Agreement. He has advised governments, international organisations and private institutions, and contributed to the Fourth and Fifth Assessment Reports of the Intergovernmental Panel on Climate Change.",
   },
   {
     name: "Chintan Shah",
@@ -173,16 +186,24 @@ function CachedMemberPhoto({ name, image }: { name: string; image: string }) {
   const displayUrl = useCachedImageUrl(image);
   const [hasError, setHasError] = useState(false);
 
-  if (!displayUrl || hasError) {
+  if (hasError) {
     return <MemberPhotoPlaceholder name={name} />;
   }
 
   return (
     <img
-      src={displayUrl}
+      src={displayUrl || image}
       alt={name}
+      loading="lazy"
+      decoding="async"
       className="h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.03]"
-      onError={() => setHasError(true)}
+      onError={(e) => {
+        if (displayUrl && displayUrl !== image) {
+          (e.currentTarget as HTMLImageElement).src = image;
+        } else {
+          setHasError(true);
+        }
+      }}
     />
   );
 }
@@ -205,52 +226,52 @@ function CoreTeamCard({ person, onOpenBio }: { person: TeamMember; onOpenBio?: (
         <button
           type="button"
           onClick={onOpenBio}
-          className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8"
+          className="relative flex w-full justify-center pb-2 pt-4 sm:pb-3 sm:pt-6 xs:pt-8"
         >
-          <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
+          <div className="relative size-24 xs:size-28 sm:size-36 md:size-44 lg:size-48 xl:size-52 overflow-hidden rounded-full border-2 sm:border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50">
             <MemberPhoto name={person.name} image={person.image} />
           </div>
         </button>
       ) : (
-        <div className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8">
-          <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
+        <div className="relative flex w-full justify-center pb-2 pt-4 sm:pb-3 sm:pt-6 xs:pt-8">
+          <div className="relative size-24 xs:size-28 sm:size-36 md:size-44 lg:size-48 xl:size-52 overflow-hidden rounded-full border-2 sm:border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50">
             <MemberPhoto name={person.name} image={person.image} />
           </div>
         </div>
       )}
-      <div className="flex flex-1 flex-col items-center gap-3 p-5 text-center sm:p-6">
-        <div className="space-y-1">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-500">
+      <div className="flex flex-1 flex-col items-center gap-2 sm:gap-3 p-3 xs:p-4 sm:p-6 text-center">
+        <div className="space-y-0.5 sm:space-y-1">
+          <p className="text-[9px] xs:text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-500">
             Core Team
           </p>
           {hasBio ? (
             <button
               type="button"
               onClick={onOpenBio}
-              className="text-center text-lg font-bold leading-snug text-[#131b2e] transition hover:text-neutral-900 sm:text-xl"
+              className="text-center text-sm xs:text-base sm:text-xl font-bold leading-snug text-[#131b2e] transition hover:text-neutral-900"
             >
               {person.name}
             </button>
           ) : (
-            <h3 className="text-center text-lg font-bold leading-snug text-[#131b2e] sm:text-xl">
+            <h3 className="text-center text-sm xs:text-base sm:text-xl font-bold leading-snug text-[#131b2e]">
               {person.name}
             </h3>
           )}
-          <p className="text-sm font-medium text-[#2b6193]">{person.role}</p>
+          <p className="text-xs sm:text-sm font-medium text-[#2b6193]">{person.role}</p>
         </div>
         {bioText ? (
-          <p className="line-clamp-4 flex-1 text-center text-sm leading-6 text-[#444654]">
+          <p className="line-clamp-3 sm:line-clamp-4 flex-1 text-center text-xs sm:text-sm leading-5 sm:leading-6 text-[#444654]">
             {bioText}
           </p>
         ) : (
           <div className="flex-1" />
         )}
-        <div className="mt-auto flex flex-wrap items-center justify-center gap-3 pt-1">
+        <div className="mt-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-1">
           {hasBio ? (
             <button
               type="button"
               onClick={onOpenBio}
-              className="text-xs font-semibold uppercase tracking-[0.12em] text-[#131b2e] transition hover:text-neutral-900"
+              className="text-[10px] xs:text-xs font-semibold uppercase tracking-[0.12em] text-[#131b2e] transition hover:text-neutral-900"
             >
               Read full profile
             </button>
@@ -260,7 +281,7 @@ function CoreTeamCard({ person, onOpenBio }: { person: TeamMember; onOpenBio?: (
               href={person.linkedIn}
               target="_blank"
               rel="noreferrer noopener"
-              className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-600 transition hover:underline"
+              className="text-[10px] xs:text-xs font-semibold uppercase tracking-[0.12em] text-neutral-600 transition hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
               LinkedIn ↗
@@ -278,34 +299,34 @@ function AdvisoryCard({ person, onOpenBio }: { person: AdvisoryMember; onOpenBio
       <button
         type="button"
         onClick={onOpenBio}
-        className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8"
+        className="relative flex w-full justify-center pb-2 pt-4 sm:pb-3 sm:pt-6 xs:pt-8"
       >
-        <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
+        <div className="relative size-24 xs:size-28 sm:size-36 md:size-44 lg:size-40 xl:size-48 overflow-hidden rounded-full border-2 sm:border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50">
           <MemberPhoto name={person.name} image={person.image} />
         </div>
       </button>
-      <div className="flex flex-1 flex-col items-center gap-3 p-5 text-center sm:p-6">
-        <div className="space-y-1">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-500">
-            Advisory Board
+      <div className="flex flex-1 flex-col items-center gap-2 sm:gap-3 p-3 xs:p-4 sm:p-5 text-center lg:p-4 xl:p-6">
+        <div className="space-y-0.5 sm:space-y-1">
+          <p className="text-[9px] xs:text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-500">
+            Global Strategic Advisor
           </p>
           <button
             type="button"
             onClick={onOpenBio}
-            className="text-center text-lg font-bold leading-snug text-[#131b2e] transition hover:text-neutral-900 sm:text-xl"
+            className="text-center text-sm xs:text-base sm:text-xl font-bold leading-snug text-[#131b2e] transition hover:text-neutral-900 lg:text-lg xl:text-xl"
           >
             {person.name}
           </button>
-          <p className="text-sm font-medium text-[#2b6193]">{person.role}</p>
+          <p className="text-xs sm:text-sm font-medium text-[#2b6193]">{person.role}</p>
         </div>
-        <p className="line-clamp-4 flex-1 text-center text-sm leading-6 text-[#444654]">
+        <p className="line-clamp-3 sm:line-clamp-4 flex-1 text-center text-xs sm:text-sm leading-5 sm:leading-6 text-[#444654]">
           {person.bio}
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-1">
           <button
             type="button"
             onClick={onOpenBio}
-            className="text-xs font-semibold uppercase tracking-[0.12em] text-[#131b2e] transition hover:text-neutral-900"
+            className="text-[10px] xs:text-xs font-semibold uppercase tracking-[0.12em] text-[#131b2e] transition hover:text-neutral-900"
           >
             Read full profile
           </button>
@@ -314,7 +335,7 @@ function AdvisoryCard({ person, onOpenBio }: { person: AdvisoryMember; onOpenBio
               href={person.linkedIn}
               target="_blank"
               rel="noreferrer noopener"
-              className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-600 transition hover:underline"
+              className="text-[10px] xs:text-xs font-semibold uppercase tracking-[0.12em] text-neutral-600 transition hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
               LinkedIn ↗
@@ -378,7 +399,7 @@ export function FounderAdvisoryBoardPage() {
           paragraph="UNMAI’s core team brings together policy, finance, digital infrastructure, and carbon market implementation depth to support governments, institutions, and corporates."
         />
 
-        <div className="mx-auto grid max-w-[1216px] gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-[1216px] gap-3 xs:gap-4 sm:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
           {coreTeamSorted.map((person) => (
             <ScrollReveal key={person.name}>
               <CoreTeamCard
@@ -408,7 +429,7 @@ export function FounderAdvisoryBoardPage() {
           />
         </div>
 
-        <div className="mx-auto grid max-w-[1216px] gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-[1216px] gap-3 xs:gap-4 sm:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {ADVISORY_BOARD.map((person) => (
             <ScrollReveal key={person.name}>
               <AdvisoryCard
@@ -417,7 +438,7 @@ export function FounderAdvisoryBoardPage() {
                   setActiveBioMember({
                     name: person.name,
                     role: person.role,
-                    category: "Global Strategic Advisory Board",
+                    category: "Global Strategic Advisor",
                     bio: person.bio,
                     linkedIn: person.linkedIn,
                   })

@@ -5,6 +5,14 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:8099",
+        changeOrigin: true,
+      },
+    },
+  },
   build: {
     // 3D globe + three.js is intentionally large; loaded only on /global-engagements
     chunkSizeWarningLimit: 2000,

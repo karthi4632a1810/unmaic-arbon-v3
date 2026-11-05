@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import {
   FOOTER_STRATEGIC_SERVICES,
@@ -30,7 +30,7 @@ const COLUMN_ICONS: Record<string, ReactNode> = {
   ),
 };
 
-function ReferenceColumn({
+function ResponsiveReferenceColumn({
   icon,
   title,
   items,
@@ -40,11 +40,11 @@ function ReferenceColumn({
   icon: keyof typeof COLUMN_ICONS;
   title: string;
   items: readonly string[];
-  /** Long lists split into two reading columns, as in the reference. */
   twoUp?: boolean;
-  /** Short entries can split on phones too; long ones wait for `sm`. */
   twoUpFrom?: "xs" | "sm";
 }) {
+  const [isOpenMobile, setIsOpenMobile] = useState(false);
+
   const columnsClass = !twoUp
     ? ""
     : twoUpFrom === "xs"
@@ -52,8 +52,47 @@ function ReferenceColumn({
       : "sm:columns-2 sm:gap-x-6 sm:space-y-0 sm:[&>li]:mb-3";
 
   return (
-    <div>
-      <div className="flex items-center gap-4">
+    <div className="border-b border-black/8 pb-4 lg:border-b-0 lg:pb-0">
+      {/* Mobile/Tablet Accordion Header */}
+      <button
+        type="button"
+        onClick={() => setIsOpenMobile((prev) => !prev)}
+        className="flex w-full items-center justify-between text-left lg:hidden"
+        aria-expanded={isOpenMobile}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            className="flex size-10 shrink-0 items-center justify-center rounded-full border border-[#131b2e]/8 bg-neutral-100 text-neutral-700 shadow-xs"
+            aria-hidden
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="size-5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              {COLUMN_ICONS[icon]}
+            </svg>
+          </span>
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-[#131b2e]">
+              {title}
+            </h3>
+            <span className="text-[11px] font-medium text-neutral-500">
+              {items.length} {icon === "services" ? "Capabilities" : icon === "engagements" ? "Countries" : "Institutions"}
+            </span>
+          </div>
+        </div>
+        <span className="inline-flex size-8 items-center justify-center rounded-full bg-neutral-100 text-xs font-bold text-neutral-600">
+          {isOpenMobile ? "−" : "+"}
+        </span>
+      </button>
+
+      {/* Desktop Permanent Header */}
+      <div className="hidden items-center gap-4 lg:flex">
         <span
           className="flex size-12 shrink-0 items-center justify-center rounded-full border border-[#131b2e]/8 bg-neutral-100 text-neutral-700 shadow-sm"
           aria-hidden
@@ -78,7 +117,12 @@ function ReferenceColumn({
         </div>
       </div>
 
-      <ul className={`mt-6 space-y-3 text-[13px] leading-6 text-[#4d5a63] sm:text-sm ${columnsClass}`}>
+      {/* List: collapsible on mobile/tablet, always visible on desktop */}
+      <ul
+        className={`mt-4 space-y-3 text-[13px] leading-6 text-[#4d5a63] sm:text-sm lg:mt-6 ${columnsClass} ${
+          isOpenMobile ? "block" : "hidden lg:block"
+        }`}
+      >
         {items.map((item) => (
           <li key={item} className="flex gap-2.5 break-inside-avoid">
             <span className="mt-2 size-1.5 shrink-0 rounded-full bg-neutral-400" aria-hidden />
@@ -93,17 +137,17 @@ function ReferenceColumn({
 export function FooterReferenceColumns() {
   return (
     <ScrollReveal>
-      <div className="border-t border-[#131b2e]/8 py-10">
-        <div className="grid gap-9 lg:grid-cols-3 lg:gap-0 lg:divide-x lg:divide-[#131b2e]/8">
+      <div className="border-t border-[#131b2e]/8 py-8 lg:py-10">
+        <div className="flex flex-col gap-4 lg:grid lg:grid-cols-3 lg:gap-0 lg:divide-x lg:divide-[#131b2e]/8">
           <div className="lg:pr-9">
-            <ReferenceColumn
+            <ResponsiveReferenceColumn
               icon="services"
               title="Strategic Services"
               items={FOOTER_STRATEGIC_SERVICES}
             />
           </div>
           <div className="lg:px-9">
-            <ReferenceColumn
+            <ResponsiveReferenceColumn
               icon="engagements"
               title="Global Engagements"
               items={GLOBAL_ENGAGEMENT_COUNTRIES}
@@ -112,7 +156,7 @@ export function FooterReferenceColumns() {
             />
           </div>
           <div className="lg:pl-9">
-            <ReferenceColumn
+            <ResponsiveReferenceColumn
               icon="institutions"
               title="Institutional Participation"
               items={INSTITUTIONAL_PARTICIPATION}

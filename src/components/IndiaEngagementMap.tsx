@@ -168,7 +168,7 @@ function LocationsVerticalList({
 }) {
   const itemClass = (active: boolean) =>
     [
-      "flex w-full items-center rounded-xl border px-4 py-2.5 text-left transition duration-200",
+      "flex w-full items-center rounded-xl border px-2.5 py-1.5 sm:px-4 sm:py-2 text-left transition duration-200",
       active
         ? "border-white/40 bg-white/15 text-white shadow-[0_0_20px_-4px_rgba(255,255,255,0.2)] font-bold"
         : "border-transparent bg-transparent text-white/75 hover:border-white/10 hover:bg-white/[0.08] hover:text-white",
@@ -182,13 +182,13 @@ function LocationsVerticalList({
       <p className="shrink-0 border-b border-white/8 bg-white/3 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
         Countries
       </p>
-      <div className="india-map-country-panel-scroll flex flex-col gap-1 overflow-y-auto p-2.5">
+      <div className="india-map-country-panel-scroll grid grid-cols-2 xs:grid-cols-3 sm:flex sm:flex-col gap-1 overflow-y-auto p-2 sm:p-2.5">
         <button
           type="button"
           onClick={() => onSelectCountry(null)}
           className={itemClass(selectedCountry === null)}
         >
-          <span className="text-sm font-semibold">Global view</span>
+          <span className="text-xs xs:text-[13px] sm:text-sm font-semibold truncate">Global view</span>
         </button>
 
         {countryGroups.map((group) => {
@@ -200,7 +200,7 @@ function LocationsVerticalList({
               onClick={() => onSelectCountry(group.country)}
               className={itemClass(active)}
             >
-              <span className="text-sm font-semibold">{group.country}</span>
+              <span className="text-xs xs:text-[13px] sm:text-sm font-semibold truncate">{group.country}</span>
             </button>
           );
         })}
@@ -289,7 +289,7 @@ export function IndiaEngagementMap() {
               Drag to rotate · Ctrl + scroll to zoom
             </div>
 
-            <aside className="pointer-events-none absolute inset-x-3 bottom-3 z-30 flex max-h-[min(38vh,300px)] items-stretch xs:inset-x-4 xs:bottom-4 sm:inset-x-auto sm:bottom-auto sm:right-6 sm:top-1/2 sm:max-h-[min(66vh,680px)] sm:w-[min(320px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8 lg:w-[min(340px,calc(100%-4rem))]">
+            <aside className="pointer-events-none absolute inset-x-3 bottom-3 z-30 flex max-h-[min(24vh,180px)] items-stretch xs:inset-x-4 xs:bottom-4 sm:inset-x-auto sm:bottom-auto sm:right-6 sm:top-1/2 sm:max-h-[min(66vh,680px)] sm:w-[min(320px,calc(100%-3rem))] sm:-translate-y-1/2 lg:right-8 lg:w-[min(340px,calc(100%-4rem))]">
               <div className="pointer-events-auto w-full min-w-0">
                 <LocationsVerticalList
                   countryGroups={countryGroups}

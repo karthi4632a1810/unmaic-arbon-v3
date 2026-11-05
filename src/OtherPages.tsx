@@ -316,13 +316,13 @@ export function GlobalEngagementsPage() {
           title="Standards, partners & multilateral engagement"
           hue={ELEMENT_BY_ID.space.hue}
         />
-        <ul className="mx-auto mt-6 grid max-w-[1216px] gap-x-8 gap-y-px sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mx-auto mt-6 grid max-w-[1216px] gap-x-4 sm:gap-x-8 gap-y-px grid-cols-2 sm:grid-cols-2 lg:grid-cols-3">
           {INSTITUTIONAL_PARTICIPATION.map((item, i) => (
             <li key={item} className="list-none">
-              <ScrollReveal delayMs={i * 30}>
-                <span className="flex items-center gap-3 border-b border-black/10 py-3 text-sm font-semibold text-[#131b2e] transition-colors duration-300 hover:text-[#2b6193]">
+              <ScrollReveal delayMs={i * 20}>
+                <span className="flex items-center gap-2 sm:gap-3 border-b border-black/10 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-[#131b2e] transition-colors duration-300 hover:text-[#2b6193]">
                   <span className="size-1 shrink-0 rounded-full bg-[#131b2e]" aria-hidden />
-                  {item}
+                  <span className="truncate">{item}</span>
                 </span>
               </ScrollReveal>
             </li>
@@ -523,11 +523,6 @@ const CONTACT_CHANNELS: ReadonlyArray<{ label: string; value: string; href?: str
   { label: "Singapore HQ", value: "10, Sim Lim Tower, Jalan Besar #10-10, Singapore 208787" },
   { label: "Email", value: "admin@unmaicarbon.earth", href: "mailto:admin@unmaicarbon.earth" },
   { label: "Telephone", value: "+65 9023 1823", href: "tel:+6590231823" },
-  {
-    label: "Instagram",
-    value: "@unmaicarbonsolutions",
-    href: "https://www.instagram.com/unmaicarbonsolutions",
-  },
   {
     label: "LinkedIn",
     value: "UNMAI Carbon Solutions",
