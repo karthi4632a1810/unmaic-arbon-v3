@@ -19,6 +19,6 @@ export const COMPANY_LINKEDIN_URL = "https://sg.linkedin.com/company/unmai-carbo
  * Brochure offered by the site-wide CTA. Drop the PDF at `public/unmai-carbon-brochure.pdf`
  * (or point this at whatever filename you ship) — the link downloads it directly.
  */
-export const COMPANY_BROCHURE_URL = "/unmai-carbon-brochure.pdf";
+export const COMPANY_BROCHURE_URL = "/UNMAI_CORPORATE PPT 1.pptx";
 
 export const COMPANY_TAGLINE = "Truth · Transparency · Traceability · Integrity";
