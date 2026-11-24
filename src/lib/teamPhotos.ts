@@ -14,6 +14,7 @@ export const TEAM_PHOTOS = {
   dinesh: teamPhoto("Dinesh Photo 1.png"),
   khalfa: teamPhoto("Khalfa.png"),
   kotteswari: teamPhoto("Kotteswari Photo 1.png"),
+  rimi: teamPhoto("Rimi.png"),
   shinu: teamPhoto("Shinu Photo 1.png"),
   souvik: teamPhoto("Souvik Photo 1.png"),
 } as const;

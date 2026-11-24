@@ -1,4 +1,4 @@
-﻿export {
+export {
   GLOBAL_ENGAGEMENT_COUNTRIES,
   INSTITUTIONAL_PARTICIPATION,
 } from "../components/EngagementGlobalSections";

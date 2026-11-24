@@ -63,6 +63,12 @@ const CORE_TEAM: TeamMember[] = [
     image: TEAM_PHOTOS.khalfa,
     linkedIn: "https://www.linkedin.com/in/mhamed-khalfa/",
   },
+  {
+    name: "Rimi Pathak",
+    role: "Carbon Market & Communications Specialist",
+    image: TEAM_PHOTOS.rimi,
+    linkedIn: "https://www.linkedin.com/in/rimi-pathak-44a687276/",
+  },
 ];
 
 const ADVISORY_BOARD: AdvisoryMember[] = [
