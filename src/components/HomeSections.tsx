@@ -880,9 +880,13 @@ export function PressReleasesSection() {
         </ScrollReveal>
 
         <div className="mt-10 grid gap-6 sm:mt-12 lg:grid-cols-[minmax(0,0.56fr)_minmax(0,1fr)] lg:gap-x-8 lg:gap-y-6">
-          <ScrollReveal className="lg:h-full">
-            <PressPromoCard />
-          </ScrollReveal>
+          <div className="lg:row-span-2 lg:h-full">
+            <div className="lg:sticky lg:top-24">
+              <ScrollReveal>
+                <PressPromoCard />
+              </ScrollReveal>
+            </div>
+          </div>
 
           <ol className="flex flex-col gap-5">
               {PRESS_RELEASES.map((release, i) => {

@@ -74,6 +74,13 @@ const ADVISORY_BOARD: AdvisoryMember[] = [
     bio: "Dr. Mathur currently serves as Professor of Practice at the School of Public Policy, Indian Institute of Technology Delhi, and is globally recognized as one of India's foremost leaders in clean energy, climate policy, and sustainable development. He previously served as Director General of the International Solar Alliance, where he advanced global cooperation on solar energy deployment, climate finance, and energy access across developing countries. Earlier, he led The Energy and Resources Institute (TERI), strengthening its global role in climate change research, energy transition, decarbonization, and sustainability policy advisory. Dr. Mathur also served as Director General of the Bureau of Energy Efficiency, Government of India, where he played a key role in shaping India's landmark energy efficiency and market-based transition programs, including the Perform, Achieve and Trade (PAT) mechanism. Over the course of his career, he has worked extensively with governments, multilateral institutions, industry, and international organizations on climate governance, clean energy systems, and low-carbon development pathways. His leadership reflects a unique combination of policy expertise, institutional governance, technical understanding, and international climate diplomacy. Dr. Mathur continues to contribute significantly to global sustainability discourse through academic engagement, strategic advisory roles, and international cooperation initiatives.",
   },
   {
+    name: "Dr. Axel Michaelowa",
+    role: "Global Strategic Advisory Board",
+    image: TEAM_PHOTOS.axel,
+    linkedIn: "https://www.linkedin.com/in/axel-michaelowa-863739a/",
+    bio: "Dr Michaelowa is an internationally recognised expert in climate policy and carbon markets, with more than three decades of experience working on international climate policy instruments and the UNFCCC process. He is a Senior Founding Partner of Perspectives Climate Group and Research Director at Perspectives Climate Research, and leads research on international climate policy at the University of Zurich. His work spans the design of carbon markets, domestic climate policy instruments, climate finance and the evolution of crediting mechanisms under the Kyoto Protocol and Paris Agreement. He has advised governments, international organisations and private institutions, and contributed to the Fourth and Fifth Assessment Reports of the Intergovernmental Panel on Climate Change. His appointment strengthens UNMAI Carbon’s work on high-integrity carbon markets, Article 6 readiness, climate finance, carbon market infrastructure and digital public goods for monitoring, reporting and verification and national carbon registries. Dr Michaelowa will provide strategic insight on Article 6 methodologies, market integrity, authorisation and safeguards.",
+  },
+  {
     name: "Chintan Shah",
     role: "Global Strategic Advisory Board",
     image: TEAM_PHOTOS.chintan,
@@ -134,7 +141,7 @@ function SectionIntro({
 }) {
   return (
     <ScrollReveal>
-      <div className="mx-auto mb-8 flex max-w-[1216px] flex-col gap-5 border-b border-black/8 pb-6 sm:gap-6 sm:pb-8 md:mb-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+      <div className="mx-auto mb-8 flex max-w-[1300px] flex-col gap-5 border-b border-black/8 pb-6 sm:gap-6 sm:pb-8 md:mb-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         <div className="space-y-2">
           <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-neutral-500">{title}</p>
           <h2 className="display-head max-w-2xl text-[clamp(1.7rem,4.4vw,2.9rem)] font-bold leading-[1.05] tracking-[-0.02em] text-[#131b2e]">
@@ -280,14 +287,14 @@ function AdvisoryCard({ person, onOpenBio }: { person: AdvisoryMember; onOpenBio
         onClick={onOpenBio}
         className="relative flex w-full justify-center pb-3 pt-6 xs:pt-8"
       >
-        <div className="relative size-40 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50 xs:size-48 sm:size-44 md:size-52 lg:size-56">
+        <div className="relative size-36 overflow-hidden rounded-full border-4 border-white shadow-lg ring-2 ring-black/10 transition duration-300 group-hover:scale-[1.04] group-hover:ring-neutral-400/50 xs:size-44 sm:size-40 md:size-44 lg:size-40 xl:size-48">
           <MemberPhoto name={person.name} image={person.image} />
         </div>
       </button>
-      <div className="flex flex-1 flex-col items-center gap-3 p-5 text-center sm:p-6">
+      <div className="flex flex-1 flex-col items-center gap-3 p-4 text-center sm:p-5">
         <div className="space-y-1">
           <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-neutral-500">
-            Advisory Board
+            Global Strategic Advisor
           </p>
           <button
             type="button"
@@ -408,7 +415,7 @@ export function FounderAdvisoryBoardPage() {
           />
         </div>
 
-        <div className="mx-auto grid max-w-[1216px] gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-[1300px] gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {ADVISORY_BOARD.map((person) => (
             <ScrollReveal key={person.name}>
               <AdvisoryCard
